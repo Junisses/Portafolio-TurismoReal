@@ -1,0 +1,6 @@
+C:\Users\LANCENTERSTORE\source\repos\TurismoReal\Entidades\bin\Debug\Entidades.dll
+C:\Users\LANCENTERSTORE\source\repos\TurismoReal\Entidades\bin\Debug\Entidades.pdb
+C:\Users\LANCENTERSTORE\source\repos\TurismoReal\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
+C:\Users\LANCENTERSTORE\source\repos\TurismoReal\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\LANCENTERSTORE\source\repos\TurismoReal\Entidades\obj\Debug\Entidades.dll
+C:\Users\LANCENTERSTORE\source\repos\TurismoReal\Entidades\obj\Debug\Entidades.pdb
