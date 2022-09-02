@@ -10,3 +10,15 @@ C:\Users\LANCENTERSTORE\source\repos\TurismoReal\Negocios\bin\Debug\Datos.pdb
 C:\Users\LANCENTERSTORE\source\repos\TurismoReal\Negocios\bin\Debug\Entidades.pdb
 C:\Users\LANCENTERSTORE\source\repos\TurismoReal\Negocios\obj\Debug\Negocios.csproj.CopyComplete
 C:\Users\LANCENTERSTORE\source\repos\TurismoReal\Negocios\bin\Debug\Datos.dll.config
+C:\TurismoReal\TurismoReal\Negocios\bin\Debug\Negocios.dll
+C:\TurismoReal\TurismoReal\Negocios\bin\Debug\Negocios.pdb
+C:\TurismoReal\TurismoReal\Negocios\bin\Debug\Datos.dll
+C:\TurismoReal\TurismoReal\Negocios\bin\Debug\Entidades.dll
+C:\TurismoReal\TurismoReal\Negocios\bin\Debug\Datos.pdb
+C:\TurismoReal\TurismoReal\Negocios\bin\Debug\Datos.dll.config
+C:\TurismoReal\TurismoReal\Negocios\bin\Debug\Entidades.pdb
+C:\TurismoReal\TurismoReal\Negocios\obj\Debug\Negocios.csproj.AssemblyReference.cache
+C:\TurismoReal\TurismoReal\Negocios\obj\Debug\Negocios.csproj.CoreCompileInputs.cache
+C:\TurismoReal\TurismoReal\Negocios\obj\Debug\Negocios.csproj.CopyComplete
+C:\TurismoReal\TurismoReal\Negocios\obj\Debug\Negocios.dll
+C:\TurismoReal\TurismoReal\Negocios\obj\Debug\Negocios.pdb

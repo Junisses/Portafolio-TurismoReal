@@ -72,8 +72,7 @@ namespace Datos.DataBase
             else
             {
                 ObjDataBase.ObjSqlConnection.Close();
-                //Lo quita de memoria, nose si dejarlo asique lo comento
-                //ObjDataBase.ObjSqlConnection.Dispose();
+                ObjDataBase.ObjSqlConnection.Dispose();
             }
         }
 

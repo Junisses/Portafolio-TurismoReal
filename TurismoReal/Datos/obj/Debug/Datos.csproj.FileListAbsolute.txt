@@ -5,3 +5,10 @@ C:\Users\LANCENTERSTORE\source\repos\TurismoReal\Datos\obj\Debug\Datos.csproj.Co
 C:\Users\LANCENTERSTORE\source\repos\TurismoReal\Datos\obj\Debug\Datos.dll
 C:\Users\LANCENTERSTORE\source\repos\TurismoReal\Datos\obj\Debug\Datos.pdb
 C:\Users\LANCENTERSTORE\source\repos\TurismoReal\Datos\bin\Debug\Datos.dll.config
+C:\TurismoReal\TurismoReal\Datos\bin\Debug\Datos.dll.config
+C:\TurismoReal\TurismoReal\Datos\bin\Debug\Datos.dll
+C:\TurismoReal\TurismoReal\Datos\bin\Debug\Datos.pdb
+C:\TurismoReal\TurismoReal\Datos\obj\Debug\Datos.csproj.AssemblyReference.cache
+C:\TurismoReal\TurismoReal\Datos\obj\Debug\Datos.csproj.CoreCompileInputs.cache
+C:\TurismoReal\TurismoReal\Datos\obj\Debug\Datos.dll
+C:\TurismoReal\TurismoReal\Datos\obj\Debug\Datos.pdb

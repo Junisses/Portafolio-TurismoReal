@@ -46,10 +46,6 @@
     <Compile Include="Usuarios\ClsUsuarioLn.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Datos\Datos.csproj">
-      <Project>{8cb0695a-e47e-4b1c-8231-6f37ccdb9a16}</Project>
-      <Name>Datos</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Entidades\Entidades.csproj">
       <Project>{25a438d5-ad5a-4eff-b39a-db6eb8d3ada9}</Project>
       <Name>Entidades</Name>

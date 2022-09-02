@@ -35,8 +35,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -62,11 +65,14 @@
     <Compile Include="Vistas\InicioAdmin.xaml.cs">
       <DependentUpon>InicioAdmin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\InicioFuncionario.xaml.cs">
-      <DependentUpon>InicioFuncionario.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Vistas\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistasAdmin\CRUDusuarios.xaml.cs">
+      <DependentUpon>CRUDusuarios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistasAdmin\Usuarios.xaml.cs">
+      <DependentUpon>Usuarios.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -100,11 +106,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vistas\InicioFuncionario.xaml">
+    <Page Include="Vistas\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vistas\LoginView.xaml">
+    <Page Include="Vistas\VistasAdmin\CRUDusuarios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VistasAdmin\Usuarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,13 +123,31 @@
     <Resource Include="Vistas\Images\Logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Entidades\Entidades.csproj">
-      <Project>{25a438d5-ad5a-4eff-b39a-db6eb8d3ada9}</Project>
-      <Name>Entidades</Name>
+    <Resource Include="Vistas\Images\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\departamento.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\confiuser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CapaDeEntidad\CapaDeEntidad.csproj">
+      <Project>{6027761a-8746-4ce9-879c-a69708e4db95}</Project>
+      <Name>CapaDeEntidad</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Negocios\Negocios.csproj">
-      <Project>{424f1dfd-0ec2-417e-9801-bac48430df91}</Project>
-      <Name>Negocios</Name>
+    <ProjectReference Include="..\CapaDeNegocio\CapaDeNegocio.csproj">
+      <Project>{50726676-5b31-4992-9d76-044b65ccc65a}</Project>
+      <Name>CapaDeNegocio</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
