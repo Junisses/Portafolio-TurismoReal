@@ -87,7 +87,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             {
                 
                 int tipousuario = objeto_CN_TipoUsuarioFK.idTipoUsuario(cbTipoUsuario.Text);
-                int forma = objeto_CN_IdentificacionFK.idIdentificacion(cbIdentificacion.Text);
+                int forma = objeto_CN_IdentificacionFK.IdIdentificacion(cbIdentificacion.Text);
 
                 objeto_CE_Usuarios.Nombres = tbNombre.Text;
                 objeto_CE_Usuarios.Apellidos = tbApellido.Text;
@@ -128,7 +128,7 @@ namespace TurismoReal.Vistas.VistasAdmin
 
             var b = objeto_CN_TipoUsuarioFK.nombreTipoUsuario(a.IdTipoUsuario);
             cbTipoUsuario.Text = b.TipoUsuario;
-            var c = objeto_CN_IdentificacionFK.nombreFormato(a.IdIdentificacion);
+            var c = objeto_CN_IdentificacionFK.NombreFormato(a.IdIdentificacion);
             cbIdentificacion.Text = c.Formato;
         }
         #endregion
@@ -139,7 +139,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             {
                 //pendiente
                 int tipousuario = objeto_CN_TipoUsuarioFK.idTipoUsuario(cbTipoUsuario.Text);
-                int forma = objeto_CN_IdentificacionFK.idIdentificacion(cbIdentificacion.Text);
+                int forma = objeto_CN_IdentificacionFK.IdIdentificacion(cbIdentificacion.Text);
 
                 objeto_CE_Usuarios.IdUsuario = idUsuario;
                 objeto_CE_Usuarios.Nombres = tbNombre.Text;

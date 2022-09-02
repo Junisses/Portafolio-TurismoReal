@@ -12,14 +12,14 @@ namespace CapaDeNegocio.Clases
     {
         CD_IdentificacionFK CD_IdentificacionFK = new CD_IdentificacionFK();
 
-        public int idIdentificacion(string formato)
+        public int IdIdentificacion(string Formato)
         {
-            return CD_IdentificacionFK.IdIdentificacion(formato);
+            return CD_IdentificacionFK.IdIdentificacion(Formato);
         }
 
-        public CE_IdentificacionFK nombreFormato(int idIdentificacion)
+        public CE_IdentificacionFK NombreFormato(int IdIdentificacion)
         {
-            return CD_IdentificacionFK.NombreFormato(idIdentificacion);
+            return CD_IdentificacionFK.NombreFormato(IdIdentificacion);
         }
 
         public List<string> ListarFormato()

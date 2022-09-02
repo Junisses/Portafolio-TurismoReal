@@ -8,10 +8,10 @@ namespace CapaDeEntidad.Clases
 {
     public class CE_TipoUsuarioFK
     {
-        private int _idTipoUsuario;
-        private string _tipoUsuario;
+        private int _IdTipoUsuario;
+        private string _TipoUsuario;
 
-        public int IdTipoUsuario { get => _idTipoUsuario; set => _idTipoUsuario = value; }
-        public string TipoUsuario { get => _tipoUsuario; set => _tipoUsuario = value; }
+        public int IdTipoUsuario { get => _IdTipoUsuario; set => _IdTipoUsuario = value; }
+        public string TipoUsuario { get => _TipoUsuario; set => _TipoUsuario = value; }
     }
 }

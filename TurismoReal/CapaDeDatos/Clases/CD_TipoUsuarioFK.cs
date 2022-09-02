@@ -17,7 +17,7 @@ namespace CapaDeDatos.Clases
         readonly CE_TipoUsuarioFK ce = new CE_TipoUsuarioFK();
 
         #region IdTipoUsuario
-        public int idTipoUsuario(string TipoUsuario)
+        public int IdTipoUsuario(string TipoUsuario)
         {
             SqlCommand com = new SqlCommand()
             {
@@ -37,7 +37,7 @@ namespace CapaDeDatos.Clases
         #endregion
         #region NombreTipoUsuario
 
-        public CE_TipoUsuarioFK nombreTipoUsuario(int IdTipoUsuario)
+        public CE_TipoUsuarioFK NombreTipoUsuario(int IdTipoUsuario)
         {
             SqlDataAdapter da = new SqlDataAdapter("dbo.SP_P_NombreTipoUsuario", con.AbrirConexion());
             da.SelectCommand.CommandType = CommandType.StoredProcedure;

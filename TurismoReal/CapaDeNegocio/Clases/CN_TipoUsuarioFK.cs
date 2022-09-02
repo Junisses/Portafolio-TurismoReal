@@ -12,14 +12,14 @@ namespace CapaDeNegocio.Clases
     {
         CD_TipoUsuarioFK CD_TipoUsuarioFK = new CD_TipoUsuarioFK();
 
-        public int idTipoUsuario(string tipoUsuario)
+        public int idTipoUsuario(string TipoUsuario)
         {
-            return CD_TipoUsuarioFK.idTipoUsuario(tipoUsuario);
+            return CD_TipoUsuarioFK.IdTipoUsuario(TipoUsuario);
         }
 
-        public CE_TipoUsuarioFK nombreTipoUsuario(int idTipoUsuario)
+        public CE_TipoUsuarioFK nombreTipoUsuario(int IdTipoUsuario)
         {
-            return CD_TipoUsuarioFK.nombreTipoUsuario(idTipoUsuario);
+            return CD_TipoUsuarioFK.NombreTipoUsuario(IdTipoUsuario);
         }
 
         public List<string> ListarTiposUsuario()

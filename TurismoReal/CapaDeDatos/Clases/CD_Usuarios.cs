@@ -61,13 +61,14 @@ namespace CapaDeDatos.Clases
             ce.Apellidos = Convert.ToString(row[2]);
             ce.Usuario = Convert.ToString(row[3]);
             ce.Correo = Convert.ToString(row[4]);
-            ce.Identificacion = Convert.ToString(row[5]);
-            ce.Celular = Convert.ToString(row[6]);
-            ce.Pais = Convert.ToString(row[7]);
-            ce.CodigoVerificacion = Convert.ToString(row[8]);
-            ce.Habilitada = Convert.ToBoolean(row[9]);
-            ce.IdTipoUsuario = Convert.ToInt32(row[10]);
-            ce.IdIdentificacion = Convert.ToInt32(row[11]);
+            ce.Identificacion = Convert.ToString(row[6]);
+            ce.Celular = Convert.ToString(row[7]);
+            ce.Pais = Convert.ToString(row[8]);
+            ce.CodigoVerificacion = Convert.ToString(row[9]);
+            //AUN NO ESTA PROGRAMADO
+            //ce.Habilitada = Convert.ToBoolean(row[10]);
+            ce.IdTipoUsuario = Convert.ToInt32(row[11]);
+            ce.IdIdentificacion = Convert.ToInt32(row[12]);
 
             return ce;
         }

@@ -25,11 +25,11 @@ namespace CapaDeDatos.Clases
             };
 
             com.Parameters.AddWithValue("@formato", Formato);
-            object valor = com.ExecuteScalar();
-            int ididentificacion = (int)valor;
+            object resultado = com.ExecuteScalar();
+            int ididen = (int)resultado;
             con.CerrarConexion();
 
-            return ididentificacion;
+            return ididen;
         }
 
         #endregion
