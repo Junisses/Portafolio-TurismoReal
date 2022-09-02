@@ -43,9 +43,9 @@ namespace TurismoReal.Vistas.VistasAdmin
             }
 
             List<string> forma = objeto_CN_IdentificacionFK.ListarFormato();
-            for (int i = 0; i < tipousuario.Count; i++)
+            for (int i = 0; i < forma.Count; i++)
             {
-                cbTipoUsuario.Items.Add(tipousuario[i]);
+                cbIdentificacion.Items.Add(forma[i]);
             }
         }
         #endregion
@@ -85,7 +85,7 @@ namespace TurismoReal.Vistas.VistasAdmin
         {
             if(CamposLlenos() == true && tbContrasena.Text != "")
             {
-                //pendiente
+                
                 int tipousuario = objeto_CN_TipoUsuarioFK.idTipoUsuario(cbTipoUsuario.Text);
                 int forma = objeto_CN_IdentificacionFK.idIdentificacion(cbIdentificacion.Text);
 

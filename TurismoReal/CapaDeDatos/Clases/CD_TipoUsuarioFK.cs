@@ -17,16 +17,16 @@ namespace CapaDeDatos.Clases
         readonly CE_TipoUsuarioFK ce = new CE_TipoUsuarioFK();
 
         #region IdTipoUsuario
-        public int idTipoUsuario(string tipoUsuario)
+        public int idTipoUsuario(string TipoUsuario)
         {
             SqlCommand com = new SqlCommand()
             {
                 Connection = con.AbrirConexion(),
-                CommandText = "SP_P_IdTipoUsuario",
+                CommandText = "dbo.SP_P_IdTipoUsuario",
                 CommandType = CommandType.StoredProcedure,
             };
 
-            com.Parameters.AddWithValue("@tipoUsuario", tipoUsuario);
+            com.Parameters.AddWithValue("@tipoUsuario", TipoUsuario);
             object valor = com.ExecuteScalar();
             int idtipousuario = (int)valor;
             con.CerrarConexion();
@@ -37,11 +37,11 @@ namespace CapaDeDatos.Clases
         #endregion
         #region NombreTipoUsuario
 
-        public CE_TipoUsuarioFK nombreTipoUsuario(int idTipoUsuario)
+        public CE_TipoUsuarioFK nombreTipoUsuario(int IdTipoUsuario)
         {
-            SqlDataAdapter da = new SqlDataAdapter("SP_P_NombreTipoUsuario", con.AbrirConexion());
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_P_NombreTipoUsuario", con.AbrirConexion());
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
-            da.SelectCommand.Parameters.Add("@idTipoUsuario", SqlDbType.Int).Value = idTipoUsuario;
+            da.SelectCommand.Parameters.Add("@idTipoUsuario", SqlDbType.Int).Value = IdTipoUsuario;
             DataSet ds = new DataSet();
             ds.Clear();
             da.Fill(ds);
@@ -63,7 +63,7 @@ namespace CapaDeDatos.Clases
             SqlCommand com = new SqlCommand()
             {
                 Connection = con.AbrirConexion(),
-                CommandText= "SP_P_CargarTipoUsuarioFK",
+                CommandText= "dbo.SP_P_CargarTipoUsuarioFK",
                 CommandType = CommandType.StoredProcedure
             };
             SqlDataReader reader = com.ExecuteReader();

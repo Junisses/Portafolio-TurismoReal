@@ -15,16 +15,16 @@ namespace CapaDeDatos.Clases
         readonly CE_IdentificacionFK ce = new CE_IdentificacionFK();
 
         #region IdIdentificacion
-        public int idIdentificacion(string formato)
+        public int IdIdentificacion(string Formato)
         {
             SqlCommand com = new SqlCommand()
             {
                 Connection = con.AbrirConexion(),
-                CommandText = "SP_P_IdIdent",
+                CommandText = "dbo.SP_P_IdIdent",
                 CommandType = CommandType.StoredProcedure,
             };
 
-            com.Parameters.AddWithValue("@formato", formato);
+            com.Parameters.AddWithValue("@formato", Formato);
             object valor = com.ExecuteScalar();
             int ididentificacion = (int)valor;
             con.CerrarConexion();
@@ -35,11 +35,11 @@ namespace CapaDeDatos.Clases
         #endregion
         #region nombre formato
 
-        public CE_IdentificacionFK nombreFormato(int idIdentificacion)
+        public CE_IdentificacionFK NombreFormato(int IdIdentificacion)
         {
-            SqlDataAdapter da = new SqlDataAdapter("SP_P_FormatoIdent", con.AbrirConexion());
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_P_FormatoIdent", con.AbrirConexion());
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
-            da.SelectCommand.Parameters.Add("@idIdentificacion", SqlDbType.Int).Value = idIdentificacion;
+            da.SelectCommand.Parameters.Add("@idIdentificacion", SqlDbType.Int).Value = IdIdentificacion;
             DataSet ds = new DataSet();
             ds.Clear();
             da.Fill(ds);
@@ -61,7 +61,7 @@ namespace CapaDeDatos.Clases
             SqlCommand com = new SqlCommand()
             {
                 Connection = con.AbrirConexion(),
-                CommandText = "SP_P_FormatoFK",
+                CommandText = "dbo.SP_P_CargarFormatoFK",
                 CommandType = CommandType.StoredProcedure
             };
             SqlDataReader reader = com.ExecuteReader();

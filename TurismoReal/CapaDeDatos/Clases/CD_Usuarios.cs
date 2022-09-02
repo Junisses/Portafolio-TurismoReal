@@ -22,7 +22,7 @@ namespace CapaDeDatos.Clases
             SqlCommand com = new SqlCommand()
             {
                 Connection = con.AbrirConexion(),
-                CommandText = "SP_U_Insertar",
+                CommandText = "dbo.SP_U_Insertar",
                 CommandType = CommandType.StoredProcedure,
             };
             com.Parameters.AddWithValue("@nombres", Usuarios.Nombres);
@@ -48,7 +48,7 @@ namespace CapaDeDatos.Clases
 
         public CE_Usuarios CD_Consulta(int idUsuario)
         {
-            SqlDataAdapter da = new SqlDataAdapter("SP_U_Consultar", con.AbrirConexion());
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_U_Consultar", con.AbrirConexion());
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
             da.SelectCommand.Parameters.Add("@idUsuario", SqlDbType.Int).Value = idUsuario;
             DataSet ds = new DataSet();
@@ -79,7 +79,7 @@ namespace CapaDeDatos.Clases
         {
             SqlCommand com = new SqlCommand();
             com.Connection = con.AbrirConexion();
-            com.CommandText = "SP_U_Eliminar";
+            com.CommandText = "dbo.SP_U_Eliminar";
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.AddWithValue("@idUsuario", Usuarios.IdUsuario);
             com.ExecuteNonQuery();
@@ -96,7 +96,7 @@ namespace CapaDeDatos.Clases
             SqlCommand com = new SqlCommand()
             {
                 Connection = con.AbrirConexion(),
-                CommandText = "SP_U_Actualizar",
+                CommandText = "dbo.SP_U_Actualizar",
                 CommandType = CommandType.StoredProcedure
             };
             com.Parameters.AddWithValue("@idUsuario", Usuarios.IdUsuario);
@@ -125,7 +125,7 @@ namespace CapaDeDatos.Clases
             SqlCommand com = new SqlCommand()
             {
                 Connection = con.AbrirConexion(),
-                CommandText = "SP_U_ActualizarPass",
+                CommandText = "dbo.SP_U_ActualizarPass",
                 CommandType = CommandType.StoredProcedure
             };
             com.Parameters.AddWithValue("@idUsuario", Usuarios.IdUsuario);
@@ -141,7 +141,7 @@ namespace CapaDeDatos.Clases
 
         public DataTable CargarUsuarios()
         {
-            SqlDataAdapter da = new SqlDataAdapter("@SP_U_CargarUsuarios", con.AbrirConexion());
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_U_CargarUsuarios", con.AbrirConexion());
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
             DataSet ds = new DataSet();
             ds.Clear();
