@@ -26,5 +26,8 @@ namespace TurismoReal.Properties
                 return defaultInstance;
             }
         }
+
+        public int IdUsuario { get; internal set; }
+        public int IdTipoUsuario { get; internal set; }
     }
 }

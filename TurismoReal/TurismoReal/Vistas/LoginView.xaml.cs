@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaDeNegocio.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace TurismoReal.Vistas
         public LoginView()
         {
             InitializeComponent();
+            txtUser.Focus();
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -41,7 +43,35 @@ namespace TurismoReal.Vistas
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-
+            if (txtUser.Text != "" && txtPass.Password != "")
+            {
+                Login(txtUser.Text, txtPass.Password);
+            }
+            else
+            {
+                MessageBox.Show("No pueden quedar campos vacios");
+            }
         }
+
+        void Login(string usuario, string contra)
+        { 
+            CN_Usuarios cn = new CN_Usuarios();
+            var a = cn.LogIn(usuario, contra);
+
+            if (a.IdUsuario > 0)
+            {
+                Properties.Settings.Default.IdUsuario = a.IdUsuario;
+                Properties.Settings.Default.IdTipoUsuario = a.IdTipoUsuario;
+                MessageBox.Show("ingreso correctamente el usuario" + a.IdUsuario);
+                this.Close();
+            }
+            else 
+            {
+                MessageBox.Show("Contraseña incorrecta");
+            }
+        
+        }
+
+       
     }
 }

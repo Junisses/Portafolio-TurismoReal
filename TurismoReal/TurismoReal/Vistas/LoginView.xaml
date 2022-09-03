@@ -159,7 +159,7 @@
                              Height="28"
                              VerticalContentAlignment="Center"
                              Margin="0,5,0,0"
-                             Padding="20,0,0,0" Background="{x:Null}" SelectionBrush="#FF831C77" />
+                             Padding="20,0,0,0" Background="{x:Null}" SelectionBrush="#FF831C77"/>
 
                     <TextBlock Text="Contraseña"
                                Foreground="#FF272727"

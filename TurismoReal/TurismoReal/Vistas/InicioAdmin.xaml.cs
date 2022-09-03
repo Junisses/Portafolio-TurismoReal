@@ -21,7 +21,10 @@ namespace TurismoReal.Vistas
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            ///cierra la sesion al presionar el boton x
+            LoginView lg = new LoginView();
+            lg.Show();
+            this.Close();
         }
 
         private void TBShow(object sender, RoutedEventArgs e)

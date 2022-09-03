@@ -1,5 +1,6 @@
 ﻿using CapaDeEntidad.Clases;
 using CapaDeNegocio.Clases;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Configuration;
@@ -187,6 +188,9 @@ namespace TurismoReal.Vistas.VistasAdmin
             Content = new Usuarios();
         }
         #endregion
+
         #endregion
+
+       
     }
 }

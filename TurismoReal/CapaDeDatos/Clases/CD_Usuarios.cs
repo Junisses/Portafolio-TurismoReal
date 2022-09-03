@@ -155,6 +155,25 @@ namespace CapaDeDatos.Clases
 
         #endregion
 
-
+        public CE_Usuarios Login(string usuario, string contra)
+        {
+            string patron = "Portafolio";
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_U_Validar", con.AbrirConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.Add("@Usuario", SqlDbType.VarChar).Value = usuario;
+            da.SelectCommand.Parameters.Add("@Contra", SqlDbType.VarChar).Value = contra;
+            da.SelectCommand.Parameters.Add("@Patron", SqlDbType.VarChar).Value = patron;
+            DataSet ds = new DataSet();
+            ds.Clear();
+            da.Fill(ds);
+            DataTable dt = ds.Tables[0];
+            if (dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0];
+                ce.IdUsuario = Convert.ToInt32(row[0]);
+                ce.IdTipoUsuario = Convert.ToInt32(row[1]);
+            }
+            return ce;
+        }
     }
 }

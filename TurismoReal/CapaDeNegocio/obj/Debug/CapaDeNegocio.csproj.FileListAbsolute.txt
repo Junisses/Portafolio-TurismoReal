@@ -9,3 +9,14 @@ C:\TurismoReal\TurismoReal\CapaDeNegocio\obj\Debug\CapaDeNegocio.csproj.CoreComp
 C:\TurismoReal\TurismoReal\CapaDeNegocio\obj\Debug\CapaDeNegocio.csproj.CopyComplete
 C:\TurismoReal\TurismoReal\CapaDeNegocio\obj\Debug\CapaDeNegocio.dll
 C:\TurismoReal\TurismoReal\CapaDeNegocio\obj\Debug\CapaDeNegocio.pdb
+C:\Users\effye\Source\Repos\TR1\TurismoReal\CapaDeNegocio\bin\Debug\CapaDeNegocio.dll
+C:\Users\effye\Source\Repos\TR1\TurismoReal\CapaDeNegocio\bin\Debug\CapaDeNegocio.pdb
+C:\Users\effye\Source\Repos\TR1\TurismoReal\CapaDeNegocio\bin\Debug\CapaDeDatos.dll
+C:\Users\effye\Source\Repos\TR1\TurismoReal\CapaDeNegocio\bin\Debug\CapaDeEntidad.dll
+C:\Users\effye\Source\Repos\TR1\TurismoReal\CapaDeNegocio\bin\Debug\CapaDeDatos.pdb
+C:\Users\effye\Source\Repos\TR1\TurismoReal\CapaDeNegocio\bin\Debug\CapaDeEntidad.pdb
+C:\Users\effye\Source\Repos\TR1\TurismoReal\CapaDeNegocio\obj\Debug\CapaDeNegocio.csproj.AssemblyReference.cache
+C:\Users\effye\Source\Repos\TR1\TurismoReal\CapaDeNegocio\obj\Debug\CapaDeNegocio.csproj.CoreCompileInputs.cache
+C:\Users\effye\Source\Repos\TR1\TurismoReal\CapaDeNegocio\obj\Debug\CapaDeNegocio.csproj.CopyComplete
+C:\Users\effye\Source\Repos\TR1\TurismoReal\CapaDeNegocio\obj\Debug\CapaDeNegocio.dll
+C:\Users\effye\Source\Repos\TR1\TurismoReal\CapaDeNegocio\obj\Debug\CapaDeNegocio.pdb
