@@ -24,5 +24,46 @@ namespace TurismoReal.Vistas.VistasAdmin
         {
             InitializeComponent();
         }
+
+        #region Regresar
+        private void Regresar(object sender, RoutedEventArgs e)
+        {
+            Content = new Departamentos();
+        }
+        #endregion
+
+
+        #region Crear
+        private void Crear(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        #endregion
+
+        #region Actualizar
+        private void Actualizar(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region Consultar
+        private void Consultar(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region Eliminar
+        private void Eliminar(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
+
+        private void BtnGaleria_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("En la seguiente versión se podrán subir imagenes!☺");
+        }
     }
 }

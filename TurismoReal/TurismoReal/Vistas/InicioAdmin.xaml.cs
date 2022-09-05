@@ -44,6 +44,12 @@ namespace TurismoReal.Vistas
             DataContext = new Usuarios();
         }
 
+        private void Departamentos_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new Departamentos();
+        }
+
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)

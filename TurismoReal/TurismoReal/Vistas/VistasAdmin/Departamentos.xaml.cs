@@ -24,5 +24,34 @@ namespace TurismoReal.Vistas.VistasAdmin
         {
             InitializeComponent();
         }
+        #region AGREGAR
+        private void BtnAgregarDepto_Click(object sender, RoutedEventArgs e)
+        {
+            CRUDdepartamentos ventana = new CRUDdepartamentos();
+            FrameDepartamentos.Content = ventana;
+            ventana.BtnCrear.Visibility = Visibility.Visible;
+        }
+        #endregion
+
+        #region CONSULTAR
+        private void Consultar(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        #endregion
+
+        #region ACTUALIZAR
+        private void Actualizar(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        #endregion
+
+        #region ELIMINAR
+        private void Eliminar(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        #endregion
     }
 }
