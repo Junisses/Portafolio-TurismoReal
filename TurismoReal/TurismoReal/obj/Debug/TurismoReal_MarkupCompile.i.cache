@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\effye\source\repos\TR1\TurismoReal\TurismoReal\obj\Debug\
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\
 TurismoReal
 none
 false
 DEBUG;TRACE
-C:\Users\effye\source\repos\TR1\TurismoReal\TurismoReal\App.xaml
-4-6818210
+C:\TurismoReal\TurismoReal\TurismoReal\App.xaml
+7-83385196
 
-9744842426
-19-1702898979
-Vistas\InicioAdmin.xaml;Vistas\LoginView.xaml;Vistas\VistasAdmin\CRUDusuarios.xaml;Vistas\VistasAdmin\Usuarios.xaml;
+12728306644
+19955640570
+Vistas\InicioAdmin.xaml;Vistas\InicioFuncionario.xaml;Vistas\LoginView.xaml;Vistas\VistasAdmin\CRUDdepartamentos.xaml;Vistas\VistasAdmin\CRUDusuarios.xaml;Vistas\VistasAdmin\Departamentos.xaml;Vistas\VistasAdmin\Usuarios.xaml;
 
 True
 

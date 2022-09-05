@@ -68,11 +68,20 @@
     <Compile Include="Vistas\InicioAdmin.xaml.cs">
       <DependentUpon>InicioAdmin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\InicioFuncionario.xaml.cs">
+      <DependentUpon>InicioFuncionario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\VistasAdmin\CRUDdepartamentos.xaml.cs">
+      <DependentUpon>CRUDdepartamentos.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\VistasAdmin\CRUDusuarios.xaml.cs">
       <DependentUpon>CRUDusuarios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistasAdmin\Departamentos.xaml.cs">
+      <DependentUpon>Departamentos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\VistasAdmin\Usuarios.xaml.cs">
       <DependentUpon>Usuarios.xaml</DependentUpon>
@@ -110,11 +119,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vistas\InicioFuncionario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vistas\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vistas\VistasAdmin\CRUDdepartamentos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vistas\VistasAdmin\CRUDusuarios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VistasAdmin\Departamentos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,6 +174,22 @@
       <Project>{50726676-5b31-4992-9d76-044b65ccc65a}</Project>
       <Name>CapaDeNegocio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\check-in.png" />
+    <Resource Include="Vistas\Images\check-out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\check-list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\menuf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\iniciof.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

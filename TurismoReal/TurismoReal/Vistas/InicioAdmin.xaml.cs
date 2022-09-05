@@ -21,10 +21,7 @@ namespace TurismoReal.Vistas
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            ///cierra la sesion al presionar el boton x
-            LoginView lg = new LoginView();
-            lg.Show();
-            this.Close();
+            Application.Current.Shutdown();
         }
 
         private void TBShow(object sender, RoutedEventArgs e)
@@ -53,6 +50,13 @@ namespace TurismoReal.Vistas
             {
                 DragMove();
             }
+        }
+
+        private void BtnCerrarSesion(object sender, RoutedEventArgs e)
+        {
+            LoginView lg = new LoginView();
+            lg.Show();
+            this.Close();
         }
     }
 }

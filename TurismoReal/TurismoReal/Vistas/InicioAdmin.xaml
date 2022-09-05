@@ -183,7 +183,7 @@
 
     <!--#region diseño-->
     <Border CornerRadius="10"
-            Background="Transparent">
+            Background="GhostWhite">
 
         <Grid Name="PrincipalADM"
               Background="Transparent">
@@ -193,7 +193,6 @@
                   VerticalAlignment="Top"
                   Background="Transparent">
                 <Border CornerRadius="10,10,0,0"
-                        Opacity=".9"
                         Background="#751770"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -262,7 +261,7 @@
                     </Button>
                     <!--#endregion-->
                     <!--#region Información-->
-                    <Button x:Name="BtnInfo"
+                    <Button x:Name="BtnCerrarSesíon"
                             Grid.Column="1"
                             Background="Transparent"
                             BorderBrush="Transparent"
@@ -270,7 +269,9 @@
                             FontSize="15"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Right"
-                            Cursor="Hand">
+                            Cursor="Hand" 
+                            Click="BtnCerrarSesion"
+                            >
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#460044"/>
@@ -283,7 +284,7 @@
                         </Button.Style>
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border Width="100" Height="20"
+                                <Border Width="120" Height="20"
                                         CornerRadius="9"
                                         Background="{TemplateBinding Background}">
                                     <ContentPresenter VerticalAlignment="Center"
@@ -296,10 +297,10 @@
                                 <ColumnDefinition Width="15"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Image Source="/Vistas/Images/info.png"
+                            <Image Source="/Vistas/Images/logout.png"
                                    Grid.Column="0"
                                    VerticalAlignment="Center"/>
-                            <TextBlock Text="Información"
+                            <TextBlock Text="Cerrar Sesión"
                                        Grid.Column="1"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
@@ -392,7 +393,6 @@
                   Height="465"
                   Width="850">
                 <Border CornerRadius="0,0,10,0" 
-                        Opacity=".9"
                         Background="GhostWhite"
                         HorizontalAlignment="Right" Width="900"/>
                 
@@ -404,7 +404,6 @@
                   HorizontalAlignment="Left"
                   Margin="0,35,0,0">
                 <Border Background="#a64a9f"
-                        Opacity=".9"
                         CornerRadius="0,0,0,10"/>
 
                 <!--#endregion-->
