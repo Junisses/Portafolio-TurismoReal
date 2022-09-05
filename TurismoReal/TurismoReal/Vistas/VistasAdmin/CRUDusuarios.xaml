@@ -8,11 +8,11 @@
       d:DesignHeight="500" d:DesignWidth="800"
       FontSize="16"
       FontFamily="Montserrat"
-      Background="Transparent"
+      Background="GhostWhite"
       Title="CRUDusuarios"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Page.Resources>
-        
+
         <!--#region FOCUSVISUAL-->
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -571,12 +571,12 @@
             </Style.Triggers>
         </Style>
         <!--#endregion-->
-       
+
     </Page.Resources>
     <Border Background="Transparent"
             CornerRadius="10">
         <Grid>
-        <!--#region Columnas y filas-->
+            <!--#region Columnas y filas-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition/>
@@ -590,34 +590,27 @@
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-        <!--#endregion-->
+            <!--#endregion-->
             <!--#region Titulo-->
-            <TextBlock x:Name="Titulo"
-                       Text="Creación de usuarios"
-                       Grid.Column="1"
-                       Grid.Row="1"
-                       Grid.ColumnSpan="5"
-                       FontSize="30"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"/>
             <!--#endregion-->
             <!--#region BOTONES-->
             <!--#region REGRESAR-->
@@ -629,46 +622,46 @@
                     Cursor="Hand"
                     Background="#751970"
                     Foreground="White"
-                    Click="Regresar"/>
+                    Click="Regresar" Margin="42,0,43,0"/>
             <!--#endregion-->
             <!--#region CREAR-->
             <Button x:Name="BtnCrear"
                     Content="Crear"
-                    Grid.Row="18"
+                    Grid.Row="19"
                     Grid.Column="5"
                     Width="100"
                     Background="Green"
                     Foreground="White"
                     Visibility="Hidden"
                     Style="{DynamicResource estiloCrear}"
-                    Click="Crear"/>
+                    Click="Crear" Margin="43,0,42,0"/>
             <!--#endregion-->
-            
+
             <!--#region ACTUALIZAR-->
             <Button x:Name="BtnActualizar"
                     Content="Actualizar"
-                    Grid.Row="18"
+                    Grid.Row="19"
                     Grid.Column="5"
                     Width="100"
                     Background="Coral"
                     Foreground="White"
                     Visibility="Hidden"
                     Style="{DynamicResource estiloACT}" 
-                    Click="Actualizar"/>
+                    Click="Actualizar" Margin="43,0,42,0"/>
             <!--#endregion-->
             <!--#region ELIMINAR-->
             <Button x:Name="BtnEliminar"
                     Content="Eliminar"
-                    Grid.Row="18"
+                    Grid.Row="19"
                     Grid.Column="5"
                     Width="100"
                     Background="Red"
                     Foreground="White"
                     Style="{DynamicResource estiloEliminar}"
                     Visibility="Hidden"
-                    Click="Eliminar"/>
+                    Click="Eliminar" Margin="43,0,42,0"/>
             <!--#endregion-->
-            
+
             <!--#endregion-->
             <!--#region CONTENIDO-->
             <TextBlock Grid.Row="4"
@@ -733,7 +726,7 @@
                     </Style>
                 </ComboBox.ItemContainerStyle>
             </ComboBox>
-            
+
             <TextBlock Grid.Row="6"
                        Grid.Column="4"
                        Text="DNI"
@@ -745,7 +738,7 @@
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
-            
+
             <TextBlock Grid.Row="8"
                        Grid.Column="1"
                        Text="Correo"
@@ -832,17 +825,17 @@
                          VerticalAlignment="Center"
                          HorizontalAlignment="Left"
                          x:Name="RbHabilitar"/>
-            <TextBlock Grid.Row="12"
+            <TextBlock x:Name="txtContra" Grid.Row="14"
                        Grid.Column="1"
                        Text="Contraseña"
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Center"/>
-            <TextBox Grid.Row="12"
-                     Grid.Column="2"
+                       VerticalAlignment="Top" RenderTransformOrigin="0.495,1.393" Margin="135,3,0,0" Grid.ColumnSpan="2" Visibility="Hidden"/>
+            <TextBox Grid.Row="15"
+                     Grid.Column="1"
                      x:Name="tbContrasena"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
-                     Background="#F3E5F5"/>
+                     Background="#F3E5F5" Visibility="Hidden" Grid.ColumnSpan="2" Margin="82,5,102,15" Grid.RowSpan="3"/>
             <TextBlock Grid.Row="10"
                        Grid.Column="4"
                        Text="Usuario"
@@ -854,6 +847,18 @@
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
+            <Button x:Name="ChangePassword" Grid.Column="1" Content="Cambiar contraseña" HorizontalAlignment="Left" Margin="72,0,0,0" Grid.Row="18" VerticalAlignment="Top" Height="45" Grid.RowSpan="2" Width="206" Grid.ColumnSpan="2" Click="ChangePassword_Click">
+                <Button.Style>
+                    <Style/>
+                </Button.Style>
+            </Button>
+            <TextBlock x:Name="Titulo"
+                       Text="Creación de usuarios"
+                       Grid.Column="2"
+                       Grid.Row="1"
+                       FontSize="30"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left" Height="30" Grid.ColumnSpan="3" Margin="68,3,0,0" Grid.RowSpan="2"/>
 
             <!--#endregion-->
         </Grid>

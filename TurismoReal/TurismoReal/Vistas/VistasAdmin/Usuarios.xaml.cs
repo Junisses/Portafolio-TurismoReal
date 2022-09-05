@@ -35,6 +35,9 @@ namespace TurismoReal.Vistas.VistasAdmin
             FrameUsuarios.Content = ventana;
             Contenido.Visibility = Visibility.Hidden;
             ventana.BtnCrear.Visibility = Visibility.Visible;
+            ventana.ChangePassword.Visibility = Visibility.Hidden;
+            ventana.tbContrasena.Visibility = Visibility.Visible;
+            ventana.txtContra.Visibility = Visibility.Visible;
         }
         #endregion
 
@@ -58,6 +61,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.tbContrasena.IsEnabled = false;
             ventana.cbIdentificacion.IsEnabled = false;
             ventana.cbTipoUsuario.IsEnabled = false;
+            ventana.ChangePassword.Visibility = Visibility.Hidden;
         }
         #endregion
 
@@ -82,6 +86,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.cbIdentificacion.IsEnabled = true;
             ventana.cbTipoUsuario.IsEnabled = true;
             ventana.BtnActualizar.Visibility = Visibility.Visible;
+            ventana.ChangePassword.Visibility = Visibility.Visible;
         }
         #endregion
 
@@ -106,6 +111,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.cbIdentificacion.IsEnabled = false;
             ventana.cbTipoUsuario.IsEnabled = false;
             ventana.BtnEliminar.Visibility = Visibility.Visible;
+            ventana.ChangePassword.Visibility = Visibility.Hidden;
         }
         #endregion
     }

@@ -89,3 +89,14 @@ C:\Users\effye\Source\Repos\TR1\TurismoReal\TurismoReal\obj\Debug\TurismoReal.pd
 C:\Users\effye\source\repos\TR1\TurismoReal\TurismoReal\bin\Debug\System.Management.Automation.dll
 C:\Users\effye\source\repos\TR1\TurismoReal\TurismoReal\bin\Debug\Microsoft.Management.Infrastructure.dll
 C:\Users\effye\source\repos\TR1\TurismoReal\TurismoReal\bin\Debug\System.Management.Automation.xml
+C:\TurismoReal\TurismoReal\TurismoReal\bin\Debug\System.Management.Automation.dll
+C:\TurismoReal\TurismoReal\TurismoReal\bin\Debug\Microsoft.Management.Infrastructure.dll
+C:\TurismoReal\TurismoReal\TurismoReal\bin\Debug\System.Management.Automation.xml
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\InicioFuncionario.g.cs
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\InicioFuncionario.baml
+C:\Users\effye\source\repos\TR1\TurismoReal\TurismoReal\obj\Debug\Vistas\InicioFuncionario.g.cs
+C:\Users\effye\source\repos\TR1\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDdepartamentos.g.cs
+C:\Users\effye\source\repos\TR1\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\Departamentos.g.cs
+C:\Users\effye\source\repos\TR1\TurismoReal\TurismoReal\obj\Debug\Vistas\InicioFuncionario.baml
+C:\Users\effye\source\repos\TR1\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDdepartamentos.baml
+C:\Users\effye\source\repos\TR1\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\Departamentos.baml

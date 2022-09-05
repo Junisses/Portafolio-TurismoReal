@@ -51,6 +51,7 @@ namespace TurismoReal.Vistas
             {
                 MessageBox.Show("No pueden quedar campos vacios");
             }
+            
         }
 
         void Login(string usuario, string contra)
@@ -62,13 +63,25 @@ namespace TurismoReal.Vistas
             {
                 Properties.Settings.Default.IdUsuario = a.IdUsuario;
                 Properties.Settings.Default.IdTipoUsuario = a.IdTipoUsuario;
-                MessageBox.Show("ingreso correctamente el usuario" + a.IdUsuario);
-                this.Close();
+                
+                if (a.IdTipoUsuario == 1)
+                {
+                    InicioAdmin inicioAdmin = new InicioAdmin();
+                    inicioAdmin.Show();
+                    this.Close();
+                }
+                else
+                {
+                    InicioFuncionario inicioFuncionario = new InicioFuncionario();
+                    inicioFuncionario.Show();
+                    this.Close();
+                }
             }
             else 
             {
                 MessageBox.Show("Contraseña incorrecta");
             }
+            
         
         }
 
