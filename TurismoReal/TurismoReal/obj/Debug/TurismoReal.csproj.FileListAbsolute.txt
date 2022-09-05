@@ -94,9 +94,12 @@ C:\TurismoReal\TurismoReal\TurismoReal\bin\Debug\Microsoft.Management.Infrastruc
 C:\TurismoReal\TurismoReal\TurismoReal\bin\Debug\System.Management.Automation.xml
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\InicioFuncionario.g.cs
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\InicioFuncionario.baml
+<<<<<<< HEAD
 C:\Users\effye\source\repos\TR1\TurismoReal\TurismoReal\obj\Debug\Vistas\InicioFuncionario.g.cs
 C:\Users\effye\source\repos\TR1\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDdepartamentos.g.cs
 C:\Users\effye\source\repos\TR1\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\Departamentos.g.cs
 C:\Users\effye\source\repos\TR1\TurismoReal\TurismoReal\obj\Debug\Vistas\InicioFuncionario.baml
 C:\Users\effye\source\repos\TR1\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDdepartamentos.baml
 C:\Users\effye\source\repos\TR1\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\Departamentos.baml
+=======
+>>>>>>> 1e0eca8390f0f64f7e7249f0ff71ed9181cb92b8

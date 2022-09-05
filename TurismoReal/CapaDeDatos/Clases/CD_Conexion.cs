@@ -9,7 +9,9 @@ namespace CapaDeDatos.Clases
 {
     public class CD_Conexion
     {
+
         private readonly SqlConnection con = new SqlConnection("Data Source=Felip; initial catalog=TurismoReal; integrated security=true;");
+
 
         public SqlConnection AbrirConexion()
         {
