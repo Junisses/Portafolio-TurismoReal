@@ -49,6 +49,11 @@ namespace TurismoReal.Vistas
             DataContext = new Departamentos();
         }
 
+        private void Inventario_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new Inventario();
+        }
+
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {

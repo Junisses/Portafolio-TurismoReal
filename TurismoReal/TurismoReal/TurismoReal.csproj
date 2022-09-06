@@ -75,14 +75,23 @@
     <Compile Include="Vistas\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\VistasAdmin\CRUDartefacto.xaml.cs">
+      <DependentUpon>CRUDartefacto.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\VistasAdmin\CRUDdepartamentos.xaml.cs">
       <DependentUpon>CRUDdepartamentos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistasAdmin\CRUDinventario.xaml.cs">
+      <DependentUpon>CRUDinventario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\VistasAdmin\CRUDusuarios.xaml.cs">
       <DependentUpon>CRUDusuarios.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\VistasAdmin\Departamentos.xaml.cs">
       <DependentUpon>Departamentos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistasAdmin\Inventario.xaml.cs">
+      <DependentUpon>Inventario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\VistasAdmin\Usuarios.xaml.cs">
       <DependentUpon>Usuarios.xaml</DependentUpon>
@@ -128,7 +137,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vistas\VistasAdmin\CRUDartefacto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vistas\VistasAdmin\CRUDdepartamentos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VistasAdmin\CRUDinventario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\VistasAdmin\Departamentos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VistasAdmin\Inventario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,6 +212,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vistas\Images\iniciof.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\boleta.png" />
+    <Resource Include="Vistas\Images\cliente.png" />
+    <Resource Include="Vistas\Images\gastos.png" />
+    <Resource Include="Vistas\Images\inventario.png" />
+    <Resource Include="Vistas\Images\servicio.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

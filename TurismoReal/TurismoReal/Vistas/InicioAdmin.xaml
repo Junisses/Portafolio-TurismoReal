@@ -531,7 +531,7 @@
                             </Button>
 
                         </ListViewItem>
-                        <!--#region boton usuarios-->
+                        <!--#region boton departamentos-->
                         <ListViewItem Style="{DynamicResource ListViewItemStyle}" Height="50">
                             <Button Style="{DynamicResource btnstiloboton}" x:Name="BtnDeptos"
                                     Height="45"
@@ -559,10 +559,156 @@
                                            Source="/Vistas/Images/departamento.png"/>
                                 </Grid>
                             </Button>
-
+                        </ListViewItem>
+                        <!--#region boton Inventario-->
+                        <ListViewItem Style="{DynamicResource ListViewItemStyle}" Height="50">
+                            <Button Style="{DynamicResource btnstiloboton}" x:Name="BtnInventario"
+                                    Height="45"
+                                    Width="185"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    Click="Inventario_Click">
+                                <Grid Width="190">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Inventario deptos."
+                                               FontWeight="SemiBold"
+                                               Foreground="White"
+                                               FontSize="15"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                    <Image Width="30"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/Vistas/Images/inventario.png"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+                        <!--#region boton gastos-->
+                        <ListViewItem Style="{DynamicResource ListViewItemStyle}" Height="50">
+                            <Button Style="{DynamicResource btnstiloboton}" x:Name="BtnGastos"
+                                    Height="45"
+                                    Width="185"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent">
+                                <Grid Width="190">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Gastos deptos."
+                                               FontWeight="SemiBold"
+                                               Foreground="White"
+                                               FontSize="15"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                    <Image Width="30"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/Vistas/Images/gastos.png"/>
+                                </Grid>
+                            </Button>
                         </ListViewItem>
 
+                        <!--#region boton clientes-->
+                        <ListViewItem Style="{DynamicResource ListViewItemStyle}" Height="50">
+                            <Button Style="{DynamicResource btnstiloboton}" x:Name="BtnClientes"
+                                    Height="45"
+                                    Width="185"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent">
+                                <Grid Width="190">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Clientes"
+                                               FontWeight="SemiBold"
+                                               Foreground="White"
+                                               FontSize="15"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                    <Image Width="30"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/Vistas/Images/cliente.png"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+
+                        <!--#region boton Servicios-->
+                        <ListViewItem Style="{DynamicResource ListViewItemStyle}" Height="50">
+                            <Button Style="{DynamicResource btnstiloboton}" x:Name="BtnServicios"
+                                    Height="45"
+                                    Width="185"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent">
+                                <Grid Width="190">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Servicios"
+                                               FontWeight="SemiBold"
+                                               Foreground="White"
+                                               FontSize="15"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                    <Image Width="30"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/Vistas/Images/servicio.png"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+
+                        <!--#region boton Servicios-->
+                        <ListViewItem Style="{DynamicResource ListViewItemStyle}" Height="50">
+                            <Button Style="{DynamicResource btnstiloboton}" x:Name="BtnBoleta"
+                                    Height="45"
+                                    Width="185"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent">
+                                <Grid Width="190">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Ver pagos"
+                                               FontWeight="SemiBold"
+                                               Foreground="White"
+                                               FontSize="15"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                    <Image Width="30"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/Vistas/Images/boleta.png"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+
+
+
                     </ListView>
+                    
 
 
                 </StackPanel>

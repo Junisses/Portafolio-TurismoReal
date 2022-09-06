@@ -37,3 +37,9 @@ C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\TurismoReal.csproj.CoreCompileI
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\TurismoReal.csproj.CopyComplete
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\TurismoReal.exe
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\TurismoReal.pdb
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDinventario.g.cs
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\Inventario.g.cs
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDinventario.baml
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\Inventario.baml
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDartefacto.g.cs
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDartefacto.baml
