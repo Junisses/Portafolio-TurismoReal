@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TurismoReal.Vistas"
         mc:Ignorable="d"
-        Title="LoginView" Height="500" Width="650"
+        Title="LoginView" Height="550" Width="650"
         
         WindowStyle="None"
         ResizeMode="NoResize"
@@ -219,7 +219,7 @@
 
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center"
-                                Margin="0,15,0,0">
+                                Margin="0,30,0,0">
 
                         <TextBlock Text="Olvidaste tú contraseña?"
                                Foreground="#FF2F1356"

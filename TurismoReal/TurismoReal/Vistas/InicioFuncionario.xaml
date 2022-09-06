@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TurismoReal.Vistas"
         mc:Ignorable="d"
-        Title="Inicio" Height="500" Width="900"
+        Title="Inicio" Height="550" Width="900"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"

@@ -75,14 +75,26 @@
     <Compile Include="Vistas\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\VistasAdmin\Boletas.xaml.cs">
+      <DependentUpon>Boletas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistasAdmin\Clientes.xaml.cs">
+      <DependentUpon>Clientes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\VistasAdmin\CRUDartefacto.xaml.cs">
       <DependentUpon>CRUDartefacto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\VistasAdmin\CRUDdepartamentos.xaml.cs">
       <DependentUpon>CRUDdepartamentos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\VistasAdmin\CRUDgastos.xaml.cs">
+      <DependentUpon>CRUDgastos.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\VistasAdmin\CRUDinventario.xaml.cs">
       <DependentUpon>CRUDinventario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistasAdmin\CRUDservicios.xaml.cs">
+      <DependentUpon>CRUDservicios.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\VistasAdmin\CRUDusuarios.xaml.cs">
       <DependentUpon>CRUDusuarios.xaml</DependentUpon>
@@ -90,8 +102,20 @@
     <Compile Include="Vistas\VistasAdmin\Departamentos.xaml.cs">
       <DependentUpon>Departamentos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\VistasAdmin\Gastos.xaml.cs">
+      <DependentUpon>Gastos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistasAdmin\Inicio.xaml.cs">
+      <DependentUpon>Inicio.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\VistasAdmin\Inventario.xaml.cs">
       <DependentUpon>Inventario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistasAdmin\Reservas.xaml.cs">
+      <DependentUpon>Reservas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistasAdmin\Servicios.xaml.cs">
+      <DependentUpon>Servicios.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\VistasAdmin\Usuarios.xaml.cs">
       <DependentUpon>Usuarios.xaml</DependentUpon>
@@ -137,6 +161,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vistas\VistasAdmin\Boletas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VistasAdmin\Clientes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vistas\VistasAdmin\CRUDartefacto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -145,7 +177,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vistas\VistasAdmin\CRUDgastos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vistas\VistasAdmin\CRUDinventario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VistasAdmin\CRUDservicios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,7 +197,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vistas\VistasAdmin\Gastos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VistasAdmin\Inicio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vistas\VistasAdmin\Inventario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VistasAdmin\Reservas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VistasAdmin\Servicios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,6 +275,9 @@
     <Resource Include="Vistas\Images\gastos.png" />
     <Resource Include="Vistas\Images\inventario.png" />
     <Resource Include="Vistas\Images\servicio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\reserva.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

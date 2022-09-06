@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TurismoReal.Vistas" xmlns:viewmodels="clr-namespace:TurismoReal.Vistas.VistasAdmin"
         mc:Ignorable="d"
-        Title="Inicio" Height="500" Width="900"
+        Title="Inicio" Height="550" Width="900"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -395,7 +395,8 @@
                 <Border CornerRadius="0,0,10,0" 
                         Background="GhostWhite"
                         HorizontalAlignment="Right" Width="900"/>
-                
+                <Image Source="/Vistas/Images/Logo.png" Margin="70,70,70,70"/>
+
                 <ContentControl Content="{Binding}"/>
             </Grid>
             <Grid x:Name="GridMenu"
@@ -480,7 +481,8 @@
                                     HorizontalAlignment="Left"
                                     Cursor="Hand"
                                     Background="Transparent"
-                                    BorderBrush="Transparent">
+                                    BorderBrush="Transparent"
+                                    Click="Inicio_Click">
                                 <Grid Width="190">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30"/>
@@ -597,7 +599,8 @@
                                     HorizontalAlignment="Left"
                                     Cursor="Hand"
                                     Background="Transparent"
-                                    BorderBrush="Transparent">
+                                    BorderBrush="Transparent"
+                                    Click="Gasto_Click">
                                 <Grid Width="190">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30"/>
@@ -626,7 +629,8 @@
                                     HorizontalAlignment="Left"
                                     Cursor="Hand"
                                     Background="Transparent"
-                                    BorderBrush="Transparent">
+                                    BorderBrush="Transparent"
+                                    Click="Cliente_Click">
                                 <Grid Width="190">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30"/>
@@ -655,7 +659,8 @@
                                     HorizontalAlignment="Left"
                                     Cursor="Hand"
                                     Background="Transparent"
-                                    BorderBrush="Transparent">
+                                    BorderBrush="Transparent"
+                                    Click="Servicio_Click">
                                 <Grid Width="190">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30"/>
@@ -684,7 +689,8 @@
                                     HorizontalAlignment="Left"
                                     Cursor="Hand"
                                     Background="Transparent"
-                                    BorderBrush="Transparent">
+                                    BorderBrush="Transparent"
+                                    Click="Boletas_Click">
                                 <Grid Width="190">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30"/>
@@ -705,6 +711,35 @@
                             </Button>
                         </ListViewItem>
 
+                        <!--#region boton Reserva-->
+                        <ListViewItem Style="{DynamicResource ListViewItemStyle}" Height="50">
+                            <Button Style="{DynamicResource btnstiloboton}" x:Name="BtnReserva"
+                                    Height="45"
+                                    Width="185"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    Click="Reservas_Click">
+                                <Grid Width="190">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Reservas"
+                                               FontWeight="SemiBold"
+                                               Foreground="White"
+                                               FontSize="15"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                    <Image Width="30"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/Vistas/Images/reserva.png"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
 
 
                     </ListView>

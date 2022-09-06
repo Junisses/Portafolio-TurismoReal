@@ -54,6 +54,34 @@ namespace TurismoReal.Vistas
             DataContext = new Inventario();
         }
 
+        private void Gasto_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new Gastos();
+        }
+
+        private void Cliente_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new Clientes();
+        }
+
+        private void Servicio_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new Servicios();
+        }
+
+        private void Boletas_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new Boletas();
+        }
+        private void Reservas_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new Reservas();
+        }
+
+        private void Inicio_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new Inicio();
+        }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
