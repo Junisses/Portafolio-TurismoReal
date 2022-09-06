@@ -77,10 +77,36 @@ namespace TurismoReal.Vistas.VistasAdmin
             }
         }
         #region VALIDAR RUT
-        public bool ValidarRut()
-        {///Por construir
-            return false;
+        public bool ValidarRut(string rut)
+        {
+            bool validacion = false;
+            try
+            {
+                rut = rut.ToUpper();
+                rut = rut.Replace(".", "");
+                rut = rut.Replace("-", "");
+                int rutAux = int.Parse(rut.Substring(0, rut.Length - 1));
+
+                char dv = char.Parse(rut.Substring(rut.Length - 1, 1));
+
+                int m = 0, s = 1;
+                for (; rutAux != 0; rutAux /= 10)
+                {
+                    s = (s + rutAux % 10 * (9 - m++ % 6)) % 11;
+                }
+                if (dv == (char)(s != 0 ? s + 47 : 75))
+                {
+                    validacion = true;
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            return validacion;
+
         }
+
         #endregion
         #region ValidarCorreo
         static bool ValidarCorreo(string email)
@@ -162,35 +188,48 @@ namespace TurismoReal.Vistas.VistasAdmin
                 MessageBox.Show("El País solo puede contener letras");
                 return;
             }
-            if (tbCel.Text.Length != 9 && Regex.IsMatch(tbCel.Text, @"^\d +$:") == false)
+            else if (tbCel.Text.Length != 9 && Regex.IsMatch(tbCel.Text, @"^\d +$:") == false)
             {
                 MessageBox.Show("Ingrese los 9 digitos de su celular");
                 return;
             }
+            else if (ValidarRut(tbRut.Text.ToString()) == false)
+            {
+                MessageBox.Show("Ingrese correctamente el rut");
+                return;
+            }
+
 
             if (CamposLlenos() ==true)
             {
+                try
+                {
+                    int tipousuario = objeto_CN_TipoUsuarioFK.idTipoUsuario(cbTipoUsuario.Text);
+                    int forma = objeto_CN_IdentificacionFK.IdIdentificacion(cbIdentificacion.Text);
+
+                    objeto_CE_Usuarios.Nombres = tbNombre.Text;
+                    objeto_CE_Usuarios.Apellidos = tbApellido.Text;
+                    objeto_CE_Usuarios.Usuario = tbUser.Text;
+                    objeto_CE_Usuarios.Correo = tbCorreo.Text;
+                    objeto_CE_Usuarios.Contrasena = tbContrasena.Text;
+                    objeto_CE_Usuarios.Patron = Patron;
+                    objeto_CE_Usuarios.Identificacion = tbRut.Text;
+                    objeto_CE_Usuarios.Celular = tbCel.Text;
+                    objeto_CE_Usuarios.Pais = tbPais.Text;
+                    objeto_CE_Usuarios.CodigoVerificacion = " ";
+                    objeto_CE_Usuarios.Habilitada = true;
+                    objeto_CE_Usuarios.IdTipoUsuario = tipousuario;
+                    objeto_CE_Usuarios.IdIdentificacion = forma;
+
+                    objeto_CN_Usuarios.Insertar(objeto_CE_Usuarios);
+
+                    Content = new Usuarios();
+                }
+                catch
+                {
+                    MessageBox.Show("Revise bien sus datos");
+                }
                 
-                int tipousuario = objeto_CN_TipoUsuarioFK.idTipoUsuario(cbTipoUsuario.Text);
-                int forma = objeto_CN_IdentificacionFK.IdIdentificacion(cbIdentificacion.Text);
-
-                objeto_CE_Usuarios.Nombres = tbNombre.Text;
-                objeto_CE_Usuarios.Apellidos = tbApellido.Text;
-                objeto_CE_Usuarios.Usuario = tbUser.Text;
-                objeto_CE_Usuarios.Correo = tbCorreo.Text;
-                objeto_CE_Usuarios.Contrasena = tbContrasena.Text;
-                objeto_CE_Usuarios.Patron = Patron;
-                objeto_CE_Usuarios.Identificacion = tbRut.Text;
-                objeto_CE_Usuarios.Celular = tbCel.Text;
-                objeto_CE_Usuarios.Pais = tbPais.Text;
-                objeto_CE_Usuarios.CodigoVerificacion = " ";
-                objeto_CE_Usuarios.Habilitada = true;
-                objeto_CE_Usuarios.IdTipoUsuario = tipousuario;
-                objeto_CE_Usuarios.IdIdentificacion = forma;
-
-                objeto_CN_Usuarios.Insertar(objeto_CE_Usuarios);
-
-                Content = new Usuarios();
 
             }
             else

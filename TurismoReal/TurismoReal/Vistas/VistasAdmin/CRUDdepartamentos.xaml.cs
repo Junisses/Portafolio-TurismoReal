@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapaDeEntidad.Clases;
+using CapaDeNegocio.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +22,31 @@ namespace TurismoReal.Vistas.VistasAdmin
     /// </summary>
     public partial class CRUDdepartamentos : Page
     {
+        readonly CN_Comuna objeto_CN_Comuna = new CN_Comuna();
+        readonly CN_Region objeto_CN_Region = new CN_Region();
+
         public CRUDdepartamentos()
         {
             InitializeComponent();
+            CargarRC();
         }
+
+        #region Cargar FK
+        void CargarRC()
+        {
+            List<string> region = objeto_CN_Region.ListarRegion();
+            for (int i = 0; i < region.Count; i++)
+            {
+                cbRegion.Items.Add(region[i]);
+            }
+
+            List<string> comuna = objeto_CN_Comuna.ListarComuna();
+            for (int i = 0; i < comuna.Count; i++)
+            {
+                cbComuna.Items.Add(comuna[i]);
+            }
+        }
+        #endregion
 
         #region Regresar
         private void Regresar(object sender, RoutedEventArgs e)

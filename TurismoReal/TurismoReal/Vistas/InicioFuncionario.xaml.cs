@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TurismoReal.Vistas.VistasAdmin;
+using TurismoReal.Vistas.VistasFuncionario;
 
 namespace TurismoReal.Vistas
 {
@@ -55,10 +56,21 @@ namespace TurismoReal.Vistas
             BtnShowHide.IsChecked = false;
         }
 
-        private void Usuarios_Click(object sender, RoutedEventArgs e)
+        private void CheckINOUT_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new Usuarios();
+            DataContext = new CheckInOut();
         }
+
+        private void Inicio_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new Inicio();
+        }
+
+        private void Checklist_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new CheckList();
+        }
+
 
         private void BtnCerrarSesion(object sender, RoutedEventArgs e)
         {

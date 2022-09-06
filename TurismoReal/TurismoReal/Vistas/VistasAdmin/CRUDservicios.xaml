@@ -705,7 +705,7 @@
                       Grid.Column="5"
                       Cursor="Hand"
                       HorizontalContentAlignment="Center"
-                      x:Name="cbIdDepartamento">
+                      x:Name="cbTipoServicio">
                 <ComboBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ComboBoxItem}">
                         <Setter Property="Template">

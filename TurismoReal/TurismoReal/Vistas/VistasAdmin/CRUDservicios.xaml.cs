@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapaDeEntidad.Clases;
+using CapaDeNegocio.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +22,26 @@ namespace TurismoReal.Vistas.VistasAdmin
     /// </summary>
     public partial class CRUDservicios : Page
     {
+        
+        readonly CN_TipoServicio objeto_CN_TipoServicio = new CN_TipoServicio();
+
         public CRUDservicios()
         {
             InitializeComponent();
+            CargarTP();
         }
+
+        void CargarTP()
+        {
+            List<string> tiposervicio = objeto_CN_TipoServicio.ListarTipoServicio();
+            for (int i = 0; i < tiposervicio.Count; i++)
+            {
+                cbTipoServicio.Items.Add(tiposervicio[i]);
+            }
+
+        }
+
+
         #region AGREGAR
         private void Regresar(object sender, RoutedEventArgs e)
         {

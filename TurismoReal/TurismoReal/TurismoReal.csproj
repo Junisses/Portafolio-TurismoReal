@@ -120,6 +120,18 @@
     <Compile Include="Vistas\VistasAdmin\Usuarios.xaml.cs">
       <DependentUpon>Usuarios.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\VistasFuncionario\CheckInOut.xaml.cs">
+      <DependentUpon>CheckInOut.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistasFuncionario\CheckList.xaml.cs">
+      <DependentUpon>CheckList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistasFuncionario\CRUDcheckInOut.xaml.cs">
+      <DependentUpon>CRUDcheckInOut.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistasFuncionario\CRUDchecklist.xaml.cs">
+      <DependentUpon>CRUDchecklist.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -221,6 +233,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vistas\VistasFuncionario\CheckInOut.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VistasFuncionario\CheckList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VistasFuncionario\CRUDcheckInOut.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VistasFuncionario\CRUDchecklist.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vistas\Images\Logo.png" />
@@ -279,5 +307,10 @@
   <ItemGroup>
     <Resource Include="Vistas\Images\reserva.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\checkinout.png" />
+    <Resource Include="Vistas\Images\checklist.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

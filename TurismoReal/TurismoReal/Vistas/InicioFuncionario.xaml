@@ -396,7 +396,7 @@
                         Background="GhostWhite"
                         HorizontalAlignment="Right" 
                         Width="900"/>
-
+                <Image Source="/Vistas/Images/Logo.png" Margin="70,70,70,70"/>
                 <ContentControl Content="{Binding}"/>
             </Grid>
             <Grid x:Name="GridMenu"
@@ -481,7 +481,8 @@
                                     HorizontalAlignment="Left"
                                     Cursor="Hand"
                                     Background="Transparent"
-                                    BorderBrush="Transparent">
+                                    BorderBrush="Transparent"
+                                    Click="Inicio_Click">
                                 <Grid Width="190">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30"/>
@@ -490,7 +491,7 @@
                                     <TextBlock Grid.Column="1"
                                                Text="Inicio"
                                                FontWeight="SemiBold"
-                                               Foreground="White"
+                                               Foreground="Black"
                                                FontSize="15"
                                                VerticalAlignment="Center"
                                                HorizontalAlignment="Center"/>
@@ -504,58 +505,62 @@
                         </ListViewItem>
                         <!--#region boton usuarios-->
                         <ListViewItem Style="{DynamicResource ListViewItemStyle}" Height="50">
-                            <Button Style="{DynamicResource btnstiloboton}" x:Name="BtnUsuarios"
+                            <Button Style="{DynamicResource btnstiloboton}" 
+                                    x:Name="BtnCheckINOUT"
                                     Height="45"
                                     Width="185"
                                     HorizontalAlignment="Left"
                                     Cursor="Hand"
                                     Background="Transparent"
-                                    BorderBrush="Transparent" Click="Usuarios_Click">
+                                    BorderBrush="Transparent"
+                                    Click="CheckINOUT_Click">
                                 <Grid Width="190">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Grid.Column="1"
-                                               Text="Check IN"
+                                               Text="Llegada / Salida"
                                                FontWeight="SemiBold"
-                                               Foreground="White"
+                                               Foreground="Black"
                                                FontSize="15"
                                                VerticalAlignment="Center"
                                                HorizontalAlignment="Center"/>
                                     <Image Width="30"
                                            Grid.Column="0"
                                            HorizontalAlignment="Center"
-                                           Source="/Vistas/Images/check-in.png"/>
+                                           Source="/Vistas/Images/checkinout.png"/>
                                 </Grid>
                             </Button>
 
                         </ListViewItem>
                         <!--#region boton usuarios-->
                         <ListViewItem Style="{DynamicResource ListViewItemStyle}" Height="50">
-                            <Button Style="{DynamicResource btnstiloboton}" x:Name="BtnDeptos"
+                            <Button Style="{DynamicResource btnstiloboton}" 
+                                    x:Name="BtnChecklist"
                                     Height="45"
                                     Width="185"
                                     HorizontalAlignment="Left"
                                     Cursor="Hand"
                                     Background="Transparent"
-                                    BorderBrush="Transparent">
+                                    BorderBrush="Transparent"
+                                    Click="Checklist_Click">
                                 <Grid Width="190">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Grid.Column="1"
-                                               Text="Check OUT"
+                                               Text="CheckList"
                                                FontWeight="SemiBold"
-                                               Foreground="White"
+                                               Foreground="Black"
                                                FontSize="15"
                                                VerticalAlignment="Center"
                                                HorizontalAlignment="Center"/>
                                     <Image Width="30"
                                            Grid.Column="0"
                                            HorizontalAlignment="Center"
-                                           Source="/Vistas/Images/check-out.png"/>
+                                           Source="/Vistas/Images/checklist.png"/>
                                 </Grid>
                             </Button>
 
