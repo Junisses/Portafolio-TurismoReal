@@ -205,11 +205,12 @@
                 <Trigger Property="IsSelected" Value="True">
                     <Setter Property="Background" Value="#B2EBF2"/>
                     <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="#0082D6"/>
                 </Trigger>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#B2EBF2"/>
                     <Setter Property="BorderBrush" Value="Transparent"/>
-                    <Setter Property="Foreground" Value="#880E4F"/>
+                    <Setter Property="Foreground" Value="#0082D6"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -221,7 +222,6 @@
     
  <!--#region Contenido-->
     <Border CornerRadius="10"
-            Opacity=".9"
             Background="Transparent">
         <Grid Name="GridUsuarios">
 
@@ -328,43 +328,25 @@
                       RowBackground="Transparent"
                       HeadersVisibility="Column"
                       GridLinesVisibility="Horizontal"
-                      HorizontalGridLinesBrush="#A64B9F">
+                      HorizontalGridLinesBrush="#A64B9F"
+                      >
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="Opciones del administrador"
-                                            Width="245">
+                        <DataGridTemplateColumn Header="Select"
+                                                Width="40">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <DockPanel>
-                                        <Button Content="Consultar"
-                                            x:Name="BtnConsultar"
-                                            Background="#751970"
-                                            Width="80"
-                                            BorderBrush="Transparent"
-                                            Foreground="White"
-                                            Style="{DynamicResource ButtonStylebuscar}" 
-                                            Click="Consultar"
-                                            Cursor="Hand"
-                                            CommandParameter="{Binding idUsuario}"/>
-                                        <Button Content="Modificar"
+                                        <Button Content=""
                                             x:Name="BtnModificar"
-                                            Background="#751970"
-                                            Width="80" 
+                                            Background="#F3E5F5"
+                                            BorderBrush="Purple"
+                                            Width="10" 
+                                            Height="10"
                                             Cursor="Hand"
                                             Foreground="White"
-                                            BorderBrush="Transparent"
                                             CommandParameter="{Binding idUsuario}"
                                             Style="{DynamicResource ButtonStylebuscar}" 
                                             Click="Actualizar"/>
-                                        <Button Content="Eliminar"
-                                            x:Name="BtnEliminar"
-                                            Background="Red"
-                                            Foreground="White"
-                                            Width="80" 
-                                            Cursor="Hand"
-                                            BorderBrush="Transparent"
-                                            Style="{DynamicResource ButtonStylebuscar}"
-                                            CommandParameter="{Binding idUsuario}" Click="Eliminar"/>
-
                                     </DockPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -376,20 +358,20 @@
                                         Width="80"
                                         Binding="{Binding nombres}"/>
                         <DataGridTextColumn Header="Apellido"
-                                        Width="80"
+                                        Width="100"
                                         Binding="{Binding apellidos}"/>
-                        <DataGridTextColumn Header="Tipo DNI"
-                                        Width="*"
-                                        Binding="{Binding formato}"/>
                         <DataGridTextColumn Header="DNI"
-                                        Width="80"
+                                        Width="100"
                                         Binding="{Binding identificacion}"/>
                         <DataGridTextColumn Header="Correo"
-                                        Width="*"
+                                        Width="150"
                                         Binding="{Binding correo}"/>
                         <DataGridTextColumn Header="Tipo Usuario"
-                                        Width="*"
+                                        Width="150"
                                         Binding="{Binding tipoUsuario}"/>
+                        <DataGridTextColumn Header="Estado"
+                                        Width="100"
+                                        Binding="{Binding habilitada}"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <!--#endregion-->

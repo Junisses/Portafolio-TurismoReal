@@ -19,9 +19,9 @@ namespace CapaDeEntidad.Clases
         private string _celular;
         private string _pais;
         private string _codigoVerificacion;
-        private bool _habilitada;
+        private string _habilitada;
+        private string _esPasaporte;
         private int _idTipoUsuario;
-        private int _idIdentificacion;
 
         public int IdUsuario { get => _idUsuario; set => _idUsuario = value; }
         public string Nombres { get => _nombres; set => _nombres = value; }
@@ -34,8 +34,8 @@ namespace CapaDeEntidad.Clases
         public string Celular { get => _celular; set => _celular = value; }
         public string Pais { get => _pais; set => _pais = value; }
         public string CodigoVerificacion { get => _codigoVerificacion; set => _codigoVerificacion = value; }
-        public bool Habilitada { get => _habilitada; set => _habilitada = value; }
         public int IdTipoUsuario { get => _idTipoUsuario; set => _idTipoUsuario = value; }
-        public int IdIdentificacion { get => _idIdentificacion; set => _idIdentificacion = value; }
+        public string Habilitada { get => _habilitada; set => _habilitada = value; }
+        public string EsPasaporte { get => _esPasaporte; set => _esPasaporte = value; }
     }
 }

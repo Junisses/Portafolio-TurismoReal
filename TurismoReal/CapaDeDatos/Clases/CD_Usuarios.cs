@@ -35,8 +35,8 @@ namespace CapaDeDatos.Clases
             com.Parameters.AddWithValue("@pais", Usuarios.Pais);
             com.Parameters.AddWithValue("@codigoVerificacion", Usuarios.CodigoVerificacion);
             com.Parameters.AddWithValue("@habilitada", Usuarios.Habilitada);
+            com.Parameters.AddWithValue("@esPasaporte", Usuarios.EsPasaporte);
             com.Parameters.AddWithValue("@idTipoUsuario", Usuarios.IdTipoUsuario);
-            com.Parameters.AddWithValue("@idIdentificacion", Usuarios.IdIdentificacion);
             com.Parameters.AddWithValue("@patron", Usuarios.Patron);
             com.ExecuteNonQuery();
             com.Parameters.Clear();
@@ -66,9 +66,16 @@ namespace CapaDeDatos.Clases
             ce.Pais = Convert.ToString(row[8]);
             ce.CodigoVerificacion = Convert.ToString(row[9]);
             //AUN NO ESTA PROGRAMADO
-            //ce.Habilitada = Convert.ToBoolean(row[10]);
-            ce.IdTipoUsuario = Convert.ToInt32(row[11]);
-            ce.IdIdentificacion = Convert.ToInt32(row[12]);
+            if (ce.Habilitada == "Habilitado")
+            {
+                Convert.ToBoolean(true);
+            }
+            else
+            {
+                Convert.ToBoolean(false);
+            }
+            //ce.EsPasaporte = Convert.ToString(row[5]);
+            ce.IdTipoUsuario = Convert.ToInt32(row[12]);
 
             return ce;
         }
@@ -110,8 +117,9 @@ namespace CapaDeDatos.Clases
             com.Parameters.AddWithValue("@pais", Usuarios.Pais);
             com.Parameters.AddWithValue("@codigoVerificacion", Usuarios.CodigoVerificacion);
             com.Parameters.AddWithValue("@habilitada", Usuarios.Habilitada);
+            com.Parameters.AddWithValue("@esPasaporte", Usuarios.EsPasaporte);
             com.Parameters.AddWithValue("@idTipoUsuario", Usuarios.IdTipoUsuario);
-            com.Parameters.AddWithValue("@idIdentificacion", Usuarios.IdIdentificacion);
+
             com.ExecuteNonQuery();
             com.Parameters.Clear();
             con.CerrarConexion();

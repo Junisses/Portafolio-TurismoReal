@@ -45,7 +45,6 @@
     <Compile Include="Clases\CD_Comuna.cs" />
     <Compile Include="Clases\CD_Conexion.cs" />
     <Compile Include="Clases\CD_Departamentos.cs" />
-    <Compile Include="Clases\CD_IdentificacionFK.cs" />
     <Compile Include="Clases\CD_Region.cs" />
     <Compile Include="Clases\CD_TipoServicio.cs" />
     <Compile Include="Clases\CD_TipoUsuarioFK.cs" />

@@ -1,4 +1,5 @@
 ﻿using CapaDeNegocio.Clases;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -33,7 +34,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         {
             CRUDusuarios ventana = new CRUDusuarios();
             FrameUsuarios.Content = ventana;
-            Contenido.Visibility = Visibility.Hidden;
             ventana.BtnCrear.Visibility = Visibility.Visible;
             ventana.ChangePassword.Visibility = Visibility.Hidden;
             ventana.tbContrasena.Visibility = Visibility.Visible;
@@ -49,7 +49,6 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.idUsuario = id;
             ventana.Consultar();
             FrameUsuarios.Content = ventana;
-            Contenido.Visibility = Visibility.Hidden;
             ventana.Titulo.Text = "Consultar Usuario";
             ventana.tbNombre.IsEnabled = false;
             ventana.tbApellido.IsEnabled = false;
@@ -59,10 +58,11 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.tbRut.IsEnabled = false;
             ventana.tbUser.IsEnabled = false;
             ventana.tbContrasena.IsEnabled = false;
-            ventana.cbIdentificacion.IsEnabled = false;
             ventana.cbTipoUsuario.IsEnabled = false;
             ventana.ChangePassword.Visibility = Visibility.Hidden;
         }
+        
+
         #endregion
 
         #region ACTUALIZAR
@@ -73,8 +73,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.idUsuario = id;
             ventana.Consultar();
             FrameUsuarios.Content = ventana;
-            Contenido.Visibility = Visibility.Hidden;
-            ventana.Titulo.Text = "Actualizar Información de Usuario";
+            ventana.Titulo.Text = "Información del Usuario";
             ventana.tbNombre.IsEnabled = true;
             ventana.tbApellido.IsEnabled = true;
             ventana.tbCel.IsEnabled = true;
@@ -83,7 +82,6 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.tbRut.IsEnabled = true;
             ventana.tbUser.IsEnabled = true;
             ventana.tbContrasena.IsEnabled = true;
-            ventana.cbIdentificacion.IsEnabled = true;
             ventana.cbTipoUsuario.IsEnabled = true;
             ventana.BtnActualizar.Visibility = Visibility.Visible;
             ventana.ChangePassword.Visibility = Visibility.Visible;
@@ -98,7 +96,6 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.idUsuario = id;
             ventana.Consultar();
             FrameUsuarios.Content = ventana;
-            Contenido.Visibility = Visibility.Hidden;
             ventana.Titulo.Text = "Eliminar Usuario";
             ventana.tbNombre.IsEnabled = false;
             ventana.tbApellido.IsEnabled = false;
@@ -108,11 +105,11 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.tbRut.IsEnabled = false;
             ventana.tbUser.IsEnabled = false;
             ventana.tbContrasena.IsEnabled = false;
-            ventana.cbIdentificacion.IsEnabled = false;
             ventana.cbTipoUsuario.IsEnabled = false;
-            ventana.BtnEliminar.Visibility = Visibility.Visible;
+            //ventana.BtnEliminar.Visibility = Visibility.Visible;
             ventana.ChangePassword.Visibility = Visibility.Hidden;
         }
+
         #endregion
     }
 }

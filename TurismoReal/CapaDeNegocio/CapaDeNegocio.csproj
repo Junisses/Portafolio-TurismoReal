@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Clases\CN_Artefactos.cs" />
     <Compile Include="Clases\CN_Comuna.cs" />
-    <Compile Include="Clases\CN_IdentificacionFK.cs" />
     <Compile Include="Clases\CN_Region.cs" />
     <Compile Include="Clases\CN_TipoServicio.cs" />
     <Compile Include="Clases\CN_TipoUsuarioFK.cs" />

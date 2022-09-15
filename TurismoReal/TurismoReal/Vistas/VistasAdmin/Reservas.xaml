@@ -221,7 +221,6 @@
 
     <!--#region Contenido-->
     <Border CornerRadius="10"
-            Opacity=".9"
             Background="Transparent">
         <Grid Name="GridUsuarios">
 

@@ -44,7 +44,6 @@
     <Compile Include="Clases\CE_Artefactos.cs" />
     <Compile Include="Clases\CE_Comuna.cs" />
     <Compile Include="Clases\CE_Departamentos.cs" />
-    <Compile Include="Clases\CE_IdentificacionFK.cs" />
     <Compile Include="Clases\CE_Region.cs" />
     <Compile Include="Clases\CE_TipoServicio.cs" />
     <Compile Include="Clases\CE_TipoUsuarioFK.cs" />

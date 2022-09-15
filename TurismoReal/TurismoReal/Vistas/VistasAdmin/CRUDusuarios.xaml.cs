@@ -20,7 +20,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         readonly CN_Usuarios objeto_CN_Usuarios = new CN_Usuarios();
         readonly CE_Usuarios objeto_CE_Usuarios = new CE_Usuarios();
         readonly CN_TipoUsuarioFK objeto_CN_TipoUsuarioFK = new CN_TipoUsuarioFK();
-        readonly CN_IdentificacionFK objeto_CN_IdentificacionFK = new CN_IdentificacionFK();
 
         #region Inicial
         public CRUDusuarios()
@@ -45,28 +44,19 @@ namespace TurismoReal.Vistas.VistasAdmin
             {
                 cbTipoUsuario.Items.Add(tipousuario[i]);
             }
-
-            List<string> forma = objeto_CN_IdentificacionFK.ListarFormato();
-            for (int i = 0; i < forma.Count; i++)
-            {
-                cbIdentificacion.Items.Add(forma[i]);
-            }
         }
         #endregion
 
         #region ValidarCamposVacios
-
         public bool CamposLlenos()
         {
             if (tbNombre.Text == ""
                 || tbApellido.Text == ""
-                //RbHabilitar es un radio button como bit!!
                 || tbCel.Text == ""
                 || tbCorreo.Text == ""
                 || tbPais.Text == ""
                 || tbRut.Text == ""
                 || tbUser.Text == ""
-                || cbIdentificacion.Text == ""
                 || cbTipoUsuario.Text == "")
             {
                 return false;
@@ -76,6 +66,25 @@ namespace TurismoReal.Vistas.VistasAdmin
                 return true;
             }
         }
+        #endregion
+
+
+        #region Estado de cuenta
+        private void Habilitar_Check(object sender, RoutedEventArgs e)
+        {
+            string estado;
+            if (chkHabilitar.IsChecked == true)
+            {
+                estado = "Habilitado";
+            }
+            else
+            {
+                estado = "Deshabilitado";
+            }
+        }
+
+        #endregion
+
         #region VALIDAR RUT
         public bool ValidarRut(string rut)
         {
@@ -127,7 +136,7 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
 
         #endregion
-            #region CRUD
+        #region CRUD
         public int idUsuario;
         public string Patron = "Portafolio";
         #endregion
@@ -200,12 +209,11 @@ namespace TurismoReal.Vistas.VistasAdmin
             }
 
 
-            if (CamposLlenos() ==true)
+            if (CamposLlenos() == true)
             {
                 try
                 {
                     int tipousuario = objeto_CN_TipoUsuarioFK.idTipoUsuario(cbTipoUsuario.Text);
-                    int forma = objeto_CN_IdentificacionFK.IdIdentificacion(cbIdentificacion.Text);
 
                     objeto_CE_Usuarios.Nombres = tbNombre.Text;
                     objeto_CE_Usuarios.Apellidos = tbApellido.Text;
@@ -217,9 +225,16 @@ namespace TurismoReal.Vistas.VistasAdmin
                     objeto_CE_Usuarios.Celular = tbCel.Text;
                     objeto_CE_Usuarios.Pais = tbPais.Text;
                     objeto_CE_Usuarios.CodigoVerificacion = " ";
-                    objeto_CE_Usuarios.Habilitada = true;
+                    if (chkHabilitar.IsChecked == true)
+                    {
+                        objeto_CE_Usuarios.Habilitada = "Habilitado";
+                    }
+                    else
+                    {
+                        objeto_CE_Usuarios.Habilitada = "Deshabilitado";
+                    }
+                    objeto_CE_Usuarios.EsPasaporte = " ";
                     objeto_CE_Usuarios.IdTipoUsuario = tipousuario;
-                    objeto_CE_Usuarios.IdIdentificacion = forma;
 
                     objeto_CN_Usuarios.Insertar(objeto_CE_Usuarios);
 
@@ -252,8 +267,7 @@ namespace TurismoReal.Vistas.VistasAdmin
 
             var b = objeto_CN_TipoUsuarioFK.nombreTipoUsuario(a.IdTipoUsuario);
             cbTipoUsuario.Text = b.TipoUsuario;
-            var c = objeto_CN_IdentificacionFK.NombreFormato(a.IdIdentificacion);
-            cbIdentificacion.Text = c.Formato;
+            
         }
         #endregion
         #region UPDATE
@@ -263,7 +277,6 @@ namespace TurismoReal.Vistas.VistasAdmin
             {
                 //pendiente
                 int tipousuario = objeto_CN_TipoUsuarioFK.idTipoUsuario(cbTipoUsuario.Text);
-                int forma = objeto_CN_IdentificacionFK.IdIdentificacion(cbIdentificacion.Text);
 
                 objeto_CE_Usuarios.IdUsuario = idUsuario;
                 objeto_CE_Usuarios.Nombres = tbNombre.Text;
@@ -276,9 +289,16 @@ namespace TurismoReal.Vistas.VistasAdmin
                 objeto_CE_Usuarios.Celular = tbCel.Text;
                 objeto_CE_Usuarios.Pais = tbPais.Text;
                 objeto_CE_Usuarios.CodigoVerificacion = " ";
-                objeto_CE_Usuarios.Habilitada = true;
+                if (chkHabilitar.IsChecked == true)
+                {
+                    objeto_CE_Usuarios.Habilitada = "Habilitado";
+                }
+                else
+                {
+                    objeto_CE_Usuarios.Habilitada = "Deshabilitado";
+                }
+                objeto_CE_Usuarios.EsPasaporte = " ";
                 objeto_CE_Usuarios.IdTipoUsuario = tipousuario;
-                objeto_CE_Usuarios.IdIdentificacion = forma;
 
                 objeto_CN_Usuarios.ActualizarDatos(objeto_CE_Usuarios);
 
@@ -313,7 +333,6 @@ namespace TurismoReal.Vistas.VistasAdmin
 
         #endregion
 
-        #endregion
 
         private void ChangePassword_Click(object sender, RoutedEventArgs e)
         {
@@ -322,5 +341,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             MessageBox.Show("Ingrese una contraseña de 6 caracteres");
             
         }
+
+
     }
 }
