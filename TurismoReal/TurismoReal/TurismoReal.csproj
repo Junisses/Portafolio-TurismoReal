@@ -311,6 +311,14 @@
     <Resource Include="Vistas\Images\checkinout.png" />
     <Resource Include="Vistas\Images\checklist.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <SplashScreen Include="Vistas\Images\INICIO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\editar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\edit.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -163,6 +163,7 @@ namespace CapaDeDatos.Clases
 
         #endregion
 
+        #region LOGIN
         public CE_Usuarios Login(string usuario, string contra)
         {
             string patron = "Portafolio";
@@ -183,5 +184,43 @@ namespace CapaDeDatos.Clases
             }
             return ce;
         }
+        #endregion  
+
+        #region BUSCAR
+
+        public DataTable Buscar(string buscar)
+        {
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_U_Buscar", con.AbrirConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.Add("@buscar", SqlDbType.VarChar).Value = buscar;
+            DataSet ds = new DataSet();
+            ds.Clear();
+            da.Fill(ds);
+            DataTable dt = ds.Tables[0];
+            con.CerrarConexion();
+
+            return dt;
+        }
+
+        #endregion
+
+        #region FILTRO
+
+        public DataTable Filtro(string filtro)
+        {
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_U_FiltroTipoUsuario", con.AbrirConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.Add("@filtro", SqlDbType.VarChar).Value = filtro;
+            DataSet ds = new DataSet();
+            ds.Clear();
+            da.Fill(ds);
+            DataTable dt = ds.Tables[0];
+            con.CerrarConexion();
+
+            return dt;
+        }
+
+        #endregion
+
     }
 }

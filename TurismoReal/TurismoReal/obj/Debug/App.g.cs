@@ -61,6 +61,8 @@ namespace TurismoReal {
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
         public static void Main() {
+            SplashScreen splashScreen = new SplashScreen("vistas/images/inicio.png");
+            splashScreen.Show(true);
             TurismoReal.App app = new TurismoReal.App();
             app.InitializeComponent();
             app.Run();
