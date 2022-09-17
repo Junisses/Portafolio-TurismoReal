@@ -937,7 +937,8 @@
                      Grid.Column="2"
                      x:Name="tbContrasena"
                      HorizontalContentAlignment="Center"
-                     Background="#F3E5F5"/>
+                     Background="#F3E5F5"
+                     Visibility="Hidden"/>
             <TextBlock Grid.Row="10"
                        Grid.Column="4"
                        Text="Usuario"
