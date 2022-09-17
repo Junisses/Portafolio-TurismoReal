@@ -144,12 +144,12 @@ namespace TurismoReal.Vistas.VistasAdmin
         private void Crear(object sender, RoutedEventArgs e)
         {
             //Validaciones basicas
-            if (tbContrasena.Text.Length < 6)
+            if (tbContrasena.Password.Length < 6)
             {
                 MessageBox.Show("La contraseña debe tener mas de 6 caracteres");
                 return;
             }
-            else if (tbContrasena.Text == "")
+            else if (tbContrasena.Password == "")
             {
                 MessageBox.Show("La contraseña debe tener mas de 6 caracteres");
                 return;
@@ -219,7 +219,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                     objeto_CE_Usuarios.Apellidos = tbApellido.Text;
                     objeto_CE_Usuarios.Usuario = tbUser.Text;
                     objeto_CE_Usuarios.Correo = tbCorreo.Text;
-                    objeto_CE_Usuarios.Contrasena = tbContrasena.Text;
+                    objeto_CE_Usuarios.Contrasena = tbContrasena.Password;
                     objeto_CE_Usuarios.Patron = Patron;
                     objeto_CE_Usuarios.Identificacion = tbRut.Text;
                     objeto_CE_Usuarios.Celular = tbCel.Text;
@@ -283,7 +283,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                 objeto_CE_Usuarios.Apellidos = tbApellido.Text;
                 objeto_CE_Usuarios.Usuario = tbUser.Text;
                 objeto_CE_Usuarios.Correo = tbCorreo.Text;
-                objeto_CE_Usuarios.Contrasena = tbContrasena.Text;
+                objeto_CE_Usuarios.Contrasena = tbContrasena.Password;
                 objeto_CE_Usuarios.Patron = Patron;
                 objeto_CE_Usuarios.Identificacion = tbRut.Text;
                 objeto_CE_Usuarios.Celular = tbCel.Text;
@@ -309,10 +309,10 @@ namespace TurismoReal.Vistas.VistasAdmin
                 MessageBox.Show("Por favor, no dejar campos vacios");
             }
 
-            if(tbContrasena.Text.Length > 6)
+            if(tbContrasena.Password.Length > 6)
             {
                 objeto_CE_Usuarios.IdUsuario = idUsuario;
-                objeto_CE_Usuarios.Contrasena = tbContrasena.Text;
+                objeto_CE_Usuarios.Contrasena = tbContrasena.Password;
                 objeto_CE_Usuarios.Patron = Patron;
 
                 objeto_CN_Usuarios.ActualizarPass(objeto_CE_Usuarios);
