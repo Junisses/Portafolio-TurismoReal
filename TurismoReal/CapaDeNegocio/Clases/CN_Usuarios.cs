@@ -69,7 +69,6 @@ namespace CapaDeNegocio.Clases
 
         #endregion
 
-
         #region FILTRAR TIPO DE  USUARIOS
 
         public DataTable Filtro(string filtro)
@@ -85,5 +84,7 @@ namespace CapaDeNegocio.Clases
             return objDatos.Login(usuario, contra);
         }
         #endregion
+
+
     }
 }

@@ -697,7 +697,7 @@
                 <DataGrid Style="{DynamicResource diseñoGrid}" Grid.Row="4"
                       Grid.Column="1"
                       Grid.ColumnSpan="5"
-                      Grid.RowSpan="2"
+                      Grid.RowSpan="4"
                       x:Name="GridDatos"
                       AutoGenerateColumns="False"
                       Background="GhostWhite"
@@ -713,12 +713,8 @@
                       HorizontalGridLinesBrush="#A64B9F"
                       >
                     <DataGrid.Columns>
-
-                        <DataGridTextColumn Header="ID"
-                                        Width="50"
-                                        Binding="{Binding idUsuario}"/>
                         <DataGridTextColumn Header="Nombre"
-                                        Width="80"
+                                        Width="100"
                                         Binding="{Binding nombres}"/>
                         <DataGridTextColumn Header="Apellido"
                                         Width="100"
@@ -727,7 +723,7 @@
                                         Width="100"
                                         Binding="{Binding identificacion}"/>
                         <DataGridTextColumn Header="Correo"
-                                        Width="150"
+                                        Width="180"
                                         Binding="{Binding correo}"/>
                         <DataGridTextColumn Header="Tipo Usuario"
                                         Width="150"
@@ -744,6 +740,7 @@
                                                 Width="20" 
                                                 Height="20" 
                                                 Click="Actualizar"
+                                                Cursor="Hand"
                                                 Background="Transparent"
                                                 BorderBrush="Transparent"
                                                 CommandParameter="{Binding idUsuario}"

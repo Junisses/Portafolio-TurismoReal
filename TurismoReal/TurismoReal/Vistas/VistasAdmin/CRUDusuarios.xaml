@@ -168,8 +168,8 @@
                                 <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="#FFB07E"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="#FFB07E"/>
+                                <Setter Property="Background" TargetName="border" Value="Coral"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="Coral"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
                                 <Setter Property="Background" TargetName="border" Value="#C64F24"/>
@@ -733,7 +733,7 @@
                     Grid.Row="18"
                     Grid.Column="5"
                     Width="100"
-                    Background="Coral"
+                    Background="#FF5A36"
                     Foreground="White"
                     Visibility="Hidden"
                     Style="{DynamicResource estiloACT}" 
@@ -880,8 +880,8 @@
                       VerticalAlignment="Center"
                       Style="{DynamicResource CheckBoxStyle}"
                       Checked="Habilitar_Check"/>
-            <TextBlock x:Name="txtContra" Grid.Row="15"
-                       Grid.Column="2"
+            <TextBlock x:Name="txtContra" Grid.Row="16"
+                       Grid.Column="1"
                        Text="Contraseña"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
@@ -890,9 +890,9 @@
                      Grid.Column="2"
                      x:Name="tbContrasena"
                      HorizontalContentAlignment="Center"
-                     Style="{DynamicResource TextBoxStyle}" 
-                     Background="#F3E5F5"
-                     Visibility="Hidden"/>
+                     Style="{DynamicResource TextBoxStyle}"
+                     Visibility="Hidden"
+                     Background="#F3E5F5"/>
             <TextBlock Grid.Row="10"
                        Grid.Column="4"
                        Text="Usuario"
@@ -915,7 +915,7 @@
                     Cursor="Hand"
                     Background="#c145a1"
                     Foreground="White"
-                    VerticalAlignment="Center"  
+                    VerticalAlignment="Center" 
                     Click="ChangePassword_Click" 
                     Margin="10,0,0,0"/>
             <TextBlock x:Name="Titulo"

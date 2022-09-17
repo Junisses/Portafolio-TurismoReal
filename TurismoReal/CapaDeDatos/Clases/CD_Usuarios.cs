@@ -186,6 +186,8 @@ namespace CapaDeDatos.Clases
         }
         #endregion  
 
+
+
         #region BUSCAR
 
         public DataTable Buscar(string buscar)

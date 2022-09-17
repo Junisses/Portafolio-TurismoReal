@@ -1,17 +1,6 @@
 ﻿using CapaDeNegocio.Clases;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace TurismoReal.Vistas
 {
@@ -45,6 +34,7 @@ namespace TurismoReal.Vistas
         {
             if (txtUser.Text != "" && txtPass.Password != "")
             {
+
                 Login(txtUser.Text, txtPass.Password);
             }
             else
@@ -63,7 +53,7 @@ namespace TurismoReal.Vistas
             {
                 Properties.Settings.Default.IdUsuario = a.IdUsuario;
                 Properties.Settings.Default.IdTipoUsuario = a.IdTipoUsuario;
-                
+
                 if (a.IdTipoUsuario == 1)
                 {
                     InicioAdmin inicioAdmin = new InicioAdmin();
@@ -79,12 +69,8 @@ namespace TurismoReal.Vistas
             }
             else 
             {
-                MessageBox.Show("Contraseña incorrecta");
+                MessageBox.Show("Datos incorrectos\nIntentalo denuevo");
             }
-            
-        
-        }
-
-       
+        }       
     }
 }

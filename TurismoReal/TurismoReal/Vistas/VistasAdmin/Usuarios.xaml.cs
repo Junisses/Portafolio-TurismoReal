@@ -129,6 +129,7 @@ namespace TurismoReal.Vistas.VistasAdmin
         public void Buscar(string buscar)
         {
             GridDatos.ItemsSource = objeto_CN_Usuarios.Buscar(buscar).DefaultView;
+            
         }
 
         private void Buscando(object sender, TextChangedEventArgs e)
@@ -141,21 +142,13 @@ namespace TurismoReal.Vistas.VistasAdmin
         public void Filtro(string filtro)
         {
             GridDatos.ItemsSource = objeto_CN_Usuarios.Filtro(filtro).DefaultView;
+            
         }
 
         private void Filtrando(object sender, SelectionChangedEventArgs e)
         {
-            try
-            {
-                if (cbFiltroTipo.SelectedValue != null)
-                    Filtro(cbFiltroTipo.Text);
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show("No se pudo cargar el dgv: " + error.Message);
-            }
+            Filtro(cbFiltroTipo.Text);
         }
-
         #endregion
     }
 }
