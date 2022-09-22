@@ -3,14 +3,9 @@ using CapaDeNegocio.Clases;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Design;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace TurismoReal.Vistas.VistasAdmin
 {

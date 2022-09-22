@@ -16,7 +16,9 @@ namespace CapaDeEntidad.Clases
         private int _PrecioNoche;
         private string EstadoDepto;
         private DateTime _FechaEstadoDepto;
+        private int _IdRegion;
         private int _IdComuna;
+        private int _IdEstadoDepto;
 
         public int IdDepartamento { get => _IdDepartamento; set => _IdDepartamento = value; }
         public string Descripcion { get => _Descripcion; set => _Descripcion = value; }
@@ -27,5 +29,7 @@ namespace CapaDeEntidad.Clases
         public string EstadoDepto1 { get => EstadoDepto; set => EstadoDepto = value; }
         public DateTime FechaEstadoDepto { get => _FechaEstadoDepto; set => _FechaEstadoDepto = value; }
         public int IdComuna { get => _IdComuna; set => _IdComuna = value; }
+        public int IdEstadoDepto { get => _IdEstadoDepto; set => _IdEstadoDepto = value; }
+        public int IdRegion { get => _IdRegion; set => _IdRegion = value; }
     }
 }

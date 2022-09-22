@@ -44,6 +44,7 @@
     <Compile Include="Clases\CE_Artefactos.cs" />
     <Compile Include="Clases\CE_Comuna.cs" />
     <Compile Include="Clases\CE_Departamentos.cs" />
+    <Compile Include="Clases\CE_EstadoDepto.cs" />
     <Compile Include="Clases\CE_Region.cs" />
     <Compile Include="Clases\CE_TipoServicio.cs" />
     <Compile Include="Clases\CE_TipoUsuarioFK.cs" />

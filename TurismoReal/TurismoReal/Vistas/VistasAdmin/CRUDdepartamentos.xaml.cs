@@ -2,18 +2,8 @@
 using CapaDeNegocio.Clases;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TurismoReal.Vistas.VistasAdmin
 {
@@ -22,17 +12,21 @@ namespace TurismoReal.Vistas.VistasAdmin
     /// </summary>
     public partial class CRUDdepartamentos : Page
     {
+        readonly CN_Departamentos objeto_CN_Departamentos = new CN_Departamentos();
+        readonly CE_Departamentos objeto_CE_Departamentos = new CE_Departamentos();
+
         readonly CN_Comuna objeto_CN_Comuna = new CN_Comuna();
         readonly CN_Region objeto_CN_Region = new CN_Region();
+        readonly CN_EstadoDepto objeto_CN_EstadoDepto = new CN_EstadoDepto();
 
         public CRUDdepartamentos()
         {
             InitializeComponent();
-            CargarRC();
+            CargarRCE();
         }
 
         #region Cargar FK
-        void CargarRC()
+        void CargarRCE()
         {
             List<string> region = objeto_CN_Region.ListarRegion();
             for (int i = 0; i < region.Count; i++)
@@ -45,6 +39,12 @@ namespace TurismoReal.Vistas.VistasAdmin
             {
                 cbComuna.Items.Add(comuna[i]);
             }
+
+            List<string> estadoDepto = objeto_CN_EstadoDepto.ListarEstado();
+            for (int i = 0; i < estadoDepto.Count; i++)
+            {
+                cbEstadoDepto.Items.Add(estadoDepto[i]);
+            }
         }
         #endregion
 
@@ -56,31 +56,112 @@ namespace TurismoReal.Vistas.VistasAdmin
         #endregion
 
 
+        #region ValidarCamposVacios
+        public bool CamposLlenos()
+        {
+            if (tbNombreDepto.Text == ""
+                || tbDireccion.Text == ""
+                || tbCantHabitaciones.Text == ""
+                || tbCantBanos.Text == ""
+                || tbPrecio.Text == ""
+                || cbComuna.Text == ""
+                || cbRegion.Text == ""
+                || cbEstadoDepto.Text == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        #endregion
+
+        public int idDepartamento;
         #region Crear
         private void Crear(object sender, RoutedEventArgs e)
         {
-            
+            int region = objeto_CN_Region.IdRegion(cbRegion.Text);
+            int comuna = objeto_CN_Comuna.IdComuna(cbComuna.Text);
+            int estadoDepto = objeto_CN_EstadoDepto.IdEstadoDepto(cbEstadoDepto.Text);
+
+            objeto_CE_Departamentos.Descripcion = tbNombreDepto.Text;
+            objeto_CE_Departamentos.Direccion = tbDireccion.Text;
+            objeto_CE_Departamentos.CantHabitaciones = int.Parse(tbCantHabitaciones.Text);
+            objeto_CE_Departamentos.CantBanos = int.Parse(tbCantBanos.Text);
+            objeto_CE_Departamentos.PrecioNoche = int.Parse(tbPrecio.Text);
+            //objeto_CE_Departamentos.FechaEstadoDepto = DateTime.Parse(cFechaEstado.Text);
+            //objeto_CE_Departamentos.IdRegion = region;
+            objeto_CE_Departamentos.IdComuna = comuna;
+            objeto_CE_Departamentos.IdEstadoDepto = estadoDepto;
+
+            objeto_CN_Departamentos.Insertar(objeto_CE_Departamentos);
+
+            Content = new Departamentos();
         }
         #endregion
 
         #region Actualizar
         private void Actualizar(object sender, RoutedEventArgs e)
         {
+            if (CamposLlenos() == true)
+            {
+                int region = objeto_CN_Region.IdRegion(cbRegion.Text);
+                int comuna = objeto_CN_Comuna.IdComuna(cbComuna.Text);
+                int estadoDepto = objeto_CN_EstadoDepto.IdEstadoDepto(cbEstadoDepto.Text);
 
+                objeto_CE_Departamentos.IdEstadoDepto = idDepartamento;
+                objeto_CE_Departamentos.Descripcion = tbNombreDepto.Text;
+                //objeto_CE_Departamentos.IdRegion = region;
+                objeto_CE_Departamentos.IdComuna = comuna;
+                objeto_CE_Departamentos.Direccion = tbDireccion.Text;
+                objeto_CE_Departamentos.CantHabitaciones = int.Parse(tbCantHabitaciones.Text);
+                objeto_CE_Departamentos.CantBanos = int.Parse(tbCantBanos.Text);
+                objeto_CE_Departamentos.PrecioNoche = int.Parse(tbPrecio.Text);
+                //objeto_CE_Departamentos.FechaEstadoDepto = DateTime.Parse(cFechaEstado.Date);
+                objeto_CE_Departamentos.IdEstadoDepto = estadoDepto;
+
+                objeto_CN_Departamentos.ActualizarDatos(objeto_CE_Departamentos);
+
+                Content = new Departamentos();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, no dejar campos vacios");
+            }
         }
         #endregion
 
         #region Consultar
-        private void Consultar(object sender, RoutedEventArgs e)
+        public void Consultar()
         {
+            var a = objeto_CN_Departamentos.Consulta(idDepartamento);
+            var r = objeto_CN_Region.NombreRegion(a.IdRegion);
+            var c = objeto_CN_Comuna.NombreComuna(a.IdComuna);
+            var d = objeto_CN_EstadoDepto.NombreEstado(a.IdEstadoDepto);
 
+            tbNombreDepto.Text = a.Descripcion.ToString();
+            //cbRegion.Text = r.Region.ToString();
+            cbComuna.Text = c.Comuna.ToString();
+            tbDireccion.Text = a.Direccion.ToString();
+            tbCantHabitaciones.Text = a.CantHabitaciones.ToString();
+            tbCantBanos.Text = a.CantBanos.ToString();
+            tbPrecio.Text = a.PrecioNoche.ToString();
+            //cFechaEstado.Text = a.FechaEstadoDepto.ToString();
+            cbEstadoDepto.Text = d.EstadoDepto.ToString();
+
+            
         }
         #endregion
 
         #region Eliminar
         private void Eliminar(object sender, RoutedEventArgs e)
         {
+            objeto_CE_Departamentos.IdDepartamento = idDepartamento;
 
+            objeto_CN_Departamentos.Eliminar(objeto_CE_Departamentos);
+
+            Content = new Departamentos();
         }
         #endregion
 

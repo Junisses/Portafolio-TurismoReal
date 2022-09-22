@@ -686,7 +686,8 @@
                        Text="Region"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
-            <ComboBox Style="{DynamicResource ComboBoxStyle}" Grid.Row="5"
+            <ComboBox Style="{DynamicResource ComboBoxStyle}" 
+                      Grid.Row="5"
                       Grid.Column="2"
                       Cursor="Hand"
                       HorizontalContentAlignment="Center"
@@ -821,12 +822,41 @@
                        Text="Estado"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
-            <TextBox Grid.Row="11"
-                     Grid.Column="5"
-                     x:Name="tbEstado"
-                     HorizontalContentAlignment="Center"
-                     Style="{DynamicResource TextBoxStyle}" 
-                     Background="#F3E5F5"/>
+            <ComboBox Style="{DynamicResource ComboBoxStyle}" 
+                      Grid.Row="11"
+                      Grid.Column="5"
+                      Cursor="Hand"
+                      HorizontalContentAlignment="Center"
+                      x:Name="cbEstadoDepto">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ComboBoxItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                    <Border CornerRadius="10" SnapsToDevicePixels="True"
+                                            Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsHighlighted" Value="True">
+                                            <Setter Property="Background" Value="pink" />
+                                            <Setter Property="BorderBrush" Value="pink" />
+                                        </Trigger>
+                                        <Trigger Property="IsHighlighted" Value="False">
+                                            <Setter Property="Foreground" Value="Gray"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+            </ComboBox>
 
             <!--Texto y box para Fecha estado-->
             <TextBlock Grid.Row="13"
