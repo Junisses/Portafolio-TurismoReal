@@ -81,23 +81,38 @@ namespace TurismoReal.Vistas.VistasAdmin
         #region Crear
         private void Crear(object sender, RoutedEventArgs e)
         {
-            int region = objeto_CN_Region.IdRegion(cbRegion.Text);
-            int comuna = objeto_CN_Comuna.IdComuna(cbComuna.Text);
-            int estadoDepto = objeto_CN_EstadoDepto.IdEstadoDepto(cbEstadoDepto.Text);
+            if (CamposLlenos() == true)
+            {
+                try
+                {
+                    int region = objeto_CN_Region.IdRegion(cbRegion.Text);
+                    int comuna = objeto_CN_Comuna.IdComuna(cbComuna.Text);
+                    int estadoDepto = objeto_CN_EstadoDepto.IdEstadoDepto(cbEstadoDepto.Text);
 
-            objeto_CE_Departamentos.Descripcion = tbNombreDepto.Text;
-            objeto_CE_Departamentos.Direccion = tbDireccion.Text;
-            objeto_CE_Departamentos.CantHabitaciones = int.Parse(tbCantHabitaciones.Text);
-            objeto_CE_Departamentos.CantBanos = int.Parse(tbCantBanos.Text);
-            objeto_CE_Departamentos.PrecioNoche = int.Parse(tbPrecio.Text);
-            //objeto_CE_Departamentos.FechaEstadoDepto = DateTime.Parse(cFechaEstado.Text);
-            //objeto_CE_Departamentos.IdRegion = region;
-            objeto_CE_Departamentos.IdComuna = comuna;
-            objeto_CE_Departamentos.IdEstadoDepto = estadoDepto;
+                    objeto_CE_Departamentos.Descripcion = tbNombreDepto.Text;
+                    objeto_CE_Departamentos.Direccion = tbDireccion.Text;
+                    objeto_CE_Departamentos.CantHabitaciones = int.Parse(tbCantHabitaciones.Text);
+                    objeto_CE_Departamentos.CantBanos = int.Parse(tbCantBanos.Text);
+                    objeto_CE_Departamentos.PrecioNoche = int.Parse(tbPrecio.Text);
+                    //objeto_CE_Departamentos.FechaEstadoDepto = DateTime.Parse(cFechaEstado.Text);
+                    objeto_CE_Departamentos.IdComuna = comuna;
+                    objeto_CE_Departamentos.IdEstadoDepto = estadoDepto;
 
-            objeto_CN_Departamentos.Insertar(objeto_CE_Departamentos);
+                    objeto_CN_Departamentos.Insertar(objeto_CE_Departamentos);
 
-            Content = new Departamentos();
+                    Content = new Departamentos();
+                }
+                catch
+                {
+                    MessageBox.Show("Revise bien sus datos");
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("No se pudo ingresar usuario, porfavor revise sus datos");
+            }
         }
         #endregion
 
@@ -106,11 +121,11 @@ namespace TurismoReal.Vistas.VistasAdmin
         {
             if (CamposLlenos() == true)
             {
-                int region = objeto_CN_Region.IdRegion(cbRegion.Text);
+                //int region = objeto_CN_Region.IdRegion(cbRegion.Text);
                 int comuna = objeto_CN_Comuna.IdComuna(cbComuna.Text);
                 int estadoDepto = objeto_CN_EstadoDepto.IdEstadoDepto(cbEstadoDepto.Text);
 
-                objeto_CE_Departamentos.IdEstadoDepto = idDepartamento;
+                objeto_CE_Departamentos.IdDepartamento = idDepartamento;
                 objeto_CE_Departamentos.Descripcion = tbNombreDepto.Text;
                 //objeto_CE_Departamentos.IdRegion = region;
                 objeto_CE_Departamentos.IdComuna = comuna;
@@ -136,12 +151,12 @@ namespace TurismoReal.Vistas.VistasAdmin
         public void Consultar()
         {
             var a = objeto_CN_Departamentos.Consulta(idDepartamento);
-            var r = objeto_CN_Region.NombreRegion(a.IdRegion);
+            //var r = objeto_CN_Region.NombreRegion(a.IdRegion);
             var c = objeto_CN_Comuna.NombreComuna(a.IdComuna);
             var d = objeto_CN_EstadoDepto.NombreEstado(a.IdEstadoDepto);
 
             tbNombreDepto.Text = a.Descripcion.ToString();
-            //cbRegion.Text = r.Region.ToString();
+            //cbRegion.Text = r.IdRegion.ToString();
             cbComuna.Text = c.Comuna.ToString();
             tbDireccion.Text = a.Direccion.ToString();
             tbCantHabitaciones.Text = a.CantHabitaciones.ToString();

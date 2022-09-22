@@ -82,7 +82,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.idDepartamento = id;
             ventana.Consultar();
             FrameDepartamentos.Content = ventana;
-            ventana.Titulo.Text = "Información Depto.";
+            ventana.Titulo.Text = "Actualizar Depto.";
             ventana.tbNombreDepto.IsEnabled = true;
             ventana.cbRegion.IsEnabled = true;
             ventana.cbComuna.IsEnabled = true;

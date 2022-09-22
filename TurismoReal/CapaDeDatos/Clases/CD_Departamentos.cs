@@ -12,7 +12,7 @@ namespace CapaDeDatos.Clases
     public class CD_Departamentos
     {
         private readonly CD_Conexion con = new CD_Conexion();
-        private readonly CE_Departamentos ce = new CE_Departamentos();
+        private CE_Departamentos ce = new CE_Departamentos();
 
         //CRUD Departamentos
         #region Insertar
