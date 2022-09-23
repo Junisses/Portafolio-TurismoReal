@@ -280,19 +280,17 @@
                      FontSize="20"/>
                 <!--#endregion-->
                 <!--#region boton buscar-->
-                <Button Style="{DynamicResource ButtonStylebuscar}" 
+                <Button Style="{DynamicResource ButtonStylebuscar}"
                         Grid.Column="3"
                     Grid.Row="2"
                     Background="#751970"
                     BorderBrush="#751970"
-                    Margin="10,0,0,0"
+                    Margin="0,0,1,0"
                     Cursor="Hand"
-                    Width="100"
+                    Width="35"
                     x:Name="BtnBuscar"
                     HorizontalAlignment="Left">
-                    <TextBlock Text="Buscar"
-                           Foreground="White"
-                           FontSize="15"/>
+                    <Image Width="20" Source="/Vistas/Images/buscar.png"></Image>
                 </Button>
                 <!--#endregion-->
                 <!--#region boton crear-->

@@ -501,8 +501,8 @@
             </Style.Triggers>
         </Style>
         <!--#endregion-->
-        
-        
+
+
         <!--#region estilo editar-->
         <Style x:Key="FocusVisual2">
             <Setter Property="Control.Template">
@@ -583,6 +583,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition Width="70"/>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
@@ -674,14 +675,27 @@
                         </Style>
                     </ComboBox.ItemContainerStyle>
                 </ComboBox>
+                <Button Style="{DynamicResource ButtonStylebuscar}"
+                        Grid.Column="5"
+                    Grid.Row="2"
+                    Background="#751970"
+                    BorderBrush="#751970"
+                    Margin="0,0,1,0"
+                    Cursor="Hand"
+                    Width="35"
+                    x:Name="BtnBuscar"
+                    HorizontalAlignment="Left">
+                    <Image Width="20" Source="/Vistas/Images/buscar.png"></Image>
+                </Button>
+
                 <!--#endregion-->
 
                 <!--#region boton crear-->
-                <Button Style="{DynamicResource ButtonStylebuscar}" Grid.Column="5"
+                <Button Style="{DynamicResource ButtonStylebuscar}" Grid.Column="6"
                     Grid.Row="2"
                     Background="#1E88E5"
                     BorderBrush="#1E88E5"
-                    Margin="36,0,0,0"
+                    Margin="20,0,0,0"
                     Cursor="Hand"
                     Width="114"
                     x:Name="BtnCrearUsuario"
@@ -696,7 +710,7 @@
                 <!--#region DataGrid-->
                 <DataGrid Style="{DynamicResource diseñoGrid}" Grid.Row="4"
                       Grid.Column="1"
-                      Grid.ColumnSpan="5"
+                      Grid.ColumnSpan="6"
                       Grid.RowSpan="4"
                       x:Name="GridDatos"
                       AutoGenerateColumns="False"
@@ -746,7 +760,7 @@
                                                 CommandParameter="{Binding idUsuario}"
                                                 Style="{DynamicResource EstiloEditar}" >
                                             <Image Source="/Vistas/Images/edit.png"></Image>
-                                            
+
                                         </Button>
                                     </DockPanel>
                                 </DataTemplate>
@@ -762,7 +776,7 @@
                    Grid.Column="0"
                    Grid.Row="0"
                    Grid.RowSpan="9"
-                   Grid.ColumnSpan="7"/>
+                   Grid.ColumnSpan="8"/>
             <!--#endregion-->
         </Grid>
     </Border>

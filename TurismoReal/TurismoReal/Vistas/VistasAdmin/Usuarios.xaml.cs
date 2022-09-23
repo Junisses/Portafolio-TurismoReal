@@ -150,5 +150,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             Filtro(cbFiltroTipo.Text);
         }
         #endregion
+
+
     }
 }
