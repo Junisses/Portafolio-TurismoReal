@@ -290,7 +290,8 @@
                     Width="35"
                     x:Name="BtnBuscar"
                     HorizontalAlignment="Left">
-                    <Image Width="20" Source="/Vistas/Images/buscar.png"></Image>
+                    <Image Width="20" Source="/Vistas/Images/buscar.png">
+                    </Image>
                 </Button>
                 <!--#endregion-->
                 <!--#region boton crear-->
@@ -330,16 +331,21 @@
                       GridLinesVisibility="Horizontal"
                       HorizontalGridLinesBrush="#A64B9F">
                     <DataGrid.Columns>
-                        
-                        <DataGridTextColumn Header="ID"
-                                        Width="50"
-                                        Binding="{Binding idDepartamento}"/>
                         <DataGridTextColumn Header="Descripcion"
                                         Width="*"
                                         Binding="{Binding descripcion}"/>
                         <DataGridTextColumn Header="Dirección"
                                         Width="*"
                                         Binding="{Binding direccion}"/>
+                        <DataGridTextColumn Header="Piezas"
+                                        Width="50"
+                                        Binding="{Binding cantHabitaciones}"/>
+                        <DataGridTextColumn Header="Baños"
+                                        Width="50"
+                                        Binding="{Binding cantBanos}"/>
+                        <DataGridTextColumn Header="Precio Noche"
+                                        Width="*"
+                                        Binding="{Binding precioNoche}"/>
                         <DataGridTextColumn Header="Estado"
                                         Width="*"
                                         Binding="{Binding estadoDepto}"/>

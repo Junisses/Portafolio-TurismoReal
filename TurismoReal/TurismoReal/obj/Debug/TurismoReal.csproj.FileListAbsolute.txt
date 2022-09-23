@@ -67,3 +67,5 @@ C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\CheckL
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\CRUDchecklist.g.cs
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\CheckList.baml
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\CRUDchecklist.baml
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDgaleria.g.cs
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDgaleria.baml

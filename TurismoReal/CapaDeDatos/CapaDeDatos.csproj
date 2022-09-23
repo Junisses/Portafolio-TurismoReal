@@ -46,6 +46,7 @@
     <Compile Include="Clases\CD_Conexion.cs" />
     <Compile Include="Clases\CD_Departamentos.cs" />
     <Compile Include="Clases\CD_EstadoDepto.cs" />
+    <Compile Include="Clases\CD_Galeria.cs" />
     <Compile Include="Clases\CD_Region.cs" />
     <Compile Include="Clases\CD_TipoServicio.cs" />
     <Compile Include="Clases\CD_TipoUsuarioFK.cs" />

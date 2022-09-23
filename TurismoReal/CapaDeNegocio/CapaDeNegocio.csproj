@@ -45,6 +45,7 @@
     <Compile Include="Clases\CN_Comuna.cs" />
     <Compile Include="Clases\CN_Departamentos.cs" />
     <Compile Include="Clases\CN_EstadoDepto.cs" />
+    <Compile Include="Clases\CN_Galeria.cs" />
     <Compile Include="Clases\CN_Region.cs" />
     <Compile Include="Clases\CN_TipoServicio.cs" />
     <Compile Include="Clases\CN_TipoUsuarioFK.cs" />

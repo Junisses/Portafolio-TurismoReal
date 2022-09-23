@@ -810,7 +810,8 @@
                     Cursor="Hand"
                     Background="#751970"
                     Foreground="White"
-                    Click="Regresar" Margin="42,0,43,0"/>
+                    Click="Regresar" 
+                    Margin="42,0,43,0"/>
             <!--#endregion-->
             <!--#region CREAR-->
             <Button x:Name="BtnCrear"
@@ -1085,6 +1086,7 @@
                     Cursor="Hand"
                     Background="#A64B9F"
                     Foreground="White"
+                    CommandParameter="{Binding idDepartamento}"
                     Click="BtnGaleria_Click"/>
             <!--#endregion-->
 

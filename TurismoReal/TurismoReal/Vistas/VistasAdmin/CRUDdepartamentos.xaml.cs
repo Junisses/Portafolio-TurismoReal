@@ -183,7 +183,7 @@ namespace TurismoReal.Vistas.VistasAdmin
 
         private void BtnGaleria_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("En la seguiente versión se podrán subir imagenes!☺");
+            MessageBox.Show("ID "+idDepartamento);
         }
     }
 }
