@@ -164,9 +164,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             tbCantBanos.Text = a.CantBanos.ToString();
             tbPrecio.Text = a.PrecioNoche.ToString();
             cFechaEstado.Text = a.FechaEstadoDepto.ToString();
-            cbEstadoDepto.Text = d.EstadoDepto.ToString();
-
-            
+            cbEstadoDepto.Text = d.EstadoDepto.ToString();  
         }
         #endregion
 
@@ -181,9 +179,12 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        private void BtnGaleria_Click(object sender, RoutedEventArgs e)
+        public void BtnGaleria_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("ID "+idDepartamento);
+            Galeria ventana = new Galeria();
+            ventana.idDepartamento = idDepartamento;
+            ventana.Consulta();
+            FrameGaleria.Content = ventana;
         }
     }
 }

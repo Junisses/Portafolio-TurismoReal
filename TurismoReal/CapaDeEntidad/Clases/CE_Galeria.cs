@@ -8,12 +8,12 @@ namespace CapaDeEntidad.Clases
 {
     public class CE_Galeria
     {
-        private int _IdGaleria;
-        private byte[] _Imagen;
-        private int _IdDepartamento;
+        private int _idGaleria;
+        private byte[] _imagen;
+        private int _idDepartamento;
 
-        public int IdGaleria { get => _IdGaleria; set => _IdGaleria = value; }
-        public byte[] Imagen { get => _Imagen; set => _Imagen = value; }
-        public int IdDepartamento { get => _IdDepartamento; set => _IdDepartamento = value; }
+        public int idGaleria { get => _idGaleria; set => _idGaleria = value; }
+        public byte[] Imagen { get => _imagen; set => _imagen = value; }
+        public int IdDepartamento { get => _idDepartamento; set => _idDepartamento = value; }
     }
 }

@@ -14,9 +14,9 @@ namespace CapaDeNegocio.Clases
         private readonly CD_Galeria objDatos = new CD_Galeria();
 
         #region Consultar
-        public CE_Galeria Consulta(int idDepartamento)
+        public CE_Galeria Consulta(int idGaleria)
         {
-            return objDatos.CD_Consultar(idDepartamento);
+            return objDatos.CD_Consultar(idGaleria);
         }
         #endregion
 
@@ -50,9 +50,9 @@ namespace CapaDeNegocio.Clases
         
         #region CARGAR USUARIOS A LA VISTA
 
-        public DataTable CargarUsuarios()
+        public DataTable CargarImagen()
         {
-            return objDatos.CargarUsuarios();
+            return objDatos.CargarImagen();
         }
 
         #endregion

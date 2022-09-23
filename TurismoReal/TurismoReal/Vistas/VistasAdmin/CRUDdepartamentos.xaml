@@ -1089,7 +1089,13 @@
                     CommandParameter="{Binding idDepartamento}"
                     Click="BtnGaleria_Click"/>
             <!--#endregion-->
-
+            <!--#region FRAMEGALERIA-->
+            <Frame x:Name="FrameGaleria"
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   Grid.RowSpan="19"
+                   Grid.ColumnSpan="7"/>
+            <!--#endregion-->
             <!--#endregion-->
         </Grid>
     </Border>

@@ -341,103 +341,84 @@
                     Foreground="White"
                     Click="Regresar" Margin="42,0,43,0"/>
             <!--#endregion-->
-            <!--#region CREAR-->
-            <Button x:Name="BtnCrear"
-                    Content="Crear"
-                    Grid.Row="10"
-                    Grid.Column="5"
-                    Width="100"
-                    Background="Green"
-                    Foreground="White"
-                    Visibility="Hidden"
-                    Style="{DynamicResource estiloCrear}"
-                    Click="Crear" Margin="43,0,42,0"/>
-            <!--#endregion-->
+
 
             <!--#region ACTUALIZAR-->
             <Button x:Name="BtnActualizar"
                     Content="Actualizar"
-                    Grid.Row="10"
                     Grid.Column="5"
-                    Width="100"
+                    Grid.Row="16"
+                    Grid.ColumnSpan="3"
                     Background="Coral"
                     Foreground="White"
-                    Visibility="Hidden"
                     Style="{DynamicResource estiloACT}" 
-                    Click="Actualizar" Margin="43,0,42,0"/>
+                    Click="Actualizar" 
+                    Visibility="Hidden"
+                    Margin="93,0,0,0"/>
             <!--#endregion-->
             <!--#region ELIMINAR-->
             <Button x:Name="BtnEliminar"
-                    Content="Eliminar"
-                    Grid.Row="10"
-                    Grid.Column="5"
-                    Width="100"
+                    Content="Eliminar Imagen"
+                    Grid.Column="2"
+                    Grid.Row="16"
+                    Grid.ColumnSpan="3"
                     Background="Red"
                     Foreground="White"
                     Style="{DynamicResource estiloEliminar}"
                     Visibility="Hidden"
-                    Click="Eliminar" Margin="43,0,42,0"/>
+                    Click="Eliminar" 
+                    Margin="93,0,103,0"/>
             <!--#endregion-->
 
             <!--#endregion-->
             <!--#region CONTENIDO-->
-            <TextBlock Grid.Row="4"
-                       Grid.Column="1"
-                       Text="Nombre/Descripción"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"/>
-            <TextBox Style="{DynamicResource TextBoxStyle}" 
-                     Grid.Row="4"
-                     Grid.Column="2"
-                     x:Name="tbDescripcion"
-                     HorizontalContentAlignment="Center"
-                     Background="#F3E5F5"/>
 
-            <TextBlock Grid.Row="6"
-                       Grid.Column="1"
-                       Text="Tamaño"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"/>
-            <TextBox Grid.Row="6"
-                     Grid.Column="2"
-                     x:Name="tbTamaño"
-                     HorizontalContentAlignment="Center"
-                     Style="{DynamicResource TextBoxStyle}" 
-                     Background="#F3E5F5"/>
-
-            <TextBlock Grid.Row="4"
-                       Grid.Column="4"
-                       Text="Color"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"/>
-            <TextBox Grid.Row="4"
-                     Grid.Column="5"
-                     x:Name="tbColor"
-                     HorizontalContentAlignment="Center"
-                     Style="{DynamicResource TextBoxStyle}" 
-                     Background="#F3E5F5"/>
-
-            <TextBlock Grid.Row="6"
-                       Grid.Column="4"
-                       Text="Valor"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"/>
-            <TextBox Grid.Row="6"
-                     Grid.Column="5"
-                     HorizontalContentAlignment="Center"
-                     Style="{DynamicResource TextBoxStyle}" 
-                     x:Name="tbValor" 
-                     Background="#F3E5F5"/>
+            <Image Grid.Row="4"
+                   Grid.Column="1"
+                   Grid.RowSpan="12"
+                   Grid.ColumnSpan="5"
+                   x:Name="imagen"
+                   Source="/Vistas/Images/cargarfoto.png" Margin="0,0,0,31"/>
+            <Button Grid.Column="2"
+                    Grid.Row="16"
+                    Grid.ColumnSpan="3"
+                    Content="Subir Imagen" 
+                    x:Name="BtnCrear"
+                    Click="Subir"
+                    Visibility="Hidden"
+                    Background="Green"
+                    Foreground="White"
+                    CommandParameter="{Binding idDepartamento}"
+                    Style="{DynamicResource estiloCrear}"
+                    Margin="93,0,103,0"/>
+            <Button Grid.Column="5"
+                    Grid.Row="16"
+                    Content="Guardar" 
+                    x:Name="BtnGuardar"
+                    Click="Crear"
+                    Background="Blue"
+                    Foreground="White"
+                    Visibility="Hidden"
+                    CommandParameter="{Binding idDepartamento}"
+                    Style="{DynamicResource estiloCrear}" 
+                    Margin="93,0,0,0"/>
 
             <TextBlock x:Name="Titulo"
-                       Text="Ingresar nuevo Artefacto"
+                       Text="Ingresar nuevo Imagen"
                        Grid.Column="2"
                        FontSize="30"
                        VerticalAlignment="Top"
-                       HorizontalAlignment="Left" Height="30" 
-                       Grid.ColumnSpan="4"
-                       Margin="69,17,0,0" Grid.RowSpan="2"/>
+                       HorizontalAlignment="Left" Height="42" 
+                       Grid.ColumnSpan="3"
+                       Margin="69,17,0,0" Grid.RowSpan="3"/>
 
+            <!--#endregion-->
+            <!--#region FRAME GALERIA-->
+            <Frame x:Name="FrameGaleria"
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   Grid.RowSpan="18"
+                   Grid.ColumnSpan="7" Margin="0,0,0,-50"/>
             <!--#endregion-->
         </Grid>
     </Border>

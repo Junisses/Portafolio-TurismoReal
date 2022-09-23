@@ -397,7 +397,7 @@
                         HorizontalAlignment="Right" Width="900"/>
                 <Image Source="/Vistas/Images/Logo.png" Margin="70,70,70,70"/>
 
-                <ContentControl Content="{Binding}"/>
+                <ContentControl Content="{Binding}" Margin="0,-49,0,0"/>
             </Grid>
             <Grid x:Name="GridMenu"
                   Background="Transparent"

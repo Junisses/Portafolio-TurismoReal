@@ -34,11 +34,11 @@ namespace CapaDeDatos.Clases
 
         #region Consultar
 
-        public CE_Galeria CD_Consultar(int IdDepartamento)
+        public CE_Galeria CD_Consultar(int IdGaleria)
         {
             SqlDataAdapter da = new SqlDataAdapter("dbo.SP_G_Consultar", con.AbrirConexion());
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
-            da.SelectCommand.Parameters.Add("@idDepartamento", SqlDbType.Int).Value = IdDepartamento;
+            da.SelectCommand.Parameters.Add("@idGaleria", SqlDbType.Int).Value = IdGaleria;
             DataSet ds = new DataSet();
             ds.Clear();
             da.Fill(ds);
@@ -46,7 +46,6 @@ namespace CapaDeDatos.Clases
             dt = ds.Tables[0];
             DataRow row = dt.Rows[0];
             ce.Imagen = (byte[])row[1];
-            ce.IdDepartamento = Convert.ToInt32(row[2]);
 
             return ce;
         }
@@ -60,7 +59,7 @@ namespace CapaDeDatos.Clases
             com.Connection = con.AbrirConexion();
             com.CommandText = "dbo.SP_G_Eliminar";
             com.CommandType = CommandType.StoredProcedure;
-            com.Parameters.AddWithValue("@idGaleria", Galeria.IdGaleria);
+            com.Parameters.AddWithValue("@idGaleria", Galeria.idGaleria);
             com.ExecuteNonQuery();
             com.Parameters.Clear();
             con.CerrarConexion();
@@ -78,7 +77,7 @@ namespace CapaDeDatos.Clases
                 CommandText = "dbo.SP_G_Actualizar",
                 CommandType = CommandType.StoredProcedure
             };
-            com.Parameters.AddWithValue("@idGaleria", Galeria.IdGaleria);
+            com.Parameters.AddWithValue("@idGaleria", Galeria.idGaleria);
             com.Parameters.AddWithValue("@imagen", Galeria.Imagen);
 
             com.ExecuteNonQuery();
@@ -90,9 +89,9 @@ namespace CapaDeDatos.Clases
 
         #region CARGAR USUARIOS A LA VISTA
 
-        public DataTable CargarUsuarios()
+        public DataTable CargarImagen()
         {
-            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_U_CargarUsuarios", con.AbrirConexion());
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_G_CargarImagen", con.AbrirConexion());
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
             DataSet ds = new DataSet();
             ds.Clear();
