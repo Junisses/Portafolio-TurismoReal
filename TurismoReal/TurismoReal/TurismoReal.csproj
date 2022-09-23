@@ -320,5 +320,11 @@
   <ItemGroup>
     <Resource Include="Vistas\Images\edit.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\eliminar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\ver.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

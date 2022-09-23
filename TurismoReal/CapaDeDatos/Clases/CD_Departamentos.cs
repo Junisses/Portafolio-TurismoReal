@@ -46,6 +46,8 @@ namespace CapaDeDatos.Clases
             SqlDataAdapter da = new SqlDataAdapter("dbo.SP_D_Consultar", con.AbrirConexion());
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
             da.SelectCommand.Parameters.Add("@idDepartamento", SqlDbType.Int).Value = idDepartamento;
+
+            
             DataSet ds = new DataSet();
             ds.Clear();
             da.Fill(ds);

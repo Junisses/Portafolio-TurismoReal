@@ -66,6 +66,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                 || tbPrecio.Text == ""
                 || cbComuna.Text == ""
                 || cbRegion.Text == ""
+                || cFechaEstado.Text == ""
                 || cbEstadoDepto.Text == "")
             {
                 return false;
@@ -78,6 +79,8 @@ namespace TurismoReal.Vistas.VistasAdmin
         #endregion
 
         public int idDepartamento;
+        public int idRegion;
+        public int idComuna;
         #region Crear
         private void Crear(object sender, RoutedEventArgs e)
         {
@@ -94,7 +97,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                     objeto_CE_Departamentos.CantHabitaciones = int.Parse(tbCantHabitaciones.Text);
                     objeto_CE_Departamentos.CantBanos = int.Parse(tbCantBanos.Text);
                     objeto_CE_Departamentos.PrecioNoche = int.Parse(tbPrecio.Text);
-                    //objeto_CE_Departamentos.FechaEstadoDepto = DateTime.Parse(cFechaEstado.Text);
+                    objeto_CE_Departamentos.FechaEstadoDepto = DateTime.Parse(cFechaEstado.Text);
                     objeto_CE_Departamentos.IdComuna = comuna;
                     objeto_CE_Departamentos.IdEstadoDepto = estadoDepto;
 
@@ -104,14 +107,12 @@ namespace TurismoReal.Vistas.VistasAdmin
                 }
                 catch
                 {
-                    MessageBox.Show("Revise bien sus datos");
+                    MessageBox.Show("No pueden quedar campos vacíos!");
                 }
-
-
             }
             else
             {
-                MessageBox.Show("No se pudo ingresar usuario, porfavor revise sus datos");
+                MessageBox.Show("No se pudo ingresar el depto,\n revise los datos e intentelo denuevo");
             }
         }
         #endregion
@@ -133,7 +134,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                 objeto_CE_Departamentos.CantHabitaciones = int.Parse(tbCantHabitaciones.Text);
                 objeto_CE_Departamentos.CantBanos = int.Parse(tbCantBanos.Text);
                 objeto_CE_Departamentos.PrecioNoche = int.Parse(tbPrecio.Text);
-                //objeto_CE_Departamentos.FechaEstadoDepto = DateTime.Parse(cFechaEstado.Date);
+                objeto_CE_Departamentos.FechaEstadoDepto = DateTime.Parse(cFechaEstado.Text);
                 objeto_CE_Departamentos.IdEstadoDepto = estadoDepto;
 
                 objeto_CN_Departamentos.ActualizarDatos(objeto_CE_Departamentos);
@@ -162,7 +163,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             tbCantHabitaciones.Text = a.CantHabitaciones.ToString();
             tbCantBanos.Text = a.CantBanos.ToString();
             tbPrecio.Text = a.PrecioNoche.ToString();
-            //cFechaEstado.Text = a.FechaEstadoDepto.ToString();
+            cFechaEstado.Text = a.FechaEstadoDepto.ToString();
             cbEstadoDepto.Text = d.EstadoDepto.ToString();
 
             

@@ -332,46 +332,7 @@
                       GridLinesVisibility="Horizontal"
                       HorizontalGridLinesBrush="#A64B9F">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="Opciones del administrador"
-                                            Width="245">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <DockPanel>
-                                        <Button Content="Consultar"
-                                            x:Name="BtnConsultar"
-                                            Background="#751970"
-                                            Width="80"
-                                            BorderBrush="Transparent"
-                                            Foreground="White"
-                                            Style="{DynamicResource ButtonStylebuscar}" 
-                                            Click="Consultar"
-                                            Cursor="Hand"
-                                            CommandParameter="{Binding idDepartamento}"/>
-                                        <Button Content="Modificar"
-                                            x:Name="BtnModificar"
-                                            Background="#751970"
-                                            Width="80" 
-                                            Cursor="Hand"
-                                            Foreground="White"
-                                            BorderBrush="Transparent"
-                                            CommandParameter="{Binding idDepartamento}"
-                                            Style="{DynamicResource ButtonStylebuscar}" 
-                                            Click="Actualizar"/>
-                                        <Button Content="Eliminar"
-                                            x:Name="BtnEliminar"
-                                            Background="Red"
-                                            Foreground="White"
-                                            Width="80" 
-                                            Cursor="Hand"
-                                            BorderBrush="Transparent"
-                                            Style="{DynamicResource ButtonStylebuscar}"
-                                            CommandParameter="{Binding idDepartamento}" 
-                                            Click="Eliminar"/>
-
-                                    </DockPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                        
                         <DataGridTextColumn Header="ID"
                                         Width="50"
                                         Binding="{Binding idDepartamento}"/>
@@ -384,6 +345,48 @@
                         <DataGridTextColumn Header="Estado"
                                         Width="*"
                                         Binding="{Binding estadoDepto}"/>
+                        <DataGridTemplateColumn Header="Opciones"
+                                                Width="90">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <Button Name="BtnConsultar" 
+                                                Width="20" 
+                                                Margin="0,0,10,0"
+                                                Height="20" 
+                                                Click="Consultar"
+                                                Cursor="Hand"
+                                                Background="Transparent"
+                                                BorderBrush="Transparent"
+                                                CommandParameter="{Binding idDepartamento}">
+                                            <Image Source="/Vistas/Images/ver.png"></Image>
+                                        </Button>
+                                        
+                                        <Button Name="BtnModificar" 
+                                                Width="20" 
+                                                Height="20" 
+                                                Click="Actualizar"
+                                                Cursor="Hand"
+                                                Background="Transparent"
+                                                BorderBrush="Transparent"
+                                                CommandParameter="{Binding idDepartamento}">
+                                            <Image Source="/Vistas/Images/edit.png"></Image>
+                                        </Button>
+                                        
+                                        <Button Name="BtnEliminar" 
+                                                Width="20" 
+                                                Height="20" 
+                                                Click="Eliminar"
+                                                Cursor="Hand"
+                                                Background="Transparent"
+                                                BorderBrush="Transparent"
+                                                CommandParameter="{Binding idDepartamento}">
+                                            <Image Source="/Vistas/Images/eliminar.png"></Image>
+                                        </Button>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
                 <!--#endregion-->
