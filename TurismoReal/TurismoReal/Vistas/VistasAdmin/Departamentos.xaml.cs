@@ -93,6 +93,8 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.cbEstadoDepto.IsEnabled = true;
             ventana.cFechaEstado.IsEnabled = true;
             ventana.BtnGaleria.IsEnabled = true;
+            ventana.txtGaleria.Visibility = Visibility.Visible;
+            ventana.BtnGaleria.Visibility = Visibility.Visible;
             ventana.BtnActualizar.Visibility = Visibility.Visible;
         }
         #endregion
@@ -115,6 +117,9 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.tbPrecio.IsEnabled = false;
             ventana.cbEstadoDepto.IsEnabled = false;
             ventana.cFechaEstado.IsEnabled = false;
+            ventana.txtGaleria.Visibility = Visibility.Visible;
+            ventana.BtnGaleria.Visibility = Visibility.Visible;
+            ventana.txtGaleria.IsEnabled = false;
             ventana.BtnGaleria.IsEnabled = false;
             ventana.BtnEliminar.Visibility = Visibility.Visible;
         }

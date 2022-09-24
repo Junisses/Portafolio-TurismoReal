@@ -1075,9 +1075,11 @@
             <!--#region BOTON PARA SUBIR IMAGENES A LA GALERIA-->
             <TextBlock Grid.Row="13"
                        Grid.Column="4"
+                       x:Name="txtGaleria"
                        Text="Subir fotos a la galeria"
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Center"/>
+                       VerticalAlignment="Center"
+                       Visibility="Hidden"/>
             <Button Style="{DynamicResource ButtonStyleRegresar}" 
                     x:Name="BtnGaleria"
                     Content="Subir imagenes"
@@ -1086,6 +1088,7 @@
                     Cursor="Hand"
                     Background="#A64B9F"
                     Foreground="White"
+                    Visibility="Hidden"
                     CommandParameter="{Binding idDepartamento}"
                     Click="BtnGaleria_Click"/>
             <!--#endregion-->
