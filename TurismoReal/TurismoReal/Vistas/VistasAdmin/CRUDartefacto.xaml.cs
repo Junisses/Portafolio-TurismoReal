@@ -181,10 +181,12 @@ namespace TurismoReal.Vistas.VistasAdmin
                 objeto_CE_Artefactos.IdArtefactos = id;
                 objeto_CN_Artefactos.Eliminar(objeto_CE_Artefactos);
                 CargarDatos();
+                LimpiarData();
             }
             else
             {
                 CargarDatos();
+                LimpiarData();
             }
             
         }
