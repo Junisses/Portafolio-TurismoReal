@@ -29,7 +29,7 @@ namespace TurismoReal.Vistas.VistasAdmin
         {
             CRUDartefacto ventana = new CRUDartefacto();
             FrameInventario.Content = ventana;
-            ventana.BtnCrear.Visibility = Visibility.Visible;
+            ventana.BtnActualizar.IsEnabled = false;
         }
         #endregion
 
