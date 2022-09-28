@@ -49,6 +49,7 @@
     <Compile Include="Clases\CN_Region.cs" />
     <Compile Include="Clases\CN_TipoServicio.cs" />
     <Compile Include="Clases\CN_TipoUsuarioFK.cs" />
+    <Compile Include="Clases\CN_UnidadMedida.cs" />
     <Compile Include="Clases\CN_Usuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

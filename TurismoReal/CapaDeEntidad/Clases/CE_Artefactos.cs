@@ -8,18 +8,18 @@ namespace CapaDeEntidad.Clases
 {
     public class CE_Artefactos
     {
-        private int _IdArtefacto;
+        private int _IdArtefactos;
         private string _Descripcion;
-        private int _Tamaño;
+        private int _Tamano;
         private string _Color;
         private int _Valor;
-        private int _Cantidad;
+        private int _IdUnidadMedida;
 
-        public int IdArtefacto { get => _IdArtefacto; set => _IdArtefacto = value; }
+        public int IdArtefactos { get => _IdArtefactos; set => _IdArtefactos = value; }
         public string Descripcion { get => _Descripcion; set => _Descripcion = value; }
-        public int Tamaño { get => _Tamaño; set => _Tamaño = value; }
+        public int Tamano { get => _Tamano; set => _Tamano = value; }
         public string Color { get => _Color; set => _Color = value; }
         public int Valor { get => _Valor; set => _Valor = value; }
-        public int Cantidad { get => _Cantidad; set => _Cantidad = value; }
+        public int IdUnidadMedida { get => _IdUnidadMedida; set => _IdUnidadMedida = value; }
     }
 }

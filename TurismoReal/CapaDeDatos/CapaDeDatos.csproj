@@ -50,6 +50,7 @@
     <Compile Include="Clases\CD_Region.cs" />
     <Compile Include="Clases\CD_TipoServicio.cs" />
     <Compile Include="Clases\CD_TipoUsuarioFK.cs" />
+    <Compile Include="Clases\CD_UnidadMedida.cs" />
     <Compile Include="Clases\CD_Usuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
