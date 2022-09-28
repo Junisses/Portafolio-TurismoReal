@@ -188,7 +188,6 @@ namespace TurismoReal.Vistas.VistasAdmin
                 CargarDatos();
                 LimpiarData();
             }
-            
         }
         #endregion
 
