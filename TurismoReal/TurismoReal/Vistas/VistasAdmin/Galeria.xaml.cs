@@ -1,7 +1,9 @@
 ﻿using CapaDeEntidad.Clases;
 using CapaDeNegocio.Clases;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,8 +33,15 @@ namespace TurismoReal.Vistas.VistasAdmin
         public Galeria()
         {
             InitializeComponent();
-            CargarImagen();
+            CargarDatos();
         }
+
+        #region CARGAR IMAGENES
+        void CargarDatos()
+        {
+            GridDatos.ItemsSource = objeto_CN_Galeria.CargarImagen().DefaultView;
+        }
+        #endregion
 
         #region Regresar
         private void Regresar(object sender, RoutedEventArgs e)
@@ -41,79 +50,99 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-
-        #region CARGAR Imagenes
-        void CargarImagen()
+        #region AGREGAR IMAGEN
+        public int idDepartamento;
+        private void Crear(object sender, RoutedEventArgs e)
         {
-            GridDatos.ItemsSource = objeto_CN_Galeria.CargarImagen().DefaultView;
+            if (imagensubida == true)
+            {
+                objeto_CE_Galeria.DescripcionImagen = tbDescripcion.Text;
+                objeto_CE_Galeria.Imagen = img;
+                objeto_CE_Galeria.IdDepartamento = int.Parse(tbIDdepto.Text);
+
+                objeto_CN_Galeria.Insertar(objeto_CE_Galeria);
+                CargarDatos();
+                MessageBox.Show("Se ha guardado la imagen!");
+            }
+            else
+            {
+                MessageBox.Show("No se ha añadido una imagen");
+            }
         }
+
+        #region SUBIR IMAGEN
+
+        byte[] img;
+        private bool imagensubida = false;
+        private void Subir(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == true)
+            {
+                FileStream fs = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read);
+                img = new byte[fs.Length];
+                fs.Read(img, 0, System.Convert.ToInt32(fs.Length));
+                fs.Close();
+
+                ImageSourceConverter imgs = new ImageSourceConverter();
+                imagen.SetValue(Image.SourceProperty, imgs.ConvertFromString(ofd.FileName.ToString()));
+            }
+            imagensubida = true;
+        }
+
         #endregion
 
-        #region AGREGAR
-        public int idDepartamento;
-        private void BtnAgregarServicio_Click(object sender, RoutedEventArgs e)
-        {
-            objeto_CE_Departamentos.IdDepartamento = idDepartamento;
-            CRUDgaleria ventana = new CRUDgaleria();
-            ventana.BtnCrear.Visibility = Visibility.Visible;
-            ventana.BtnGuardar.Visibility = Visibility.Visible;
-            ventana.idDepartamento = idDepartamento;
-            FrameGaleria.Content = ventana;
-            MessageBox.Show("" + idDepartamento);
-        }
         #endregion
 
         #region CONSULTAR
-        public void Consultar(object sender, RoutedEventArgs e)
+        public int idGaleria;
+        private void Consultar(object sender, RoutedEventArgs e)
         {
             int id = (int)((Button)sender).CommandParameter;
-            CRUDgaleria ventana = new CRUDgaleria();
-            ventana.idGaleria = id;
-            ventana.Consultar();
-            FrameGaleria.Content = ventana;
-            ventana.Titulo.Text = "Ver imagen";
-            ventana.imagen.IsEnabled = false;
-        }
-     
-        public void Consulta()
-        {
-            var a = objeto_CN_Departamentos.Consulta(idDepartamento);
+            var a = objeto_CN_Galeria.Consulta(id);
 
-            MessageBox.Show("" + idDepartamento);
+            tbIDdepto.IsEnabled = false;
+            tbDescripcion.IsEnabled = false;
+            BtnActualizar.IsEnabled = false;
+            BtnCrear.IsEnabled = false;
+
+            ImageSourceConverter imgs = new ImageSourceConverter();
+            imagen.Source = (ImageSource)imgs.ConvertFrom(a.Imagen);
+            tbDescripcion.Text = a.DescripcionImagen.ToString();
         }
         #endregion
 
         #region ACTUALIZAR
         private void Actualizar(object sender, RoutedEventArgs e)
         {
-            int id = (int)((Button)sender).CommandParameter;
-            CRUDgaleria ventana = new CRUDgaleria();
-            ventana.idGaleria = id;
-            ventana.Consultar();
-            FrameGaleria.Content = ventana;
-            ventana.Titulo.Text = "Actualizar Imagen";
-            ventana.imagen.IsEnabled = true;
-            ventana.BtnCrear.Visibility = Visibility.Visible;
-            ventana.BtnActualizar.Visibility = Visibility.Visible;
+            if (imagensubida == true)
+            {
+                objeto_CE_Galeria.idGaleria = idGaleria;
+                objeto_CE_Galeria.Imagen = img;
+                objeto_CE_Galeria.Imagen = img;
+
+                objeto_CN_Galeria.ActualizarIMG(objeto_CE_Galeria);
+                CargarDatos();
+            }
+            else
+            {
+                MessageBox.Show("No se a cambiado la imagen");
+            }
         }
         #endregion
 
         #region ELIMINAR
         private void Eliminar(object sender, RoutedEventArgs e)
         {
-            int id = (int)((Button)sender).CommandParameter;
-            CRUDgaleria ventana = new CRUDgaleria();
-            ventana.idGaleria = id;
-            ventana.Consultar();
-            FrameGaleria.Content = ventana;
-            ventana.Titulo.Text = "Eliminar Imagen";
-            ventana.imagen.IsEnabled = false;
-            
-            ventana.BtnEliminar.Visibility = Visibility.Visible;
+            objeto_CE_Galeria.idGaleria = idGaleria;
+            objeto_CN_Galeria.Eliminar(objeto_CE_Galeria);
+            CargarDatos();
         }
 
         #endregion
 
+
     }
 }
+
 

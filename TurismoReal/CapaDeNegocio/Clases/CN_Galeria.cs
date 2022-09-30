@@ -48,7 +48,7 @@ namespace CapaDeNegocio.Clases
         #endregion
 
         
-        #region CARGAR USUARIOS A LA VISTA
+        #region CARGAR IMAGENES A LA VISTA
 
         public DataTable CargarImagen()
         {

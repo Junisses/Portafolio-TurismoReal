@@ -25,7 +25,9 @@ namespace CapaDeDatos.Clases
                 CommandType = CommandType.StoredProcedure,
             };
             com.Parameters.AddWithValue("@imagen", Galeria.Imagen);
+            com.Parameters.AddWithValue("@descripcionImagen", Galeria.DescripcionImagen);
             com.Parameters.AddWithValue("@idDepartamento", Galeria.IdDepartamento);
+
             com.ExecuteNonQuery();
             com.Parameters.Clear();
             con.CerrarConexion();
@@ -79,6 +81,7 @@ namespace CapaDeDatos.Clases
             };
             com.Parameters.AddWithValue("@idGaleria", Galeria.idGaleria);
             com.Parameters.AddWithValue("@imagen", Galeria.Imagen);
+            com.Parameters.AddWithValue("@descripcionImagen", Galeria.DescripcionImagen);
 
             com.ExecuteNonQuery();
             com.Parameters.Clear();

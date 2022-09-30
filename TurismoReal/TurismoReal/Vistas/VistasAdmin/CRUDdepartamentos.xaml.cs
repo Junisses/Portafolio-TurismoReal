@@ -183,8 +183,10 @@ namespace TurismoReal.Vistas.VistasAdmin
         {
             Galeria ventana = new Galeria();
             ventana.idDepartamento = idDepartamento;
-            ventana.Consulta();
             FrameGaleria.Content = ventana;
+            ventana.BtnActualizar.IsEnabled = false;
+            ventana.tbIDdepto.Text = "" + idDepartamento;
+            ventana.Titulo.Text = "Galeria Depto. N°" + idDepartamento;
         }
     }
 }

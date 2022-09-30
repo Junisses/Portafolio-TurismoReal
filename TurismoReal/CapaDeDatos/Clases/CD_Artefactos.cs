@@ -123,11 +123,11 @@ namespace CapaDeDatos.Clases
         #endregion
         #region nombre formato
 
-        public CE_Artefactos NombreArtefacto(int IdArtefacto)
+        public CE_Artefactos NombreArtefacto(int IdArtefactos)
         {
-            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_P_Artefacto", con.AbrirConexion());
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_P_NombreArtefacto", con.AbrirConexion());
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
-            da.SelectCommand.Parameters.Add("@idArtefacto", SqlDbType.Int).Value = IdArtefacto;
+            da.SelectCommand.Parameters.Add("@idArtefactos", SqlDbType.Int).Value = IdArtefactos;
             DataSet ds = new DataSet();
             ds.Clear();
             da.Fill(ds);

@@ -141,6 +141,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                 CargarDatos();
                 MessageBox.Show("Se actualizó exitosamente!!");
                 LimpiarData();
+                BtnCrear.IsEnabled = true;
             }
             else
             {
@@ -205,6 +206,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             tbColor.IsEnabled = true;
             tbValor.IsEnabled = true;
             cbUnidad.IsEnabled = true;
+            BtnActualizar.IsEnabled = false;
             BtnCrear.IsEnabled = true;
         }
         private void Limpiar(object sender, RoutedEventArgs e)

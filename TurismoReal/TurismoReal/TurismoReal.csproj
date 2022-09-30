@@ -87,9 +87,6 @@
     <Compile Include="Vistas\VistasAdmin\CRUDdepartamentos.xaml.cs">
       <DependentUpon>CRUDdepartamentos.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\VistasAdmin\CRUDgaleria.xaml.cs">
-      <DependentUpon>CRUDgaleria.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Vistas\VistasAdmin\CRUDgastos.xaml.cs">
       <DependentUpon>CRUDgastos.xaml</DependentUpon>
     </Compile>
@@ -192,10 +189,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\VistasAdmin\CRUDdepartamentos.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Vistas\VistasAdmin\CRUDgaleria.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -345,6 +338,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vistas\Images\cargarfoto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\inventario1.png" />
+    <Resource Include="Vistas\Images\inventario2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
