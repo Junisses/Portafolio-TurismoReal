@@ -311,7 +311,7 @@
                 <!--#region titulo-->
                 <TextBlock Grid.Row="0"
                        Grid.ColumnSpan="6"
-                       Text="Inventario de Departamentos"
+                       Text="Gastos de los Departamentos"
                        Foreground="Black"
                        FontSize="30"
                        HorizontalAlignment="Center"
