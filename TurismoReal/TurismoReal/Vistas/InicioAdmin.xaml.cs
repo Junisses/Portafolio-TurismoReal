@@ -97,5 +97,10 @@ namespace TurismoReal.Vistas
             lg.Show();
             this.Close();
         }
+
+        private void Galeria_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new Galeria();
+        }
     }
 }

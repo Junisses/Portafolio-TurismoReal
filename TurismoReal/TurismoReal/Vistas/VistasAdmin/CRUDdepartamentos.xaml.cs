@@ -181,11 +181,11 @@ namespace TurismoReal.Vistas.VistasAdmin
 
         public void BtnGaleria_Click(object sender, RoutedEventArgs e)
         {
-            Galeria ventana = new Galeria();
+            ImagenesDepto ventana = new ImagenesDepto();
             ventana.idDepartamento = idDepartamento;
             FrameGaleria.Content = ventana;
             ventana.BtnActualizar.IsEnabled = false;
-            ventana.tbIDdepto.Text = "" + idDepartamento;
+            ventana.tbIDdepto.Text = " " + idDepartamento;
             ventana.Titulo.Text = "Galeria Depto. N°" + idDepartamento;
         }
     }

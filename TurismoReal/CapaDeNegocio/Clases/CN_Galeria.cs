@@ -24,7 +24,7 @@ namespace CapaDeNegocio.Clases
 
         public void Insertar(CE_Galeria Galeria)
         {
-            objDatos.CD_Inserta(Galeria);
+            objDatos.CD_Insertar(Galeria);
         }
 
         #endregion

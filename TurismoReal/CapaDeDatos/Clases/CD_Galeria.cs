@@ -16,7 +16,7 @@ namespace CapaDeDatos.Clases
 
         //CRUD Usuarios
         #region Insertar
-        public void CD_Inserta(CE_Galeria Galeria)
+        public void CD_Insertar(CE_Galeria Galeria)
         {
             SqlCommand com = new SqlCommand()
             {
@@ -24,8 +24,8 @@ namespace CapaDeDatos.Clases
                 CommandText = "dbo.SP_G_Insertar",
                 CommandType = CommandType.StoredProcedure,
             };
-            com.Parameters.AddWithValue("@imagen", Galeria.Imagen);
             com.Parameters.AddWithValue("@descripcionImagen", Galeria.DescripcionImagen);
+            com.Parameters.AddWithValue("@imagen", Galeria.Imagen);
             com.Parameters.AddWithValue("@idDepartamento", Galeria.IdDepartamento);
 
             com.ExecuteNonQuery();
@@ -47,7 +47,9 @@ namespace CapaDeDatos.Clases
             DataTable dt;
             dt = ds.Tables[0];
             DataRow row = dt.Rows[0];
-            ce.Imagen = (byte[])row[1];
+            ce.DescripcionImagen = Convert.ToString(row[1]);
+            ce.Imagen = (byte[])row[2];
+
 
             return ce;
         }
@@ -80,8 +82,8 @@ namespace CapaDeDatos.Clases
                 CommandType = CommandType.StoredProcedure
             };
             com.Parameters.AddWithValue("@idGaleria", Galeria.idGaleria);
-            com.Parameters.AddWithValue("@imagen", Galeria.Imagen);
             com.Parameters.AddWithValue("@descripcionImagen", Galeria.DescripcionImagen);
+            com.Parameters.AddWithValue("@imagen", Galeria.Imagen);
 
             com.ExecuteNonQuery();
             com.Parameters.Clear();
