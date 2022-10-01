@@ -99,6 +99,9 @@
     <Compile Include="Vistas\VistasAdmin\CRUDservicios.xaml.cs">
       <DependentUpon>CRUDservicios.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\VistasAdmin\CRUDtipoGasto.xaml.cs">
+      <DependentUpon>CRUDtipoGasto.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\VistasAdmin\CRUDusuarios.xaml.cs">
       <DependentUpon>CRUDusuarios.xaml</DependentUpon>
     </Compile>
@@ -211,6 +214,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\VistasAdmin\CRUDservicios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VistasAdmin\CRUDtipoGasto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -359,6 +366,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vistas\Images\galeria.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\factura.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

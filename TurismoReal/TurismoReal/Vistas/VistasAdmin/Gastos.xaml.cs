@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaDeNegocio.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,37 +21,38 @@ namespace TurismoReal.Vistas.VistasAdmin
     /// </summary>
     public partial class Gastos : UserControl
     {
+        readonly CN_Departamentos objeto_CN_Departamentos = new CN_Departamentos();
         public Gastos()
         {
             InitializeComponent();
+            CargarDatos();
         }
-        #region AGREGAR
-        private void BtnAgregarGasto_Click(object sender, RoutedEventArgs e)
+
+        #region CARGAR Departamentos
+        void CargarDatos()
         {
-            CRUDgastos ventana = new CRUDgastos();
-            FrameGastos.Content = ventana;
-            ventana.BtnCrear.Visibility = Visibility.Visible;
+            GridDatos.ItemsSource = objeto_CN_Departamentos.CargarDeptos().DefaultView;
         }
         #endregion
 
-        #region CONSULTAR
+        #region ARTEFACTOS
+        private void BtnAñadirNuevo_Click(object sender, RoutedEventArgs e)
+        {
+            CRUDtipoGasto ventana = new CRUDtipoGasto();
+            FrameGastos.Content = ventana;
+            ventana.BtnActualizar.IsEnabled = false;
+        }
+        #endregion
+
+        #region GASTOS
         private void Consultar(object sender, RoutedEventArgs e)
         {
-
-        }
-        #endregion
-
-        #region ACTUALIZAR
-        private void Actualizar(object sender, RoutedEventArgs e)
-        {
-
-        }
-        #endregion
-
-        #region ELIMINAR
-        private void Eliminar(object sender, RoutedEventArgs e)
-        {
-
+            int id = (int)((Button)sender).CommandParameter;
+            CRUDgastos ventana = new CRUDgastos();
+            FrameGastos.Content = ventana;
+            ventana.BtnActualizar.IsEnabled = false;
+            ventana.tbIDdepto.Text = "" + id;
+            ventana.Titulo.Text = "Gastos Depto. N°" + id;
         }
         #endregion
     }

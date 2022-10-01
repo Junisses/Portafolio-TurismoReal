@@ -46,8 +46,10 @@
     <Compile Include="Clases\CE_Departamentos.cs" />
     <Compile Include="Clases\CE_EstadoDepto.cs" />
     <Compile Include="Clases\CE_Galeria.cs" />
+    <Compile Include="Clases\CE_Gastos.cs" />
     <Compile Include="Clases\CE_Inventario.cs" />
     <Compile Include="Clases\CE_Region.cs" />
+    <Compile Include="Clases\CE_TipoGasto.cs" />
     <Compile Include="Clases\CE_TipoServicio.cs" />
     <Compile Include="Clases\CE_TipoUsuarioFK.cs" />
     <Compile Include="Clases\CE_UnidadMedida.cs" />

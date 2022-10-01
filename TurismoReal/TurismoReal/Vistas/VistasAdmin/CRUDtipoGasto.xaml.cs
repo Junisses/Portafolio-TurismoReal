@@ -18,38 +18,25 @@ using System.Windows.Shapes;
 namespace TurismoReal.Vistas.VistasAdmin
 {
     /// <summary>
-    /// Lógica de interacción para CRUDgastos.xaml
+    /// Lógica de interacción para CRUDtipoGasto.xaml
     /// </summary>
-    public partial class CRUDgastos : Page
+    public partial class CRUDtipoGasto : Page
     {
         readonly CN_TipoGasto objeto_CN_TipoGasto = new CN_TipoGasto();
-        readonly CN_Gastos objeto_CN_Gastos = new CN_Gastos();
-        readonly CE_Gastos objeto_CE_Gastos = new CE_Gastos();
-
-        public CRUDgastos()
+        readonly CE_TipoGasto objeto_CE_TipoGasto = new CE_TipoGasto();
+        public CRUDtipoGasto()
         {
             InitializeComponent();
-            CargarA();
             CargarDatos();
         }
 
-        #region Cargar FK
-        void CargarA()
+        #region CARGAR Artefactos
+        void CargarDatos()
         {
-            List<string> tipogasto = objeto_CN_TipoGasto.ListarTipoGasto();
-            for (int i = 0; i < tipogasto.Count; i++)
-            {
-                cbTipoGasto.Items.Add(tipogasto[i]);
-            }
+            GridDatos.ItemsSource = objeto_CN_TipoGasto.CargarTipoGasto().DefaultView;
         }
         #endregion
 
-        #region CARGAR inventario
-        void CargarDatos()
-        {
-            GridDatos.ItemsSource = objeto_CN_Gastos.CargarGastos().DefaultView;
-        }
-        #endregion
 
         #region Regresar
         private void Regresar(object sender, RoutedEventArgs e)
@@ -58,15 +45,10 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-
         #region ValidarCamposVacios
         public bool CamposLlenos()
         {
-            if (tbIDdepto.Text == ""
-                || tbDescripcion.Text == ""
-                || tbMonto.Text == ""
-                || cFecha.Text == ""
-                || cbTipoGasto.Text == "")
+            if (tbTipoGasto.Text == "")
             {
                 return false;
             }
@@ -77,8 +59,7 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        public int idTipoGastos;
-        public int idGastos;
+        public int idTipoGasto;
         #region Crear
         private void Crear(object sender, RoutedEventArgs e)
         {
@@ -86,15 +67,9 @@ namespace TurismoReal.Vistas.VistasAdmin
             {
                 try
                 {
-                    int tipogasto = objeto_CN_TipoGasto.IdTipoGasto(cbTipoGasto.Text);
+                    objeto_CE_TipoGasto.TipoGasto = tbTipoGasto.Text;
+                    objeto_CN_TipoGasto.Insertar(objeto_CE_TipoGasto);
 
-                    objeto_CE_Gastos.Descripcion = tbDescripcion.Text;
-                    objeto_CE_Gastos.Monto = int.Parse(tbMonto.Text);
-                    objeto_CE_Gastos.FechaGastos = DateTime.Parse(cFecha.Text);
-                    objeto_CE_Gastos.IdDepartamento = int.Parse(tbIDdepto.Text);
-                    objeto_CE_Gastos.IdTipoGastos = tipogasto;
-
-                    objeto_CN_Gastos.Insertar(objeto_CE_Gastos);
                     CargarDatos();
                     MessageBox.Show("Se registro exitosamente");
                     LimpiarData();
@@ -113,42 +88,26 @@ namespace TurismoReal.Vistas.VistasAdmin
         public void ActualizarC(object sender, RoutedEventArgs e)
         {
             int id = (int)((Button)sender).CommandParameter;
-            tbIDdepto.IsEnabled = false;
-            tbDescripcion.IsEnabled = true;
-            tbMonto.IsEnabled = true;
-            cFecha.IsEnabled = true;
-            cbTipoGasto.IsEnabled = true;
+            tbTipoGasto.IsEnabled = true;
             BtnCrear.IsEnabled = false;
             BtnActualizar.IsEnabled = true;
 
-            var a = objeto_CN_Gastos.Consulta(id);
-            var c = objeto_CN_TipoGasto.NombreTipoGasto(a.IdTipoGastos);
+            var a = objeto_CN_TipoGasto.Consulta(id);
 
             tbID.Text = id.ToString();
-            tbDescripcion.Text = a.Descripcion.ToString();
-            tbMonto.Text = a.Monto.ToString();
-            cFecha.Text = a.FechaGastos.ToString();
-            cbTipoGasto.Text = c.TipoGasto.ToString();
+            tbTipoGasto.Text = a.TipoGasto.ToString();
 
         }
 
         #region Actualizar
         public void Actualizar(object sender, RoutedEventArgs e)
         {
-
             if (CamposLlenos() == true)
             {
-                int tipogasto = objeto_CN_TipoGasto.IdTipoGasto(cbTipoGasto.Text);
+                objeto_CE_TipoGasto.IdTipoGasto = int.Parse(tbID.Text);
+                objeto_CE_TipoGasto.TipoGasto = tbTipoGasto.Text;
 
-                objeto_CE_Gastos.IdGastos = int.Parse(tbID.Text);
-                objeto_CE_Gastos.Descripcion = tbDescripcion.Text;
-                objeto_CE_Gastos.Monto = int.Parse(tbMonto.Text);
-                objeto_CE_Gastos.FechaGastos = DateTime.Parse(cFecha.Text);
-                objeto_CE_Gastos.IdDepartamento = int.Parse(tbIDdepto.Text);
-                objeto_CE_Gastos.IdTipoGastos = tipogasto;
-
-                objeto_CN_Gastos.ActualizarDatos(objeto_CE_Gastos);
-
+                objeto_CN_TipoGasto.ActualizarDatos(objeto_CE_TipoGasto);
                 CargarDatos();
                 MessageBox.Show("Se actualizó exitosamente!!");
                 LimpiarData();
@@ -165,34 +124,24 @@ namespace TurismoReal.Vistas.VistasAdmin
         private void Consultar(object sender, RoutedEventArgs e)
         {
             int id = (int)((Button)sender).CommandParameter;
-            tbIDdepto.IsEnabled = false;
-            tbDescripcion.IsEnabled = false;
-            tbMonto.IsEnabled = false;
-            cFecha.IsEnabled = false;
-            cbTipoGasto.IsEnabled = false;
+            tbTipoGasto.IsEnabled = false;
             BtnActualizar.IsEnabled = false;
             BtnCrear.IsEnabled = false;
 
-            var a = objeto_CN_Gastos.Consulta(id);
-            var c = objeto_CN_TipoGasto.NombreTipoGasto(a.IdTipoGastos);
+            var a = objeto_CN_TipoGasto.Consulta(id);
 
-            tbID.Text = id.ToString();
-            tbDescripcion.Text = a.Descripcion.ToString();
-            tbMonto.Text = a.Monto.ToString();
-            cFecha.Text = a.FechaGastos.ToString();
-            cbTipoGasto.Text = c.TipoGasto.ToString();
+            tbTipoGasto.Text = a.TipoGasto.ToString();
         }
         #endregion
 
         #region Eliminar
         private void Eliminar(object sender, RoutedEventArgs e)
         {
-
             int id = (int)((Button)sender).CommandParameter;
             if (MessageBox.Show("¿Esta seguro de eliminar el artefacto?", "Eliminar Artefacto", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                objeto_CE_Gastos.IdGastos = id;
-                objeto_CN_Gastos.Eliminar(objeto_CE_Gastos);
+                objeto_CE_TipoGasto.IdTipoGasto = id;
+                objeto_CN_TipoGasto.Eliminar(objeto_CE_TipoGasto);
                 CargarDatos();
                 LimpiarData();
             }
@@ -209,10 +158,8 @@ namespace TurismoReal.Vistas.VistasAdmin
 
         public void LimpiarData()
         {
-            tbDescripcion.Clear();
-            tbMonto.Clear();
-            tbID.Clear();
-            cbTipoGasto.IsEnabled = true;
+            tbTipoGasto.Clear();
+            tbTipoGasto.IsEnabled = true;
             BtnActualizar.IsEnabled = false;
             BtnCrear.IsEnabled = true;
         }
