@@ -293,13 +293,13 @@ namespace TurismoReal.Vistas.VistasAdmin
                 objeto_CE_Usuarios.Celular = tbCel.Text;
                 objeto_CE_Usuarios.Pais = tbPais.Text;
                 objeto_CE_Usuarios.CodigoVerificacion = " ";
-                if (objeto_CE_Usuarios.Habilitada == "Habilitado")
+                if (chkHabilitar.IsChecked == true)
                 {
-                    chkHabilitar.IsChecked = true;
+                    objeto_CE_Usuarios.Habilitada = "Habilitado";
                 }
                 else
                 {
-                    chkHabilitar.IsChecked = false;
+                    objeto_CE_Usuarios.Habilitada = "Deshabilitado";
                 }
                 objeto_CE_Usuarios.EsPasaporte = " ";
                 objeto_CE_Usuarios.IdTipoUsuario = tipousuario;

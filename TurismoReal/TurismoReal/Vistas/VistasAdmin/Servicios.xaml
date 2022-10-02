@@ -346,7 +346,7 @@
                                                 Cursor="Hand"
                                                 Background="Transparent"
                                                 BorderBrush="Transparent"
-                                                CommandParameter="{Binding idTipoServicio}">
+                                                CommandParameter="{Binding idServicio}">
                                             <Image Source="/Vistas/Images/ver.png"></Image>
                                         </Button>
 
@@ -358,7 +358,7 @@
                                                 Background="Transparent"
                                                 BorderBrush="Transparent"
                                                 Click="Actualizar"
-                                                CommandParameter="{Binding idTipoServicio}">
+                                                CommandParameter="{Binding idServicio}">
                                             <Image Source="/Vistas/Images/edit.png"></Image>
                                         </Button>
 
@@ -391,7 +391,7 @@
                                                 Cursor="Hand"
                                                 Background="Transparent"
                                                 BorderBrush="Transparent"
-                                                CommandParameter="{Binding idTipoServicio}">
+                                                CommandParameter="{Binding idServicio}">
                                             <Image Source="/Vistas/Images/eliminar.png"></Image>
                                         </Button>
 

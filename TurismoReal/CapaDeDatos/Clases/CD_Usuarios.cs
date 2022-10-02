@@ -65,15 +65,7 @@ namespace CapaDeDatos.Clases
             ce.Celular = Convert.ToString(row[7]);
             ce.Pais = Convert.ToString(row[8]);
             ce.CodigoVerificacion = Convert.ToString(row[9]);
-            //AUN NO ESTA PROGRAMADO
-            if (ce.Habilitada == "Habilitado")
-            {
-                Convert.ToBoolean(true);
-            }
-            else
-            {
-                Convert.ToBoolean(false);
-            }
+            ce.Habilitada = Convert.ToString(row[10]);
             //ce.EsPasaporte = Convert.ToString(row[5]);
             ce.IdTipoUsuario = Convert.ToInt32(row[12]);
 

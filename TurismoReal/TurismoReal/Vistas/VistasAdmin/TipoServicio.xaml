@@ -609,7 +609,7 @@
             <TextBlock Grid.Row="1"
                      Grid.Column="1"
                      x:Name="tbID"
-                     Visibility="Visible"/>
+                     Visibility="Hidden"/>
 
             <Button Style="{DynamicResource Guardar}" Grid.Column="4"
                     Grid.Row="16"
