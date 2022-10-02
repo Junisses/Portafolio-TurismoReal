@@ -87,9 +87,6 @@
     <Compile Include="Vistas\VistasAdmin\CRUDdepartamentos.xaml.cs">
       <DependentUpon>CRUDdepartamentos.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\VistasAdmin\CRUDgaleria.xaml.cs">
-      <DependentUpon>CRUDgaleria.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Vistas\VistasAdmin\CRUDgastos.xaml.cs">
       <DependentUpon>CRUDgastos.xaml</DependentUpon>
     </Compile>
@@ -108,9 +105,6 @@
     <Compile Include="Vistas\VistasAdmin\Departamentos.xaml.cs">
       <DependentUpon>Departamentos.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\VistasAdmin\Galeria.xaml.cs">
-      <DependentUpon>Galeria.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Vistas\VistasAdmin\Gastos.xaml.cs">
       <DependentUpon>Gastos.xaml</DependentUpon>
     </Compile>
@@ -128,6 +122,9 @@
     </Compile>
     <Compile Include="Vistas\VistasAdmin\Servicios.xaml.cs">
       <DependentUpon>Servicios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistasAdmin\TipoServicio.xaml.cs">
+      <DependentUpon>TipoServicio.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\VistasAdmin\Usuarios.xaml.cs">
       <DependentUpon>Usuarios.xaml</DependentUpon>
@@ -201,10 +198,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vistas\VistasAdmin\CRUDgaleria.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Vistas\VistasAdmin\CRUDgastos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -229,10 +222,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vistas\VistasAdmin\Galeria.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Vistas\VistasAdmin\Gastos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -254,6 +243,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\VistasAdmin\Servicios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VistasAdmin\TipoServicio.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -369,6 +362,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vistas\Images\factura.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\reportee.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\mas.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

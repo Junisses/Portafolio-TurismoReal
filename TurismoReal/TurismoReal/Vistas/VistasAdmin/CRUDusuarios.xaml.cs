@@ -262,7 +262,16 @@ namespace TurismoReal.Vistas.VistasAdmin
 
             var b = objeto_CN_TipoUsuarioFK.nombreTipoUsuario(a.IdTipoUsuario);
             cbTipoUsuario.Text = b.TipoUsuario;
-            
+
+            if (a.Habilitada == "Habilitado")
+            {
+                chkHabilitar.IsChecked = true;
+            }
+            else
+            {
+                chkHabilitar.IsChecked = false;
+            }
+
         }
         #endregion
         #region UPDATE
@@ -284,13 +293,13 @@ namespace TurismoReal.Vistas.VistasAdmin
                 objeto_CE_Usuarios.Celular = tbCel.Text;
                 objeto_CE_Usuarios.Pais = tbPais.Text;
                 objeto_CE_Usuarios.CodigoVerificacion = " ";
-                if (chkHabilitar.IsChecked == true)
+                if (objeto_CE_Usuarios.Habilitada == "Habilitado")
                 {
-                    objeto_CE_Usuarios.Habilitada = "Habilitado";
+                    chkHabilitar.IsChecked = true;
                 }
                 else
                 {
-                    objeto_CE_Usuarios.Habilitada = "Deshabilitado";
+                    chkHabilitar.IsChecked = false;
                 }
                 objeto_CE_Usuarios.EsPasaporte = " ";
                 objeto_CE_Usuarios.IdTipoUsuario = tipousuario;

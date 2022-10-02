@@ -67,11 +67,9 @@ C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\CheckL
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\CRUDchecklist.g.cs
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\CheckList.baml
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\CRUDchecklist.baml
-C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\Galeria.g.cs
-C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\Galeria.baml
-C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDgaleria.g.cs
-C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDgaleria.baml
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\ImagenesDepto.g.cs
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\ImagenesDepto.baml
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDtipoGasto.g.cs
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDtipoGasto.baml
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\TipoServicio.g.cs
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\TipoServicio.baml

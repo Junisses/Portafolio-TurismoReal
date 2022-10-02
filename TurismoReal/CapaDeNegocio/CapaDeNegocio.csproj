@@ -49,6 +49,7 @@
     <Compile Include="Clases\CN_Gastos.cs" />
     <Compile Include="Clases\CN_Inventario.cs" />
     <Compile Include="Clases\CN_Region.cs" />
+    <Compile Include="Clases\CN_Servicios.cs" />
     <Compile Include="Clases\CN_TipoGasto.cs" />
     <Compile Include="Clases\CN_TipoServicio.cs" />
     <Compile Include="Clases\CN_TipoUsuarioFK.cs" />

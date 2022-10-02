@@ -9,9 +9,10 @@ namespace CapaDeEntidad.Clases
     public class CE_TipoServicio
     {
         private int _IdTipoServicio;
-        private string _Descripcion;
+        private string _TipoServicio;
 
         public int IdTipoServicio { get => _IdTipoServicio; set => _IdTipoServicio = value; }
-        public string Descripcion { get => _Descripcion; set => _Descripcion = value; }
+        public string TipoServicio { get => _TipoServicio; set => _TipoServicio = value; }
     }
+    
 }

@@ -98,9 +98,5 @@ namespace TurismoReal.Vistas
             this.Close();
         }
 
-        private void Galeria_Click(object sender, RoutedEventArgs e)
-        {
-            DataContext = new Galeria();
-        }
     }
 }
