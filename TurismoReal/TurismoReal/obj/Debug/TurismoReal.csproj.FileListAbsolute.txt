@@ -73,3 +73,7 @@ C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDtipoGast
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDtipoGasto.baml
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\TipoServicio.g.cs
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\TipoServicio.baml
+C:\TurismoReal\TurismoReal\TurismoReal\bin\Debug\BouncyCastle.Crypto.dll
+C:\TurismoReal\TurismoReal\TurismoReal\bin\Debug\itextsharp.dll
+C:\TurismoReal\TurismoReal\TurismoReal\bin\Debug\itextsharp.xmlworker.dll
+C:\TurismoReal\TurismoReal\TurismoReal\bin\Debug\itextsharp.xml

@@ -588,7 +588,7 @@
                                     <Image Width="30"
                                            Grid.Column="0"
                                            HorizontalAlignment="Center"
-                                           Source="/Vistas/Images/inventario.png"/>
+                                           Source="/Vistas/Images/inven1.png"/>
                                 </Grid>
                             </Button>
                         </ListViewItem>

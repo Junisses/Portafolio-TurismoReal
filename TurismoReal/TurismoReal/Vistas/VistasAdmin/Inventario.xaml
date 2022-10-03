@@ -392,24 +392,25 @@
                       HorizontalGridLinesBrush="#A64B9F">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn Header="Seleccionar"
-                                            Width="120">
+                                            Width="100">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <DockPanel>
                                         <!--#region boton Inventario-->
-                                        <Button Style="{DynamicResource estiloACT}"
-                                                Background="#FFFF81"
-                                                BorderBrush="#FF5A36"
-                                                Margin="5,5,0,5"
+                                        <Button 
+                                                Margin="35,5,0,5"
                                                 Cursor="Hand"
-                                                Width="110"
+                                                Width="30"
+                                                Height="30"
+                                                BorderBrush="Transparent"
+                                                Background="Transparent"
                                                 Foreground="black"
                                                 x:Name="BtnAñadirInventario"
                                                 HorizontalAlignment="Left"
                                                 Click="Consultar" 
-                                                Content="Ver Inventario"
                                                 CommandParameter="{Binding idDepartamento}">
-                                         </Button>
+                                            <Image Source="/Vistas/Images/inventario.png" />
+                                        </Button>
                                         
                                         <!--#endregion-->
                                     </DockPanel>

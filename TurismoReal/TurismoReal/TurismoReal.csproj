@@ -381,5 +381,8 @@
   <ItemGroup>
     <Resource Include="Vistas\Images\subir.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\inven1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
