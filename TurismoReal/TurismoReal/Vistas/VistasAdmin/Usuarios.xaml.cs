@@ -126,31 +126,27 @@ namespace TurismoReal.Vistas.VistasAdmin
         #endregion
 
         #region FUNCION BUSCAR
-        public void Buscar(string buscar)
+        #region Limpiar
+        public void LimpiarData()
         {
-            GridDatos.ItemsSource = objeto_CN_Usuarios.Buscar(buscar).DefaultView;
-            
+            tbBuscar.Clear();
+            cbFiltroTipo.SelectedIndex = -1;
         }
 
-        private void Buscando(object sender, TextChangedEventArgs e)
-        {
-            Buscar(tbBuscar.Text);
-        }
         #endregion
-
-        #region FUNCION FILTRAR
-        public void Filtro(string filtro)
+        private void Ver(object sender, RoutedEventArgs e)
         {
-            GridDatos.ItemsSource = objeto_CN_Usuarios.Filtro(filtro).DefaultView;
-            
+            if (tbBuscar.Text != "")
+            {
+                GridDatos.ItemsSource = objeto_CN_Usuarios.Buscar(tbBuscar.Text).DefaultView;
+            }
+            else if (cbFiltroTipo.Text != "") 
+            {
+                GridDatos.ItemsSource = objeto_CN_Usuarios.Filtro(cbFiltroTipo.Text).DefaultView;
+            }
+            LimpiarData();
+
+            #endregion
         }
-
-        private void Filtrando(object sender, SelectionChangedEventArgs e)
-        {
-            Filtro(cbFiltroTipo.Text);
-        }
-        #endregion
-
-
     }
 }

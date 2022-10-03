@@ -272,12 +272,33 @@
                 <!--#endregion-->
                 <!--#region textbox-->
                 <TextBox Style="{DynamicResource TextBoxStyle}" 
-                         TextAlignment="Center"
-                     Background="Transparent"
-                     BorderBrush="#AB47BC"
-                     Grid.Column="2"
-                     Grid.Row="2"
-                     FontSize="20"/>
+                         TextAlignment="Left"
+                         Foreground="Black"
+                         FontSize="15"
+                         x:Name="tbBuscar"
+                         Background="Transparent"
+                         BorderBrush="#AB47BC"
+                         Grid.Column="2"
+                         Grid.Row="2"/>
+                <TextBlock IsHitTestVisible="False" 
+                           Text="Ingrese nombre del Depto" 
+                           VerticalAlignment="Center" 
+                           Grid.Column="2"
+                           Grid.Row="2"
+                           HorizontalAlignment="Left" Margin="5,0,0,3" 
+                           Foreground="DarkGray">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger 
+                                    Binding="{Binding Text, ElementName=tbBuscar}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
                 <!--#endregion-->
                 <!--#region boton buscar-->
                 <Button Style="{DynamicResource ButtonStylebuscar}"
@@ -285,14 +306,15 @@
                     Grid.Row="2"
                     Background="#751970"
                     BorderBrush="#751970"
-                    Margin="0,0,1,0"
+                    Margin="1,0,1,0"
                     Cursor="Hand"
                     Width="35"
                     x:Name="BtnBuscar"
+                    Click="Ver"
                     HorizontalAlignment="Left">
-                    <Image Width="20" Source="/Vistas/Images/buscar.png">
-                    </Image>
+                    <Image Width="20" Source="/Vistas/Images/buscar.png"></Image>
                 </Button>
+
                 <!--#endregion-->
                 <!--#region boton crear-->
                 <Button Style="{DynamicResource ButtonStylebuscar}" 

@@ -55,5 +55,20 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.Titulo.Text = "Gastos Depto. N°" + id;
         }
         #endregion
+
+        #region FUNCION BUSCAR
+        #region Limpiar
+        public void LimpiarData()
+        {
+            tbBuscar.Clear();
+        }
+
+        #endregion
+        private void Ver(object sender, RoutedEventArgs e)
+        {
+            GridDatos.ItemsSource = objeto_CN_Departamentos.BuscarDepto(tbBuscar.Text).DefaultView;
+            LimpiarData();
+        }
+        #endregion
     }
 }

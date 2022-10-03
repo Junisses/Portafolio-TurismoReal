@@ -1066,7 +1066,7 @@
                                         Width="*"
                                         Binding="{Binding idDepartamento}"/>
                     <DataGridTemplateColumn Header="Opciones"
-                                            Width="*">
+                                            Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <DockPanel>

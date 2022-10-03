@@ -36,5 +36,19 @@ namespace TurismoReal.Vistas.VistasAdmin
             GridDatos.ItemsSource = objeto_CN_Usuarios.CargarClientes().DefaultView;
         }
         #endregion
+        #region FUNCION BUSCAR
+        #region Limpiar
+        public void LimpiarData()
+        {
+            tbBuscar.Clear();
+        }
+
+        #endregion
+        private void Ver(object sender, RoutedEventArgs e)
+        {
+            GridDatos.ItemsSource = objeto_CN_Usuarios.BuscarRut(tbBuscar.Text).DefaultView;
+            LimpiarData();
+        }
+        #endregion
     }
 }

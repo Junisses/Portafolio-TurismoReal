@@ -620,14 +620,34 @@
                        Margin="0,0,10,0"/>
                 <!--#endregion-->
                 <!--#region textbox-->
-                <TextBox Style="{DynamicResource TextBoxStyle}" TextAlignment="Center"
-                     Background="Transparent"
-                     BorderBrush="#AB47BC"
-                     Grid.Column="2"
-                     Grid.Row="2"
-                     FontSize="20"
-                     TextChanged="Buscando"
-                     x:Name="tbBuscar"/>
+                <TextBox Style="{DynamicResource TextBoxStyle}" 
+                         TextAlignment="Left"
+                         Foreground="Black"
+                         FontSize="15"
+                         x:Name="tbBuscar"
+                         Background="Transparent"
+                         BorderBrush="#AB47BC"
+                         Grid.Column="2"
+                         Grid.Row="2"/>
+                <TextBlock IsHitTestVisible="False" 
+                           Text="Ingrese Nombre / Apellido" 
+                           VerticalAlignment="Center" 
+                           Grid.Column="2"
+                           Grid.Row="2"
+                           HorizontalAlignment="Left" Margin="5,0,0,3" 
+                           Foreground="DarkGray">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger 
+                                    Binding="{Binding Text, ElementName=tbBuscar}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
                 <!--#endregion-->
 
                 <!--#region filtro tipo user-->
@@ -636,16 +656,15 @@
                        Text="Filtrar Tipo Usuario"
                        Foreground="Black"
                        FontSize="15"
-                       HorizontalAlignment="Right"
+                       HorizontalAlignment="Left"
                        VerticalAlignment="Center"
-                       Margin="0,0,10,0"/>
+                       Margin="22,0,0,0" Width="135"/>
                 <ComboBox Style="{DynamicResource ComboBoxStyle1}" Grid.Row="2"
                       Grid.Column="4"
                       Cursor="Hand"
                       HorizontalContentAlignment="Center"
                       x:Name="cbFiltroTipo"
-                      SelectionChanged="Filtrando"
-                      Margin="10,0,10,0" >
+                      Margin="0,0,10,0" >
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="Template">
@@ -684,6 +703,7 @@
                     Cursor="Hand"
                     Width="35"
                     x:Name="BtnBuscar"
+                    Click="Ver"
                     HorizontalAlignment="Left">
                     <Image Width="20" Source="/Vistas/Images/buscar.png"></Image>
                 </Button>

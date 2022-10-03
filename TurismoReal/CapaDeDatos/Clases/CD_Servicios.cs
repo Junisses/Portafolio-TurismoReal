@@ -114,33 +114,15 @@ namespace CapaDeDatos.Clases
             return dt;
         }
 
-        #endregion 
-
-        #region BUSCAR
-
-        public DataTable Buscar(string buscar)
-        {
-            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_U_Buscar", con.AbrirConexion());
-            da.SelectCommand.CommandType = CommandType.StoredProcedure;
-            da.SelectCommand.Parameters.Add("@buscar", SqlDbType.VarChar).Value = buscar;
-            DataSet ds = new DataSet();
-            ds.Clear();
-            da.Fill(ds);
-            DataTable dt = ds.Tables[0];
-            con.CerrarConexion();
-
-            return dt;
-        }
-
         #endregion
 
-        #region FILTRO
+        #region BUSCAR SERVICIOS
 
-        public DataTable Filtro(string filtro)
+        public DataTable BuscarServ(string buscarServ)
         {
-            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_U_FiltroTipoUsuario", con.AbrirConexion());
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_S_BuscarServicio", con.AbrirConexion());
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
-            da.SelectCommand.Parameters.Add("@filtro", SqlDbType.VarChar).Value = filtro;
+            da.SelectCommand.Parameters.Add("@buscarServ", SqlDbType.VarChar).Value = buscarServ;
             DataSet ds = new DataSet();
             ds.Clear();
             da.Fill(ds);

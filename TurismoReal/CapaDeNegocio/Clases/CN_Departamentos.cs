@@ -60,23 +60,15 @@ namespace CapaDeNegocio.Clases
 
         #endregion
 
-        #region BUSCAR USUARIOS
+        #region BUSCAR DEPARTAMENTOS
 
-        public DataTable Buscar(string buscar)
+        public DataTable BuscarDepto(string buscarDepto)
         {
-            return objDatos.Buscar(buscar);
+            return objDatos.BuscarDepto(buscarDepto);
         }
 
         #endregion
 
-        #region FILTRAR TIPO DE  USUARIOS
-
-        public DataTable Filtro(string filtro)
-        {
-            return objDatos.Filtro(filtro);
-        }
-
-        #endregion
 
     }
 }

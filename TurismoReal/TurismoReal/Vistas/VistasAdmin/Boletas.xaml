@@ -264,7 +264,7 @@
                 <!--#region texto-->
                 <TextBlock Grid.Row="2"
                        Grid.Column="1"
-                       Text="Buscar boleta por fecha"
+                       Text="Buscar boleta"
                        Foreground="Black"
                        FontSize="15"
                        HorizontalAlignment="Right"

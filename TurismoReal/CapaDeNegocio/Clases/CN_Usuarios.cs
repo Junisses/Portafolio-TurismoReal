@@ -83,6 +83,15 @@ namespace CapaDeNegocio.Clases
 
         #endregion
 
+        #region BUSCAR RUT
+
+        public DataTable BuscarRut(string buscarRut)
+        {
+            return objDatos.BuscarRut(buscarRut);
+        }
+
+        #endregion
+
         #region LOGIN
         public CE_Usuarios LogIn(string usuario, string contra)
         {

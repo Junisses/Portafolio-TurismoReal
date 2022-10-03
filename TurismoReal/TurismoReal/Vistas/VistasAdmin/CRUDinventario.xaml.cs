@@ -184,6 +184,7 @@ namespace TurismoReal.Vistas.VistasAdmin
         {
             tbCantidad.Clear();
             tbID.Clear();
+            cbArtefacto.SelectedIndex = -1;
             cbArtefacto.IsEnabled = true;
             BtnActualizar.IsEnabled = false;
             BtnCrear.IsEnabled = true;

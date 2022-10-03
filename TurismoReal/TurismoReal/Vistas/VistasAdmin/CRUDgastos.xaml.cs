@@ -212,6 +212,8 @@ namespace TurismoReal.Vistas.VistasAdmin
             tbDescripcion.Clear();
             tbMonto.Clear();
             tbID.Clear();
+            cbTipoGasto.SelectedIndex = -1;
+            cFecha.Text = "";
             cbTipoGasto.IsEnabled = true;
             BtnActualizar.IsEnabled = false;
             BtnCrear.IsEnabled = true;

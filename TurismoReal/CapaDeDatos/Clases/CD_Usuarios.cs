@@ -193,7 +193,7 @@ namespace CapaDeDatos.Clases
 
 
 
-        #region BUSCAR
+        #region BUSCAR NOMBRE APELLIDO
 
         public DataTable Buscar(string buscar)
         {
@@ -211,7 +211,7 @@ namespace CapaDeDatos.Clases
 
         #endregion
 
-        #region FILTRO
+        #region FILTRO TIPO USUARIO
 
         public DataTable Filtro(string filtro)
         {
@@ -229,5 +229,22 @@ namespace CapaDeDatos.Clases
 
         #endregion
 
+        #region BUSCAR RUT
+
+        public DataTable BuscarRut(string buscarRut)
+        {
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_C_BuscarRut", con.AbrirConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.Add("@buscarrut", SqlDbType.VarChar).Value = buscarRut;
+            DataSet ds = new DataSet();
+            ds.Clear();
+            da.Fill(ds);
+            DataTable dt = ds.Tables[0];
+            con.CerrarConexion();
+
+            return dt;
+        }
+
+        #endregion
     }
 }
