@@ -315,23 +315,23 @@
                       GridLinesVisibility="Horizontal"
                       HorizontalGridLinesBrush="#A64B9F">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID"
+                        <DataGridTextColumn Header="Folio"
                                         Width="50"
                                         Binding="{Binding idBoleta}"/>
                         <DataGridTextColumn Header="Medio de Pago"
-                                        Width="150"
+                                        Width="120"
                                         Binding="{Binding medioDePago}"/>
                         <DataGridTextColumn Header="Fecha Pago"
-                                        Width="90"
+                                        Width="*"
                                         Binding="{Binding fecha}"/>
                         <DataGridTextColumn Header="Monto"
-                                        Width="*"
+                                        Width="110"
                                         Binding="{Binding monto}"/>
                         <DataGridTextColumn Header="Descripción"
-                                        Width="80"
+                                        Width="*"
                                         Binding="{Binding descripcion}"/>
                         <DataGridTextColumn Header="Reserva"
-                                        Width="*"
+                                        Width="90"
                                         Binding="{Binding idReserva}"/>
                         
                     </DataGrid.Columns>

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\CN_Artefactos.cs" />
+    <Compile Include="Clases\CN_Boletas.cs" />
     <Compile Include="Clases\CN_Comuna.cs" />
     <Compile Include="Clases\CN_Departamentos.cs" />
     <Compile Include="Clases\CN_EstadoDepto.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="Clases\CN_Gastos.cs" />
     <Compile Include="Clases\CN_Inventario.cs" />
     <Compile Include="Clases\CN_Region.cs" />
+    <Compile Include="Clases\CN_Reservas.cs" />
     <Compile Include="Clases\CN_Servicios.cs" />
     <Compile Include="Clases\CN_TipoGasto.cs" />
     <Compile Include="Clases\CN_TipoServicio.cs" />

@@ -315,9 +315,6 @@
                       GridLinesVisibility="Horizontal"
                       HorizontalGridLinesBrush="#A64B9F">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID"
-                                        Width="50"
-                                        Binding="{Binding idUsuario}"/>
                         <DataGridTextColumn Header="Nombre"
                                         Width="90"
                                         Binding="{Binding nombres}"/>
@@ -325,19 +322,19 @@
                                         Width="90"
                                         Binding="{Binding apellidos}"/>
                         <DataGridTextColumn Header="Tipo DNI"
-                                        Width="*"
+                                        Width="100"
                                         Binding="{Binding formato}"/>
                         <DataGridTextColumn Header="DNI"
-                                        Width="80"
+                                        Width="150"
                                         Binding="{Binding identificacion}"/>
                         <DataGridTextColumn Header="Correo"
                                         Width="*"
                                         Binding="{Binding correo}"/>
                         <DataGridTextColumn Header="Celular"
-                                        Width="*"
+                                        Width="120"
                                         Binding="{Binding celular}"/>
                         <DataGridTextColumn Header="Tipo Usuario"
-                                        Width="*"
+                                        Width="100"
                                         Binding="{Binding tipoUsuario}"/>
                     </DataGrid.Columns>
                 </DataGrid>

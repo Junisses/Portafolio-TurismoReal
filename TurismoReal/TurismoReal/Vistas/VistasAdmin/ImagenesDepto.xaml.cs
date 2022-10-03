@@ -201,6 +201,11 @@ namespace TurismoReal.Vistas.VistasAdmin
         {
             tbDescripcion.Clear();
             tbDescripcion.IsEnabled = true;
+
+            var a = objeto_CN_Galeria.Consulta(11);
+            ImageSourceConverter imgs = new ImageSourceConverter();
+            imagen.Source = (ImageSource)imgs.ConvertFrom(a.Imagen);
+
             BtnActualizar.IsEnabled = false;
             BtnCrear.IsEnabled = true;
             BtnGuardar.IsEnabled = true;

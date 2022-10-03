@@ -58,6 +58,11 @@ namespace CapaDeNegocio.Clases
             return objDatos.CargarUsuarios();
         }
 
+        public DataTable CargarClientes()
+        {
+            return objDatos.CargarClientes();
+        }
+
         #endregion
 
         #region BUSCAR USUARIOS

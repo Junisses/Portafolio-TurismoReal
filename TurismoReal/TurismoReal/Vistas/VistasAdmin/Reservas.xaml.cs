@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaDeNegocio.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,20 @@ namespace TurismoReal.Vistas.VistasAdmin
     /// </summary>
     public partial class Reservas : UserControl
     {
+        readonly CN_Reservas objeto_CN_Reservas = new CN_Reservas();
+
         public Reservas()
         {
             InitializeComponent();
+            CargarDatos();
         }
+
+        #region CARGAR RESERVAS
+        void CargarDatos()
+        {
+            GridDatos.ItemsSource = objeto_CN_Reservas.CargarReservas().DefaultView;
+        }
+        #endregion
     }
+
 }

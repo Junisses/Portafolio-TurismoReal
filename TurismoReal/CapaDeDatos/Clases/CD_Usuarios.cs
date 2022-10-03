@@ -153,6 +153,19 @@ namespace CapaDeDatos.Clases
             return dt;
         }
 
+        public DataTable CargarClientes()
+        {
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_C_CargarClientes", con.AbrirConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            DataSet ds = new DataSet();
+            ds.Clear();
+            da.Fill(ds);
+            DataTable dt = ds.Tables[0];
+            con.CerrarConexion();
+
+            return dt;
+        }
+
         #endregion
 
         #region LOGIN

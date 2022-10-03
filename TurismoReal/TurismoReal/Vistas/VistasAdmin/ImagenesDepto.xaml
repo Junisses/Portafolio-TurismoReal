@@ -529,7 +529,8 @@
                    Grid.RowSpan="10"
                    Grid.ColumnSpan="2"
                    x:Name="imagen"
-                   Source="/Vistas/Images/cargarfoto.png" Margin="0,17,3,10"/>
+                   Source="/Vistas/Images/subir.png" 
+                   Margin="0,17,3,10"/>
 
             <TextBlock Grid.Row="4"
                        Grid.Column="1"

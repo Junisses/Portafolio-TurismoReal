@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaDeNegocio.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,20 @@ namespace TurismoReal.Vistas.VistasAdmin
     /// </summary>
     public partial class Clientes : UserControl
     {
+        readonly CN_Usuarios objeto_CN_Usuarios = new CN_Usuarios();
+        readonly CN_TipoUsuarioFK objeto_CN_TipoUsuarioFK = new CN_TipoUsuarioFK();
+
         public Clientes()
         {
             InitializeComponent();
+            CargarDatos();
         }
+
+        #region CARGAR CLIENTES
+        void CargarDatos()
+        {
+            GridDatos.ItemsSource = objeto_CN_Usuarios.CargarClientes().DefaultView;
+        }
+        #endregion
     }
 }

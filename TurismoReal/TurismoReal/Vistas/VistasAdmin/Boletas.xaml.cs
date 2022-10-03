@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaDeNegocio.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,20 @@ namespace TurismoReal.Vistas.VistasAdmin
     /// </summary>
     public partial class Boletas : UserControl
     {
+        readonly CN_Boletas objeto_CN_Boletas = new CN_Boletas();
+
         public Boletas()
         {
             InitializeComponent();
+            CargarDatos();
         }
+
+        #region CARGAR BOLETAS
+        void CargarDatos()
+        {
+            GridDatos.ItemsSource = objeto_CN_Boletas.CargarBoletas().DefaultView;
+        }
+        #endregion
     }
+
 }
