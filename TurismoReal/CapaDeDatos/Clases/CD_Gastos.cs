@@ -64,11 +64,11 @@ namespace CapaDeDatos.Clases
         #endregion
         #region CARGAR GASTOS A LA VISTA
 
-        public DataTable CargarGastos()
+        public DataTable CargarGastos(int idDepartamento)
         {
             SqlDataAdapter da = new SqlDataAdapter("dbo.SP_GA_CargarGasto", con.AbrirConexion());
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
-
+            da.SelectCommand.Parameters.Add("@idDepartamento", SqlDbType.Int).Value = idDepartamento;
             DataSet ds = new DataSet();
             ds.Clear();
             da.Fill(ds);

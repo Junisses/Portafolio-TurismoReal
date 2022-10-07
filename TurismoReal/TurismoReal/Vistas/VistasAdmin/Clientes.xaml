@@ -355,9 +355,12 @@
                         <DataGridTextColumn Header="Apellido"
                                         Width="90"
                                         Binding="{Binding apellidos}"/>
+                        <DataGridTextColumn Header="Pais"
+                                        Width="100"
+                                        Binding="{Binding pais}"/>
                         <DataGridTextColumn Header="Tipo DNI"
                                         Width="100"
-                                        Binding="{Binding formato}"/>
+                                        Binding="{Binding esPasaporte}"/>
                         <DataGridTextColumn Header="DNI"
                                         Width="150"
                                         Binding="{Binding identificacion}"/>

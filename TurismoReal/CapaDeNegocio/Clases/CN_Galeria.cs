@@ -47,17 +47,17 @@ namespace CapaDeNegocio.Clases
 
         #endregion
 
-        
+
         #region CARGAR IMAGENES A LA VISTA
 
-        public DataTable CargarImagen()
+        public DataTable CargarImagen(int idDepartamento)
         {
-            return objDatos.CargarImagen();
+            return objDatos.CargarImagen(idDepartamento);
         }
 
         #endregion
 
-        
+
 
 
     }

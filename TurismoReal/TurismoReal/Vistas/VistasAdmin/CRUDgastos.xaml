@@ -844,7 +844,7 @@
     </Page.Resources>
     <Border Background="Transparent"
             CornerRadius="10">
-        <Grid>
+        <Grid Loaded="Grid_Loaded">
             <!--#region Columnas y filas-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>

@@ -50,9 +50,9 @@ namespace CapaDeNegocio.Clases
 
         #region CARGAR ARTEFACTOS AL GRID
 
-        public DataTable CargarInventario()
+        public DataTable CargarInventario(int idDepartamento)
         {
-            return objDatos.CargarInventario();
+            return objDatos.CargarInventario(idDepartamento);
         }
 
         #endregion

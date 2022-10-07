@@ -63,23 +63,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-
-        #region Estado de cuenta
-        private void Habilitar_Check(object sender, RoutedEventArgs e)
-        {
-            string estado;
-            if (chkHabilitar.IsChecked == true)
-            {
-                estado = "Habilitado";
-            }
-            else
-            {
-                estado = "Deshabilitado";
-            }
-        }
-
-        #endregion
-
         #region VALIDAR RUT
         public bool ValidarRut(string rut)
         {
@@ -112,6 +95,7 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
 
         #endregion
+
         #region ValidarCorreo
         static bool ValidarCorreo(string email)
         {
@@ -131,10 +115,12 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
 
         #endregion
+
         #region CRUD
+
         public int idUsuario;
         public string Patron = "Portafolio";
-        #endregion
+        
         #region CREAR
         private void Crear(object sender, RoutedEventArgs e)
         {
@@ -197,12 +183,17 @@ namespace TurismoReal.Vistas.VistasAdmin
                 MessageBox.Show("Ingrese los 9 digitos de su celular");
                 return;
             }
-            else if (ValidarRut(tbRut.Text.ToString()) == false)
-            {
-                MessageBox.Show("Ingrese correctamente el rut");
-                return;
-            }
 
+            //RUT
+            else if (chkPasaporte.IsChecked == false)
+            {
+                if (ValidarRut(tbRut.Text.ToString()) == false)
+                {
+                    MessageBox.Show("Ingrese correctamente el rut");
+                    return;
+                }
+            }
+            
 
             if (CamposLlenos() == true)
             {
@@ -228,7 +219,17 @@ namespace TurismoReal.Vistas.VistasAdmin
                     {
                         objeto_CE_Usuarios.Habilitada = "Deshabilitado";
                     }
-                    objeto_CE_Usuarios.EsPasaporte = " ";
+
+                    if (chkPasaporte.IsChecked == true)
+                    {
+                        objeto_CE_Usuarios.EsPasaporte = "Pasaporte";
+                    }
+                    else
+                    {
+                        objeto_CE_Usuarios.EsPasaporte = "Rut";
+                    }
+
+
                     objeto_CE_Usuarios.IdTipoUsuario = tipousuario;
 
                     objeto_CN_Usuarios.Insertar(objeto_CE_Usuarios);
@@ -248,6 +249,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             }
         }
         #endregion
+
         #region READ
         public void Consultar()
         {
@@ -272,14 +274,23 @@ namespace TurismoReal.Vistas.VistasAdmin
                 chkHabilitar.IsChecked = false;
             }
 
+            if (a.EsPasaporte == "Pasaporte")
+            {
+                chkPasaporte.IsChecked = true;
+            }
+            else
+            {
+                chkPasaporte.IsChecked = false;
+            }
+
         }
         #endregion
+
         #region UPDATE
         private void Actualizar(object sender, RoutedEventArgs e)
         {
             if(CamposLlenos() == true)
             {
-                //pendiente
                 int tipousuario = objeto_CN_TipoUsuarioFK.idTipoUsuario(cbTipoUsuario.Text);
 
                 objeto_CE_Usuarios.IdUsuario = idUsuario;
@@ -301,7 +312,21 @@ namespace TurismoReal.Vistas.VistasAdmin
                 {
                     objeto_CE_Usuarios.Habilitada = "Deshabilitado";
                 }
-                objeto_CE_Usuarios.EsPasaporte = " ";
+
+                if (chkPasaporte.IsChecked == true)
+                {
+                    objeto_CE_Usuarios.EsPasaporte = "Pasaporte";
+                }
+                else
+                {
+                    objeto_CE_Usuarios.EsPasaporte = "Rut";
+                    if (ValidarRut(tbRut.Text.ToString()) == false)
+                    {
+                        MessageBox.Show("Ingrese correctamente el rut");
+                        return;
+                    }
+                }
+
                 objeto_CE_Usuarios.IdTipoUsuario = tipousuario;
 
                 objeto_CN_Usuarios.ActualizarDatos(objeto_CE_Usuarios);
@@ -325,6 +350,7 @@ namespace TurismoReal.Vistas.VistasAdmin
 
         }
         #endregion
+
         #region DELETE
         private void Eliminar(object sender, RoutedEventArgs e)
         {
@@ -337,6 +363,9 @@ namespace TurismoReal.Vistas.VistasAdmin
 
         #endregion
 
+        #endregion
+
+        #region ACTUALIZAR CONTRASEÑA
 
         private void ChangePassword_Click(object sender, RoutedEventArgs e)
         {
@@ -345,7 +374,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             MessageBox.Show("Ingrese una contraseña de 6 caracteres");
             
         }
+        #endregion
 
-      
     }
 }

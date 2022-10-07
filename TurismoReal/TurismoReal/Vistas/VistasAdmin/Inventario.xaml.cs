@@ -50,6 +50,7 @@ namespace TurismoReal.Vistas.VistasAdmin
         {
             int id = (int)((Button)sender).CommandParameter;
             CRUDinventario ventana = new CRUDinventario();
+            ventana.idDepartamento = id;
             FrameInventario.Content = ventana;
             ventana.BtnActualizar.IsEnabled = false;
             ventana.tbIDdepto.Text = ""+id;

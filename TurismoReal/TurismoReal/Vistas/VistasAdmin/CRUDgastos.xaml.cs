@@ -30,7 +30,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         {
             InitializeComponent();
             CargarA();
-            CargarDatos();
         }
 
         #region Cargar FK
@@ -47,7 +46,7 @@ namespace TurismoReal.Vistas.VistasAdmin
         #region CARGAR inventario
         void CargarDatos()
         {
-            GridDatos.ItemsSource = objeto_CN_Gastos.CargarGastos().DefaultView;
+            GridDatos.ItemsSource = objeto_CN_Gastos.CargarGastos(idDepartamento).DefaultView;
         }
         #endregion
 
@@ -79,6 +78,7 @@ namespace TurismoReal.Vistas.VistasAdmin
 
         public int idTipoGastos;
         public int idGastos;
+        public int idDepartamento;
         #region Crear
         private void Crear(object sender, RoutedEventArgs e)
         {
@@ -224,6 +224,9 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            CargarDatos();
+        }
     }
 }

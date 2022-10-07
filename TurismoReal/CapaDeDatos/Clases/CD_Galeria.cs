@@ -92,12 +92,13 @@ namespace CapaDeDatos.Clases
 
         #endregion
 
-        #region CARGAR USUARIOS A LA VISTA
+        #region CARGAR IMAGENES A LA VISTA
 
-        public DataTable CargarImagen()
+        public DataTable CargarImagen(int idDepartamento)
         {
             SqlDataAdapter da = new SqlDataAdapter("dbo.SP_G_CargarImagen", con.AbrirConexion());
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.Add("@idDepartamento", SqlDbType.Int).Value = idDepartamento;
             DataSet ds = new DataSet();
             ds.Clear();
             da.Fill(ds);
@@ -109,7 +110,7 @@ namespace CapaDeDatos.Clases
 
         #endregion
 
-        
+
 
     }
 }

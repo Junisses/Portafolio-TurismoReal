@@ -58,10 +58,11 @@ namespace CapaDeDatos.Clases
         #endregion
         #region CARGAR INVENTARIO A LA VISTA
 
-        public DataTable CargarInventario()
+        public DataTable CargarInventario(int idDepartamento)
         {
             SqlDataAdapter da = new SqlDataAdapter("dbo.SP_IN_CargarInventario", con.AbrirConexion());
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.Add("@idDepartamento", SqlDbType.Int).Value = idDepartamento;
 
             DataSet ds = new DataSet();
             ds.Clear();

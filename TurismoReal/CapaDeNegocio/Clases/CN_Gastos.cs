@@ -49,9 +49,9 @@ namespace CapaDeNegocio.Clases
 
         #region CARGAR ARTEFACTOS AL GRID
 
-        public DataTable CargarGastos()
+        public DataTable CargarGastos(int idDepartamento)
         {
-            return objDatos.CargarGastos();
+            return objDatos.CargarGastos(idDepartamento);
         }
 
         #endregion

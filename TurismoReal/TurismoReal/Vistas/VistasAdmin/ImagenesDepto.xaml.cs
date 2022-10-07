@@ -30,13 +30,12 @@ namespace TurismoReal.Vistas.VistasAdmin
         public ImagenesDepto()
         {
             InitializeComponent();
-            CargarDatos();
         }
 
         #region CARGAR IMAGENES
         void CargarDatos()
         {
-            GridDatos.ItemsSource = objeto_CN_Galeria.CargarImagen().DefaultView;
+            GridDatos.ItemsSource = objeto_CN_Galeria.CargarImagen(idDepartamento).DefaultView;
         }
         #endregion
 
@@ -215,6 +214,12 @@ namespace TurismoReal.Vistas.VistasAdmin
             LimpiarData();
         }
         #endregion
+
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            CargarDatos();
+        }
 
     }
 }

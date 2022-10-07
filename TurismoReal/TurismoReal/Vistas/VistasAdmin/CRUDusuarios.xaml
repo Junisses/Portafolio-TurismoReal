@@ -927,8 +927,7 @@
                       HorizontalAlignment="Left" 
                       x:Name="chkHabilitar"
                       VerticalAlignment="Center"
-                      Style="{DynamicResource CheckBoxStyle}"
-                      Checked="Habilitar_Check"/>
+                      Style="{DynamicResource CheckBoxStyle}"/>
             <TextBlock x:Name="txtContra" Grid.Row="16"
                        Grid.Column="1"
                        Text="Contraseña"

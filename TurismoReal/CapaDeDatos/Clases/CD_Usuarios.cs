@@ -66,7 +66,7 @@ namespace CapaDeDatos.Clases
             ce.Pais = Convert.ToString(row[8]);
             ce.CodigoVerificacion = Convert.ToString(row[9]);
             ce.Habilitada = Convert.ToString(row[10]);
-            //ce.EsPasaporte = Convert.ToString(row[5]);
+            ce.EsPasaporte = Convert.ToString(row[11]);
             ce.IdTipoUsuario = Convert.ToInt32(row[12]);
 
             return ce;
