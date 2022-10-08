@@ -29,5 +29,55 @@ namespace CapaDeDatos.Clases
         }
 
         #endregion 
+
+
+        #region Consultar
+
+        public CE_Reservas CD_Consulta(int idReserva)
+        {
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_R_Consultar", con.AbrirConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.Add("@idReserva", SqlDbType.Int).Value = idReserva;
+
+
+            DataSet ds = new DataSet();
+            ds.Clear();
+            da.Fill(ds);
+            DataTable dt;
+            dt = ds.Tables[0];
+            DataRow row = dt.Rows[0];
+            ce.FechaDesde = Convert.ToDateTime(row[1]); 
+            ce.FechaHasta = Convert.ToDateTime(row[2]);
+            ce.EstadoRerserva = Convert.ToBoolean(row[3]);
+            ce.Abono = Convert.ToInt32(row[4]);
+            ce.CheckIN = DateTime.Today;
+            ce.PrecioNocheReserva = Convert.ToInt32(row[8]);
+            ce.Saldo = Convert.ToInt32(row[9]);
+            ce.IdUsuario = Convert.ToInt32(row[11]);
+
+            return ce;
+        }
+
+        #endregion
+
+        #region Actualizar Datos
+
+        public void CD_ActualizarDatos(CE_Reservas Reservas)
+        {
+            SqlCommand com = new SqlCommand()
+            {
+                Connection = con.AbrirConexion(),
+                CommandText = "dbo.SP_R_IngresarIN",
+                CommandType = CommandType.StoredProcedure
+            };
+            com.Parameters.AddWithValue("@idReserva", Reservas.IdReserva);
+            com.Parameters.Add("@checkIn", SqlDbType.Date).Value = Reservas.CheckIN;
+
+            com.ExecuteNonQuery();
+            com.Parameters.Clear();
+            con.CerrarConexion();
+        }
+
+        #endregion
     }
 }

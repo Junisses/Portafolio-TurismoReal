@@ -390,7 +390,7 @@
                   Background="GhostWhite"
                   VerticalAlignment="Bottom"
                   HorizontalAlignment="Right"
-                  Height="465"
+                  Height="510"
                   Width="850">
                 <Border CornerRadius="0,0,10,0"
                         Background="GhostWhite"

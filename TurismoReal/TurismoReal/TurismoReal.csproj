@@ -144,11 +144,11 @@
     <Compile Include="Vistas\VistasFuncionario\CheckList.xaml.cs">
       <DependentUpon>CheckList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\VistasFuncionario\CRUDcheckInOut.xaml.cs">
-      <DependentUpon>CRUDcheckInOut.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Vistas\VistasFuncionario\CRUDchecklist.xaml.cs">
       <DependentUpon>CRUDchecklist.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistasFuncionario\CRUDin.xaml.cs">
+      <DependentUpon>CRUDin.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -271,11 +271,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vistas\VistasFuncionario\CRUDcheckInOut.xaml">
+    <Page Include="Vistas\VistasFuncionario\CRUDchecklist.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vistas\VistasFuncionario\CRUDchecklist.xaml">
+    <Page Include="Vistas\VistasFuncionario\CRUDin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -383,6 +383,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vistas\Images\inven1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\in.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\out.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

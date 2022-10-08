@@ -60,9 +60,7 @@ C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\Reservas.bam
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\Inicio.g.cs
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\Inicio.baml
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\CheckInOut.g.cs
-C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\CRUDcheckInOut.g.cs
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\CheckInOut.baml
-C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\CRUDcheckInOut.baml
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\CheckList.g.cs
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\CRUDchecklist.g.cs
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\CheckList.baml
@@ -77,3 +75,5 @@ C:\TurismoReal\TurismoReal\TurismoReal\bin\Debug\BouncyCastle.Crypto.dll
 C:\TurismoReal\TurismoReal\TurismoReal\bin\Debug\itextsharp.dll
 C:\TurismoReal\TurismoReal\TurismoReal\bin\Debug\itextsharp.xmlworker.dll
 C:\TurismoReal\TurismoReal\TurismoReal\bin\Debug\itextsharp.xml
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\CRUDin.g.cs
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\CRUDin.baml

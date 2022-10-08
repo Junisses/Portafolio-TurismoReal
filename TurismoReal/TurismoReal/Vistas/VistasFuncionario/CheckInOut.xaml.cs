@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapaDeEntidad.Clases;
+using CapaDeNegocio.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,33 +23,32 @@ namespace TurismoReal.Vistas.VistasFuncionario
     /// </summary>
     public partial class CheckInOut : UserControl
     {
+        readonly CN_Reservas objeto_CN_Reservas = new CN_Reservas();
+        readonly CE_Reservas objeto_CE_Reservas = new CE_Reservas();
+
+        readonly CN_Usuarios objeto_CN_Usuarios = new CN_Usuarios();
+
         public CheckInOut()
         {
             InitializeComponent();
+            CargarDatos();
         }
-        #region AGREGAR
-        private void BtnVer_Click(object sender, RoutedEventArgs e)
+
+        #region CARGAR RESERVAS
+        void CargarDatos()
         {
-            CRUDcheckInOut ventana = new CRUDcheckInOut();
+            GridDatos.ItemsSource = objeto_CN_Reservas.CargarReservas().DefaultView;
+        }
+        #endregion
+
+        private void IN_click(object sender, RoutedEventArgs e)
+        {
+            int id = (int)((Button)sender).CommandParameter;
+            CRUDin ventana = new CRUDin();
+            ventana.idReserva = id;
+            ventana.Consultar();
             FrameCheckINOUT.Content = ventana;
-            ventana.BtnCrear.Visibility = Visibility.Visible;
-            ventana.BtnActualizar.Visibility = Visibility.Visible;
+            ventana.Titulo.Text = "CHECK IN Reserva N°" + id;
         }
-        #endregion
-
-        #region CONSULTAR
-        private void Consultar(object sender, RoutedEventArgs e)
-        {
-
-        }
-        #endregion
-
-        #region ACTUALIZAR
-        private void Actualizar(object sender, RoutedEventArgs e)
-        {
-
-        }
-        #endregion
-
     }
 }

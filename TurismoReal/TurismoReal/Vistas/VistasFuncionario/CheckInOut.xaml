@@ -253,7 +253,7 @@
                 <!--#region titulo-->
                 <TextBlock Grid.Row="0"
                        Grid.ColumnSpan="6"
-                       Text="Ingreso de Check IN - OUT"
+                       Text="Gestión Check IN - OUT"
                        Foreground="Black"
                        FontSize="30"
                        HorizontalAlignment="Center"
@@ -295,23 +295,6 @@
                            FontSize="15"/>
                 </Button>
                 <!--#endregion-->
-                <!--#region boton crear-->
-                <Button Style="{DynamicResource ButtonStylebuscar}" 
-                        Grid.Column="4"
-                    Grid.Row="2"
-                    Background="#1E88E5"
-                    BorderBrush="#1E88E5"
-                    Margin="10,0,0,0"
-                    Cursor="Hand"
-                    Width="142"
-                    x:Name="BtnCrear"
-                    HorizontalAlignment="Left"
-                    Click="BtnVer_Click">
-                    <TextBlock Text="Check IN - OUT"
-                           Foreground="white"
-                           FontSize="15"/>
-                </Button>
-                <!--#endregion-->
                 <!--#endregion-->
                 <!--#region DataGrid-->
                 <DataGrid Style="{DynamicResource diseñoGrid}" Grid.Row="4"
@@ -332,31 +315,34 @@
                       GridLinesVisibility="Horizontal"
                       HorizontalGridLinesBrush="#A64B9F">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="Opciones de gestión"
-                                            Width="245">
+                        <DataGridTemplateColumn Header="Opciones"
+                                            Width="100">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <DockPanel>
-                                        <Button Content="Check IN"
-                                            x:Name="BtnCheckIN"
-                                            Background="#751970"
-                                            Width="80"
-                                            BorderBrush="Transparent"
-                                            Foreground="White"
-                                            Style="{DynamicResource ButtonStylebuscar}" 
-                                            Click="Consultar"
-                                            Cursor="Hand"
-                                            CommandParameter="{Binding idReserva}"/>
-                                        <Button Content="Check OUT"
-                                            x:Name="BtnCheckOUT"
-                                            Background="#751970"
-                                            Width="80" 
-                                            Cursor="Hand"
-                                            Foreground="White"
-                                            BorderBrush="Transparent"
-                                            CommandParameter="{Binding idDepartamento}"
-                                            Style="{DynamicResource ButtonStylebuscar}" 
-                                            />
+                                        <Button 
+                                                Background="Transparent"
+                                                BorderBrush="Transparent"
+                                                Width="30" 
+                                                Height="30" 
+                                                Cursor="Hand"
+                                                Margin="10,0,0,0"
+                                                x:Name="BtnCheckIN"
+                                                Click="IN_click"
+                                                CommandParameter="{Binding idReserva}">
+                                            <Image Source="/Vistas/Images/in.png"></Image>
+                                        </Button>
+
+                                        <Button 
+                                                Background="Transparent"
+                                                BorderBrush="Transparent"
+                                                Width="30" 
+                                                Height="30" 
+                                                Cursor="Hand"
+                                                x:Name="BtnCheckOUT"
+                                                CommandParameter="{Binding idReserva}">
+                                                <Image Source="/Vistas/Images/out.png"></Image>
+                                            </Button>
 
                                     </DockPanel>
                                 </DataTemplate>
@@ -371,13 +357,13 @@
                         <DataGridTextColumn Header="Nombre "
                                         Width="*"
                                         Binding="{Binding nombre}"/>
-                            <DataGridTextColumn Header="DNI"
-                                        Width="*"
-                                        Binding="{Binding identificacion}"/>
-                            <DataGridTextColumn Header="Apellido"
+                        <DataGridTextColumn Header="Apellido"
                                         Width="*"
                                         Binding="{Binding apellido}"/>
-                            </DataGrid.Columns>
+                        <DataGridTextColumn Header="DNI"
+                                        Width="*"
+                                        Binding="{Binding identificacion}"/>
+                    </DataGrid.Columns>
                 </DataGrid>
                 <!--#endregion-->
             </Grid>
