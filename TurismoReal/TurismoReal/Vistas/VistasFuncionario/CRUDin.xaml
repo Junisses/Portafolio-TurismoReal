@@ -771,7 +771,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="185"/>
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -957,7 +957,7 @@
                                 <ControlTemplate>
                                     <TextBox x:Name="PART_TextBox"
                                  Text="{Binding Path=SelectedDate, 
-                                        StringFormat='yyyy-MM-dd HH:mm', 
+                                        StringFormat='yyyy-MM-dd HH:mmtt', 
                                         RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
                                 </ControlTemplate>
                             </Setter.Value>
@@ -1016,18 +1016,26 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
             <Button Style="{DynamicResource ButtonStyleRegresar}" 
-                    x:Name="BtnGaleria"
+                    x:Name="BtnPago"
                     Content="Pagar"
                     Grid.Column="5"
                     Grid.Row="12"
                     Cursor="Hand"
                     Background="#A64B9F"
                     Foreground="White"
-                    CommandParameter="{Binding idDepartamento}"
+                    Click="Pagar"
+                    CommandParameter="{Binding idReserva}"
                     />
             <!--#endregion-->
 
             <!--#endregion-->
+            <!--#region FRAME GALERIA-->
+            <Frame x:Name="FramePago"
+                   Grid.Row="0"
+                   Grid.RowSpan="19"
+                   Grid.ColumnSpan="7"/>
+            <!--#endregion-->
         </Grid>
+
     </Border>
 </Page>

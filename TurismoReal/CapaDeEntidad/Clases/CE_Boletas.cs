@@ -10,6 +10,7 @@ namespace CapaDeEntidad.Clases
     {
         private int _IdBoleta;
         private string _MedioDePago;
+        private string _Banco;
         private DateTime _Fecha;
         private string _Comprobante;
         private int _Monto;
@@ -25,5 +26,6 @@ namespace CapaDeEntidad.Clases
         public string Descripcion { get => _Descripcion; set => _Descripcion = value; }
         public int IdReserva { get => _IdReserva; set => _IdReserva = value; }
         public int IdDetalleServicio { get => _IdDetalleServicio; set => _IdDetalleServicio = value; }
+        public string Banco { get => _Banco; set => _Banco = value; }
     }
 }

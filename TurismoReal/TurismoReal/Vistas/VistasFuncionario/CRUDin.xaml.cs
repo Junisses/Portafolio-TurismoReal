@@ -4,6 +4,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using TurismoReal.Vistas.VistasAdmin;
 using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace TurismoReal.Vistas.VistasFuncionario
@@ -18,6 +19,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
         readonly CE_Reservas objeto_CE_Reservas = new CE_Reservas();
 
         readonly CN_Usuarios objeto_CN_Usuarios = new CN_Usuarios();
+        readonly CN_Boletas objeto_CN_Boletas = new CN_Boletas();
 
         public CRUDin()
         {
@@ -30,26 +32,13 @@ namespace TurismoReal.Vistas.VistasFuncionario
             Content = new CheckInOut();
         }
 
-        #region ValidarCamposVacios
-        public bool CamposLlenos()
-        {
-            if (cFechaIngreso.Text == "")
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        #endregion
         #region Consultar
         public void Consultar()
         {
             var a = objeto_CN_Reservas.Consulta(idReserva);
             var u = objeto_CN_Usuarios.Consulta(a.IdUsuario);
 
-            tbCliente.Text = u.Nombres.ToString()+ " " + u.Apellidos.ToString();
+            tbCliente.Text = u.Nombres.ToString() + " " + u.Apellidos.ToString();
             tbRut.Text = u.Identificacion.ToString();
             cFechaDesde.Text = a.FechaDesde.ToString();
             cFechaHasta.Text = a.FechaHasta.ToString();
@@ -57,13 +46,20 @@ namespace TurismoReal.Vistas.VistasFuncionario
             tbPrecioNoche.Text = a.PrecioNocheReserva.ToString();
             tbSaldo.Text = a.Saldo.ToString();
 
+
+           cFechaIngreso.IsEnabled = false;
+           cFechaIngreso.Text = a.CheckIN.ToString();
+
+
         }
         #endregion
 
         private void Crear(object sender, RoutedEventArgs e)
         {
-            if (CamposLlenos() == true)
+            
+            if (cFechaIngreso.Text != "")
             {
+                objeto_CE_Reservas.IdReserva = idReserva;
                 objeto_CE_Reservas.CheckIN = DateTime.Parse(cFechaIngreso.Text);
 
                 objeto_CN_Reservas.ActualizarDatos(objeto_CE_Reservas);
@@ -77,5 +73,23 @@ namespace TurismoReal.Vistas.VistasFuncionario
             }
         }
 
+        private void Pagar(object sender, RoutedEventArgs e)
+        {
+            Pagos ventana = new Pagos();
+            FramePago.Content = ventana;
+            ventana.idReserva = idReserva;
+            var a = objeto_CN_Reservas.Consulta(idReserva);
+            var u = objeto_CN_Usuarios.Consulta(a.IdUsuario);
+            var b = objeto_CN_Boletas.Ver(idReserva);
+
+            ventana.idUsuario = u.IdUsuario;
+            ventana.tbCliente.Text = u.Nombres.ToString() + " " + u.Apellidos.ToString();
+            ventana.tbRut.Text = u.Identificacion.ToString();
+            ventana.tbDescripcion.IsEnabled = false;
+            ventana.tbDescripcion.Text = "Pago saldo de reserva";
+            ventana.cFechaPago.IsEnabled = false;
+            ventana.cFechaPago.Text = b.Fecha.ToString();
+            ventana.Titulo.Text = "Cobro de Saldo Reserva #" + idReserva;
+        }
     }
 }

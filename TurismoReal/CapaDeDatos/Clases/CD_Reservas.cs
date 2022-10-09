@@ -50,7 +50,13 @@ namespace CapaDeDatos.Clases
             ce.FechaHasta = Convert.ToDateTime(row[2]);
             ce.EstadoRerserva = Convert.ToBoolean(row[3]);
             ce.Abono = Convert.ToInt32(row[4]);
-            ce.CheckIN = DateTime.Today;
+
+            //if (!row.IsNull("checkIn"))
+            //{
+                ce.CheckIN = DateTime.Now;
+            //}
+
+
             ce.PrecioNocheReserva = Convert.ToInt32(row[8]);
             ce.Saldo = Convert.ToInt32(row[9]);
             ce.IdUsuario = Convert.ToInt32(row[11]);
@@ -71,7 +77,7 @@ namespace CapaDeDatos.Clases
                 CommandType = CommandType.StoredProcedure
             };
             com.Parameters.AddWithValue("@idReserva", Reservas.IdReserva);
-            com.Parameters.Add("@checkIn", SqlDbType.Date).Value = Reservas.CheckIN;
+            com.Parameters.Add("@checkIn", SqlDbType.DateTime).Value = Reservas.CheckIN;
 
             com.ExecuteNonQuery();
             com.Parameters.Clear();

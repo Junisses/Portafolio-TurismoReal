@@ -77,3 +77,5 @@ C:\TurismoReal\TurismoReal\TurismoReal\bin\Debug\itextsharp.xmlworker.dll
 C:\TurismoReal\TurismoReal\TurismoReal\bin\Debug\itextsharp.xml
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\CRUDin.g.cs
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\CRUDin.baml
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\Pagos.g.cs
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasFuncionario\Pagos.baml

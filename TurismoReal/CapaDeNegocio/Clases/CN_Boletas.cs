@@ -1,4 +1,5 @@
 ﻿using CapaDeDatos.Clases;
+using CapaDeEntidad.Clases;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,9 +11,42 @@ namespace CapaDeNegocio.Clases
 {
     public class CN_Boletas
     {
+        CD_Boletas CD_Boletas = new CD_Boletas();
         private readonly CD_Boletas objDatos = new CD_Boletas();
 
-        #region CARGAR BOLETAS A LA VISTA
+        #region Insertar   
+
+        public void Insertar(CE_Boletas Boletas)
+        {
+            objDatos.CD_Insertar(Boletas);
+        }
+
+        #endregion
+
+        #region Consultar
+        public CE_Boletas Consulta(int idBoleta)
+        {
+            return objDatos.CD_Consulta(idBoleta);
+        }
+        #endregion
+
+        #region Ver
+        public CE_Boletas Ver(int idReserva)
+        {
+            return objDatos.CD_Ver(idReserva);
+        }
+        #endregion
+
+        #region CARGAR BOLETAS POR RESERVA
+
+        public DataTable CargarPorReserva(int idReserva)
+        {
+            return objDatos.CargarPorReserva(idReserva);
+        }
+
+        #endregion
+
+        #region CARGAR BOLETAS A LA VISTA GENERAL
 
         public DataTable CargarBoletas()
         {

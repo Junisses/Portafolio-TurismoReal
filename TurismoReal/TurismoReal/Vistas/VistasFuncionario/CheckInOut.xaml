@@ -253,7 +253,7 @@
                 <!--#region titulo-->
                 <TextBlock Grid.Row="0"
                        Grid.ColumnSpan="6"
-                       Text="Gestión Check IN - OUT"
+                       Text="Gestión de Reservas"
                        Foreground="Black"
                        FontSize="30"
                        HorizontalAlignment="Center"
@@ -351,18 +351,43 @@
                         <DataGridTextColumn Header="Estado"
                                         Width="50"
                                         Binding="{Binding estadoReserva}"/>
-                        <DataGridTextColumn Header="ID Reserva"
-                                        Width="150"
-                                        Binding="{Binding idReserva}"/>
                         <DataGridTextColumn Header="Nombre "
                                         Width="*"
-                                        Binding="{Binding nombre}"/>
+                                        Binding="{Binding nombres}"/>
                         <DataGridTextColumn Header="Apellido"
                                         Width="*"
-                                        Binding="{Binding apellido}"/>
+                                        Binding="{Binding apellidos}"/>
+                        <DataGridTextColumn Header="Pais"
+                                        Width="*"
+                                        Binding="{Binding pais}"/>
+                        <DataGridTextColumn Header="Direccion depto."
+                                        Width="*"
+                                        Binding="{Binding direccion}"/>
                         <DataGridTextColumn Header="DNI"
                                         Width="*"
                                         Binding="{Binding identificacion}"/>
+                        <DataGridTemplateColumn Header="Servicios"
+                                            Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <Button 
+                                                Background="Transparent"
+                                                BorderBrush="Transparent"
+                                                Width="30" 
+                                                Height="30" 
+                                                Cursor="Hand"
+                                                Margin="10,0,0,0"
+                                                x:Name="BtnServicio"
+                                                Click="ContratarServicio"
+                                                CommandParameter="{Binding idReserva}">
+                                            <Image Source="/Vistas/Images/dinero.png"></Image>
+                                        </Button>
+
+                                    </DockPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
                 <!--#endregion-->

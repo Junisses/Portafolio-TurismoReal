@@ -150,6 +150,9 @@
     <Compile Include="Vistas\VistasFuncionario\CRUDin.xaml.cs">
       <DependentUpon>CRUDin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\VistasFuncionario\Pagos.xaml.cs">
+      <DependentUpon>Pagos.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -279,6 +282,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vistas\VistasFuncionario\Pagos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vistas\Images\Logo.png" />
@@ -389,6 +396,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vistas\Images\out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vistas\Images\dinero.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
