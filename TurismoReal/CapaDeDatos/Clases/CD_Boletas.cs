@@ -27,23 +27,17 @@ namespace CapaDeDatos.Clases
             com.Parameters.AddWithValue("@medioDePago", Boletas.MedioDePago);
             com.Parameters.Add("@fecha", SqlDbType.Date).Value = Boletas.Fecha;
             com.Parameters.AddWithValue("@banco", Boletas.Banco);
+            com.Parameters.AddWithValue("@comprobante", Boletas.Comprobante);
             com.Parameters.AddWithValue("@monto", Boletas.Monto);
             com.Parameters.AddWithValue("@descripcion", Boletas.Descripcion);
-            if (Boletas.IdReserva == 0)
+            com.Parameters.AddWithValue("@idReserva", Boletas.IdReserva);
+            if (Boletas.IdServicio == 0)
             {
-                com.Parameters.Add("@idReserva", SqlDbType.Int).Value = System.Data.SqlTypes.SqlInt32.Null;
+                com.Parameters.Add("@idServicio", SqlDbType.Int).Value = System.Data.SqlTypes.SqlInt32.Null;
             }
             else
             {
-                com.Parameters.AddWithValue("@idReserva", Boletas.IdReserva);
-            }
-            if (Boletas.IdDetalleServicio == 0)
-            {
-                com.Parameters.Add("@idDetalleServicio", SqlDbType.Int).Value = System.Data.SqlTypes.SqlInt32.Null;
-            }
-            else
-            {
-                com.Parameters.AddWithValue("@idDetalleServicio", Boletas.IdDetalleServicio);
+                com.Parameters.AddWithValue("@idServicio", Boletas.IdServicio);
             }
             com.ExecuteNonQuery();
             com.Parameters.Clear();
@@ -72,7 +66,7 @@ namespace CapaDeDatos.Clases
             ce.Monto = Convert.ToInt32(row[5]);
             ce.Descripcion = Convert.ToString(row[6]);
             ce.IdReserva = Convert.ToInt32(row[7]);
-            ce.IdDetalleServicio = Convert.ToInt32(row[8]);
+            ce.IdServicio = Convert.ToInt32(row[8]);
 
             return ce;
         }

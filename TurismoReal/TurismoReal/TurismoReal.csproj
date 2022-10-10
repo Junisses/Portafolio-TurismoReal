@@ -75,6 +75,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\InicioAdmin.xaml.cs">
       <DependentUpon>InicioAdmin.xaml</DependentUpon>
     </Compile>
@@ -150,6 +155,12 @@
     <Compile Include="Vistas\VistasFuncionario\CRUDin.xaml.cs">
       <DependentUpon>CRUDin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\VistasFuncionario\CRUDout.xaml.cs">
+      <DependentUpon>CRUDout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistasFuncionario\ListadoServicios.xaml.cs">
+      <DependentUpon>ListadoServicios.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\VistasFuncionario\Pagos.xaml.cs">
       <DependentUpon>Pagos.xaml</DependentUpon>
     </Compile>
@@ -157,11 +168,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -282,6 +288,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vistas\VistasFuncionario\CRUDout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VistasFuncionario\ListadoServicios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vistas\VistasFuncionario\Pagos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -399,6 +413,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vistas\Images\dinero.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Ticket.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

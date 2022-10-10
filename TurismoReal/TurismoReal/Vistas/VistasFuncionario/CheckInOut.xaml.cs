@@ -56,20 +56,28 @@ namespace TurismoReal.Vistas.VistasFuncionario
         private void ContratarServicio(object sender, RoutedEventArgs e)
         {
             int id = (int)((Button)sender).CommandParameter;
-            Pagos ventana = new Pagos();
+            ListadoServicios ventana = new ListadoServicios();
             FrameCheckINOUT.Content = ventana;
+
             ventana.idReserva = id;
             var a = objeto_CN_Reservas.Consulta(id);
-            var u = objeto_CN_Usuarios.Consulta(a.IdUsuario);
-            var b = objeto_CN_Boletas.Ver(id);
+            ventana.idUsuario = a.IdUsuario;
+            //ventana.tbCliente.Text = u.Nombres.ToString() + " " + u.Apellidos.ToString();
+            //ventana.tbRut.Text = u.Identificacion.ToString();
+            //ventana.tbDescripcion.IsEnabled = true;
+            //ventana.cFechaPago.IsEnabled = false;
+            //ventana.cFechaPago.Text = b.Fecha.ToString();
+            //ventana.Titulo.Text = "Pago de servicio Reserva #" + id;
+        }
 
-            ventana.idUsuario = u.IdUsuario;
-            ventana.tbCliente.Text = u.Nombres.ToString() + " " + u.Apellidos.ToString();
-            ventana.tbRut.Text = u.Identificacion.ToString();
-            ventana.tbDescripcion.IsEnabled = true;
-            ventana.cFechaPago.IsEnabled = false;
-            ventana.cFechaPago.Text = b.Fecha.ToString();
-            ventana.Titulo.Text = "Pago de servicio Reserva #" + id;
+        private void OUT_click(object sender, RoutedEventArgs e)
+        {
+            int id = (int)((Button)sender).CommandParameter;
+            CRUDout ventana = new CRUDout();
+            ventana.idReserva = id;
+            ventana.Consultar();
+            FrameCheckINOUT.Content = ventana;
+            ventana.Titulo.Text = "CHECK OUT Reserva N°" + id;
         }
     }
 }

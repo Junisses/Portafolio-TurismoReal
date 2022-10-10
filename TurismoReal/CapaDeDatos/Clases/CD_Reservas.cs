@@ -48,14 +48,23 @@ namespace CapaDeDatos.Clases
             DataRow row = dt.Rows[0];
             ce.FechaDesde = Convert.ToDateTime(row[1]); 
             ce.FechaHasta = Convert.ToDateTime(row[2]);
-            ce.EstadoRerserva = Convert.ToBoolean(row[3]);
+            ce.EstadoRerserva = Convert.ToString(row[3]);
             ce.Abono = Convert.ToInt32(row[4]);
+            //Fecha actual del campo check in
+            ce.CheckIN = DateTime.Now;
+            //En caso de que este este completo, mostrar la fecha
+            if (!row.IsNull("checkIn")) 
+            { 
+                ce.CheckIN = Convert.ToDateTime(row[5]);
+            }
 
-            //if (!row.IsNull("checkIn"))
-            //{
-                ce.CheckIN = DateTime.Now;
-            //}
-
+            //Fecha actual para el campo checkout
+            ce.CheckOUT = DateTime.Now;
+            //Si esta guardado en la BD, se muestra el ingresado, no el actual
+            if (!row.IsNull("chekOut"))
+            {
+                ce.CheckOUT = Convert.ToDateTime(row[6]);
+            }
 
             ce.PrecioNocheReserva = Convert.ToInt32(row[8]);
             ce.Saldo = Convert.ToInt32(row[9]);
@@ -66,9 +75,9 @@ namespace CapaDeDatos.Clases
 
         #endregion
 
-        #region Actualizar Datos
+        #region Ingresar IN
 
-        public void CD_ActualizarDatos(CE_Reservas Reservas)
+        public void CD_ActualizarIN(CE_Reservas Reservas)
         {
             SqlCommand com = new SqlCommand()
             {
@@ -78,6 +87,26 @@ namespace CapaDeDatos.Clases
             };
             com.Parameters.AddWithValue("@idReserva", Reservas.IdReserva);
             com.Parameters.Add("@checkIn", SqlDbType.DateTime).Value = Reservas.CheckIN;
+
+            com.ExecuteNonQuery();
+            com.Parameters.Clear();
+            con.CerrarConexion();
+        }
+
+        #endregion
+
+        #region Actualizar OUT
+
+        public void CD_ActualizarOUT(CE_Reservas Reservas)
+        {
+            SqlCommand com = new SqlCommand()
+            {
+                Connection = con.AbrirConexion(),
+                CommandText = "dbo.SP_R_IngresarOUT",
+                CommandType = CommandType.StoredProcedure
+            };
+            com.Parameters.AddWithValue("@idReserva", Reservas.IdReserva);
+            com.Parameters.Add("@checkOut", SqlDbType.DateTime).Value = Reservas.CheckOUT;
 
             com.ExecuteNonQuery();
             com.Parameters.Clear();

@@ -340,6 +340,7 @@
                                                 Height="30" 
                                                 Cursor="Hand"
                                                 x:Name="BtnCheckOUT"
+                                                Click="OUT_click"
                                                 CommandParameter="{Binding idReserva}">
                                                 <Image Source="/Vistas/Images/out.png"></Image>
                                             </Button>

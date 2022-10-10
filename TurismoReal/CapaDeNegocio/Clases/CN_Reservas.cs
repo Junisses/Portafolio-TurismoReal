@@ -24,11 +24,20 @@ namespace CapaDeNegocio.Clases
         }
         #endregion
 
-        #region Actualizar Datos   
+        #region Ingresar IN
 
-        public void ActualizarDatos(CE_Reservas Reservas)
+        public void ActualizarIN(CE_Reservas Reservas)
         {
-            objDatos.CD_ActualizarDatos(Reservas);
+            objDatos.CD_ActualizarIN(Reservas);
+        }
+
+        #endregion
+
+        #region Ingresar OUT
+
+        public void ActualizarOUT(CE_Reservas Reservas)
+        {
+            objDatos.CD_ActualizarOUT(Reservas);
         }
 
         #endregion

@@ -967,7 +967,6 @@
 
             <!--#endregion-->
             <!--#region CONTENIDO-->
-
             <!--Texto y box Cliente-->
             <TextBlock Grid.Row="3"
                        Grid.Column="1"
@@ -1170,18 +1169,15 @@
                       HorizontalGridLinesBrush="#A64B9F" 
                       Grid.ColumnSpan="2" Margin="0,0,0,35" Grid.RowSpan="10">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID"
-                                        Width="*"
-                                        Binding="{Binding idReserva}"/>
                     <DataGridTextColumn Header="Detalle"
                                         Width="*"
                                         Binding="{Binding descripcion}"/>
                     <DataGridTextColumn Header="Monto"
-                                        Width="*"
+                                        Width="80"
                                         Binding="{Binding monto}"/>
 
                     <DataGridTemplateColumn Header="Consultar"
-                                            Width="*">
+                                            Width="80">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <DockPanel>
@@ -1221,6 +1217,8 @@
                     Height="30"
                     Width="100"
                     VerticalAlignment="Center" />
+            
+
             <!--#region Limpiar-->
             <Button Style="{DynamicResource Limpiar}" x:Name="BtnLimpiar"
                     Content="Limpiar"

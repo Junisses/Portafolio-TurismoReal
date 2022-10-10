@@ -62,7 +62,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
                 objeto_CE_Reservas.IdReserva = idReserva;
                 objeto_CE_Reservas.CheckIN = DateTime.Parse(cFechaIngreso.Text);
 
-                objeto_CN_Reservas.ActualizarDatos(objeto_CE_Reservas);
+                objeto_CN_Reservas.ActualizarIN(objeto_CE_Reservas);
                 MessageBox.Show("Se ingreso exitosamente!!");
                 BtnCrear.IsEnabled = false;
                 cFechaIngreso.IsEnabled = false;
@@ -81,7 +81,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
             var a = objeto_CN_Reservas.Consulta(idReserva);
             var u = objeto_CN_Usuarios.Consulta(a.IdUsuario);
             var b = objeto_CN_Boletas.Ver(idReserva);
-
+            ventana.BtnGuardar.Visibility = Visibility.Visible;
             ventana.idUsuario = u.IdUsuario;
             ventana.tbCliente.Text = u.Nombres.ToString() + " " + u.Apellidos.ToString();
             ventana.tbRut.Text = u.Identificacion.ToString();
