@@ -943,6 +943,8 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="30"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="9*"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="20"/>
@@ -997,47 +999,43 @@
 
 
             <!--Texto y box para Fecha desde-->
-            <TextBlock Grid.Row="7"
-                       Grid.Column="1"
-                       Text="Fecha del pago"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"/>
             <DatePicker Style="{DynamicResource DatePickerStyle}" Grid.Row="7"
                         Grid.Column="2"
                         FontSize="15"
                         BorderBrush="#F3E5F5"
                         Background="#F3E5F5"
                         x:Name="cFechaPago"
+                        Visibility="Hidden"
                         HorizontalContentAlignment="Center">
-            <DatePicker.Resources>
-                <Style TargetType="{x:Type DatePickerTextBox}">
-                    <Setter Property="Control.Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <TextBox x:Name="PART_TextBox"
+                <DatePicker.Resources>
+                    <Style TargetType="{x:Type DatePickerTextBox}">
+                        <Setter Property="Control.Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <TextBox x:Name="PART_TextBox"
                                  Text="{Binding Path=SelectedDate, 
                                         StringFormat='yyyy-MM-dd HH:mmtt', 
                                         RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </DatePicker.Resources>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DatePicker.Resources>
             </DatePicker>
 
             <!--Texto y box para medio de pago-->
-            <TextBlock Grid.Row="9"
+            <TextBlock Grid.Row="7"
                        Grid.Column="1"
                        Text="Medio de Pago"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
-            <TextBox Grid.Row="9"
+            <TextBox Grid.Row="7"
                      Grid.Column="2"
                      x:Name="tbMedioPago"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
-            
+
             <ComboBox Style="{DynamicResource ComboBoxStyle}" Grid.Row="9"
                       Foreground="Gray"
                       Grid.Column="2"
@@ -1076,12 +1074,12 @@
             </ComboBox>
 
             <!--Texto y box para banco-->
-            <TextBlock Grid.Row="11"
+            <TextBlock Grid.Row="9"
                        Grid.Column="1"
                        Text="Banco"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
-            <TextBox Grid.Row="11"
+            <TextBox Grid.Row="9"
                      Grid.Column="2"
                      x:Name="tbBanco"
                      HorizontalContentAlignment="Center"
@@ -1126,18 +1124,76 @@
             </ComboBox>
 
             <!--Texto y box Descripcion-->
+            <TextBlock Grid.Row="11"
+                       Grid.Column="1"
+                       Text="Valor unitario"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"/>
+            <TextBox Grid.Row="11"
+                     Grid.Column="2"
+                     x:Name="tbValorUnitario"
+                     HorizontalContentAlignment="Center"
+                     Style="{DynamicResource TextBoxStyle}" 
+                     Background="#F3E5F5"/>
+
+            <!--Texto y box Descripcion-->
             <TextBlock Grid.Row="13"
                        Grid.Column="1"
-                       Text="Monto a pagar"
+                       Text="Cantidad solicitada"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
             <TextBox Grid.Row="13"
                      Grid.Column="2"
+                     x:Name="tbCantidad"
+                     Text="1"
+                     HorizontalContentAlignment="Center"
+                     Style="{DynamicResource TextBoxStyle}" 
+                     Background="#F3E5F5" Margin="0,0,116,30" Grid.RowSpan="2"/>
+
+            <!--Texto y box Descripcion-->
+            <TextBlock Grid.Row="13"
+                       Grid.Column="4"
+                       Text="TOTAL A PAGAR"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" Margin="66,0,0,0" Width="119"/>
+            <TextBox Grid.Row="13"
+                     Grid.Column="5"
                      x:Name="tbMonto"
+                     HorizontalContentAlignment="Left"
+                     VerticalAlignment="Center"
+                     Background="Transparent" 
+                     BorderBrush="Transparent"
+                     Margin="0,0,10,30" Grid.RowSpan="2"/>
+
+            <!--Texto y box para medio de pago-->
+            <TextBlock Grid.Row="14"
+                       Grid.Column="4"
+                       Text="Efectivo"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" Margin="111,0,0,0" Width="74"/>
+            <TextBox Grid.Row="14"
+                     Grid.Column="5"
+                     x:Name="tbEfectivo"
+                     Text="0"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
-            
+
+            <!--Texto y box Descripcion-->
+            <TextBlock Grid.Row="15"
+                       Grid.Column="4"
+                       Text="Vuelto"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" Margin="111,0,0,0" Width="74"/>
+            <TextBox Grid.Row="15"
+                     Grid.Column="5"
+                     x:Name="tbVuelto"
+                     IsEnabled="false"
+                     HorizontalContentAlignment="Left"
+                     VerticalAlignment="Center"
+                     Background="Transparent" 
+                     BorderBrush="Transparent"
+                     Margin="0,0,10,30" Grid.RowSpan="2"/>
             <!--Texto y box Descripcion-->
             <TextBlock Grid.Row="15"
                        Grid.Column="1"
@@ -1152,7 +1208,7 @@
                      Background="#F3E5F5"/>
 
             <!--#region DataGrid-->
-            <DataGrid Style="{DynamicResource DataGridStyle}" Grid.Row="4"
+            <DataGrid Style="{DynamicResource DataGridStyle}" Grid.Row="3"
                       Grid.Column="4"
                       x:Name="GridDatos"
                       AutoGenerateColumns="False"
@@ -1207,7 +1263,7 @@
 
             <Button Style="{DynamicResource Guardar}" 
                     Grid.Column="5"
-                    Grid.Row="16"
+                    Grid.Row="18"
                     Content="Guardar" 
                     x:Name="BtnGuardar"
                     Click="Crear"
@@ -1217,12 +1273,12 @@
                     Height="30"
                     Width="100"
                     VerticalAlignment="Center" />
-            
+
 
             <!--#region Limpiar-->
             <Button Style="{DynamicResource Limpiar}" x:Name="BtnLimpiar"
                     Content="Limpiar"
-                    Grid.Row="16"
+                    Grid.Row="18"
                     Grid.Column="4"
                     Width="100"
                     Background="#003399"
@@ -1250,11 +1306,11 @@
 
             <!--#endregion-->
             <!--#region FRAME GALERIA-->
-            <Frame x:Name="FramePago"
-                   Grid.Column="2"
-                   Grid.Row="0"
-                   Grid.RowSpan="4"
-                   Grid.ColumnSpan="5" Margin="5,0,0,5"/>
+            <Frame  Loaded="Calculo"
+                x:Name="FramePago"
+                   Grid.Row="10"
+                   Grid.RowSpan="6"
+                   Grid.ColumnSpan="7" Margin="0,15,0,3"/>
             <!--#endregion-->
         </Grid>
     </Border>

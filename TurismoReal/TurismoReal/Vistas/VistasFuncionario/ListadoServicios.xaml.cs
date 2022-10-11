@@ -65,7 +65,8 @@ namespace TurismoReal.Vistas.VistasFuncionario
             ventana.cFechaPago.IsEnabled = false;
             ventana.cFechaPago.Text = b.Fecha.ToString();
             ventana.tbMonto.IsEnabled = false;
-            ventana.tbMonto.Text = s.Precio.ToString();
+            ventana.tbValorUnitario.IsEnabled = false;
+            ventana.tbValorUnitario.Text = s.Precio.ToString();
             ventana.tbDescripcion.Text = s.Descripcion.ToString();
             ventana.Titulo.Text = "Pago de servicio Reserva #" + idReserva;
         }

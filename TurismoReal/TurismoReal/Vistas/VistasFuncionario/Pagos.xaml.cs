@@ -15,6 +15,7 @@ using System.Windows.Forms;
 using SaveFileDialog = System.Windows.Forms.SaveFileDialog;
 using MessageBox = System.Windows.MessageBox;
 using UserControl = System.Windows.Controls.UserControl;
+using System.Linq;
 
 namespace TurismoReal.Vistas.VistasFuncionario
 {
@@ -38,6 +39,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             CargarDatos();
+            Calculo();
         }
         #endregion
 
@@ -49,8 +51,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
         public bool CamposLlenos()
         {
             if (tbMedioPago.Text == ""
-                || tbBanco.Text == ""
-                || tbMonto.Text == "")
+                || tbBanco.Text == "")
             {
                 return false;
             }
@@ -81,12 +82,8 @@ namespace TurismoReal.Vistas.VistasFuncionario
                 MessageBox.Show("Porfavor ingrese banco");
                 tbBanco.Focus();
             }
-            else if (tbMonto.Text == "")
-            {
-                MessageBox.Show("Porfavor ingrese monto pagado");
-                tbMonto.Focus();
-            }
-            else if (tbMonto.Text.Length != 4 && Regex.IsMatch(tbMonto.Text, @"^\d +$:") == true)
+
+            else if (tbValorUnitario.Text.Length != 4 && Regex.IsMatch(tbValorUnitario.Text, @"^\d +$:") == true)
             {
                 MessageBox.Show("Resvise el monto ingresado\nNo hay montos a pagar menores a mil!");
                 return;
@@ -94,20 +91,29 @@ namespace TurismoReal.Vistas.VistasFuncionario
 
             if (CamposLlenos() == true)
             {   
-                string comprobante = "C-" + DateTime.Now.ToString("HHmmssttddMMyyyy") + "-0" + idReserva;
+                string comprobante = "C-" + DateTime.Now.ToString("HHmmssddMMyyyy") + "-0" + idReserva;
+                int valor = int.Parse(tbValorUnitario.Text);
+                int cantidad = int.Parse(tbCantidad.Text);
+                int total = cantidad * valor;
+                int efectivo = int.Parse(tbEfectivo.Text);
+                int vuelto = efectivo - total;
+
                 objeto_CE_Boletas.MedioDePago = tbMedioPago.Text;
+                //Me falta guardar con cuanto efectivo pago
                 objeto_CE_Boletas.Fecha = DateTime.Now;
                 objeto_CE_Boletas.Banco = tbBanco.Text;
-                objeto_CE_Boletas.Comprobante = comprobante;
-                objeto_CE_Boletas.Monto = int.Parse(tbMonto.Text);
-                objeto_CE_Boletas.Descripcion = tbDescripcion.Text;
+                objeto_CE_Boletas.Comprobante = comprobante + " " + vuelto.ToString();
+                //Añadir vuelto
+                objeto_CE_Boletas.Monto = total;
+                objeto_CE_Boletas.Descripcion = tbDescripcion.Text + " x " + tbCantidad.Text ;
                 objeto_CE_Boletas.IdReserva = idReserva;
                 objeto_CE_Boletas.IdServicio = idServicio;
 
                 objeto_CN_Boletas.Insertar(objeto_CE_Boletas);
                 MessageBox.Show("Se ingreso exitosamente!!");
 
-                Imprimir(comprobante);
+
+                Imprimir(comprobante, vuelto, total);
                 LimpiarData();
                 CargarDatos();
             }
@@ -115,17 +121,46 @@ namespace TurismoReal.Vistas.VistasFuncionario
         }
         #endregion
 
-        #region CONSULTAR
-        private void Consultar(object sender, RoutedEventArgs e)
+        #region CALCULOS
+        void Calculo()
         {
+            int valor = int.Parse(tbValorUnitario.Text);
+            int cantidad = int.Parse(tbCantidad.Text);
+            int total = cantidad * valor;
+            int efectivo = int.Parse(tbEfectivo.Text);
+            int vuelto = efectivo - total;
 
+            tbMonto.Text = total.ToString();
+
+            if (tbEfectivo.Text == "0")
+            {
+                tbVuelto.Text = "0";
+            }
+            else
+            {
+                tbVuelto.Text = vuelto.ToString();
+            }
+            
         }
-        #endregion
+
+        private void Calculo(object sender, RoutedEventArgs e)
+        {
+            int valor = int.Parse(tbValorUnitario.Text);
+            int cantidad = int.Parse(tbCantidad.Text);
+            int total = cantidad * valor;
+            int efectivo = int.Parse(tbEfectivo.Text);
+            int vuelto = efectivo - total;
+
+            if (total.ToString() != tbValorUnitario.Text)
+            {
+                
+            }
+        }
+        #endregion  
 
         #region IMPRIMIR
-        void Imprimir (string comprobante)
+        void Imprimir (string comprobante, int vuelto, int total)
         {
-            string cambio = "0";
             SaveFileDialog savefile = new SaveFileDialog
             {
                 FileName = comprobante + ".pdf"
@@ -133,11 +168,19 @@ namespace TurismoReal.Vistas.VistasFuncionario
 
             string Pagina = Properties.Resources.Ticket.ToString();
             Pagina = Pagina.Replace("@Ticket", comprobante);
-            Pagina = Pagina.Replace("@efectivo", tbMonto.Text.ToString());
-            Pagina = Pagina.Replace("@cambio", cambio);
             Pagina = Pagina.Replace("@Fecha", DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+            //
+            Pagina = Pagina.Replace("@descripcion", tbDescripcion.Text.ToString());
+            Pagina = Pagina.Replace("@cantidad", tbCantidad.Text.ToString());
+            Pagina = Pagina.Replace("@valorU", tbValorUnitario.Text.ToString());
+            Pagina = Pagina.Replace("@totalItem", total.ToString());
+            //
+            Pagina = Pagina.Replace("@TOTAL", total.ToString());
+            //
+            Pagina = Pagina.Replace("@metodoPago", tbMedioPago.Text.ToString());
+            Pagina = Pagina.Replace("@efectivo", tbEfectivo.Text.ToString());
+            Pagina = Pagina.Replace("@cambio", vuelto.ToString());
 
-            Pagina = Pagina.Replace("@TOTAL", tbMonto.Text.ToString());
 
             if (savefile.ShowDialog() == DialogResult.OK)
             {
@@ -157,9 +200,16 @@ namespace TurismoReal.Vistas.VistasFuncionario
                 MessageBox.Show("Se hizo un pdf:3");
             }
         }
-        
 
-        #endregion  
+
+        #endregion
+
+        #region CONSULTAR
+        private void Consultar(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
 
         #region Limpiar Campos
 
@@ -178,6 +228,8 @@ namespace TurismoReal.Vistas.VistasFuncionario
         {
             LimpiarData();
         }
+
         #endregion
+
     }
 }

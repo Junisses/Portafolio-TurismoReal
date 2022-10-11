@@ -70,15 +70,16 @@ namespace TurismoReal.Properties {
         ///&lt;/head&gt;
         ///&lt;body style=&quot;font-family: &apos;Times New Roman&apos;&quot;&gt;
         ///    &lt;div align=&quot;center&quot;&gt;
-        ///        &lt;hr /&gt;
-        ///        &lt;h2 align=&quot;center&quot;&gt;
-        ///            &lt;img src=&quot;../Vistas/Images/Logo.png&quot; width=&quot;110&quot; height=&quot;60&quot;/&gt; &lt;br/&gt;
-        ///            Turismo Real
-        ///        &lt;/h2&gt;
+        ///        &lt;hr color=&quot;black&quot; /&gt;
+        ///
         ///        &lt;table width=&quot;300&quot; align=&quot;center&quot;&gt;
         ///            &lt;tr align=&quot;center&quot;&gt;
-        ///                &lt;td&gt;Giro: Alquiler de Deptos.&lt;/td&gt;
-        /// [resto de la cadena truncado]&quot;;.
+        ///                &lt;td&gt;BOLETA ELECTRÓNICA&lt;/td&gt;
+        ///            &lt;/tr&gt;
+        ///            &lt;tr align=&quot;center&quot;&gt;
+        ///                &lt;td&gt;Comprobante: @Ticket&lt;/td&gt;
+        ///            &lt;/tr&gt;
+        ///            &lt;tr align=&quot;ce [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string Ticket {
             get {
