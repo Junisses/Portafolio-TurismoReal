@@ -90,11 +90,21 @@ namespace TurismoReal.Vistas.VistasFuncionario
             var b = objeto_CN_Boletas.Ver(idReserva);
 
             ventana.BtnGuardar.Visibility = Visibility.Visible;
+
             ventana.idUsuario = u.IdUsuario;
             ventana.tbCliente.Text = u.Nombres.ToString() + " " + u.Apellidos.ToString();
             ventana.tbRut.Text = u.Identificacion.ToString();
+
+            ventana.txtValor.Text = "Valor multa";
+            ventana.chkMulta.IsChecked = true;
+
+            ventana.tbCantidad.Text = "1";
+            ventana.tbCantidad.Visibility = Visibility.Hidden;
+            ventana.txtCantidad.Visibility = Visibility.Hidden;
+
             ventana.cFechaPago.IsEnabled = false;
             ventana.cFechaPago.Text = b.Fecha.ToString();
+
             ventana.Titulo.Text = "Cobro de Multas Reserva #" + idReserva;
         }
     }

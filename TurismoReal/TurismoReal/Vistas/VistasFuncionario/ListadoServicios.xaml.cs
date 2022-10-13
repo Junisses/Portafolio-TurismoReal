@@ -24,6 +24,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
     public partial class ListadoServicios : UserControl
     {
         readonly CN_Servicios objeto_CN_Servicios = new CN_Servicios();
+        readonly CN_TipoServicio objeto_CN_TipoServicio = new CN_TipoServicio();
         readonly CN_Reservas objeto_CN_Reservas = new CN_Reservas();
 
         readonly CN_Boletas objeto_CN_Boletas = new CN_Boletas();
@@ -58,6 +59,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
             var u = objeto_CN_Usuarios.Consulta(a.IdUsuario);
             var b = objeto_CN_Boletas.Ver(idReserva);
             var s = objeto_CN_Servicios.Consulta(id);
+            var ds = objeto_CN_TipoServicio.Consulta(s.IdTipoServicio);
 
             ventana.tbCliente.Text = u.Nombres.ToString() + " " + u.Apellidos.ToString();
             ventana.tbRut.Text = u.Identificacion.ToString();
@@ -67,7 +69,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
             ventana.tbMonto.IsEnabled = false;
             ventana.tbValorUnitario.IsEnabled = false;
             ventana.tbValorUnitario.Text = s.Precio.ToString();
-            ventana.tbDescripcion.Text = s.Descripcion.ToString();
+            ventana.tbDescripcion.Text = ds.TipoServicio.ToString() + " " + s.Descripcion.ToString();
             ventana.Titulo.Text = "Pago de servicio Reserva #" + idReserva;
         }
 

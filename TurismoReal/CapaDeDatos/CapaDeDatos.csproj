@@ -46,6 +46,7 @@
     <Compile Include="Clases\CD_Comuna.cs" />
     <Compile Include="Clases\CD_Conexion.cs" />
     <Compile Include="Clases\CD_Departamentos.cs" />
+    <Compile Include="Clases\CD_DetalleInconveniente.cs" />
     <Compile Include="Clases\CD_EstadoDepto.cs" />
     <Compile Include="Clases\CD_Galeria.cs" />
     <Compile Include="Clases\CD_Gastos.cs" />

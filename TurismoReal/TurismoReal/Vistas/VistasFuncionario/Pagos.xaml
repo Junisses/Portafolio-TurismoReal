@@ -930,6 +930,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="30"/>
@@ -939,13 +940,12 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="10*"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="9*"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
@@ -964,7 +964,7 @@
                     Background="#751970"
                     BorderBrush="#751970"
                     Foreground="White"
-                    Click="Regresar" Margin="42,0,43,0"/>
+                    Click="Regresar" Margin="43,0,43,0"/>
             <!--#endregion-->
 
             <!--#endregion-->
@@ -1126,11 +1126,13 @@
             <!--Texto y box Descripcion-->
             <TextBlock Grid.Row="11"
                        Grid.Column="1"
+                       x:Name="txtValor"
                        Text="Valor unitario"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
             <TextBox Grid.Row="11"
                      Grid.Column="2"
+                     KeyUp="Multa"
                      x:Name="tbValorUnitario"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
@@ -1139,6 +1141,7 @@
             <!--Texto y box Descripcion-->
             <TextBlock Grid.Row="13"
                        Grid.Column="1"
+                       x:Name="txtCantidad"
                        Text="Cantidad solicitada"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
@@ -1146,10 +1149,19 @@
                      Grid.Column="2"
                      x:Name="tbCantidad"
                      Text="1"
+                     KeyUp="Calculo"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5" Margin="0,0,116,30" Grid.RowSpan="2"/>
+            
 
+            <CheckBox Grid.Row="13" 
+                      Grid.Column="2" 
+                      HorizontalAlignment="Left" 
+                      x:Name="chkMulta"
+                      Visibility="Hidden"
+                      VerticalAlignment="Center"/>
+            
             <!--Texto y box Descripcion-->
             <TextBlock Grid.Row="13"
                        Grid.Column="4"
@@ -1159,6 +1171,7 @@
             <TextBox Grid.Row="13"
                      Grid.Column="5"
                      x:Name="tbMonto"
+                     IsEnabled="False"
                      HorizontalContentAlignment="Left"
                      VerticalAlignment="Center"
                      Background="Transparent" 
@@ -1175,6 +1188,7 @@
                      Grid.Column="5"
                      x:Name="tbEfectivo"
                      Text="0"
+                     KeyUp="Vuelto"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
@@ -1193,7 +1207,7 @@
                      VerticalAlignment="Center"
                      Background="Transparent" 
                      BorderBrush="Transparent"
-                     Margin="0,0,10,30" Grid.RowSpan="2"/>
+                     Margin="0,0,0,10" Grid.RowSpan="2"/>
             <!--Texto y box Descripcion-->
             <TextBlock Grid.Row="15"
                        Grid.Column="1"
@@ -1208,6 +1222,13 @@
                      Background="#F3E5F5"/>
 
             <!--#region DataGrid-->
+            <TextBlock Grid.Row="2"
+                       Grid.Column="4"
+                       Text="Lista de boletas del cliente"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" 
+                       TextAlignment="Center"
+                       Grid.ColumnSpan="2" Width="370"/>
             <DataGrid Style="{DynamicResource DataGridStyle}" Grid.Row="3"
                       Grid.Column="4"
                       x:Name="GridDatos"
@@ -1223,7 +1244,7 @@
                       HeadersVisibility="Column"
                       GridLinesVisibility="Horizontal"
                       HorizontalGridLinesBrush="#A64B9F" 
-                      Grid.ColumnSpan="2" Margin="0,0,0,35" Grid.RowSpan="10">
+                      Grid.ColumnSpan="2" Margin="0,0,0,35" Grid.RowSpan="11">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Detalle"
                                         Width="*"
@@ -1275,18 +1296,6 @@
                     VerticalAlignment="Center" />
 
 
-            <!--#region Limpiar-->
-            <Button Style="{DynamicResource Limpiar}" x:Name="BtnLimpiar"
-                    Content="Limpiar"
-                    Grid.Row="18"
-                    Grid.Column="4"
-                    Width="100"
-                    Background="#003399"
-                    Foreground="White"
-                    BorderBrush="#003399"
-                    Click="Limpiar"/>
-            <!--#endregion-->
-
             <TextBlock x:Name="Titulo"
                        Grid.Column="2"
                        FontSize="30"
@@ -1306,11 +1315,9 @@
 
             <!--#endregion-->
             <!--#region FRAME GALERIA-->
-            <Frame  Loaded="Calculo"
-                x:Name="FramePago"
-                   Grid.Row="10"
-                   Grid.RowSpan="6"
-                   Grid.ColumnSpan="7" Margin="0,15,0,3"/>
+            <Frame x:Name="FramePago"
+                   Grid.RowSpan="3"
+                   Grid.ColumnSpan="5" Margin="157,10,0,15" Grid.Column="2"/>
             <!--#endregion-->
         </Grid>
     </Border>
