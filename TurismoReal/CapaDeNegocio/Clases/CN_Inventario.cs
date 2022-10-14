@@ -28,6 +28,11 @@ namespace CapaDeNegocio.Clases
         {
             return objDatos.CD_Consulta(idInventario);
         }
+
+        public CE_Inventario CargarInventarioIN(int idInventario)
+        {
+            return objDatos.CargarInventarioIN(idInventario);
+        }
         #endregion
 
         #region Actualizar Datos   

@@ -72,7 +72,29 @@ namespace CapaDeDatos.Clases
 
             return dt;
         }
+        #region Consultar
 
+        public CE_Inventario CargarInventarioIN(int idDepartamento)
+        {
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_IN_CargarInventario", con.AbrirConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.Add("@idDepartamento", SqlDbType.Int).Value = idDepartamento;
+
+
+            DataSet ds = new DataSet();
+            ds.Clear();
+            da.Fill(ds);
+            DataTable dt;
+            dt = ds.Tables[0];
+            DataRow row = dt.Rows[0];
+            ce.Cantidad = Convert.ToInt32(row[1]);
+            ce.IdDepartamento = Convert.ToInt32(row[2]);
+            ce.IdArtefactos = Convert.ToInt32(row[3]);
+
+            return ce;
+        }
+
+        #endregion
         #endregion 
 
         #region Actualizar Datos

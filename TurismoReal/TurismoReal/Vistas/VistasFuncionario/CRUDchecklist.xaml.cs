@@ -1,4 +1,5 @@
-﻿using CapaDeNegocio.Clases;
+﻿using CapaDeEntidad.Clases;
+using CapaDeNegocio.Clases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,9 @@ namespace TurismoReal.Vistas.VistasFuncionario
     public partial class CRUDchecklist : Page
     {
         readonly CN_Artefactos objeto_CN_Artefactos = new CN_Artefactos();
+        readonly CN_Inventario objeto_CN_Inventario = new CN_Inventario();
+        readonly CE_Inventario objeto_CE_Inventario = new CE_Inventario();
+
         public CRUDchecklist()
         {
             InitializeComponent();
@@ -40,41 +44,45 @@ namespace TurismoReal.Vistas.VistasFuncionario
         }
         #endregion
 
+        #region CARGAR inventario
+        void CargarDatos()
+        {
+            GridCheck.ItemsSource = objeto_CN_Inventario.CargarInventario(idDepartamento).DefaultView;
+        }
+        #endregion
+
         #region Regresar
         private void Regresar(object sender, RoutedEventArgs e)
         {
-            Content = new Inventario();
+            Content = new CheckList();
         }
         #endregion
 
-
-        #region Crear
-        private void Crear(object sender, RoutedEventArgs e)
-        {
-
-        }
-        #endregion
-
-        #region Actualizar
-        private void Actualizar(object sender, RoutedEventArgs e)
-        {
-
-        }
-        #endregion
+        public int idArtefactos;
+        public int idInventario;
+        public int idDepartamento;
+        
 
         #region Consultar
         private void Consultar(object sender, RoutedEventArgs e)
         {
+            int id = (int)((Button)sender).CommandParameter;
+            tbIDdepto.IsEnabled = false;
+            tbCantidad.IsEnabled = false;
+            cbArtefacto.IsEnabled = false;
 
+            var a = objeto_CN_Inventario.Consulta(id);
+            var c = objeto_CN_Artefactos.NombreArtefacto(a.IdArtefactos);
+
+            tbCantidad.Text = a.Cantidad.ToString();
+            cbArtefacto.Text = c.Descripcion.ToString();
         }
         #endregion
 
-        #region Eliminar
-        private void Eliminar(object sender, RoutedEventArgs e)
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-
+            CargarDatos();
         }
-        #endregion
-
     }
 }

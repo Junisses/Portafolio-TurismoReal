@@ -27,6 +27,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
         readonly CE_Reservas objeto_CE_Reservas = new CE_Reservas();
 
         readonly CN_Boletas objeto_CN_Boletas = new CN_Boletas();
+        readonly CN_Departamentos objeto_CN_Departamentos = new CN_Departamentos();
         readonly CN_Usuarios objeto_CN_Usuarios = new CN_Usuarios();
 
         public CheckInOut()
@@ -48,8 +49,10 @@ namespace TurismoReal.Vistas.VistasFuncionario
             CRUDin ventana = new CRUDin();
             ventana.idReserva = id;
             ventana.Consultar();
+            var a = objeto_CN_Reservas.Consulta(id);
             FrameCheckINOUT.Content = ventana;
             ventana.Titulo.Text = "CHECK IN Reserva N°" + id;
+            ventana.idDepartamento = a.IdDepartamento;
             
         }
 

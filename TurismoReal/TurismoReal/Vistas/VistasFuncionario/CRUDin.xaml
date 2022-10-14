@@ -763,7 +763,7 @@
     </Page.Resources>
     <Border Background="Transparent"
             CornerRadius="10">
-        <Grid>
+        <Grid Loaded="Cargar">
             <!--#region Columnas y filas-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
@@ -842,6 +842,13 @@
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
+
+            <TextBox Grid.Row="0"
+                     Grid.Column="2"
+                     IsEnabled="false"
+                     Visibility="Hidden"
+                     x:Name="tbIDdepto"
+                     HorizontalContentAlignment="Center"/>
 
             <!--Texto y box Cliente rut-->
             <TextBlock Grid.Row="3"
@@ -1027,13 +1034,44 @@
                     CommandParameter="{Binding idReserva}"
                     />
             <!--#endregion-->
-
+            <!--#region DataGrid-->
+            <DataGrid Grid.Row="4"
+                      Grid.Column="4"
+                      x:Name="GridCheck"
+                      AutoGenerateColumns="False"
+                      Background="GhostWhite"
+                      Foreground="#A64B9F"
+                      FontSize="15"
+                      CanUserAddRows="False"
+                      CanUserResizeColumns="True"
+                      CanUserResizeRows="False"
+                      CanUserSortColumns="False"
+                      RowBackground="Transparent"
+                      HeadersVisibility="Column"
+                      GridLinesVisibility="Horizontal"
+                      HorizontalGridLinesBrush="#A64B9F" 
+                      Grid.ColumnSpan="2" Margin="0,0,0,35" Grid.RowSpan="10">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Artefacto"
+                                        Width="*"
+                                        Binding="{Binding descripcion}"/>
+                    <DataGridTextColumn Header="Cantidad"
+                                        Width="*"
+                                        Binding="{Binding cantidad}"/>
+                    <DataGridTextColumn Header="Valor Unitario"
+                                        Width="*"
+                                        Binding="{Binding valor}"/>
+                    <DataGridTemplateColumn Header="Opciones"
+                                            Width="100">
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
             <!--#endregion-->
             <!--#region FRAME GALERIA-->
             <Frame x:Name="FramePago"
                    Grid.Row="0"
-                   Grid.RowSpan="19"
-                   Grid.ColumnSpan="7"/>
+                   Grid.RowSpan="18"
+                   Grid.ColumnSpan="7" Margin="0,0,0,15"/>
             <!--#endregion-->
         </Grid>
 

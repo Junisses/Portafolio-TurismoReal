@@ -362,7 +362,8 @@ namespace TurismoReal.Vistas.VistasFuncionario
             {
                 using (FileStream stream = new FileStream(savefile.FileName, FileMode.Create))
                 {
-                    Document document = new Document();
+                    Rectangle pagesize = new Rectangle(298, 520);
+                    Document document = new Document(pagesize, 25, 25, 25, 25);
                     PdfWriter writer = PdfWriter.GetInstance(document, stream);
                     document.Open();
 

@@ -68,6 +68,7 @@ namespace CapaDeDatos.Clases
 
             ce.PrecioNocheReserva = Convert.ToInt32(row[8]);
             ce.Saldo = Convert.ToInt32(row[9]);
+            ce.IdDepartamento = Convert.ToInt32(row[10]);
             ce.IdUsuario = Convert.ToInt32(row[11]);
 
             return ce;

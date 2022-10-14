@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TurismoReal.Vistas.VistasFuncionario"
              mc:Ignorable="d" 
-             d:DesignHeight="550" d:DesignWidth="900"
+              d:DesignHeight="550" d:DesignWidth="900"
              Background="GhostWhite">
     <!--#region EstiloBOXbuscar-->
     <UserControl.Resources>
@@ -135,6 +135,64 @@
             </Setter>
         </Style>
         <!--#endregion-->
+        <!--#region estilo BTNACTUALIZAR-->
+        <Style x:Key="FocusVisual2">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background2" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border2" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background2" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border2" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background2" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border2" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background2" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border2" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground2" Color="#FF838383"/>
+        <Style x:Key="estiloACT" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual2}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background2}"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="10" x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#46CCFF"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#46CCFF"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#1255AA"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#1255AA"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background2}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border2}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground2}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--#endregion-->
+
         <!--#region DISEÑO grid-->
         <Style x:Key="diseñoGrid" TargetType="{x:Type DataGrid}">
             <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
@@ -253,7 +311,7 @@
                 <!--#region titulo-->
                 <TextBlock Grid.Row="0"
                        Grid.ColumnSpan="6"
-                       Text="CheckList de Departamentos"
+                       Text="Lista de inmuebles por Departamento"
                        Foreground="Black"
                        FontSize="30"
                        HorizontalAlignment="Center"
@@ -272,64 +330,52 @@
                 <!--#endregion-->
                 <!--#region textbox-->
                 <TextBox Style="{DynamicResource TextBoxStyle}" 
-                         TextAlignment="Center"
-                     Background="Transparent"
-                     BorderBrush="#AB47BC"
-                     Grid.Column="2"
-                     Grid.Row="2"
-                     FontSize="20"/>
+                         TextAlignment="Left"
+                         Foreground="Black"
+                         FontSize="15"
+                         x:Name="tbBuscar"
+                         Background="Transparent"
+                         BorderBrush="#AB47BC"
+                         Grid.Column="2"
+                         Grid.Row="2"/>
+                <TextBlock IsHitTestVisible="False" 
+                           Text="Ingrese nombre del Depto" 
+                           VerticalAlignment="Center" 
+                           Grid.Column="2"
+                           Grid.Row="2"
+                           HorizontalAlignment="Left" Margin="5,0,0,3" 
+                           Foreground="DarkGray">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger 
+                                    Binding="{Binding Text, ElementName=tbBuscar}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
                 <!--#endregion-->
                 <!--#region boton buscar-->
-                <Button Style="{DynamicResource ButtonStylebuscar}" 
+                <Button Style="{DynamicResource ButtonStylebuscar}"
                         Grid.Column="3"
                     Grid.Row="2"
                     Background="#751970"
                     BorderBrush="#751970"
-                    Margin="10,0,0,0"
+                    Margin="1,0,1,0"
                     Cursor="Hand"
-                    Width="100"
+                    Width="35"
                     x:Name="BtnBuscar"
+                    Click="Ver"
                     HorizontalAlignment="Left">
-                    <TextBlock Text="Buscar"
-                           Foreground="White"
-                           FontSize="15"/>
-                </Button>
-                <!--#endregion-->
-                <!--#region boton crear-->
-                <Button Style="{DynamicResource ButtonStylebuscar}" 
-                        Grid.Column="4"
-                    Grid.Row="2"
-                    Background="#1E88E5"
-                    BorderBrush="#1E88E5"
-                    Margin="10,0,0,0"
-                    Cursor="Hand"
-                    Width="142"
-                    x:Name="BtnAgregarArtefacto"
-                    HorizontalAlignment="Left"
-                    Click="BtnAgregarArtefacto_Click">
-                    <TextBlock Text="Agregar Artefacto"
-                           Foreground="white"
-                           FontSize="15"/>
-                </Button>
-                <!--#endregion-->
-                <!--#region boton Inventario-->
-                <Button Style="{DynamicResource ButtonStylebuscar}"
-                    Background="#1E88E5"
-                    BorderBrush="#1E88E5"
-                    Margin="10,0,0,0"
-                    Cursor="Hand"
-                    Width="142"
-                    x:Name="BtnAñadirInventario"
-                    HorizontalAlignment="Left"
-                    Click="BtnInventario_Click" 
-                        Grid.Column="4" 
-                        Grid.Row="6">
-                    <TextBlock Text="Añadir al inventario"
-                           Foreground="white"
-                           FontSize="15"/>
+                    <Image Width="20" Source="/Vistas/Images/buscar.png"></Image>
                 </Button>
 
                 <!--#endregion-->
+
+
                 <!--#endregion-->
                 <!--#region DataGrid-->
                 <DataGrid Style="{DynamicResource diseñoGrid}" Grid.Row="4"
@@ -350,42 +396,28 @@
                       GridLinesVisibility="Horizontal"
                       HorizontalGridLinesBrush="#A64B9F">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="Opciones del gestión"
-                                            Width="245">
+                        <DataGridTemplateColumn Header="Seleccionar"
+                                            Width="100">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <DockPanel>
-                                        <Button Content="Consultar"
-                                            x:Name="BtnConsultar"
-                                            Background="#751970"
-                                            Width="80"
-                                            BorderBrush="Transparent"
-                                            Foreground="White"
-                                            Style="{DynamicResource ButtonStylebuscar}" 
-                                            Click="Consultar"
-                                            Cursor="Hand"
-                                            CommandParameter="{Binding idDepartamento}"/>
-                                        <Button Content="Modificar"
-                                            x:Name="BtnModificar"
-                                            Background="#751970"
-                                            Width="80" 
-                                            Cursor="Hand"
-                                            Foreground="White"
-                                            BorderBrush="Transparent"
-                                            CommandParameter="{Binding idDepartamento}"
-                                            Style="{DynamicResource ButtonStylebuscar}" 
-                                            Click="Actualizar"/>
-                                        <Button Content="Eliminar"
-                                            x:Name="BtnEliminar"
-                                            Background="Red"
-                                            Foreground="White"
-                                            Width="80" 
-                                            Cursor="Hand"
-                                            BorderBrush="Transparent"
-                                            Style="{DynamicResource ButtonStylebuscar}"
-                                            CommandParameter="{Binding idDepartamento}" 
-                                            Click="Eliminar"/>
+                                        <!--#region boton Inventario-->
+                                        <Button 
+                                                Margin="35,5,0,5"
+                                                Cursor="Hand"
+                                                Width="30"
+                                                Height="30"
+                                                BorderBrush="Transparent"
+                                                Background="Transparent"
+                                                Foreground="black"
+                                                x:Name="BtnAñadirInventario"
+                                                HorizontalAlignment="Left"
+                                                Click="Consultar" 
+                                                CommandParameter="{Binding idDepartamento}">
+                                            <Image Source="/Vistas/Images/inventario.png" />
+                                        </Button>
 
+                                        <!--#endregion-->
                                     </DockPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaDeNegocio.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,47 +22,50 @@ namespace TurismoReal.Vistas.VistasFuncionario
     /// </summary>
     public partial class CheckList : UserControl
     {
+        readonly CN_Departamentos objeto_CN_Departamentos = new CN_Departamentos();
+
         public CheckList()
         {
             InitializeComponent();
+            CargarDatos();
         }
-        #region AGREGAR
-        private void BtnAgregarArtefacto_Click(object sender, RoutedEventArgs e)
+
+        #region CARGAR Departamentos
+        void CargarDatos()
         {
-            CRUDartefacto ventana = new CRUDartefacto();
-            FrameInventario.Content = ventana;
-            ventana.BtnCrear.Visibility = Visibility.Visible;
+            GridDatos.ItemsSource = objeto_CN_Departamentos.CargarDeptos().DefaultView;
         }
         #endregion
 
-        #region AGREGAR
-        private void BtnInventario_Click(object sender, RoutedEventArgs e)
-        {
-            CRUDinventario ventana = new CRUDinventario();
-            FrameInventario.Content = ventana;
-            ventana.BtnCrear.Visibility = Visibility.Visible;
-        }
-        #endregion
-
-        #region CONSULTAR
+        #region VER INVENTARIO SEGÚN DEPTO
         private void Consultar(object sender, RoutedEventArgs e)
         {
-
+            int id = (int)((Button)sender).CommandParameter;
+            CRUDchecklist ventana = new CRUDchecklist();
+            ventana.idDepartamento = id;
+            FrameInventario.Content = ventana;
+            ventana.tbIDdepto.Text = "" + id;
+            ventana.Titulo.Text = "Lista de inmuebles Depto. N°" + id;
         }
-        #endregion
 
-        #region ACTUALIZAR
-        private void Actualizar(object sender, RoutedEventArgs e)
+        #endregion  
+
+
+        #region FUNCION BUSCAR
+        #region Limpiar
+        public void LimpiarData()
         {
-
+            tbBuscar.Clear();
         }
-        #endregion
 
-        #region ELIMINAR
-        private void Eliminar(object sender, RoutedEventArgs e)
+        #endregion
+        private void Ver(object sender, RoutedEventArgs e)
         {
-
+            GridDatos.ItemsSource = objeto_CN_Departamentos.BuscarDepto(tbBuscar.Text).DefaultView;
+            LimpiarData();
         }
         #endregion
+
+
     }
 }
