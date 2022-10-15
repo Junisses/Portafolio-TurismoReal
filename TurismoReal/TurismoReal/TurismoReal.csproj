@@ -432,6 +432,8 @@
   <ItemGroup>
     <Content Include="Resources\CheckIN.html" />
     <Content Include="Resources\Ticket.html" />
+    <Resource Include="Vistas\Images\pdf1.png" />
+    <Resource Include="Vistas\Images\pdf2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

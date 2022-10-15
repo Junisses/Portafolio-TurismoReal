@@ -84,7 +84,6 @@ namespace TurismoReal.Vistas.VistasFuncionario
         {
             if (cFechaIngreso.Text != "")
             {
-                string comprobante = "CheckIN-" + DateTime.Now.ToString("HHmmssddMMyyyy") + "-0" + idReserva;
                 objeto_CE_Reservas.IdReserva = idReserva;
                 objeto_CE_Reservas.CheckIN = DateTime.Parse(cFechaIngreso.Text);
 
@@ -93,7 +92,6 @@ namespace TurismoReal.Vistas.VistasFuncionario
                 BtnCrear.IsEnabled = false;
                 cFechaIngreso.IsEnabled = false;
 
-                Imprimir(comprobante);
             }
             else
             {
@@ -103,6 +101,13 @@ namespace TurismoReal.Vistas.VistasFuncionario
 
 
         #region IMPRIMIR
+
+        private void Descargar(object sender, RoutedEventArgs e)
+        {
+            string comprobante = "CheckIN-" + DateTime.Now.ToString("HHmmssddMMyyyy") + "-0" + idReserva;
+            Imprimir(comprobante);
+        }
+
         void Imprimir(string comprobante)
         {
             SaveFileDialog savefile = new SaveFileDialog
@@ -140,18 +145,21 @@ namespace TurismoReal.Vistas.VistasFuncionario
             for (int i = 0; i < GridCheck.Items.Count; i++)
             {
                 var id = objeto_CN_Reservas.Consulta(idReserva);
-                var cargado = objeto_CN_Inventario.Consulta(i + 1);
                 var inv = objeto_CN_Inventario.CargarInventarioIN(id.IdDepartamento);
-                var art = objeto_CN_Artefactos.NombreArtefacto(inv.IdArtefactos + i);
+                var art = objeto_CN_Artefactos.Consulta(inv.IdArtefactos + i);
+
+                int idinv = inv.IdInventario + 1;
+                var descp = objeto_CN_Inventario.Consulta(idinv + i);
 
                 string descripcion = art.Descripcion.ToString();
-                string cantidad = cargado.Cantidad.ToString();
-                string valor = art.Valor.ToString();
+                int resultado = int.Parse(art.Valor.ToString());
+
+                int cantidad = int.Parse(descp.Cantidad.ToString());
 
                 filas += "<tr>";
                 filas += "<td align=\"left\">" + descripcion + "</td>";
                 filas += "<td align=\"center\">" + cantidad + "</td>";
-                filas += "<td align=\"right\">" + valor + "</td>";
+                filas += "<td align=\"right\">" + resultado + "</td>";
                 filas += "</tr>";
             }
             Pagina = Pagina.Replace("@listado", filas);
@@ -217,5 +225,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
         {
             CargarDatos();
         }
+
+
     }
 }

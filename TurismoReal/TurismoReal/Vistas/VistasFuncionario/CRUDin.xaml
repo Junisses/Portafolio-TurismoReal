@@ -289,6 +289,63 @@
             </Style.Triggers>
         </Style>
         <!--#endregion-->
+        <!--#region Agregar tipo servicio-->
+        <Style x:Key="FocusVisual6">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background4" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Static.Border4" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background4" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border4" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background4" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border4" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background4" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border4" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground4" Color="Transparent"/>
+        <Style x:Key="AgregarTipoServicio" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual6}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background4}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border4}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background4}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border4}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background4}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border4}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background4}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border4}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground4}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--#endregion-->
         <!--#region comboboxSTYLE-->
         <Style x:Key="FocusVisual4">
             <Setter Property="Control.Template">
@@ -791,8 +848,8 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="10*"/>
                 <RowDefinition Height="30"/>
+                <RowDefinition Height="10*"/>
                 <RowDefinition Height="20"/>
 
             </Grid.RowDefinitions>
@@ -815,16 +872,52 @@
             <!--#endregion-->
             <!--#region CREAR-->
             <Button x:Name="BtnCrear"
-                    Content="Guardar"
-                    Grid.Row="17"
+                    Content="Ingresar CHECK IN"
+                    Grid.Row="16"
                     Grid.Column="5"
-                    Width="100"
+                    Width="150"
                     Background="Green"
                     Foreground="White"
                     Style="{DynamicResource estiloCrear}"
-                    Click="Crear" Margin="43,0,42,0"/>
+                    Click="Crear"/>
             <!--#endregion-->
 
+            <!--#region BOTON DESCARGAR-->
+            <TextBlock Grid.Row="16"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="Descargar Documento CHECK IN"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="16"
+                       Grid.Column="1"
+                       Foreground="Gray"
+                       FontSize="10"
+                       Text="Se recomienda generar el documento"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top" Margin="0,27,0,0" Grid.RowSpan="2"/>
+            <TextBlock Grid.Row="17"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Foreground="Gray"
+                       FontSize="10"
+                       Text="luego de realizar el pago completo de la reserva*"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top" Margin="0,6,0,0"/>
+            <Button Style="{DynamicResource AgregarTipoServicio}"
+                    x:Name="BtnDescargar"
+                    Grid.Column="2"
+                    Grid.Row="15"
+                    Cursor="Hand"
+                    Width="50"
+                    Height="50"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Click="Descargar" Margin="10,0,92,0" 
+                    Grid.RowSpan="3">
+                <Image Source="/Vistas/Images/pdf1.png" />
+            </Button>
+            <!--#endregion-->
 
             <!--#endregion-->
             <!--#region CONTENIDO-->
@@ -1044,6 +1137,7 @@
                       FontSize="15"
                       CanUserAddRows="False"
                       CanUserResizeColumns="True"
+                      Visibility="Hidden"
                       CanUserResizeRows="False"
                       CanUserSortColumns="False"
                       RowBackground="Transparent"
@@ -1070,8 +1164,8 @@
             <!--#region FRAME GALERIA-->
             <Frame x:Name="FramePago"
                    Grid.Row="0"
-                   Grid.RowSpan="18"
-                   Grid.ColumnSpan="7" Margin="0,0,0,15"/>
+                   Grid.RowSpan="14"
+                   Grid.ColumnSpan="7" Margin="0,0,0,10"/>
             <!--#endregion-->
         </Grid>
 
