@@ -1,4 +1,5 @@
 ﻿using CapaDeNegocio.Clases;
+using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,26 @@ namespace TurismoReal.Vistas.VistasAdmin
             GridDatos.ItemsSource = objeto_CN_Boletas.CargarBoletas().DefaultView;
         }
         #endregion
+
+        #region Limpiar
+        public void LimpiarData()
+        {
+            tbBuscar.Clear();
+        }
+
+        #endregion
+        private void Ver(object sender, RoutedEventArgs e)
+        {
+            if (tbBuscar.Text != "")
+            {
+                GridDatos.ItemsSource = objeto_CN_Boletas.Buscar(tbBuscar.Text).DefaultView;
+            }
+            else
+            {
+                MessageBox.Show("Ingrese N° de comprobante para buscar");
+            }
+            LimpiarData();
+        }
     }
 
 }

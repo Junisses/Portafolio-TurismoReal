@@ -144,9 +144,8 @@ namespace TurismoReal.Vistas.VistasAdmin
             {
                 GridDatos.ItemsSource = objeto_CN_Usuarios.Filtro(cbFiltroTipo.Text).DefaultView;
             }
-            LimpiarData();
-
-            #endregion
+            LimpiarData(); 
         }
+        #endregion
     }
 }

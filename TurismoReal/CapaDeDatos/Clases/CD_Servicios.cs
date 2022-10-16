@@ -116,6 +116,23 @@ namespace CapaDeDatos.Clases
 
         #endregion
 
+        #region CARGAR LISTADO SERVICIOS DISPONIBLES
+
+        public DataTable CargarListado()
+        {
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_LS_ListarServ", con.AbrirConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            DataSet ds = new DataSet();
+            ds.Clear();
+            da.Fill(ds);
+            DataTable dt = ds.Tables[0];
+            con.CerrarConexion();
+
+            return dt;
+        }
+
+        #endregion
+
         #region BUSCAR SERVICIOS
 
         public DataTable BuscarServ(string buscarServ)
@@ -123,6 +140,20 @@ namespace CapaDeDatos.Clases
             SqlDataAdapter da = new SqlDataAdapter("dbo.SP_S_BuscarServicio", con.AbrirConexion());
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
             da.SelectCommand.Parameters.Add("@buscarServ", SqlDbType.VarChar).Value = buscarServ;
+            DataSet ds = new DataSet();
+            ds.Clear();
+            da.Fill(ds);
+            DataTable dt = ds.Tables[0];
+            con.CerrarConexion();
+
+            return dt;
+        }
+
+        public DataTable BuscarServDispo(string servDispo)
+        {
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_LS_Buscar", con.AbrirConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.Add("@buscarServ", SqlDbType.VarChar).Value = servDispo;
             DataSet ds = new DataSet();
             ds.Clear();
             da.Fill(ds);

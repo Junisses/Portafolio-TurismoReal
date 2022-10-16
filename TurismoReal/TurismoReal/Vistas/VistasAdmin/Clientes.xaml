@@ -249,6 +249,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -256,6 +257,7 @@
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="20"/>
+                    <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -272,17 +274,15 @@
                        VerticalAlignment="Center"/>
                 <!--#endregion-->
                 <!--#region Buscador-->
-                <!--#region texto-->
                 <TextBlock Grid.Row="2"
                        Grid.Column="1"
-                       Text="Buscar cliente"
+                       Text="Buscar usuario"
                        Foreground="Black"
                        FontSize="15"
                        HorizontalAlignment="Right"
                        VerticalAlignment="Center"
                        Margin="0,0,10,0"/>
-                <!--#endregion-->
-                <!--#region textbox-->
+                
                 <TextBox Style="{DynamicResource TextBoxStyle}" 
                          TextAlignment="Left"
                          Foreground="Black"
@@ -293,7 +293,7 @@
                          Grid.Column="2"
                          Grid.Row="2"/>
                 <TextBlock IsHitTestVisible="False" 
-                           Text="Ingrese Rut/Pasaporte" 
+                           Text="Ingrese Nombre / Apellido" 
                            VerticalAlignment="Center" 
                            Grid.Column="2"
                            Grid.Row="2"
@@ -312,13 +312,54 @@
                     </TextBlock.Style>
                 </TextBlock>
                 <!--#endregion-->
-                <!--#region boton buscar-->
+
+                <!--#region textbox-->
+                <TextBlock Grid.Row="2"
+                       Grid.Column="3"
+                       Text="Buscar por DNI"
+                       Foreground="Black"
+                       FontSize="15"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Margin="0,0,10,0"/>
+                
+                <TextBox Style="{DynamicResource TextBoxStyle}" 
+                         TextAlignment="Left"
+                         Foreground="Black"
+                         FontSize="15"
+                         x:Name="tbRut"
+                         Background="Transparent"
+                         BorderBrush="#AB47BC"
+                         Grid.Column="4"
+                         Grid.Row="2"/>
+                <TextBlock IsHitTestVisible="False" 
+                           Text="Ingrese DNI" 
+                           VerticalAlignment="Center" 
+                           Grid.Column="4"
+                           Grid.Row="2"
+                           HorizontalAlignment="Left" Margin="5,0,0,3" 
+                           Foreground="DarkGray">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger 
+                                    Binding="{Binding Text, ElementName=tbRut}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <!--#endregion-->
+                
+                
                 <Button Style="{DynamicResource ButtonStylebuscar}"
-                        Grid.Column="3"
+                        Grid.Column="5"
                     Grid.Row="2"
                     Background="#751970"
                     BorderBrush="#751970"
-                    Margin="1,0,1,0"
+                    Margin="0,0,1,0"
                     Cursor="Hand"
                     Width="35"
                     x:Name="BtnBuscar"
@@ -328,13 +369,12 @@
                 </Button>
 
                 <!--#endregion-->
-
                 <!--#endregion-->
                 <!--#region DataGrid-->
                 <DataGrid Style="{DynamicResource diseñoGrid}" Grid.Row="4"
                       Grid.Column="1"
-                      Grid.ColumnSpan="4"
-                      Grid.RowSpan="2"
+                      Grid.ColumnSpan="5"
+                      Grid.RowSpan="3"
                       x:Name="GridDatos"
                       AutoGenerateColumns="False"
                       Background="GhostWhite"

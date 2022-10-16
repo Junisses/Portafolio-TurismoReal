@@ -1,4 +1,5 @@
 ﻿using CapaDeNegocio.Clases;
+using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,27 @@ namespace TurismoReal.Vistas.VistasAdmin
             GridDatos.ItemsSource = objeto_CN_Reservas.CargarReservas().DefaultView;
         }
         #endregion
+
+        #region Limpiar
+        public void LimpiarData()
+        {
+            tbBuscar.Clear();
+            tbRut.Clear();
+        }
+
+        #endregion
+        private void Ver(object sender, RoutedEventArgs e)
+        {
+            if (tbBuscar.Text != "")
+            {
+                GridDatos.ItemsSource = objeto_CN_Reservas.BuscarN(tbBuscar.Text).DefaultView;
+            }
+            else if (tbRut.Text != "")
+            {
+                GridDatos.ItemsSource = objeto_CN_Reservas.BuscarR(tbRut.Text).DefaultView;
+            }
+            LimpiarData();
+        }
     }
 
 }

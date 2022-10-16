@@ -41,5 +41,19 @@ namespace CapaDeNegocio.Clases
         }
 
         #endregion
+
+        #region BUSCAR USUARIOS
+
+        public DataTable BuscarR(string buscarrut)
+        {
+            return objDatos.BuscarR(buscarrut);
+        }
+
+        public DataTable BuscarN(string buscar)
+        {
+            return objDatos.BuscarN(buscar);
+        }
+
+        #endregion
     }
 }

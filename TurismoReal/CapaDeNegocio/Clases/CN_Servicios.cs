@@ -47,12 +47,18 @@ namespace CapaDeNegocio.Clases
 
         #endregion
 
-        #region CARGAR DEPTOS A LA VISTA
+        #region CARGAR SERVICIOS A LA VISTA
 
         public DataTable CargarServicio()
         {
             return objDatos.CargarServicio();
         }
+
+        public DataTable CargarListado()
+        {
+            return objDatos.CargarListado();
+        }
+
 
         #endregion
 
@@ -61,6 +67,11 @@ namespace CapaDeNegocio.Clases
         public DataTable BuscarServ(string buscarServ)
         {
             return objDatos.BuscarServ(buscarServ);
+        }
+
+        public DataTable BuscarServDispo(string servDispo)
+        {
+            return objDatos.BuscarServDispo(servDispo);
         }
 
         #endregion

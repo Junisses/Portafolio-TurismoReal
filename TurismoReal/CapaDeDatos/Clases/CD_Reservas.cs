@@ -115,5 +115,43 @@ namespace CapaDeDatos.Clases
         }
 
         #endregion
+
+        #region BUSCAR 
+        #region BUSCAR RESERVAS POR RUT
+
+        public DataTable BuscarR(string buscarrut)
+        {
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_RC_BuscarReserva", con.AbrirConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.Add("@buscarrut", SqlDbType.VarChar).Value = buscarrut;
+            DataSet ds = new DataSet();
+            ds.Clear();
+            da.Fill(ds);
+            DataTable dt = ds.Tables[0];
+            con.CerrarConexion();
+
+            return dt;
+        }
+
+        #endregion
+
+        #region BUSCAR RESERVAS POR NOMBRE O APELLIDO
+
+        public DataTable BuscarN(string buscar)
+        {
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_RC_BuscarNC", con.AbrirConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.Add("@buscar", SqlDbType.VarChar).Value = buscar;
+            DataSet ds = new DataSet();
+            ds.Clear();
+            da.Fill(ds);
+            DataTable dt = ds.Tables[0];
+            con.CerrarConexion();
+
+            return dt;
+        }
+
+        #endregion
+        #endregion
     }
 }

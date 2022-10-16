@@ -18,9 +18,6 @@ using TurismoReal.Vistas.VistasAdmin;
 
 namespace TurismoReal.Vistas.VistasFuncionario
 {
-    /// <summary>
-    /// Lógica de interacción para ListadoServicios.xaml
-    /// </summary>
     public partial class ListadoServicios : UserControl
     {
         readonly CN_Servicios objeto_CN_Servicios = new CN_Servicios();
@@ -40,7 +37,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
         #region CARGAR Servicios
         void CargarDatos()
         {
-            GridDatos.ItemsSource = objeto_CN_Servicios.CargarServicio().DefaultView;
+            GridDatos.ItemsSource = objeto_CN_Servicios.CargarListado().DefaultView;
         }
         #endregion
         public int idReserva;
@@ -83,7 +80,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
         #endregion
         private void Ver(object sender, RoutedEventArgs e)
         {
-            GridDatos.ItemsSource = objeto_CN_Servicios.BuscarServ(tbBuscar.Text).DefaultView;
+            GridDatos.ItemsSource = objeto_CN_Servicios.BuscarServDispo(tbBuscar.Text).DefaultView;
             LimpiarData();
         }
         #endregion

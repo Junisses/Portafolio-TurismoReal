@@ -82,5 +82,26 @@ namespace TurismoReal.Vistas.VistasFuncionario
             FrameCheckINOUT.Content = ventana;
             ventana.Titulo.Text = "CHECK OUT Reserva N°" + id;
         }
+
+        #region Limpiar
+        public void LimpiarData()
+        {
+            tbBuscar.Clear();
+            tbRut.Clear();
+        }
+
+        #endregion
+        private void Ver(object sender, RoutedEventArgs e)
+        {
+            if (tbBuscar.Text != "")
+            {
+                GridDatos.ItemsSource = objeto_CN_Reservas.BuscarN(tbBuscar.Text).DefaultView;
+            }
+            else if (tbRut.Text != "")
+            {
+                GridDatos.ItemsSource = objeto_CN_Reservas.BuscarR(tbRut.Text).DefaultView;
+            }
+            LimpiarData();
+        }
     }
 }

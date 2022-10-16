@@ -339,7 +339,7 @@
                          Grid.Column="2"
                          Grid.Row="2"/>
                 <TextBlock IsHitTestVisible="False" 
-                           Text="Ingrese nombre del Depto" 
+                           Text="Ingrese dirección" 
                            VerticalAlignment="Center" 
                            Grid.Column="2"
                            Grid.Row="2"
@@ -435,18 +435,24 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="ID"
-                                        Width="50"
-                                        Binding="{Binding idDepartamento}"/>
-                        <DataGridTextColumn Header="Artefacto"
+                        <DataGridTextColumn Header="Descripcion"
                                         Width="*"
                                         Binding="{Binding descripcion}"/>
-                        <DataGridTextColumn Header="Cantidad"
+                        <DataGridTextColumn Header="Dirección"
                                         Width="*"
-                                        Binding="{Binding cantidad}"/>
-                        <DataGridTextColumn Header="Valor"
+                                        Binding="{Binding direccion}"/>
+                        <DataGridTextColumn Header="Piezas"
+                                        Width="50"
+                                        Binding="{Binding cantHabitaciones}"/>
+                        <DataGridTextColumn Header="Baños"
+                                        Width="50"
+                                        Binding="{Binding cantBanos}"/>
+                        <DataGridTextColumn Header="Precio Noche"
                                         Width="*"
-                                        Binding="{Binding valor}"/>
+                                        Binding="{Binding precioNoche}"/>
+                        <DataGridTextColumn Header="Estado"
+                                        Width="*"
+                                        Binding="{Binding estadoDepto}"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <!--#endregion-->
