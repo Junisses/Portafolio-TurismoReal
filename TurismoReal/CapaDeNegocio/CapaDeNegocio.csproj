@@ -51,6 +51,7 @@
     <Compile Include="Clases\CN_Gastos.cs" />
     <Compile Include="Clases\CN_Inventario.cs" />
     <Compile Include="Clases\CN_Region.cs" />
+    <Compile Include="Clases\CN_Reportes.cs" />
     <Compile Include="Clases\CN_Reservas.cs" />
     <Compile Include="Clases\CN_Servicios.cs" />
     <Compile Include="Clases\CN_TipoGasto.cs" />

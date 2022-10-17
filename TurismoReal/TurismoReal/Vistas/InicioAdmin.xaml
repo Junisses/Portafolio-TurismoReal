@@ -748,6 +748,7 @@
                                     Width="185"
                                     HorizontalAlignment="Left"
                                     Cursor="Hand"
+                                    Click="Reportes"
                                     Background="Transparent"
                                     BorderBrush="Transparent">
                                 <Grid Width="190">

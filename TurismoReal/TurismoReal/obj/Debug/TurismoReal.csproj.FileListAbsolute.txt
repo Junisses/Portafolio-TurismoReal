@@ -99,3 +99,7 @@ C:\TurismoReal\TurismoReal\TurismoReal\bin\Debug\NPOI.OOXML.xml
 C:\TurismoReal\TurismoReal\TurismoReal\bin\Debug\NPOI.OpenXml4Net.pdb
 C:\TurismoReal\TurismoReal\TurismoReal\bin\Debug\NPOI.OpenXml4Net.xml
 C:\TurismoReal\TurismoReal\TurismoReal\bin\Debug\NPOI.OpenXmlFormats.pdb
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\Reportes.g.cs
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\Reportes.baml
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDreportes.g.cs
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDreportes.baml

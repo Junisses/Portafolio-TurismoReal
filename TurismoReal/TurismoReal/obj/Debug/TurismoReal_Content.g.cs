@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/checkin.html")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/reporte.html")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/ticket.html")]
 
 

@@ -54,8 +54,8 @@ namespace CapaDeDatos.Clases
 
             return ce;
         }
-
         #endregion
+
         #region CARGAR INVENTARIO A LA VISTA
 
         public DataTable CargarInventario(int idDepartamento)

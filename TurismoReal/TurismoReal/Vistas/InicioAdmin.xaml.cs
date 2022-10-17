@@ -98,5 +98,9 @@ namespace TurismoReal.Vistas
             this.Close();
         }
 
+        private void Reportes(object sender, RoutedEventArgs e)
+        {
+            DataContext = new Reportes();
+        }
     }
 }

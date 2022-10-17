@@ -122,6 +122,9 @@
     <Compile Include="Vistas\VistasAdmin\CRUDinventario.xaml.cs">
       <DependentUpon>CRUDinventario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\VistasAdmin\CRUDreportes.xaml.cs">
+      <DependentUpon>CRUDreportes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\VistasAdmin\CRUDservicios.xaml.cs">
       <DependentUpon>CRUDservicios.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,9 @@
     </Compile>
     <Compile Include="Vistas\VistasAdmin\Inventario.xaml.cs">
       <DependentUpon>Inventario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VistasAdmin\Reportes.xaml.cs">
+      <DependentUpon>Reportes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\VistasAdmin\Reservas.xaml.cs">
       <DependentUpon>Reservas.xaml</DependentUpon>
@@ -239,6 +245,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vistas\VistasAdmin\CRUDreportes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vistas\VistasAdmin\CRUDservicios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -268,6 +278,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\VistasAdmin\Inventario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VistasAdmin\Reportes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -431,7 +445,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\CheckIN.html" />
+    <Content Include="Resources\REPORTE.HTML" />
     <Content Include="Resources\Ticket.html" />
+    <Resource Include="Vistas\Images\estadisticas.png" />
     <Resource Include="Vistas\Images\pdf1.png" />
     <Resource Include="Vistas\Images\pdf2.png" />
   </ItemGroup>

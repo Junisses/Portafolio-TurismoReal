@@ -69,10 +69,44 @@ namespace TurismoReal.Properties {
         ///    &lt;title&gt;&lt;/title&gt;
         ///&lt;/head&gt;
         ///&lt;body style=&quot;font-family: &apos;Times New Roman&apos;&quot;&gt;
+        ///	&lt;div align=&quot;center&quot; width=&quot;670&quot;&gt;
+        ///
+        ///		&lt;div align=&quot;center&quot;&gt;
+        ///			&lt;h3 align=&quot;center&quot;&gt;CONTRATO DE ARRIENDO DE VIVIENDA PARA USO VACACIONAL&lt;/h3&gt;
+        ///		&lt;/div&gt;
+        ///
+        ///		&lt;div align=&quot;right&quot;&gt;
+        ///			&lt;table align=&quot;right&quot;&gt;
+        ///				&lt;tr&gt;
+        ///					&lt;td&gt;Fecha: @Fecha&lt;/td&gt;
+        ///				&lt;/tr&gt;
+        ///			&lt;/table&gt;
+        ///		&lt;/div&gt;
+        ///
+        ///		&lt;br /&gt;
+        ///
+        ///		&lt;div align=&quot;left&quot;&gt;
+        ///			&lt;table a [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string CheckIN {
+            get {
+                return ResourceManager.GetString("CheckIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///
+        ///&lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+        ///&lt;head&gt;
+        ///    &lt;meta charset=&quot;utf-8&quot; /&gt;
+        ///    &lt;title&gt;&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///&lt;body style=&quot;font-family: &apos;Times New Roman&apos;&quot;&gt;
         ///    &lt;div align=&quot;center&quot;&gt;
         ///	
         ///		&lt;div align=&quot;center&quot;&gt;
-        ///			&lt;h3&gt;CONTRATO DE ARRIENDO DE VIVIENDA PARA USO VACACIONAL&lt;/h3&gt;
+        ///			&lt;h3&gt;REPORTE ESTADISTICO DEPARTAMENTO. N. @id&lt;/h3&gt;
         ///		&lt;/div&gt;
         ///		
         ///		&lt;div align=&quot;right&quot;&gt;
@@ -86,11 +120,11 @@ namespace TurismoReal.Properties {
         ///		&lt;div align=&quot;left&quot;&gt;
         ///			&lt;table &gt;
         ///				&lt;tr &gt;	
-        ///					&lt;td&gt;Bajo la presen [resto de la cadena truncado]&quot;;.
+        ///					&lt;td&gt;Bajo la presente se inform [resto de la cadena truncado]&quot;;.
         /// </summary>
-        internal static string CheckIN {
+        internal static string REPORTE {
             get {
-                return ResourceManager.GetString("CheckIN", resourceCulture);
+                return ResourceManager.GetString("REPORTE", resourceCulture);
             }
         }
         

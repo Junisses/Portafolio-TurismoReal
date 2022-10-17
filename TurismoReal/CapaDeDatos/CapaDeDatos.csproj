@@ -52,6 +52,7 @@
     <Compile Include="Clases\CD_Gastos.cs" />
     <Compile Include="Clases\CD_Inventario.cs" />
     <Compile Include="Clases\CD_Region.cs" />
+    <Compile Include="Clases\CD_Reportes.cs" />
     <Compile Include="Clases\CD_Reservas.cs" />
     <Compile Include="Clases\CD_Servicios.cs" />
     <Compile Include="Clases\CD_TipoGasto.cs" />
