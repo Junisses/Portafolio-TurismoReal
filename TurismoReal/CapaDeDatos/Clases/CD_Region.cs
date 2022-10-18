@@ -77,5 +77,28 @@ namespace CapaDeDatos.Clases
 
         #endregion
 
+        #region SELECT ANIDADO
+        public DataTable dt;
+        public DataTable listaRegion()
+        {
+            dt = new DataTable();
+            try
+            {
+                SqlDataAdapter da = new SqlDataAdapter("dbo.SP_R_Regiones", con.AbrirConexion());
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.CerrarConexion();
+            }
+        }
+
+        #endregion  
     }
 }

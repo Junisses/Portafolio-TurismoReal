@@ -27,6 +27,14 @@ namespace CapaDeNegocio.Clases
         {
             return CD_Region.ObtenerRegion();
         }
+
+        //listar
+        public DataTable listaRegiones()
+        {
+            return CD_Region.listaRegion();
+        }
+
+
     }
 }
 

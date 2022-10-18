@@ -70,22 +70,21 @@ namespace TurismoReal.Vistas.VistasAdmin
         {
             if (CamposLlenos() == true)
             {
-                string reporte = "REPORTE-" + " Depto-0" + idDepartamento + "-" +DateTime.Now.ToString("HHmmssddMMyyyy") ;
+                string reporte = "REPORTE-" + " Depto-0" + idDepartamento + "-" + DateTime.Now.ToString("HHmmssddMMyyyy");
                 objeto_CE_Reportes.FechaDesde = DateTime.Parse(cFechaDesde.Text);
-                DateTime fechad = DateTime.Parse(cFechaDesde.Text); 
+                DateTime fechad = DateTime.Parse(cFechaDesde.Text);
                 objeto_CE_Reportes.FechaHasta = DateTime.Parse(cFechaHasta.Text);
                 DateTime fechah = DateTime.Parse(cFechaHasta.Text);
                 objeto_CE_Reportes.IdDepartamento = idDepartamento;
 
                 objeto_CN_Reportes.Insertar(objeto_CE_Reportes);
-                Imprimir(fechad, fechah, idDepartamento, reporte);
+                Imprimir(fechad, fechah, idDepartamento, reporte); 
 
-                MessageBox.Show(""+ DateTime.Parse(cFechaDesde.Text) + "\n " + DateTime.Parse(cFechaHasta.Text) + "\n " + idDepartamento);
                 Content = new Reportes();
             }
             else
             {
-                MessageBox.Show("No se pudo ingresar el depto,\n revise los datos e intentelo denuevo");
+                MessageBox.Show("No se pudo generar el reporte, revise que los datos esten correctamente ingresados");
             }
         }
         #endregion

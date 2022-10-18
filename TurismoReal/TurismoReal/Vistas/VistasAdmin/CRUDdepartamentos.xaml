@@ -764,7 +764,7 @@
     </Page.Resources>
     <Border Background="Transparent"
             CornerRadius="10">
-        <Grid>
+        <Grid Loaded="Anidado">
             <!--#region Columnas y filas-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
@@ -878,8 +878,12 @@
                       Grid.Row="5"
                       Grid.Column="2"
                       Cursor="Hand"
+                      SelectionChanged="Region"
                       HorizontalContentAlignment="Center"
-                      x:Name="cbRegion">
+                      x:Name="cbRegion"
+                      ItemsSource="{Binding}"
+                      DisplayMemberPath="region"
+                      SelectedValuePath="idRegion">
                 <ComboBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ComboBoxItem}">
                         <Setter Property="Template">
@@ -916,11 +920,14 @@
                        Text="Comuna"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
-            <ComboBox Style="{DynamicResource ComboBoxStyle}" Grid.Row="5"
+            <ComboBox Style="{DynamicResource ComboBoxStyle}"
+                      Grid.Row="5"
                       Grid.Column="5"
                       Cursor="Hand"
                       HorizontalContentAlignment="Center"
-                      x:Name="cbComuna">
+                      x:Name="cbComuna"
+                      ItemsSource="{Binding}"
+                      DisplayMemberPath="comuna">
                 <ComboBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ComboBoxItem}">
                         <Setter Property="Template">

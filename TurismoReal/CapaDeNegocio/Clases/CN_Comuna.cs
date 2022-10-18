@@ -27,5 +27,11 @@ namespace CapaDeNegocio.Clases
         {
             return CD_Comuna.ObtenerComuna();
         }
+
+        //listar
+        public DataTable ListarComunas(int idRegion)
+        {
+            return CD_Comuna.listarComunas(idRegion);
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace TurismoReal.Vistas.VistasAdmin
         public CRUDdepartamentos()
         {
             InitializeComponent();
-            CargarRCE();
+
         }
 
         #region Cargar FK
@@ -187,6 +187,32 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.BtnActualizar.IsEnabled = false;
             ventana.tbIDdepto.Text = " " + idDepartamento;
             ventana.Titulo.Text = "Galeria Depto. N°" + idDepartamento;
+        }
+
+        private void Anidado(object sender, RoutedEventArgs e)
+        {
+            CargarRegion();
+        }
+
+        public void CargarRegion()
+        {
+            cbRegion.DisplayMemberPath = "region";
+            cbRegion.SelectedValuePath = "idRegion";
+            cbRegion.DataContext = objeto_CN_Region.listaRegiones();
+        }
+
+        private void Region(object sender, SelectionChangedEventArgs e)
+        {
+            string regionid = cbRegion.SelectedValuePath.ToString();
+            int idRegion = Convert.ToInt32(regionid);
+            CargarComuna(idRegion);
+        }
+
+        public void CargarComuna(int idRegion)
+        {
+            cbComuna.DisplayMemberPath = "comuna";
+            cbComuna.SelectedValuePath = "idComuna";
+            cbComuna.DataContext = objeto_CN_Comuna.ListarComunas(idRegion);
         }
     }
 }
