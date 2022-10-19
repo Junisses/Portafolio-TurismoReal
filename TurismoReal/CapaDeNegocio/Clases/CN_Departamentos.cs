@@ -69,6 +69,15 @@ namespace CapaDeNegocio.Clases
 
         #endregion
 
+        #region FILTRAR REGION
+
+        public DataTable Filtro(string filtro)
+        {
+            return objDatos.Filtro(filtro);
+        }
+
+        #endregion
+
 
     }
 }

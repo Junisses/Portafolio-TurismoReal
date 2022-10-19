@@ -927,7 +927,8 @@
                       HorizontalContentAlignment="Center"
                       x:Name="cbComuna"
                       ItemsSource="{Binding}"
-                      DisplayMemberPath="comuna">
+                      DisplayMemberPath="comuna"
+                      SelectedValuePath="idComuna">
                 <ComboBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ComboBoxItem}">
                         <Setter Property="Template">

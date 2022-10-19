@@ -30,6 +30,28 @@ namespace CapaDeDatos.Clases
             com.Parameters.AddWithValue("@fechadesde", Reportes.FechaDesde);
             com.Parameters.AddWithValue("@fechahasta", Reportes.FechaHasta);
             com.Parameters.AddWithValue("@idDepartamento", Reportes.IdDepartamento);
+            com.Parameters.AddWithValue("@idRegion", Reportes.IdRegion);
+
+            com.ExecuteNonQuery();
+            com.Parameters.Clear();
+            con.CerrarConexion();
+        }
+
+        public void CD_InsertarR(CE_Reportes Reportes)
+        {
+            SqlCommand com = new SqlCommand()
+            {
+                Connection = con.AbrirConexion(),
+                CommandText = "dbo.SP_RE_InsertarRegion",
+                CommandType = CommandType.StoredProcedure,
+            };
+            com.Parameters.AddWithValue("@total", Reportes.Total);
+            com.Parameters.AddWithValue("@cantReservas", Reportes.CantReservas);
+            com.Parameters.AddWithValue("@gastos", Reportes.Gastos);
+            com.Parameters.AddWithValue("@fechadesde", Reportes.FechaDesde);
+            com.Parameters.AddWithValue("@fechahasta", Reportes.FechaHasta);
+            com.Parameters.AddWithValue("@idDepartamento", Reportes.IdDepartamento);
+            com.Parameters.AddWithValue("@idRegion", Reportes.IdRegion);
 
             com.ExecuteNonQuery();
             com.Parameters.Clear();

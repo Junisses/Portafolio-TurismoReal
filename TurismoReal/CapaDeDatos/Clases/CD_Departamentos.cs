@@ -164,5 +164,22 @@ namespace CapaDeDatos.Clases
 
         #endregion
 
+        #region FILTRO REGION
+        public DataTable Filtro(string filtro)
+        {
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_R_FiltroRegion", con.AbrirConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.Add("@filtro", SqlDbType.VarChar).Value = filtro;
+            DataSet ds = new DataSet();
+            ds.Clear();
+            da.Fill(ds);
+            DataTable dt = ds.Tables[0];
+            con.CerrarConexion();
+
+            return dt;
+        }
+
+        #endregion
+
     }
 }

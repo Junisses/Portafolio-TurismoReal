@@ -84,7 +84,7 @@ namespace CapaDeDatos.Clases
             dt = new DataTable();
             try
             {
-                SqlDataAdapter da = new SqlDataAdapter("dbo.SP_C_Comunas", con.AbrirConexion());
+                SqlDataAdapter da = new SqlDataAdapter("dbo.SP_C_Comuna", con.AbrirConexion());
                 da.SelectCommand.CommandType = CommandType.StoredProcedure;
                 da.SelectCommand.Parameters.Add("@idRegion", SqlDbType.Int).Value = idRegion;
                 da.Fill(dt);

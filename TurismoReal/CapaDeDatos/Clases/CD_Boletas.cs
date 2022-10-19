@@ -47,11 +47,11 @@ namespace CapaDeDatos.Clases
 
         #region Consultar dentro de la interfaz
 
-        public CE_Boletas CD_Consulta(int idBoleta)
+        public CE_Boletas CD_Consulta(int idReserva)
         {
             SqlDataAdapter da = new SqlDataAdapter("dbo.SP_B_Consultar", con.AbrirConexion());
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
-            da.SelectCommand.Parameters.Add("@idBoleta", SqlDbType.Int).Value = idBoleta;
+            da.SelectCommand.Parameters.Add("@idReserva", SqlDbType.Int).Value = idReserva;
 
 
             DataSet ds = new DataSet();

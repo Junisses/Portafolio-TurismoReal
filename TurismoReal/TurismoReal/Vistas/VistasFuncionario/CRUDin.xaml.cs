@@ -141,15 +141,17 @@ namespace TurismoReal.Vistas.VistasFuncionario
             //
             //LISTADO DE ARTEFACTOS
             string filas = string.Empty;
-
-            for (int i = 0; i < GridCheck.Items.Count; i++)
+            foreach (DataRowView item in GridCheck.ItemsSource)
             {
-                var id = objeto_CN_Reservas.Consulta(idReserva);
-                var inv = objeto_CN_Inventario.CargarInventarioIN(id.IdDepartamento);
-                var art = objeto_CN_Artefactos.Consulta(inv.IdArtefactos + i);
+                int id = Convert.ToInt32(item[0]);
+                int idart = Convert.ToInt32(item[3]);
 
-                int idinv = inv.IdInventario + 1;
-                var descp = objeto_CN_Inventario.Consulta(idinv + i);
+                var depto = objeto_CN_Reservas.Consulta(idReserva);
+                var inv = objeto_CN_Inventario.CargarInventarioIN(depto.IdDepartamento);
+
+                var art = objeto_CN_Artefactos.Consulta(idart);
+
+                var descp = objeto_CN_Inventario.Consulta(id);
 
                 string descripcion = art.Descripcion.ToString();
                 int resultado = int.Parse(art.Valor.ToString());
@@ -163,6 +165,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
                 filas += "</tr>";
             }
             Pagina = Pagina.Replace("@listado", filas);
+
 
 
             if (savefile.ShowDialog() == DialogResult.OK)

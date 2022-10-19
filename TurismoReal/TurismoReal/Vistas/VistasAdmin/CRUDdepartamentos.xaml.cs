@@ -22,24 +22,12 @@ namespace TurismoReal.Vistas.VistasAdmin
         public CRUDdepartamentos()
         {
             InitializeComponent();
-
+            CargarE();
         }
 
         #region Cargar FK
-        void CargarRCE()
+        void CargarE()
         {
-            List<string> region = objeto_CN_Region.ListarRegion();
-            for (int i = 0; i < region.Count; i++)
-            {
-                cbRegion.Items.Add(region[i]);
-            }
-
-            List<string> comuna = objeto_CN_Comuna.ListarComuna();
-            for (int i = 0; i < comuna.Count; i++)
-            {
-                cbComuna.Items.Add(comuna[i]);
-            }
-
             List<string> estadoDepto = objeto_CN_EstadoDepto.ListarEstado();
             for (int i = 0; i < estadoDepto.Count; i++)
             {
@@ -54,7 +42,6 @@ namespace TurismoReal.Vistas.VistasAdmin
             Content = new Departamentos();
         }
         #endregion
-
 
         #region ValidarCamposVacios
         public bool CamposLlenos()
@@ -88,8 +75,6 @@ namespace TurismoReal.Vistas.VistasAdmin
             {
                 try
                 {
-                    int region = objeto_CN_Region.IdRegion(cbRegion.Text);
-                    int comuna = objeto_CN_Comuna.IdComuna(cbComuna.Text);
                     int estadoDepto = objeto_CN_EstadoDepto.IdEstadoDepto(cbEstadoDepto.Text);
 
                     objeto_CE_Departamentos.Descripcion = tbNombreDepto.Text;
@@ -98,7 +83,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                     objeto_CE_Departamentos.CantBanos = int.Parse(tbCantBanos.Text);
                     objeto_CE_Departamentos.PrecioNoche = int.Parse(tbPrecio.Text);
                     objeto_CE_Departamentos.FechaEstadoDepto = DateTime.Parse(cFechaEstado.Text);
-                    objeto_CE_Departamentos.IdComuna = comuna;
+                    objeto_CE_Departamentos.IdComuna = int.Parse(cbComuna.Text);
                     objeto_CE_Departamentos.IdEstadoDepto = estadoDepto;
 
                     objeto_CN_Departamentos.Insertar(objeto_CE_Departamentos);
@@ -122,14 +107,12 @@ namespace TurismoReal.Vistas.VistasAdmin
         {
             if (CamposLlenos() == true)
             {
-                //int region = objeto_CN_Region.IdRegion(cbRegion.Text);
-                int comuna = objeto_CN_Comuna.IdComuna(cbComuna.Text);
                 int estadoDepto = objeto_CN_EstadoDepto.IdEstadoDepto(cbEstadoDepto.Text);
 
                 objeto_CE_Departamentos.IdDepartamento = idDepartamento;
                 objeto_CE_Departamentos.Descripcion = tbNombreDepto.Text;
                 //objeto_CE_Departamentos.IdRegion = region;
-                objeto_CE_Departamentos.IdComuna = comuna;
+                objeto_CE_Departamentos.IdComuna = int.Parse(cbComuna.Text);
                 objeto_CE_Departamentos.Direccion = tbDireccion.Text;
                 objeto_CE_Departamentos.CantHabitaciones = int.Parse(tbCantHabitaciones.Text);
                 objeto_CE_Departamentos.CantBanos = int.Parse(tbCantBanos.Text);
@@ -203,7 +186,7 @@ namespace TurismoReal.Vistas.VistasAdmin
 
         private void Region(object sender, SelectionChangedEventArgs e)
         {
-            string regionid = cbRegion.SelectedValuePath.ToString();
+            string regionid = cbRegion.SelectedValue.ToString();
             int idRegion = Convert.ToInt32(regionid);
             CargarComuna(idRegion);
         }

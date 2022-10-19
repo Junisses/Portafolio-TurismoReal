@@ -825,6 +825,17 @@
                         Style="{DynamicResource estiloCrear}"
                         Click="Crear" Margin="43,0,42,0"/>
             <!--#endregion-->
+
+            <!--#region CREAR-->
+            <Button x:Name="BtnGenerar"
+                        Content="Generar reporte"
+                        Grid.Row="17"
+                        Grid.Column="4"
+                        Background="Red"
+                        Foreground="White"
+                        Style="{DynamicResource estiloCrear}"
+                        Click="CrearGeneral" Margin="22,0,21,0"/>
+            <!--#endregion-->
             <!--#endregion-->
 
             <!--#region CONTENIDO-->
@@ -839,6 +850,7 @@
             <TextBlock Grid.Row="5"
                            Grid.Column="4"
                            Grid.ColumnSpan="2"
+                           x:Name="txtDetalle"
                            Text="generar el reporte del departamento"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top" Margin="49,17,0,0" 

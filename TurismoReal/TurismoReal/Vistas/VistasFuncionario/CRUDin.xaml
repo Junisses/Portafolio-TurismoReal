@@ -1164,8 +1164,8 @@
             <!--#region FRAME GALERIA-->
             <Frame x:Name="FramePago"
                    Grid.Row="0"
-                   Grid.RowSpan="14"
-                   Grid.ColumnSpan="7" Margin="0,0,0,10"/>
+                   Grid.RowSpan="19"
+                   Grid.ColumnSpan="7"/>
             <!--#endregion-->
         </Grid>
 

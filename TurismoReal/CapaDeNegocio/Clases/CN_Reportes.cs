@@ -19,7 +19,14 @@ namespace CapaDeNegocio.Clases
             objDatos.CD_Insertar(Reportes);
         }
 
+        public void InsertarR(CE_Reportes Reportes)
+        {
+            objDatos.CD_InsertarR(Reportes);
+        }
+
         #endregion
+
+        
 
         #region Consultar
         public CE_Reportes Consulta()

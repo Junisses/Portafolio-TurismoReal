@@ -51,23 +51,57 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.Titulo.Text = "Reporte departamento N° "+ id;
 
         }
-
-
         #endregion
 
-        #region FUNCION BUSCAR
-        #region Limpiar
-        public void LimpiarData()
+        #region REPORTE GENERAL
+        private void ReporteGeneral(object sender, RoutedEventArgs e)
         {
-            tbBuscar.Clear();
+            if (cbFiltroRegion.Text != "")
+            {
+                string regionid = cbFiltroRegion.SelectedValue.ToString();
+                int idRegion = Convert.ToInt32(regionid);
+                CRUDreportes ventana = new CRUDreportes();
+                ventana.idRegion = idRegion;
+                FrameDepartamentos.Content = ventana;
+                ventana.Titulo.Text = "Reporte General " + idRegion + " Region";
+                ventana.txtDetalle.Text = "generar el reporte general de la zona " + idRegion;
+            }
+            
+            else
+            {
+                MessageBox.Show("Para generar este reporte debe indicar que region desea\nen el filtro por region!");
+            }
+        }
+        #endregion
+
+        #region FUNCION FILTRO POR REGION
+
+        private void Regiones(object sender, RoutedEventArgs e)
+        {
+            CargarRegion();
+        }
+
+        public void CargarRegion()
+        {
+            cbFiltroRegion.DisplayMemberPath = "region";
+            cbFiltroRegion.SelectedValuePath = "idRegion";
+            cbFiltroRegion.DataContext = objeto_CN_Region.listaRegiones();
+        }
+
+        private void Region(object sender, SelectionChangedEventArgs e)
+        {
+            string regionid = cbFiltroRegion.SelectedValue.ToString();
+            int idRegion = Convert.ToInt32(regionid);
+            Deptos(idRegion);
+        }
+
+        private void Deptos(int idRegion)
+        {
+            GridDatos.ItemsSource = objeto_CN_Departamentos.Filtro(idRegion.ToString()).DefaultView;
         }
 
         #endregion
-        private void Ver(object sender, RoutedEventArgs e)
-        {
-            GridDatos.ItemsSource = objeto_CN_Departamentos.BuscarDepto(tbBuscar.Text).DefaultView;
-            LimpiarData();
-        }
-        #endregion
+
+
     }
 }

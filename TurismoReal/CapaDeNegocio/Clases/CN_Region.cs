@@ -12,21 +12,14 @@ namespace CapaDeNegocio.Clases
     public class CN_Region
     {
         CD_Region CD_Region = new CD_Region();
+        private readonly CD_Region objDatos = new CD_Region();
 
-        public int IdRegion(string Region)
+        #region Consultar
+        public CE_Region Consulta(int idRegion)
         {
-            return CD_Region.IdRegion(Region);
+            return objDatos.CD_Consulta(idRegion);
         }
-
-        public CE_Region NombreRegion(int IdRegion)
-        {
-            return CD_Region.NombreRegion(IdRegion);
-        }
-
-        public List<string> ListarRegion()
-        {
-            return CD_Region.ObtenerRegion();
-        }
+        #endregion
 
         //listar
         public DataTable listaRegiones()

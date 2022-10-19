@@ -15,6 +15,7 @@ namespace CapaDeEntidad.Clases
         private DateTime _FechaDesde;
         private DateTime _FechaHasta;
         private int _IdDepartamento;
+        private int _IdRegion;
         public int IdReporte { get => _IdReporte; set => _IdReporte = value; }
         public DateTime FechaDesde { get => _FechaDesde; set => _FechaDesde = value; }
         public DateTime FechaHasta { get => _FechaHasta; set => _FechaHasta = value; }
@@ -22,5 +23,6 @@ namespace CapaDeEntidad.Clases
         public int Total { get => _Total; set => _Total = value; }
         public int CantReservas { get => _CantReservas; set => _CantReservas = value; }
         public int Gastos { get => _Gastos; set => _Gastos = value; }
+        public int IdRegion { get => _IdRegion; set => _IdRegion = value; }
     }
 }

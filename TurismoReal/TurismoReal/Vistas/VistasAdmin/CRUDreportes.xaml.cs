@@ -34,6 +34,7 @@ namespace TurismoReal.Vistas.VistasAdmin
 
         readonly CN_Departamentos objeto_CN_Departamentos = new CN_Departamentos();
         readonly CN_Comuna objeto_CN_Comuna = new CN_Comuna();
+        readonly CN_Region objeto_CN_Region = new CN_Region();
 
         public CRUDreportes()
         {
@@ -65,6 +66,7 @@ namespace TurismoReal.Vistas.VistasAdmin
         #endregion
 
         public int idDepartamento;
+        public int idRegion;
         #region Crear
         private void Crear(object sender, RoutedEventArgs e)
         {
@@ -87,10 +89,31 @@ namespace TurismoReal.Vistas.VistasAdmin
                 MessageBox.Show("No se pudo generar el reporte, revise que los datos esten correctamente ingresados");
             }
         }
+
+        private void CrearGeneral(object sender, RoutedEventArgs e)
+        {
+            if (CamposLlenos() == true)
+            {
+                string reporte = "RERPORTE-ZONA-"+ idRegion + "-" + DateTime.Now.ToString("HHmmssddMMyyyy");
+                objeto_CE_Reportes.FechaDesde = DateTime.Parse(cFechaDesde.Text);
+                DateTime fechad = DateTime.Parse(cFechaDesde.Text);
+                objeto_CE_Reportes.FechaHasta = DateTime.Parse(cFechaHasta.Text);
+                DateTime fechah = DateTime.Parse(cFechaHasta.Text);
+                objeto_CE_Reportes.IdRegion = idRegion;
+
+                objeto_CN_Reportes.InsertarR(objeto_CE_Reportes);
+                ImprimirR(fechad, fechah, idRegion, reporte);
+
+                Content = new Reportes();
+            }
+            else
+            {
+                MessageBox.Show("No se pudo generar el reporte, revise que los datos esten correctamente ingresados");
+            }
+        }
         #endregion
 
-        #region IMPRIMIR
-
+        #region IMPRIMIR REPORTE UNITARIO
         void Imprimir(DateTime fechaDesde, DateTime fechaHasta, int idDepartamento, string reporte)
         {
             SaveFileDialog savefile = new SaveFileDialog
@@ -100,13 +123,16 @@ namespace TurismoReal.Vistas.VistasAdmin
             string Pagina = Properties.Resources.REPORTE.ToString();
 
             Pagina = Pagina.Replace("@Fecha", DateTime.Now.ToString("dd/MM/yyyy"));
+            Pagina = Pagina.Replace("@detalle", "DEPARTAMENTO ");
             Pagina = Pagina.Replace("@id", idDepartamento.ToString());
             Pagina = Pagina.Replace("@hora", DateTime.Now.ToString("HH:mm") + "hrs.");
 
             var d = objeto_CN_Departamentos.Consulta(idDepartamento);
             var c = objeto_CN_Comuna.NombreComuna(d.IdComuna);
             //TEXTO
-            Pagina = Pagina.Replace("@nombre", d.Descripcion.ToString() + " de la comuna de " + c.Comuna.ToString());
+            Pagina = Pagina.Replace("@1", "El departamento ");
+            Pagina = Pagina.Replace("@nombre", d.Descripcion.ToString());
+            Pagina = Pagina.Replace("@2", ", el cual se ubica en la comuna de ");
             Pagina = Pagina.Replace("@comuna", c.Comuna.ToString());
             Pagina = Pagina.Replace("@desde", fechaDesde.ToString("dd/MM/yyyy"));
             Pagina = Pagina.Replace("@hasta", fechaHasta.ToString("dd/MM/yyyy"));
@@ -115,7 +141,9 @@ namespace TurismoReal.Vistas.VistasAdmin
             Pagina = Pagina.Replace("@ganancias", r.Total.ToString());
             //Reservas
             Pagina = Pagina.Replace("@reservas", r.CantReservas.ToString());
+            Pagina = Pagina.Replace("@3", "");
             //Gastos
+            Pagina = Pagina.Replace("@4", " que genera el departamento son de ");
             Pagina = Pagina.Replace("@gastos", r.Gastos.ToString());
             //TEXTO
             Pagina = Pagina.Replace("@reservas", 0.ToString());
@@ -141,9 +169,64 @@ namespace TurismoReal.Vistas.VistasAdmin
             }
         }
 
-
         #endregion
 
+        #region IMPRIMIR REPORTE GENERAL
+        void ImprimirR(DateTime fechaDesde, DateTime fechaHasta, int idRegion, string reporte)
+        {
+            SaveFileDialog savefile = new SaveFileDialog
+            {
+                FileName = reporte + ".pdf"
+            };
+            string Pagina = Properties.Resources.REPORTE.ToString();
+
+            Pagina = Pagina.Replace("@Fecha", DateTime.Now.ToString("dd/MM/yyyy"));
+            Pagina = Pagina.Replace("@detalle", "REGION");
+            Pagina = Pagina.Replace("@id", idRegion.ToString());
+            Pagina = Pagina.Replace("@hora", DateTime.Now.ToString("HH:mm") + "hrs.");
+
+            var r = objeto_CN_Region.Consulta(idRegion);
+            //TEXTO
+            Pagina = Pagina.Replace("@1", "La region ");
+            Pagina = Pagina.Replace("@nombre", r.Region.ToString());
+            Pagina = Pagina.Replace("@2", "");
+            Pagina = Pagina.Replace("@comuna", "");
+            Pagina = Pagina.Replace("@desde", fechaDesde.ToString("dd/MM/yyyy"));
+            Pagina = Pagina.Replace("@hasta", fechaHasta.ToString("dd/MM/yyyy"));
+            //Ganancias
+            var repo = objeto_CN_Reportes.Consulta();
+            Pagina = Pagina.Replace("@ganancias", repo.Total.ToString());
+            //Reservas
+            Pagina = Pagina.Replace("@reservas", repo.CantReservas.ToString());
+            Pagina = Pagina.Replace("@3", " en los departamentos de esta zona ");
+            //Gastos
+            Pagina = Pagina.Replace("@4", " que generan los departamentos de esta zona son de ");
+            Pagina = Pagina.Replace("@gastos", repo.Gastos.ToString());
+            //TEXTO
+            Pagina = Pagina.Replace("@reservas", 0.ToString());
+            Pagina = Pagina.Replace("@gastos", 0.ToString());
+
+
+            if (savefile.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream stream = new FileStream(savefile.FileName, FileMode.Create))
+                {
+                    Document document = new Document();
+                    PdfWriter writer = PdfWriter.GetInstance(document, stream);
+
+                    document.Open();
+
+                    using (StringReader sr = new StringReader(Pagina))
+                    {
+                        XMLWorkerHelper.GetInstance().ParseXHtml(writer, document, sr);
+                    }
+                    document.Close();
+                    stream.Close();
+                }
+            }
+        }
+
+        #endregion
 
     }
 }
