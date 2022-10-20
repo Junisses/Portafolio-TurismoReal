@@ -13,25 +13,30 @@ namespace CapaDeNegocio.Clases
     {
         CD_Comuna CD_Comuna = new CD_Comuna();
 
-        public int IdComuna(string Comuna)
-        {
-            return CD_Comuna.IdComuna(Comuna);
-        }
-
         public CE_Comuna NombreComuna(int IdComuna)
         {
             return CD_Comuna.NombreComuna(IdComuna);
         }
 
-        public List<string> ListarComuna()
+        public int IdComuna(string comuna)
         {
-            return CD_Comuna.ObtenerComuna();
+            return CD_Comuna.IdComuna(comuna);
         }
 
         //listar
         public DataTable ListarComunas(int idRegion)
         {
             return CD_Comuna.listarComunas(idRegion);
+        }
+
+        public DataTable MostrarComuna(int idComuna)
+        {
+            return CD_Comuna.MostrarComuna(idComuna);
+        }
+
+        public DataTable MostrarRegion(int idComuna)
+        {
+            return CD_Comuna.MostrarRegion(idComuna);
         }
     }
 }

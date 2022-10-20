@@ -42,14 +42,23 @@ namespace CapaDeNegocio.Clases
 
         #endregion
 
-        #region ***********  
+        #region Mantencion   
 
-        public void ActualizarPass(CE_Usuarios Usuarios)
+        public void Mantencion(CE_Departamentos Departamentos)
         {
-            objDatos.CD_ActualizarPass(Usuarios);
+            objDatos.CD_Mantencion(Departamentos);
+        }
+        #region Cargar mantencion
+
+        public DataTable CargarMantencion(int idDepartamento)
+        {
+            return objDatos.CargarMantencion(idDepartamento);
         }
 
         #endregion
+
+        #endregion
+
 
         #region CARGAR DEPTOS A LA VISTA
 

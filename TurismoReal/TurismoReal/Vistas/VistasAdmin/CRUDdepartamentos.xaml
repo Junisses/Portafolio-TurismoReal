@@ -1054,20 +1054,26 @@
                 </ComboBox.ItemContainerStyle>
             </ComboBox>
 
-            <!--Texto y box para Fecha estado-->
+            <!--Texto y box para MANTENIMIENTO-->
             <TextBlock Grid.Row="13"
                        Grid.Column="1"
-                       Text="Fecha Estado"
+                       x:Name="txtMantenimiento"
+                       Text="Ingresar mantenimiento"
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Center"/>
-            <DatePicker Style="{DynamicResource DatePickerStyle}" 
-                        Grid.Row="13"
-                        Grid.Column="2"
-                        FontSize="15"
-                        BorderBrush="#F3E5F5"
-                        Background="#F3E5F5"
-                        x:Name="cFechaEstado"
-                        HorizontalContentAlignment="Center"/>
+                       VerticalAlignment="Center"
+                       Visibility="Hidden"/>
+            <Button Style="{DynamicResource ButtonStyleRegresar}" 
+                    x:Name="BtnMantencion"
+                    Content="Programar Mantención"
+                    Grid.Column="2"
+                    Grid.Row="13"
+                    Cursor="Hand"
+                    Background="#1E88E5"
+                    Foreground="White"
+                    Visibility="Hidden"
+                    CommandParameter="{Binding idDepartamento}"
+                    Click="BtnMantencion_Click"/>
+            <!--#endregion-->
 
             <TextBlock x:Name="Titulo"
                        Text="Ingresar Departamento"

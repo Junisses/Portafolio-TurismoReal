@@ -14,25 +14,7 @@ namespace CapaDeDatos.Clases
         readonly CD_Conexion con = new CD_Conexion();
         readonly CE_Comuna ce = new CE_Comuna();
 
-        #region IdComuna
-        public int IdComuna(string Comuna)
-        {
-            SqlCommand com = new SqlCommand()
-            {
-                Connection = con.AbrirConexion(),
-                CommandText = "dbo.SP_P_IdComuna",
-                CommandType = CommandType.StoredProcedure,
-            };
 
-            com.Parameters.AddWithValue("@comuna", Comuna);
-            object resultado = com.ExecuteScalar();
-            int idcomuna = (int)resultado;
-            con.CerrarConexion();
-
-            return idcomuna;
-        }
-
-        #endregion
         #region nombre formato
 
         public CE_Comuna NombreComuna(int IdComuna)
@@ -46,7 +28,9 @@ namespace CapaDeDatos.Clases
             DataTable dt;
             dt = ds.Tables[0];
             DataRow row = dt.Rows[0];
-            ce.Comuna = Convert.ToString(row[0]);
+            ce.IdComuna = Convert.ToInt32(row[0]);
+            ce.Comuna = Convert.ToString(row[1]);
+            ce.IdRegion = Convert.ToInt32(row[2]);
 
             return ce;
 
@@ -54,28 +38,26 @@ namespace CapaDeDatos.Clases
 
         #endregion
 
-        #region Listar
-
-        public List<string> ObtenerComuna()
+        #region IdTipoUsuario
+        public int IdComuna(string comuna)
         {
             SqlCommand com = new SqlCommand()
             {
                 Connection = con.AbrirConexion(),
-                CommandText = "dbo.SP_P_CargarComuna",
-                CommandType = CommandType.StoredProcedure
+                CommandText = "dbo.SP_C_IdComuna",
+                CommandType = CommandType.StoredProcedure,
             };
-            SqlDataReader reader = com.ExecuteReader();
-            List<string> lista = new List<string>();
-            while (reader.Read())
-            {
-                lista.Add(Convert.ToString(reader["comuna"]));
-            }
+
+            com.Parameters.AddWithValue("@comuna", comuna);
+            object valor = com.ExecuteScalar();
+            int idcomuna = (int)valor;
             con.CerrarConexion();
 
-            return lista;
+            return idcomuna;
         }
 
         #endregion
+
 
         #region SELECT ANIDADO
         public DataTable dt;
@@ -99,7 +81,48 @@ namespace CapaDeDatos.Clases
                 con.CerrarConexion();
             }
         }
+        public DataTable MostrarComuna(int idComuna)
+        {
+            dt = new DataTable();
+            try
+            {
+                SqlDataAdapter da = new SqlDataAdapter("dbo.SP_P_Comuna", con.AbrirConexion());
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.Add("@idComuna", SqlDbType.Int).Value = idComuna;
+                da.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.CerrarConexion();
+            }
+        }
 
-        #endregion  
+        public DataTable MostrarRegion(int idComuna)
+        {
+            dt = new DataTable();
+            try
+            {
+                SqlDataAdapter da = new SqlDataAdapter("dbo.SP_P_CargarRegion", con.AbrirConexion());
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.Add("@idComuna", SqlDbType.Int).Value = idComuna;
+                da.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.CerrarConexion();
+            }
+        }
+
+        #endregion
     }
 }

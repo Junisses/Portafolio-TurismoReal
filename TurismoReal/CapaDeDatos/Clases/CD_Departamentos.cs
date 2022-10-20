@@ -29,7 +29,6 @@ namespace CapaDeDatos.Clases
             com.Parameters.AddWithValue("@cantHabitaciones", Departamentos.CantHabitaciones);
             com.Parameters.AddWithValue("@cantBanos", Departamentos.CantBanos);
             com.Parameters.AddWithValue("@precioNoche", Departamentos.PrecioNoche);
-            com.Parameters.Add("@fechaEstadoDepto", SqlDbType.Date).Value = Departamentos.FechaEstadoDepto;
             com.Parameters.AddWithValue("@idComuna", Departamentos.IdComuna);
             com.Parameters.AddWithValue("@idEstadoDepto", Departamentos.IdEstadoDepto);
 
@@ -59,9 +58,7 @@ namespace CapaDeDatos.Clases
             ce.CantHabitaciones = Convert.ToInt32(row[3]);
             ce.CantBanos = Convert.ToInt32(row[4]);
             ce.PrecioNoche = Convert.ToInt32(row[5]);
-            ce.FechaEstadoDepto = Convert.ToDateTime(row[6]);
-            ce.IdComuna = Convert.ToInt32(row[7]);
-            ce.IdEstadoDepto = Convert.ToInt32(row[8]);
+            ce.IdComuna = Convert.ToInt32(row[8]);
 
             return ce;
         }
@@ -99,7 +96,6 @@ namespace CapaDeDatos.Clases
             com.Parameters.AddWithValue("@cantHabitaciones", Departamentos.CantHabitaciones);
             com.Parameters.AddWithValue("@cantBanos", Departamentos.CantBanos);
             com.Parameters.AddWithValue("@precioNoche", Departamentos.PrecioNoche); 
-            com.Parameters.Add("@fechaEstadoDepto", SqlDbType.Date).Value = Departamentos.FechaEstadoDepto;
             com.Parameters.AddWithValue("@idComuna", Departamentos.IdComuna);
             com.Parameters.AddWithValue("@idEstadoDepto", Departamentos.IdEstadoDepto);
 
@@ -110,24 +106,43 @@ namespace CapaDeDatos.Clases
 
         #endregion
 
-        #region ************************
+        #region PROGRAMAR MANTENCIÓN
 
-        public void CD_ActualizarPass(CE_Usuarios Usuarios)
+        public void CD_Mantencion(CE_Departamentos Departamentos)
         {
             SqlCommand com = new SqlCommand()
             {
                 Connection = con.AbrirConexion(),
-                CommandText = "dbo.SP_U_ActualizarPass",
+                CommandText = "dbo.SP_D_Mantencion",
                 CommandType = CommandType.StoredProcedure
             };
-            com.Parameters.AddWithValue("@idUsuario", Usuarios.IdUsuario);
-            com.Parameters.AddWithValue("@contrasena", Usuarios.Contrasena);
-            com.Parameters.AddWithValue("@patron", Usuarios.Patron);
+            com.Parameters.AddWithValue("@idDepartamento", Departamentos.IdDepartamento);
+            com.Parameters.Add("@mantInicio", SqlDbType.Date).Value = Departamentos.MantInicio;
+            com.Parameters.Add("@mantTermino", SqlDbType.Date).Value = Departamentos.MantTermino;
+
             com.ExecuteNonQuery();
             com.Parameters.Clear();
             con.CerrarConexion();
         }
+        #region CARGAR MANTENCION
+
+        public DataTable CargarMantencion(int idDepartamento)
+        {
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_D_CargarMantencion", con.AbrirConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.Add("@idDepartamento", SqlDbType.Int).Value = idDepartamento;
+            DataSet ds = new DataSet();
+            ds.Clear();
+            da.Fill(ds);
+            DataTable dt = ds.Tables[0];
+            con.CerrarConexion();
+
+            return dt;
+        }
+
         #endregion
+        #endregion
+
 
         #region CARGAR DEPARTAMENTOS A LA VISTA
 

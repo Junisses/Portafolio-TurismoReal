@@ -149,6 +149,9 @@
     <Compile Include="Vistas\VistasAdmin\Inventario.xaml.cs">
       <DependentUpon>Inventario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\VistasAdmin\Mantencion.xaml.cs">
+      <DependentUpon>Mantencion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\VistasAdmin\Reportes.xaml.cs">
       <DependentUpon>Reportes.xaml</DependentUpon>
     </Compile>
@@ -278,6 +281,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\VistasAdmin\Inventario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VistasAdmin\Mantencion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

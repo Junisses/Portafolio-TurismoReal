@@ -58,7 +58,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.idDepartamento = id;
             ventana.Consultar();
             FrameDepartamentos.Content = ventana;
-            ventana.Titulo.Text = "Consultar Departamento";
+            ventana.Titulo.Text = "Consultar Departamento " +id;
             ventana.tbNombreDepto.IsEnabled = false;
             ventana.cbRegion.IsEnabled = false;
             ventana.cbComuna.IsEnabled = false;
@@ -67,7 +67,6 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.tbCantBanos.IsEnabled = false;
             ventana.tbPrecio.IsEnabled = false;
             ventana.cbEstadoDepto.IsEnabled = false;
-            ventana.cFechaEstado.IsEnabled = false;
             ventana.BtnGaleria.IsEnabled = false;
         }
 
@@ -82,19 +81,20 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.idDepartamento = id;
             ventana.Consultar();
             FrameDepartamentos.Content = ventana;
-            ventana.Titulo.Text = "Actualizar Depto.";
+            ventana.Titulo.Text = "Actualizar Depto. " + id;
             ventana.tbNombreDepto.IsEnabled = true;
-            ventana.cbRegion.IsEnabled = true;
-            ventana.cbComuna.IsEnabled = true;
+            ventana.cbRegion.IsEnabled = false;
+            ventana.cbComuna.IsEnabled = false;
             ventana.tbDireccion.IsEnabled = true;
             ventana.tbCantHabitaciones.IsEnabled = true;
             ventana.tbCantBanos.IsEnabled = true;
             ventana.tbPrecio.IsEnabled = true;
             ventana.cbEstadoDepto.IsEnabled = true;
-            ventana.cFechaEstado.IsEnabled = true;
             ventana.BtnGaleria.IsEnabled = true;
             ventana.txtGaleria.Visibility = Visibility.Visible;
             ventana.BtnGaleria.Visibility = Visibility.Visible;
+            ventana.txtMantenimiento.Visibility = Visibility.Visible;
+            ventana.BtnMantencion.Visibility = Visibility.Visible;
             ventana.BtnActualizar.Visibility = Visibility.Visible;
         }
         #endregion
@@ -107,7 +107,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.idDepartamento = id;
             ventana.Consultar();
             FrameDepartamentos.Content = ventana;
-            ventana.Titulo.Text = "Eliminar Depto";
+            ventana.Titulo.Text = "Eliminar Depto "+id;
             ventana.tbNombreDepto.IsEnabled = false;
             ventana.cbRegion.IsEnabled = false;
             ventana.cbComuna.IsEnabled = false;
@@ -116,7 +116,6 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.tbCantBanos.IsEnabled = false;
             ventana.tbPrecio.IsEnabled = false;
             ventana.cbEstadoDepto.IsEnabled = false;
-            ventana.cFechaEstado.IsEnabled = false;
             ventana.txtGaleria.Visibility = Visibility.Visible;
             ventana.BtnGaleria.Visibility = Visibility.Visible;
             ventana.txtGaleria.IsEnabled = false;

@@ -103,3 +103,5 @@ C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\Reportes.g.c
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\Reportes.baml
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDreportes.g.cs
 C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\CRUDreportes.baml
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\Mantencion.g.cs
+C:\TurismoReal\TurismoReal\TurismoReal\obj\Debug\Vistas\VistasAdmin\Mantencion.baml
