@@ -59,6 +59,7 @@ namespace CapaDeDatos.Clases
             ce.CantBanos = Convert.ToInt32(row[4]);
             ce.PrecioNoche = Convert.ToInt32(row[5]);
             ce.IdComuna = Convert.ToInt32(row[8]);
+            ce.IdEstadoDepto = Convert.ToInt32(row[9]);
 
             return ce;
         }

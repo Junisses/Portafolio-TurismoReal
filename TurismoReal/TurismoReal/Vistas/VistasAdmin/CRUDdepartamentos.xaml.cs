@@ -136,7 +136,6 @@ namespace TurismoReal.Vistas.VistasAdmin
             tbCantBanos.Text = a.CantBanos.ToString();
             tbPrecio.Text = a.PrecioNoche.ToString();
             cbEstadoDepto.Text = d.EstadoDepto.ToString();
-            
         }
         #endregion
 

@@ -17,6 +17,15 @@ namespace CapaDeNegocio.Clases
 
         #endregion
 
+        #region CARGAR ACOMPAÑANTES
+
+        public DataTable CargarA(int idReserva)
+        {
+            return objDatos.CargarA(idReserva);
+        }
+
+        #endregion
+
         #region Consultar
         public CE_Reservas Consulta(int idReserva)
         {

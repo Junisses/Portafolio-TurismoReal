@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -80,8 +81,34 @@ namespace TurismoReal.Vistas.VistasFuncionario
         #endregion
         private void Ver(object sender, RoutedEventArgs e)
         {
-            GridDatos.ItemsSource = objeto_CN_Servicios.BuscarServDispo(tbBuscar.Text).DefaultView;
-            LimpiarData();
+            if (tbBuscar.Text != "")
+            {
+                if (tbBuscar.Text.Length > 25)
+                {
+                    MessageBox.Show("Por favor, no ingrese tantos caracteres");
+                    LimpiarData();
+                    tbBuscar.Focus();
+                    return;
+                }
+                else if (Regex.IsMatch(tbBuscar.Text, @"^[a-zA-Z]+$") == false)
+                {
+                    MessageBox.Show("La búsqueda se realiza solo con letras");
+                    LimpiarData();
+                    tbBuscar.Focus();
+                    return;
+                }
+                else
+                {
+                    GridDatos.ItemsSource = objeto_CN_Servicios.BuscarServDispo(tbBuscar.Text).DefaultView;
+                    LimpiarData();
+                }
+
+            }
+            
+            else
+            {
+                MessageBox.Show("Ingrese una descripción para buscar");
+            }
         }
         #endregion
     }

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\CD_Acompanantes.cs" />
     <Compile Include="Clases\CD_Artefactos.cs" />
     <Compile Include="Clases\CD_Boletas.cs" />
     <Compile Include="Clases\CD_Comuna.cs" />

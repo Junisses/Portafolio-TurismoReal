@@ -18,6 +18,7 @@ namespace CapaDeEntidad.Clases
         private int _IdReserva;
         private int _IdServicio;
 
+
         public int IdBoleta { get => _IdBoleta; set => _IdBoleta = value; }
         public string MedioDePago { get => _MedioDePago; set => _MedioDePago = value; }
         public DateTime Fecha { get => _Fecha; set => _Fecha = value; }

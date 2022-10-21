@@ -1029,18 +1029,11 @@
                        Text="Medio de Pago"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
-            <TextBox Grid.Row="7"
-                     Grid.Column="2"
-                     x:Name="tbMedioPago"
-                     HorizontalContentAlignment="Center"
-                     Style="{DynamicResource TextBoxStyle}" 
-                     Background="#F3E5F5"/>
-
-            <ComboBox Style="{DynamicResource ComboBoxStyle}" Grid.Row="9"
-                      Foreground="Gray"
+            
+            <ComboBox Style="{DynamicResource ComboBoxStyle}" Grid.Row="7"
+                      Foreground="Black"
                       Grid.Column="2"
                       Cursor="Hand"
-                      Visibility="Hidden"
                       HorizontalContentAlignment="Center"
                       x:Name="cbMedioPago">
                 <ComboBox.ItemContainerStyle>
@@ -1079,18 +1072,12 @@
                        Text="Banco"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
-            <TextBox Grid.Row="9"
-                     Grid.Column="2"
-                     x:Name="tbBanco"
-                     HorizontalContentAlignment="Center"
-                     Style="{DynamicResource TextBoxStyle}" 
-                     Background="#F3E5F5"/>
-            <ComboBox Grid.Row="11"
+
+            <ComboBox Grid.Row="9"
                       Style="{DynamicResource ComboBoxStyle}"
-                      Foreground="Gray"
+                      Foreground="Black"
                       Grid.Column="2"
                       Cursor="Hand"
-                      Visibility="Hidden"
                       HorizontalContentAlignment="Center"
                       x:Name="cbBanco">
                 <ComboBox.ItemContainerStyle>
@@ -1133,6 +1120,7 @@
             <TextBox Grid.Row="11"
                      Grid.Column="2"
                      KeyUp="Multa"
+                     KeyDown="Verificar"
                      x:Name="tbValorUnitario"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
@@ -1149,6 +1137,7 @@
                      Grid.Column="2"
                      x:Name="tbCantidad"
                      Text="1"
+                     KeyDown="Verificar"
                      KeyUp="Calculo"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
@@ -1189,6 +1178,7 @@
                      x:Name="tbEfectivo"
                      Text="0"
                      KeyUp="Vuelto"
+                     KeyDown="Verificar"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
@@ -1277,7 +1267,7 @@
             </DataGrid>
             <!--#endregion-->
 
-            <TextBlock Grid.Row="1"
+            <TextBlock Grid.Row="2"
                      Grid.Column="1"
                      x:Name="tbID"
                      Visibility="Hidden"/>

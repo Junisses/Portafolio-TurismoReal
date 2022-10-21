@@ -132,12 +132,20 @@ namespace TurismoReal.Vistas.VistasFuncionario
             Pagina = Pagina.Replace("@fechaTermino", a.FechaHasta.ToString("dd/MM/yyyy"));
 
             //PARTE DEL PAGO DE LA RESERVA
-            foreach (var descripcion in b.Descripcion.ToString())
-            {
-                
+            var det = objeto_CN_Boletas.Detalle(idReserva);
 
-            }
-
+            //VALIDACION EN CASO DE QUE NO TENGA EL REGISTRO
+            //if (det.ToString() == null)
+            //{
+            //    Pagina = Pagina.Replace("@medioPago", "NULL ");
+            //    Pagina = Pagina.Replace("@valorReserva", 0.ToString());
+            //}
+            //else
+            //{
+                Pagina = Pagina.Replace("@medioPago", det.MedioDePago.ToString());
+                Pagina = Pagina.Replace("@valorReserva", det.Monto.ToString());
+            //}
+            
             //
             //LISTADO DE ARTEFACTOS
             string filas = string.Empty;

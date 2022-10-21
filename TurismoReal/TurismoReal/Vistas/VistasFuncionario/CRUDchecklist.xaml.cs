@@ -30,19 +30,8 @@ namespace TurismoReal.Vistas.VistasFuncionario
         public CRUDchecklist()
         {
             InitializeComponent();
-            CargarA();
-        }
 
-        #region Cargar FK
-        void CargarA()
-        {
-            List<string> descripcion = objeto_CN_Artefactos.ListarArtefacto();
-            for (int i = 0; i < descripcion.Count; i++)
-            {
-                cbArtefacto.Items.Add(descripcion[i]);
-            }
         }
-        #endregion
 
         #region CARGAR inventario
         void CargarDatos()
@@ -68,14 +57,10 @@ namespace TurismoReal.Vistas.VistasFuncionario
         {
             int id = (int)((Button)sender).CommandParameter;
             tbIDdepto.IsEnabled = false;
-            tbCantidad.IsEnabled = false;
-            cbArtefacto.IsEnabled = false;
 
             var a = objeto_CN_Inventario.Consulta(id);
             var c = objeto_CN_Artefactos.NombreArtefacto(a.IdArtefactos);
 
-            tbCantidad.Text = a.Cantidad.ToString();
-            cbArtefacto.Text = c.Descripcion.ToString();
         }
         #endregion
 

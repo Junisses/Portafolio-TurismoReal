@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\CB_Banco.cs" />
+    <Compile Include="Clases\CB_MedioPago.cs" />
+    <Compile Include="Clases\CE_Acompanantes.cs" />
     <Compile Include="Clases\CE_Artefactos.cs" />
     <Compile Include="Clases\CE_Boletas.cs" />
     <Compile Include="Clases\CE_Comuna.cs" />

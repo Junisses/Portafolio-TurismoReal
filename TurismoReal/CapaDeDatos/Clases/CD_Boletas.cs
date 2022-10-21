@@ -47,11 +47,11 @@ namespace CapaDeDatos.Clases
 
         #region Consultar dentro de la interfaz
 
-        public CE_Boletas CD_Consulta(int idReserva)
+        public CE_Boletas CD_Consulta(int idBoleta)
         {
             SqlDataAdapter da = new SqlDataAdapter("dbo.SP_B_Consultar", con.AbrirConexion());
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
-            da.SelectCommand.Parameters.Add("@idReserva", SqlDbType.Int).Value = idReserva;
+            da.SelectCommand.Parameters.Add("@idBoleta", SqlDbType.Int).Value = idBoleta;
 
 
             DataSet ds = new DataSet();
@@ -63,9 +63,19 @@ namespace CapaDeDatos.Clases
             ce.MedioDePago = Convert.ToString(row[1]);
             ce.Fecha = Convert.ToDateTime(row[2]);
             ce.Banco = Convert.ToString(row[3]);
+            ce.Comprobante = Convert.ToString(row[4]);
             ce.Monto = Convert.ToInt32(row[5]);
             ce.Descripcion = Convert.ToString(row[6]);
             ce.IdReserva = Convert.ToInt32(row[7]);
+
+            //Fecha actual del campo check in
+            ce.IdServicio = 0;
+            //En caso de que este este completo, mostrar la fecha
+            if (!row.IsNull("idServicio"))
+            {
+                ce.IdServicio = Convert.ToInt32(row[8]);
+            }
+
 
             return ce;
         }
@@ -152,5 +162,32 @@ namespace CapaDeDatos.Clases
         }
 
         #endregion
+
+        #region Consultar dentro de la interfaz
+
+        public CE_Boletas CD_Detalle(int idReserva)
+        {
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_B_DetalleCheck", con.AbrirConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.Add("@idReserva", SqlDbType.Int).Value = idReserva;
+
+
+            DataSet ds = new DataSet();
+            ds.Clear();
+            da.Fill(ds);
+            DataTable dt;
+            dt = ds.Tables[0];
+            DataRow row = dt.Rows[0];
+            ce.MedioDePago = Convert.ToString(row[1]);
+            ce.Fecha = Convert.ToDateTime(row[2]);
+            ce.Banco = Convert.ToString(row[3]);
+            ce.Monto = Convert.ToInt32(row[5]);
+            ce.Descripcion = Convert.ToString(row[6]);
+            ce.IdReserva = Convert.ToInt32(row[7]);
+
+            return ce;
+        }
+
+        #endregion 
     }
 }

@@ -55,13 +55,20 @@ namespace CapaDeNegocio.Clases
 
         #endregion
 
-        #region BUSCAR USUARIOS
+        #region BUSCAR BOLETAS
 
         public DataTable Buscar(string buscar)
         {
             return objDatos.Buscar(buscar);
         }
 
+        #endregion
+
+        #region Consultar
+        public CE_Boletas Detalle(int idBoleta)
+        {
+            return objDatos.CD_Detalle(idBoleta);
+        }
         #endregion
     }
 }

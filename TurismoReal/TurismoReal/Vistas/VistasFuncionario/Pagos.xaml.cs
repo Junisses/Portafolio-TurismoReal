@@ -16,6 +16,9 @@ using SaveFileDialog = System.Windows.Forms.SaveFileDialog;
 using MessageBox = System.Windows.MessageBox;
 using UserControl = System.Windows.Controls.UserControl;
 using System.Linq;
+using System.Collections.Generic;
+using Button = System.Windows.Controls.Button;
+using System.Windows.Input;
 
 namespace TurismoReal.Vistas.VistasFuncionario
 {
@@ -45,7 +48,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             CargarDatos();
-            Mostrar();
+            Mostrar(); CargarCombobox();
         }
         #endregion
 
@@ -56,8 +59,8 @@ namespace TurismoReal.Vistas.VistasFuncionario
         #region ValidarCamposVacios
         public bool CamposLlenos()
         {
-            if (tbMedioPago.Text == ""
-                || tbBanco.Text == "")
+            if (cbMedioPago.Text == ""
+                || cbBanco.Text == "")
             {
                 return false;
             }
@@ -78,16 +81,15 @@ namespace TurismoReal.Vistas.VistasFuncionario
         #region CREAR
         private void Crear(object sender, RoutedEventArgs e)
         {
-            if (tbMedioPago.Text == "")
+            if (cbMedioPago.SelectedIndex == -1)
             {
-                MessageBox.Show("Porfavor ingrese medio de pago");
-                tbMedioPago.Focus();
+                MessageBox.Show("Por favor seleccione un medio de pago");
             }
-            else if (tbBanco.Text == "")
+            else if(cbBanco.SelectedIndex == -1)
             {
-                MessageBox.Show("Porfavor ingrese banco");
-                tbBanco.Focus();
+                MessageBox.Show("Porfavor seleccione un banco.\nSi el medio de pago es efectivo, indique N/A");
             }
+            
 
             if (chkMulta.IsChecked == false)
             {
@@ -100,10 +102,10 @@ namespace TurismoReal.Vistas.VistasFuncionario
                     int efectivo = int.Parse("0" + tbEfectivo.Text);
                     int vuelto = efectivo - total;
 
-                    objeto_CE_Boletas.MedioDePago = tbMedioPago.Text;
+                    objeto_CE_Boletas.MedioDePago = cbMedioPago.Text;
                     //Me falta guardar con cuanto efectivo pago
                     objeto_CE_Boletas.Fecha = DateTime.Now;
-                    objeto_CE_Boletas.Banco = tbBanco.Text;
+                    objeto_CE_Boletas.Banco = cbBanco.Text;
                     objeto_CE_Boletas.Comprobante = comprobante + " " + vuelto.ToString();
                     //Añadir vuelto
                     objeto_CE_Boletas.Monto = total;
@@ -113,7 +115,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
 
                     if (tbCantidad.Text == "")
                     {
-                        MessageBox.Show("Se debe ingresar la cantidad");
+                        MessageBox.Show("La cantidad no puede quedar en blanco");
                         tbCantidad.Focus();
                     }
                     else if (int.Parse("0" + tbCantidad.Text) == 0)
@@ -121,7 +123,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
                         MessageBox.Show("La cantidad no puede ser 0");
                         tbCantidad.Focus();
                     }
-                    else if (tbMedioPago.Text == "Efectivo")
+                    else if (cbMedioPago.Text == "Efectivo")
                     {
                         if (int.Parse("0" + tbEfectivo.Text) < int.Parse(tbMonto.Text))
                         {
@@ -145,7 +147,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
                             }
                         }
                     }
-                    else if (tbMedioPago.Text != "Efectivo")
+                    else if (cbMedioPago.Text != "Efectivo")
                     {
                         if (CamposLlenos() == true)
                         {
@@ -181,10 +183,10 @@ namespace TurismoReal.Vistas.VistasFuncionario
                     int efectivo = int.Parse("0" + tbEfectivo.Text);
                     int vuelto = efectivo - total;
 
-                    objeto_CE_Boletas.MedioDePago = tbMedioPago.Text;
+                    objeto_CE_Boletas.MedioDePago = cbMedioPago.Text;
                     //Me falta guardar con cuanto efectivo pago
                     objeto_CE_Boletas.Fecha = DateTime.Now;
-                    objeto_CE_Boletas.Banco = tbBanco.Text;
+                    objeto_CE_Boletas.Banco = cbBanco.Text;
                     objeto_CE_Boletas.Comprobante = comprobante + " " + vuelto.ToString();
                     //Añadir vuelto
                     objeto_CE_Boletas.Monto = total;
@@ -202,8 +204,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
                         MessageBox.Show("El valor no puede quedar en blanco");
                         tbValorUnitario.Focus();
                     }
-                    //No funciona!
-                    else if (int.Parse(tbValorUnitario.Text) >= 5000 && Regex.IsMatch(tbValorUnitario.Text, @"^\d +$:") == true)
+                    else if (tbValorUnitario.Text.Length < 4)
                     {
                         MessageBox.Show("Resvise el monto ingresado\nNo hay montos a pagar menores a mil!");
                         return;
@@ -214,8 +215,16 @@ namespace TurismoReal.Vistas.VistasFuncionario
                         MessageBox.Show("La descripción no puede quedar en blanco");
                         tbDescripcion.Focus();
                     }
+                    //valido que se ingresen solo letras
+                    else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-Z]+$") == false)
+                    {
+                        MessageBox.Show("La descripción solo puede tener letras");
+                        tbDescripcion.Clear();
+                        tbDescripcion.Focus();
+                        return;
+                    }
 
-                    else if (tbMedioPago.Text == "Efectivo")
+                    else if (cbMedioPago.Text == "Efectivo")
                     {
                         if (int.Parse("0" + tbEfectivo.Text) < int.Parse(tbMonto.Text))
                         {
@@ -242,7 +251,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
                         }
                     }
 
-                    else if (tbMedioPago.Text != "Efectivo")
+                    else if (cbMedioPago.Text != "Efectivo")
                     {
                         if (CamposLlenos() == true)
                         {
@@ -271,49 +280,99 @@ namespace TurismoReal.Vistas.VistasFuncionario
         #region CALCULOS
         private void Calculo(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            int valor = int.Parse(tbValorUnitario.Text);
-            int cantidad = int.Parse("0"+tbCantidad.Text);
+            
+            if (tbCantidad.Text.Length > 2)
+            {
+                MessageBox.Show("Es demasiado grande la cantidad");
+                tbCantidad.Clear();
+                return;
+            }
+            else
+            {
+                int valor = int.Parse(tbValorUnitario.Text);
+                int cantidad = int.Parse("0" + tbCantidad.Text);
 
-            tbMonto.Text = "" + valor * cantidad;
+                tbMonto.Text = "" + valor * cantidad;
+            }
+
+        }
+        private void Verificar(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                e.Handled = false;
+            else
+                e.Handled = true;
         }
 
         private void Vuelto(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            int valor = int.Parse(tbValorUnitario.Text);
-            int cantidad = int.Parse(tbCantidad.Text);
-            int total = valor * cantidad;
+            if (tbValorUnitario.Text.Length > 6)
+            {
+                MessageBox.Show("Es demasiado grande el valor, no contamos con precios tan elevados");
+                tbValorUnitario.Clear();
+                tbValorUnitario.Focus();
+                return;
+            }
+            else if (tbValorUnitario.Text == "")
+            {
+                MessageBox.Show("El valor no puede quedar en blanco");
+                tbValorUnitario.Clear();
+                tbValorUnitario.Focus();
+            }
+            else if (int.Parse(tbValorUnitario.Text) == 0)
+            {
+                MessageBox.Show("El valor no puede ser 0");
+                tbValorUnitario.Clear();
+                tbValorUnitario.Focus();
+            }
+            else
+            {
+                int valor = int.Parse(tbValorUnitario.Text);
+                int cantidad = int.Parse(tbCantidad.Text);
+                int total = valor * cantidad;
 
-            int efectivo = int.Parse("0" + tbEfectivo.Text);
-            int vuelto = efectivo - total;
+                int efectivo = int.Parse("0" + tbEfectivo.Text);
+                int vuelto = efectivo - total;
 
-            if (tbEfectivo.Text == "0")
-            {
-                tbVuelto.Text = "0";
-            }
-            else if (int.Parse("0" + tbEfectivo.Text) == int.Parse(tbMonto.Text))
-            {
-                tbVuelto.Text = "0";
-            }
-            else if (int.Parse("0" + tbEfectivo.Text) < int.Parse(tbMonto.Text))
-            {
-                tbVuelto.Text = "0";
-            }
-            else if (tbEfectivo.Text == "")
-            {
-                tbVuelto.Text = "0";
-            }
-            else if (int.Parse("0" + tbEfectivo.Text) > int.Parse(tbMonto.Text))
-            {
-                tbVuelto.Text = vuelto.ToString();
+                if (tbEfectivo.Text == "0")
+                {
+                    tbVuelto.Text = "0";
+                }
+                else if (int.Parse("0" + tbEfectivo.Text) == int.Parse(tbMonto.Text))
+                {
+                    tbVuelto.Text = "0";
+                }
+                else if (int.Parse("0" + tbEfectivo.Text) < int.Parse(tbMonto.Text))
+                {
+                    tbVuelto.Text = "0";
+                }
+                else if (tbEfectivo.Text == "")
+                {
+                    tbVuelto.Text = "0";
+                }
+                else if (int.Parse("0" + tbEfectivo.Text) > int.Parse(tbMonto.Text))
+                {
+                    tbVuelto.Text = vuelto.ToString();
+                }
             }
         }
 
         private void Multa(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            int valor = int.Parse("0"+tbValorUnitario.Text);
-            int cantidad = int.Parse(tbCantidad.Text);
+            if (tbValorUnitario.Text.Length > 6)
+            {
+                MessageBox.Show("Es demasiado grande el valor, no contamos con precios tan elevados");
+                tbValorUnitario.Clear();
+                tbValorUnitario.Focus();
+                return;
+            }
+            else
+            {
+                int valor = int.Parse("0" + tbValorUnitario.Text);
+                int cantidad = int.Parse(tbCantidad.Text);
 
-            tbMonto.Text = "" + valor * cantidad;
+                tbMonto.Text = "" + valor * cantidad;
+            }
         }
 
         void Mostrar()
@@ -346,8 +405,18 @@ namespace TurismoReal.Vistas.VistasFuncionario
             //
             Pagina = Pagina.Replace("@TOTAL", total.ToString());
             //
-            Pagina = Pagina.Replace("@metodoPago", tbMedioPago.Text.ToString());
-            Pagina = Pagina.Replace("@efectivo", tbEfectivo.Text.ToString());
+            Pagina = Pagina.Replace("@metodoPago", cbMedioPago.Text.ToString());
+            if (cbMedioPago.Text == "Efectivo")
+            {
+                Pagina = Pagina.Replace("@tipo", "");
+                Pagina = Pagina.Replace("@efectivo", "");
+            }
+            else
+            {
+                Pagina = Pagina.Replace("@tipo", "Banco: ");
+                Pagina = Pagina.Replace("@efectivo", cbBanco.Text.ToString()); ;
+            }
+            
             if (tbEfectivo.Text == "0")
             {
                 Pagina = Pagina.Replace("@cambio", 0.ToString());
@@ -383,10 +452,10 @@ namespace TurismoReal.Vistas.VistasFuncionario
         #region Consultar
         private void Consultar(object sender, RoutedEventArgs e)
         {
-            int id = (int)((System.Windows.Controls.Button)sender).CommandParameter;
+            int id = (int)((Button)sender).CommandParameter;
             BtnGuardar.IsEnabled = false;
-            tbMedioPago.IsEnabled = false;
-            tbBanco.IsEnabled = false;
+            cbMedioPago.IsEnabled = false;
+            cbBanco.IsEnabled = false;
             tbDescripcion.IsEnabled = false;
             tbMonto.IsEnabled = false;
             tbEfectivo.IsEnabled = false;
@@ -396,17 +465,50 @@ namespace TurismoReal.Vistas.VistasFuncionario
             txtCantidad.Visibility = Visibility.Hidden;
             txtValor.Visibility = Visibility.Hidden;
 
-
             var a = objeto_CN_Boletas.Consulta(id);
 
-            tbMedioPago.Text = a.MedioDePago.ToString();
+            tbID.Text = id.ToString();
+            cbMedioPago.Text = a.MedioDePago.ToString();
             cFechaPago.Text = a.Fecha.ToString();
-            tbBanco.Text = a.Banco.ToString();
+            cbBanco.Text = a.Banco.ToString();
             tbMonto.Text = a.Monto.ToString();
             tbDescripcion.Text = a.Descripcion.ToString();
 
         }
         #endregion
-  
+
+        #region DATOS COMBOBOX
+        public void CargarCombobox()
+        {
+            List<CB_MedioPago> listMedio = new List<CB_MedioPago>();
+            listMedio.Add(new CB_MedioPago { IdMedioPago = 1, MedioPago = "Efectivo"});
+            listMedio.Add(new CB_MedioPago { IdMedioPago = 2, MedioPago = "Debito" });
+            listMedio.Add(new CB_MedioPago { IdMedioPago = 3, MedioPago = "Credito" });
+
+            cbMedioPago.SelectedValuePath = "MedioPago";
+            cbMedioPago.DisplayMemberPath = "MedioPago";
+            cbMedioPago.ItemsSource = listMedio;
+
+            List<CB_Banco> listBanco = new List<CB_Banco>();
+            listBanco.Add(new CB_Banco { IdBanco = 1, BancoName = "N/A" });
+            listBanco.Add(new CB_Banco { IdBanco = 2, BancoName = "CHILE" });
+            listBanco.Add(new CB_Banco { IdBanco = 3, BancoName = "SCOTIABANK" });
+            listBanco.Add(new CB_Banco { IdBanco = 4, BancoName = "CREDITO E INVERSIONES" });
+            listBanco.Add(new CB_Banco { IdBanco = 5, BancoName = "BCI" });
+            listBanco.Add(new CB_Banco { IdBanco = 6, BancoName = "CONSORCIO" });
+            listBanco.Add(new CB_Banco { IdBanco = 7, BancoName = "SANTANDER" });
+            listBanco.Add(new CB_Banco { IdBanco = 8, BancoName = "ITAÚ" });
+            listBanco.Add(new CB_Banco { IdBanco = 9, BancoName = "FALABELLA" });
+            listBanco.Add(new CB_Banco { IdBanco = 10, BancoName = "INTERNACIONAL" });
+
+            cbBanco.SelectedValuePath = "BancoName";
+            cbBanco.DisplayMemberPath = "BancoName";
+            cbBanco.ItemsSource = listBanco;
+
+        }
+
+        #endregion
+
+
     }
 }

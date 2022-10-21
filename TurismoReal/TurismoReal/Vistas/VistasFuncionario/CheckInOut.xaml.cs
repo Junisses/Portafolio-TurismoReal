@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -65,12 +66,6 @@ namespace TurismoReal.Vistas.VistasFuncionario
             ventana.idReserva = id;
             var a = objeto_CN_Reservas.Consulta(id);
             ventana.idUsuario = a.IdUsuario;
-            //ventana.tbCliente.Text = u.Nombres.ToString() + " " + u.Apellidos.ToString();
-            //ventana.tbRut.Text = u.Identificacion.ToString();
-            //ventana.tbDescripcion.IsEnabled = true;
-            //ventana.cFechaPago.IsEnabled = false;
-            //ventana.cFechaPago.Text = b.Fecha.ToString();
-            //ventana.Titulo.Text = "Pago de servicio Reserva #" + id;
         }
 
         private void OUT_click(object sender, RoutedEventArgs e)
@@ -83,6 +78,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
             ventana.Titulo.Text = "CHECK OUT Reserva N°" + id;
         }
 
+        #region FUNCION BUSCAR
         #region Limpiar
         public void LimpiarData()
         {
@@ -95,13 +91,63 @@ namespace TurismoReal.Vistas.VistasFuncionario
         {
             if (tbBuscar.Text != "")
             {
-                GridDatos.ItemsSource = objeto_CN_Reservas.BuscarN(tbBuscar.Text).DefaultView;
+                if (Regex.IsMatch(tbBuscar.Text, @"^[a-zA-Z]+$") == false)
+                {
+                    MessageBox.Show("Para buscar por Nombre/Apellido\nsolo se deben ingresar letras!");
+                    tbBuscar.Clear();
+                    return;
+                }
+                else if (tbBuscar.Text.Length > 25)
+                {
+                    MessageBox.Show("Por favor, no ingrese tantas letras");
+                    tbBuscar.Clear();
+                    return;
+                }
+                else
+                {
+                    GridDatos.ItemsSource = objeto_CN_Reservas.BuscarN(tbBuscar.Text).DefaultView;
+                    LimpiarData();
+                }
+
             }
             else if (tbRut.Text != "")
             {
-                GridDatos.ItemsSource = objeto_CN_Reservas.BuscarR(tbRut.Text).DefaultView;
+
+                if (tbRut.Text.Length < 9)
+                {
+                    MessageBox.Show("Para buscar Pasaporte/Rut se deben ingresar 9 caracteres\nsin guiones ni puntos según el tipo de identificación");
+                    tbRut.Clear();
+                    return;
+                }
+                else if (tbRut.Text.Length > 9)
+                {
+                    MessageBox.Show("Por favor, no ingrese más de 9 caracteres");
+                    tbRut.Clear();
+                    return;
+                }
+                else
+                {
+                    GridDatos.ItemsSource = objeto_CN_Reservas.BuscarR(tbRut.Text).DefaultView;
+                    LimpiarData();
+                }
             }
-            LimpiarData();
+            else
+            {
+                MessageBox.Show("Se deben ingresar datos para buscar");
+            }
+
+
+        }
+        #endregion
+
+        private void Acompañantes(object sender, RoutedEventArgs e)
+        {
+            int id = (int)((Button)sender).CommandParameter;
+            Acompañantes ventana = new Acompañantes();
+            FrameCheckINOUT.Content = ventana;
+
+            ventana.idReserva = id;
+            ventana.Titulo.Text = "Listado de Acompañantes Reserva N° " + id;
         }
     }
 }

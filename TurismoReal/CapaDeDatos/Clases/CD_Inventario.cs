@@ -72,6 +72,8 @@ namespace CapaDeDatos.Clases
 
             return dt;
         }
+        #endregion
+
         #region Consultar
 
         public CE_Inventario CargarInventarioIN(int idDepartamento)
@@ -94,7 +96,7 @@ namespace CapaDeDatos.Clases
             return ce;
         }
 
-        #endregion
+        
         #endregion 
 
         #region Actualizar Datos

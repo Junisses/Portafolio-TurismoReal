@@ -30,6 +30,24 @@ namespace CapaDeDatos.Clases
 
         #endregion 
 
+        #region CARGAR ACOMPAÑANTES
+
+        public DataTable CargarA(int idReserva)
+        {
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_R_Acompañantes", con.AbrirConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.Add("@idReserva", SqlDbType.Int).Value = idReserva;
+
+            DataSet ds = new DataSet();
+            ds.Clear();
+            da.Fill(ds);
+            DataTable dt = ds.Tables[0];
+            con.CerrarConexion();
+
+            return dt;
+        }
+        #endregion
+
 
         #region Consultar
 

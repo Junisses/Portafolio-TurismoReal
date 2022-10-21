@@ -432,6 +432,28 @@
                         <DataGridTextColumn Header="DNI"
                                         Width="*"
                                         Binding="{Binding identificacion}"/>
+                        <DataGridTemplateColumn Header="Acompañantes"
+                                            Width="105">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <Button 
+                                                Background="Transparent"
+                                                BorderBrush="Transparent"
+                                                Width="30" 
+                                                Height="30" 
+                                                Cursor="Hand"
+                                                Margin="10,0,0,0"
+                                                x:Name="BtnAcompañantes"
+                                                Click="Acompañantes"
+                                                CommandParameter="{Binding idReserva}">
+                                            <Image Source="/Vistas/Images/grupo.png"></Image>
+                                        </Button>
+
+                                    </DockPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTemplateColumn Header="Servicios"
                                             Width="100">
                             <DataGridTemplateColumn.CellTemplate>

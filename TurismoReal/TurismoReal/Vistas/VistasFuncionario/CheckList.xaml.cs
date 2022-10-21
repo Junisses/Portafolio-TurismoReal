@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -61,11 +62,28 @@ namespace TurismoReal.Vistas.VistasFuncionario
         #endregion
         private void Ver(object sender, RoutedEventArgs e)
         {
-            GridDatos.ItemsSource = objeto_CN_Departamentos.BuscarDepto(tbBuscar.Text).DefaultView;
-            LimpiarData();
+            if (tbBuscar.Text != "")
+            {
+                if (tbBuscar.Text.Length > 25)
+                {
+                    MessageBox.Show("Por favor, no ingrese tantos caracteres");
+                    tbBuscar.Clear();
+                    return;
+                }
+                else
+                {
+                    GridDatos.ItemsSource = objeto_CN_Departamentos.BuscarDepto(tbBuscar.Text).DefaultView;
+                    LimpiarData();
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Ingrese una dirección para buscar");
+            }
         }
-        #endregion
+            #endregion
 
 
-    }
+        }
 }
