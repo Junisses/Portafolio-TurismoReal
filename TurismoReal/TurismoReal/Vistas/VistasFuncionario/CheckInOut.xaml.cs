@@ -95,11 +95,13 @@ namespace TurismoReal.Vistas.VistasFuncionario
                 {
                     MessageBox.Show("Para buscar por Nombre/Apellido\nsolo se deben ingresar letras!");
                     tbBuscar.Clear();
+                    tbBuscar.Focus();
                     return;
                 }
                 else if (tbBuscar.Text.Length > 25)
                 {
                     MessageBox.Show("Por favor, no ingrese tantas letras");
+                    tbBuscar.Focus();
                     tbBuscar.Clear();
                     return;
                 }
@@ -117,12 +119,14 @@ namespace TurismoReal.Vistas.VistasFuncionario
                 {
                     MessageBox.Show("Para buscar Pasaporte/Rut se deben ingresar 9 caracteres\nsin guiones ni puntos según el tipo de identificación");
                     tbRut.Clear();
+                    tbRut.Focus();
                     return;
                 }
                 else if (tbRut.Text.Length > 9)
                 {
                     MessageBox.Show("Por favor, no ingrese más de 9 caracteres");
                     tbRut.Clear();
+                    tbRut.Focus();
                     return;
                 }
                 else

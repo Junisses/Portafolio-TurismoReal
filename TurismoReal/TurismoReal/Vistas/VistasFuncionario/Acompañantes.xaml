@@ -348,7 +348,7 @@
                 <!--#endregion-->
                 <!--#region textbox-->
                 <TextBox Style="{DynamicResource TextBoxStyle}" 
-                         TextAlignment="Left"
+                         TextAlignment="Center"
                          Foreground="Black"
                          FontSize="15"
                          x:Name="tbBuscar"
@@ -358,11 +358,12 @@
                          Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0,124,0"/>
                 <TextBlock IsHitTestVisible="False" 
                            Text="Ingrese Nombre / Apellido" 
-                           VerticalAlignment="Top" 
+                           VerticalAlignment="Center" 
                            Grid.Column="3"
                            Grid.Row="2"
-                           HorizontalAlignment="Left" Margin="5,7,0,0" 
-                           Foreground="DarkGray" Grid.ColumnSpan="2" Height="25" Width="157" Grid.RowSpan="2">
+                           HorizontalAlignment="Center" 
+                           Foreground="DarkGray" Grid.ColumnSpan="2" 
+                           Height="18" Width="267">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
                             <Setter Property="Visibility" Value="Collapsed"/>
@@ -385,7 +386,7 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top" Width="124" Grid.ColumnSpan="2" Margin="24,4,0,0"/>
                 <TextBox Style="{DynamicResource TextBoxStyle}" 
-                         TextAlignment="Left"
+                         TextAlignment="Center"
                          Foreground="Black"
                          FontSize="15"
                          x:Name="tbBuscarRut"
@@ -398,7 +399,7 @@
                            VerticalAlignment="Center" 
                            Grid.Column="5"
                            Grid.Row="2"
-                           HorizontalAlignment="Left" Margin="5,0,0,3" 
+                           HorizontalAlignment="Center" Margin="5,0,0,3" 
                            Foreground="DarkGray">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">

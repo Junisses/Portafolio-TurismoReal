@@ -117,9 +117,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
             var a = objeto_CN_Reservas.Consulta(idReserva);
             var u = objeto_CN_Usuarios.Consulta(a.IdUsuario);
             var d = objeto_CN_Departamentos.Consulta(a.IdDepartamento);
-            var b = objeto_CN_Boletas.Consulta(idReserva);
             var c = objeto_CN_Comuna.NombreComuna(d.IdComuna);
-
 
             string Pagina = Properties.Resources.CheckIN.ToString();
             Pagina = Pagina.Replace("@Fecha", DateTime.Now.ToString("dd/MM/yyyy"));
@@ -135,18 +133,17 @@ namespace TurismoReal.Vistas.VistasFuncionario
             var det = objeto_CN_Boletas.Detalle(idReserva);
 
             //VALIDACION EN CASO DE QUE NO TENGA EL REGISTRO
-            //if (det.ToString() == null)
-            //{
-            //    Pagina = Pagina.Replace("@medioPago", "NULL ");
-            //    Pagina = Pagina.Replace("@valorReserva", 0.ToString());
-            //}
-            //else
-            //{
+            if (det == null)
+            {
+                Pagina = Pagina.Replace("@medioPago", "NULL ");
+                Pagina = Pagina.Replace("@valorReserva", 0.ToString());
+            }
+            else
+            {
                 Pagina = Pagina.Replace("@medioPago", det.MedioDePago.ToString());
                 Pagina = Pagina.Replace("@valorReserva", det.Monto.ToString());
-            //}
+            }
             
-            //
             //LISTADO DE ARTEFACTOS
             string filas = string.Empty;
             foreach (DataRowView item in GridCheck.ItemsSource)

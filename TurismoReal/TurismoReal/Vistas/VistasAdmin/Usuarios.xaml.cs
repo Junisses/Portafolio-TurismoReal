@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -54,30 +55,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        #region CONSULTAR
-        private void Consultar(object sender, RoutedEventArgs e)
-        {
-            int id = (int)((Button)sender).CommandParameter;
-            CRUDusuarios ventana = new CRUDusuarios();
-            ventana.idUsuario = id;
-            ventana.Consultar();
-            FrameUsuarios.Content = ventana;
-            ventana.Titulo.Text = "Consultar Usuario";
-            ventana.tbNombre.IsEnabled = false;
-            ventana.tbApellido.IsEnabled = false;
-            ventana.tbCel.IsEnabled = false;
-            ventana.tbPais.IsEnabled = false;
-            ventana.tbCorreo.IsEnabled = false;
-            ventana.tbRut.IsEnabled = false;
-            ventana.tbUser.IsEnabled = false;
-            ventana.tbContrasena.IsEnabled = false;
-            ventana.cbTipoUsuario.IsEnabled = false;
-            ventana.ChangePassword.Visibility = Visibility.Hidden;
-        }
-        
-
-        #endregion
-
         #region ACTUALIZAR
         private void Actualizar(object sender, RoutedEventArgs e)
         {
@@ -101,30 +78,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        #region ELIMINAR
-        private void Eliminar(object sender, RoutedEventArgs e)
-        {
-            int id = (int)((Button)sender).CommandParameter;
-            CRUDusuarios ventana = new CRUDusuarios();
-            ventana.idUsuario = id;
-            ventana.Consultar();
-            FrameUsuarios.Content = ventana;
-            ventana.Titulo.Text = "Eliminar Usuario";
-            ventana.tbNombre.IsEnabled = false;
-            ventana.tbApellido.IsEnabled = false;
-            ventana.tbCel.IsEnabled = false;
-            ventana.tbPais.IsEnabled = false;
-            ventana.tbCorreo.IsEnabled = false;
-            ventana.tbRut.IsEnabled = false;
-            ventana.tbUser.IsEnabled = false;
-            ventana.tbContrasena.IsEnabled = false;
-            ventana.cbTipoUsuario.IsEnabled = false;
-            //ventana.BtnEliminar.Visibility = Visibility.Visible;
-            ventana.ChangePassword.Visibility = Visibility.Hidden;
-        }
-
-        #endregion
-
         #region FUNCION BUSCAR
         #region Limpiar
         public void LimpiarData()
@@ -136,15 +89,40 @@ namespace TurismoReal.Vistas.VistasAdmin
         #endregion
         private void Ver(object sender, RoutedEventArgs e)
         {
+
             if (tbBuscar.Text != "")
             {
-                GridDatos.ItemsSource = objeto_CN_Usuarios.Buscar(tbBuscar.Text).DefaultView;
+                if (Regex.IsMatch(tbBuscar.Text, @"^[a-zA-Z]+$") == false)
+                {
+                    MessageBox.Show("Para buscar por Nombre/Apellido\nsolo se deben ingresar letras!");
+                    tbBuscar.Focus();
+                    LimpiarData();
+                    return;
+                }
+                else if (tbBuscar.Text.Length > 25)
+                {
+                    MessageBox.Show("Por favor, no ingrese tantas letras");
+                    tbBuscar.Focus();
+                    LimpiarData();
+                    return;
+                }
+                else
+                {
+                    GridDatos.ItemsSource = objeto_CN_Usuarios.Buscar(tbBuscar.Text).DefaultView;
+                    LimpiarData();
+                }
+
             }
-            else if (cbFiltroTipo.Text != "") 
+            else if (cbFiltroTipo.Text != "")
             {
                 GridDatos.ItemsSource = objeto_CN_Usuarios.Filtro(cbFiltroTipo.Text).DefaultView;
+                LimpiarData();
+                
             }
-            LimpiarData(); 
+            else
+            {
+                MessageBox.Show("Se deben ingresar datos para buscar");
+            }
         }
         #endregion
     }
