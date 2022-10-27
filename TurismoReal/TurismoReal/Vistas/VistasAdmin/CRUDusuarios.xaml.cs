@@ -44,7 +44,9 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        #region ValidarCamposVacios
+        #region Validaciones generales
+
+        #region VALIDAR CAMPOS VACÍOS
         public bool CamposLlenos()
         {
             if (tbNombre.Text == ""
@@ -144,12 +146,15 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
+        #region VALIDACIÓN ALFA NÚMERICO
         public bool IsAlphaNumeric(string texto)
         {
             Regex objAlphaNumericPattern = new Regex("[^a-zA-Z0-9]");
             return !objAlphaNumericPattern.IsMatch(texto);
         }
+        #endregion
 
+        #region VALIDAR SOLO NÚMEROS
         private void Verificar(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
@@ -157,6 +162,9 @@ namespace TurismoReal.Vistas.VistasAdmin
             else
                 e.Handled = true;
         }
+        #endregion
+
+        #endregion
 
         #region CRUD
 
@@ -167,7 +175,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         private void Crear(object sender, RoutedEventArgs e)
         {
             //Validaciones basicas
-
             #region NOMBRE Y APELLIDO
             //NOMBRE
             if (tbNombre.Text == "")
@@ -342,6 +349,13 @@ namespace TurismoReal.Vistas.VistasAdmin
             else if (tbUser.Text.Length < 1 || tbUser.Text.Length < 2)
             {
                 MessageBox.Show("El nombre de usuario no puede ser tan corto");
+                tbUser.Clear();
+                tbUser.Focus();
+                return;
+            }
+            else if (tbUser.Text.Length > 25)
+            {
+                MessageBox.Show("El nombre de usuario es demasiado extenso");
                 tbUser.Clear();
                 tbUser.Focus();
                 return;

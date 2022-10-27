@@ -285,6 +285,7 @@
                            VerticalAlignment="Center" 
                            Grid.Column="2"
                            Grid.Row="2"
+                           FontSize="11"
                            HorizontalAlignment="Center" Margin="5,0,0,3" 
                            Foreground="DarkGray">
                     <TextBlock.Style>

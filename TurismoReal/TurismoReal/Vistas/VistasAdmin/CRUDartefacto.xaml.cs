@@ -3,8 +3,10 @@ using CapaDeNegocio.Clases;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace TurismoReal.Vistas.VistasAdmin
 {
@@ -49,7 +51,9 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        #region ValidarCamposVacios
+        #region Validaciones generales
+
+        #region VALIDAR CAMPOS VACÍOS
         public bool CamposLlenos()
         {
             if (tbDescripcion.Text == ""
@@ -67,11 +71,124 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
+        #region VALIDACIÓN ALFA NÚMERICO
+        public bool IsAlphaNumeric(string texto)
+        {
+            Regex objAlphaNumericPattern = new Regex("[^a-zA-Z0-9]");
+            return !objAlphaNumericPattern.IsMatch(texto);
+        }
+        #endregion
+
+        #region VALIDAR SOLO NÚMEROS
+        private void Verificar(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+        #endregion
+
+        #endregion
+
         public int idArtefactos;
         public int idUnidadMedida;
         #region Crear
         private void Crear(object sender, RoutedEventArgs e)
         {
+            #region DESCRIPCIÓN
+            if (tbDescripcion.Text == "")
+            {
+                MessageBox.Show("La descripción no puede quedar vacía");
+                tbDescripcion.Focus();
+                return;
+            }
+            else if (tbDescripcion.Text != "")
+            {
+                if (tbDescripcion.Text.Length > 30)
+                {
+                    MessageBox.Show("La descripción es demasiado extensa");
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+                else if (tbDescripcion.Text.Length < 3)
+                {
+                    MessageBox.Show("La descrpción es muy corta");
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+                else if (IsAlphaNumeric(tbDescripcion.Text.ToString()) == false)
+                {
+                    MessageBox.Show("Solo se pueden ingresar letras\ny números en la descripción");
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+            }
+            #endregion
+
+            #region COLOR
+            if (tbColor.Text == "")
+            {
+                MessageBox.Show("El color no puede quedar vacío");
+                tbColor.Focus();
+                return;
+            }
+            else if (tbColor.Text != "")
+            {
+                if (tbColor.Text.Length > 30)
+                {
+                    MessageBox.Show("El nombre del color es muy extenso");
+                    tbColor.Clear();
+                    tbColor.Focus();
+                    return;
+                }
+                else if (tbColor.Text.Length < 3)
+                {
+                    MessageBox.Show("Ups, no existen nombres de colores tan cortos!");
+                    tbColor.Clear();
+                    tbColor.Focus();
+                    return;
+                }
+                //valido que se ingresen solo letras
+                else if (Regex.IsMatch(tbColor.Text, @"^[a-zA-Z]+$") == false)
+                {
+                    MessageBox.Show("Solo se pueden ingresar letras en el color");
+                    tbColor.Clear();
+                    tbColor.Focus();
+                    return;
+                }
+            }
+            #endregion
+
+            #region TAMAÑO
+            if (tbTamaño.Text == "")
+            {
+                MessageBox.Show("Debe ingresar el tamaño (en números)");
+                tbTamaño.Focus();
+                return;
+            }
+            #endregion
+
+            #region UNIDAD DE MEDIDA
+            if (cbUnidad.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar una unidad de medida");
+                return;
+            }
+            #endregion
+
+            #region TAMAÑO
+            if (tbValor.Text == "")
+            {
+                MessageBox.Show("Debe ingresar el valor del artefacto");
+                tbValor.Focus();
+                return;
+            }
+            #endregion
+
             if (CamposLlenos() == true)
             {
                 try
@@ -201,6 +318,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             tbColor.Clear();
             tbTamaño.Clear();
             tbValor.Clear();
+            cbUnidad.SelectedIndex = -1;
             tbDescripcion.IsEnabled = true;
             tbTamaño.IsEnabled = true;
             tbColor.IsEnabled = true;

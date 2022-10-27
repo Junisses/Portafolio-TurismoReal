@@ -49,6 +49,8 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.idDepartamento = id;
             FrameDepartamentos.Content = ventana;
             ventana.Titulo.Text = "Reporte departamento N° "+ id;
+            ventana.BtnGenerar.Visibility = Visibility.Hidden;
+            ventana.BtnCrear.Visibility = Visibility.Visible;
 
         }
         #endregion
@@ -65,6 +67,8 @@ namespace TurismoReal.Vistas.VistasAdmin
                 FrameDepartamentos.Content = ventana;
                 ventana.Titulo.Text = "Reporte General " + idRegion + " Region";
                 ventana.txtDetalle.Text = "generar el reporte general de la zona " + idRegion;
+                ventana.BtnCrear.Visibility = Visibility.Hidden;
+                ventana.BtnGenerar.Visibility = Visibility.Visible;
             }
             
             else

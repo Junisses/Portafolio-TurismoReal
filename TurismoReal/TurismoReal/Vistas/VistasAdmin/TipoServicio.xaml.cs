@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -64,6 +65,39 @@ namespace TurismoReal.Vistas.VistasAdmin
         #region AGREGAR 
         private void Crear(object sender, RoutedEventArgs e)
         {
+            #region DESCRIPCIÓN
+            if (tbDescripcion.Text == "")
+            {
+                MessageBox.Show("La descripción no puede quedar vacía");
+                tbDescripcion.Focus();
+                return;
+            }
+            else if (tbDescripcion.Text != "")
+            {
+                if (tbDescripcion.Text.Length > 30)
+                {
+                    MessageBox.Show("La descripción es demasiado extensa");
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+                else if (tbDescripcion.Text.Length < 3)
+                {
+                    MessageBox.Show("La descripción es muy corta");
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+                //valido que se ingresen solo letras
+                else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-Z]+$") == false)
+                {
+                    MessageBox.Show("La descripción solo puede contener letras");
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+            }
+            #endregion
             if (CamposLlenos() == true)
             {
                 objeto_CE_TipoServicio.TipoServicio = tbDescripcion.Text;

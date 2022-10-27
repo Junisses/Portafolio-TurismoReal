@@ -3,6 +3,7 @@ using CapaDeNegocio.Clases;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace TurismoReal.Vistas.VistasAdmin
 {
@@ -64,13 +65,44 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
+        #region VALIDAR SOLO NÚMEROS
+        private void Verificar(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+        #endregion
+
         public int idArtefactos;
         public int idInventario;
         public int idDepartamento;
         #region Crear
         private void Crear(object sender, RoutedEventArgs e)
         {
-            if (CamposLlenos() == true)
+            #region CANTIDAD
+            if (tbCantidad.Text == "")
+            {
+                MessageBox.Show("La cantidad no puede quedar vacía");
+                tbCantidad.Focus();
+            }
+            else if (int.Parse(tbCantidad.Text) == 0)
+            {
+                MessageBox.Show("La cantidad no puede ser 0");
+                tbCantidad.Clear();
+                tbCantidad.Focus();
+            }
+            #endregion
+
+            #region ARTEFACTO
+            else if (cbArtefacto.Text == "")
+            {
+                MessageBox.Show("Indique el artefacto!");
+            }
+            #endregion
+
+            else if (CamposLlenos() == true)
             {
                 try
                 {

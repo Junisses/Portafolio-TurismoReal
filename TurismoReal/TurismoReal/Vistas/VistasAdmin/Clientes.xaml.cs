@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -50,13 +51,56 @@ namespace TurismoReal.Vistas.VistasAdmin
         {
             if (tbBuscar.Text != "")
             {
-                GridDatos.ItemsSource = objeto_CN_Usuarios.Buscar(tbBuscar.Text).DefaultView;
+                if (Regex.IsMatch(tbBuscar.Text, @"^[a-zA-Z]+$") == false)
+                {
+                    MessageBox.Show("Para buscar por Nombre/Apellido\nsolo se deben ingresar letras!");
+                    tbBuscar.Clear();
+                    tbBuscar.Focus();
+                    return;
+                }
+                else if (tbBuscar.Text.Length > 25)
+                {
+                    MessageBox.Show("Por favor, no ingrese tantas letras");
+                    tbBuscar.Clear();
+                    tbBuscar.Focus();
+                    return;
+                }
+                else
+                {
+                    GridDatos.ItemsSource = objeto_CN_Usuarios.Buscar(tbBuscar.Text).DefaultView;
+                    LimpiarData();
+                }
+
             }
             else if (tbRut.Text != "")
             {
-                GridDatos.ItemsSource = objeto_CN_Usuarios.BuscarRut(tbRut.Text).DefaultView;
+
+                if (tbRut.Text.Length < 9)
+                {
+                    MessageBox.Show("Para buscar Pasaporte/Rut se deben ingresar 9 caracteres\nsin guiones ni puntos según el tipo de identificación");
+                    tbRut.Clear();
+                    tbRut.Focus();
+                    return;
+                }
+                else if (tbRut.Text.Length > 9)
+                {
+                    MessageBox.Show("Por favor, no ingrese más de 9 caracteres");
+                    tbRut.Clear();
+                    tbRut.Focus();
+                    return;
+                }
+                else
+                {
+                    GridDatos.ItemsSource = objeto_CN_Usuarios.BuscarRut(tbRut.Text).DefaultView;
+                    LimpiarData();
+                }
             }
-            LimpiarData();
+            else
+            {
+                MessageBox.Show("Se deben ingresar datos para buscar");
+            }
+
+
         }
         #endregion
     }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -63,6 +64,40 @@ namespace TurismoReal.Vistas.VistasAdmin
         #region Crear
         private void Crear(object sender, RoutedEventArgs e)
         {
+            #region TIPO GASTO
+            if (tbTipoGasto.Text == "")
+            {
+                MessageBox.Show("El tipo de gasto no puede quedar vacío");
+                tbTipoGasto.Focus();
+                return;
+            }
+            else if (tbTipoGasto.Text != "")
+            {
+                if (tbTipoGasto.Text.Length > 30)
+                {
+                    MessageBox.Show("Es demasiado extenso el nombre del gasto");
+                    tbTipoGasto.Clear();
+                    tbTipoGasto.Focus();
+                    return;
+                }
+                else if (tbTipoGasto.Text.Length < 3)
+                {
+                    MessageBox.Show("El tipo de gasto es muy corto");
+                    tbTipoGasto.Clear();
+                    tbTipoGasto.Focus();
+                    return;
+                }
+                //valido que se ingresen solo letras
+                else if (Regex.IsMatch(tbTipoGasto.Text, @"^[a-zA-Z]+$") == false)
+                {
+                    MessageBox.Show("Tipo de Gasto solo puede contener letras");
+                    tbTipoGasto.Clear();
+                    tbTipoGasto.Focus();
+                    return;
+                }
+            }
+            #endregion
+
             if (CamposLlenos() == true)
             {
                 try

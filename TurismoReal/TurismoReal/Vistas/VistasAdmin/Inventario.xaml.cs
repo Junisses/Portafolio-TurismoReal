@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -65,10 +66,42 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
 
         #endregion
+        public bool IsAlphaNumeric(string texto)
+        {
+            Regex objAlphaNumericPattern = new Regex("[^a-zA-Z0-9]");
+            return !objAlphaNumericPattern.IsMatch(texto);
+        }
+
         private void Ver(object sender, RoutedEventArgs e)
         {
-            GridDatos.ItemsSource = objeto_CN_Departamentos.BuscarDepto(tbBuscar.Text).DefaultView;
-            LimpiarData();
+            if (tbBuscar.Text != "")
+            {
+                if (tbBuscar.Text.Length > 30)
+                {
+                    MessageBox.Show("La dirección es demasiado extensa!");
+                    tbBuscar.Focus();
+                    LimpiarData();
+                    return;
+                }
+                else if (IsAlphaNumeric(tbBuscar.Text.ToString()) == false)
+                {
+                    MessageBox.Show("Para buscar dirección solo ingrese letras y números");
+                    tbBuscar.Clear();
+                    tbBuscar.Focus();
+                    return;
+                }
+                else
+                {
+                    GridDatos.ItemsSource = objeto_CN_Departamentos.BuscarDepto(tbBuscar.Text).DefaultView;
+                    LimpiarData();
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Se deben ingresar datos para buscar");
+                CargarDatos();
+            }
         }
         #endregion
     }

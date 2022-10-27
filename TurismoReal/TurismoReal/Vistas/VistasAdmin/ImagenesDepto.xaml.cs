@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -65,12 +66,54 @@ namespace TurismoReal.Vistas.VistasAdmin
         public int idDepartamento;
         private void Crear(object sender, RoutedEventArgs e)
         {
-            if (CamposLlenos() == true)
+            #region NOMBRE/DESCRIPCIÓN
+            if (tbDescripcion.Text == "")
+            {
+                MessageBox.Show("La descripción no puede quedar vacía");
+                tbDescripcion.Focus();
+                return;
+            }
+            else if (tbDescripcion.Text != "")
+            {
+                if (tbDescripcion.Text.Length > 30)
+                {
+                    MessageBox.Show("La descripción es demasiado extensa");
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+                else if (tbDescripcion.Text.Length < 3)
+                {
+                    MessageBox.Show("La descrición es muy corta");
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+                //valido que se ingresen solo letras
+                else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-Z]+$") == false)
+                {
+                    MessageBox.Show("La descripción solo puede tener letras");
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+            }
+            #endregion
+
+            
+
+            else if (CamposLlenos() == true)
             {
                 objeto_CE_Galeria.DescripcionImagen = tbDescripcion.Text;
                 objeto_CE_Galeria.IdDepartamento = int.Parse(tbIDdepto.Text);
 
-                if (imagensubida == true)
+                #region IMAGEN
+                if (objeto_CE_Galeria.idGaleria == 1)
+                {
+                    MessageBox.Show("No se ha seleccionado una imagen!");
+                }
+                
+                else if (imagensubida == true)
                 {
                     objeto_CE_Galeria.Imagen = img;
 
@@ -79,6 +122,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                     MessageBox.Show("Se ha guardado la imagen!");
                     LimpiarData();
                 }
+                #endregion
                 else
                 {
                     MessageBox.Show("La imagen no se ha guardado, intentelo denuevo");

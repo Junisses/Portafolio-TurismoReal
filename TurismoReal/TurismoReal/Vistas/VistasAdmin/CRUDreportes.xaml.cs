@@ -70,7 +70,17 @@ namespace TurismoReal.Vistas.VistasAdmin
         #region Crear
         private void Crear(object sender, RoutedEventArgs e)
         {
-            if (CamposLlenos() == true)
+            if (cFechaDesde.Text == "")
+            {
+                MessageBox.Show("Por favor indique desde que fecha desea el reporte");
+                cFechaDesde.Focus();
+            }
+            else if (cFechaHasta.Text == "")
+            {
+                MessageBox.Show("Por favor indique hasta que fecha desea el reporte");
+                cFechaHasta.Focus();
+            }
+            else
             {
                 string reporte = "REPORTE-" + " Depto-0" + idDepartamento + "-" + DateTime.Now.ToString("HHmmssddMMyyyy");
                 objeto_CE_Reportes.FechaDesde = DateTime.Parse(cFechaDesde.Text);
@@ -84,17 +94,24 @@ namespace TurismoReal.Vistas.VistasAdmin
 
                 Content = new Reportes();
             }
-            else
-            {
-                MessageBox.Show("No se pudo generar el reporte, revise que los datos esten correctamente ingresados");
-            }
         }
 
         private void CrearGeneral(object sender, RoutedEventArgs e)
         {
-            if (CamposLlenos() == true)
+            
+            if (cFechaDesde.Text == "")
             {
-                string reporte = "RERPORTE-ZONA-"+ idRegion + "-" + DateTime.Now.ToString("HHmmssddMMyyyy");
+                MessageBox.Show("Por favor indique desde que fecha desea el reporte");
+                cFechaDesde.Focus();
+            }
+            else if (cFechaHasta.Text == "")
+            {
+                MessageBox.Show("Por favor indique hasta que fecha desea el reporte");
+                cFechaHasta.Focus();
+            }
+            else 
+            {
+                string reporte = "RERPORTE-ZONA-" + idRegion + "-" + DateTime.Now.ToString("HHmmssddMMyyyy");
                 objeto_CE_Reportes.FechaDesde = DateTime.Parse(cFechaDesde.Text);
                 DateTime fechad = DateTime.Parse(cFechaDesde.Text);
                 objeto_CE_Reportes.FechaHasta = DateTime.Parse(cFechaHasta.Text);
@@ -105,10 +122,6 @@ namespace TurismoReal.Vistas.VistasAdmin
                 ImprimirR(fechad, fechah, idRegion, reporte);
 
                 Content = new Reportes();
-            }
-            else
-            {
-                MessageBox.Show("No se pudo generar el reporte, revise que los datos esten correctamente ingresados");
             }
         }
         #endregion

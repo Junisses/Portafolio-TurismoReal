@@ -121,7 +121,8 @@ namespace TurismoReal.Vistas.VistasAdmin
             }
             else
             {
-                MessageBox.Show("Se deben ingresar datos para buscar");
+                MessageBox.Show("Se deben ingresar datos para buscar usuario");
+                CargarDatos();
             }
         }
         #endregion

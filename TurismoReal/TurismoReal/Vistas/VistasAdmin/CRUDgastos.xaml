@@ -119,8 +119,8 @@
                                 <Setter Property="BorderBrush" TargetName="border" Value="#006600"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background1}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border1}"/>
+                                <Setter Property="Background" TargetName="border" Value="#98FF9B"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#98FF9B"/>
                                 <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground1}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -233,8 +233,8 @@
                                 <Setter Property="BorderBrush" TargetName="border" Value="#C20000"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background3}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border3}"/>
+                                <Setter Property="Background" TargetName="border" Value="#FFB07E"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FFB07E"/>
                                 <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground3}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -951,6 +951,26 @@
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
+            <TextBlock IsHitTestVisible="False" 
+                           Text="Ingrese descrpción" 
+                           VerticalAlignment="Center" 
+                           Grid.Column="2"
+                           Grid.Row="5"
+                           FontSize="11"
+                           HorizontalAlignment="Center" Margin="5,0,0,3" 
+                           Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger 
+                                    Binding="{Binding Text, ElementName=tbDescripcion}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
 
             <TextBlock Grid.Row="7"
                        Grid.Column="1"
@@ -960,9 +980,30 @@
             <TextBox Grid.Row="7"
                      Grid.Column="2"
                      x:Name="tbMonto"
+                     KeyDown="Verificar"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
+            <TextBlock IsHitTestVisible="False" 
+                           Text="Ingrese monto (sólo números)" 
+                           VerticalAlignment="Center" 
+                           Grid.Column="2"
+                           Grid.Row="7"
+                           FontSize="11"
+                           HorizontalAlignment="Center" Margin="5,0,0,3" 
+                           Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger 
+                                    Binding="{Binding Text, ElementName=tbMonto}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
 
             <TextBox Grid.Row="1"
                      Grid.Column="1"

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -57,7 +58,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-
         #region ValidarCamposVacios
         public bool CamposLlenos()
         {
@@ -76,13 +76,86 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
+        #region VALIDAR SOLO NÚMEROS
+        private void Verificar(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+        #endregion
+
         public int idTipoGastos;
         public int idGastos;
         public int idDepartamento;
         #region Crear
         private void Crear(object sender, RoutedEventArgs e)
         {
-            if (CamposLlenos() == true)
+            #region DESCRIPCIÓN
+            if (tbDescripcion.Text == "")
+            {
+                MessageBox.Show("La descripción no puede quedar vacía");
+                tbDescripcion.Focus();
+                return;
+            }
+            else if (tbDescripcion.Text != "")
+            {
+                if (tbDescripcion.Text.Length > 35)
+                {
+                    MessageBox.Show("Es demasiado extensa la descripción");
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+                else if (tbDescripcion.Text.Length < 3)
+                {
+                    MessageBox.Show("Es muy corta la descripción");
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+                //valido que se ingresen solo letras
+                else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-Z]+$") == false)
+                {
+                    MessageBox.Show("Solo se pueden ingresar letras en la descripción");
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+            }
+            #endregion
+
+            #region MONTO
+            if (tbMonto.Text == "")
+            {
+                MessageBox.Show("El monto no puede quedar en blanco");
+                tbMonto.Focus();
+            }
+            else if (int.Parse(tbMonto.Text) == 0)
+            {
+                MessageBox.Show("El monto no puede ser 0");
+                tbMonto.Clear();
+                tbMonto.Focus();
+            }
+            #endregion
+
+            #region FECHA
+            else if (cFecha.Text == "")
+            {
+                MessageBox.Show("Por favor, indique la fecha que se pago");
+                cFecha.Focus();
+            }
+            #endregion
+
+            #region MONTO
+            else if (cbTipoGasto.Text == "")
+            {
+                MessageBox.Show("Indique el tipo de gasto!");
+            }
+            #endregion
+
+            else if (CamposLlenos() == true)
             {
                 try
                 {

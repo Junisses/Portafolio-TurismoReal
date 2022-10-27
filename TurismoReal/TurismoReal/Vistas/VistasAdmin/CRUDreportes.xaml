@@ -816,22 +816,23 @@
 
             <!--#region CREAR-->
             <Button x:Name="BtnCrear"
-                        Content="Generar"
+                        Content="Generar reporte"
                         Grid.Row="17"
                         Grid.Column="5"
-                        Width="100"
+                        Visibility="Hidden"
                         Background="Green"
                         Foreground="White"
                         Style="{DynamicResource estiloCrear}"
-                        Click="Crear" Margin="43,0,42,0"/>
+                        Click="Crear" Margin="22,0,21,0"/>
             <!--#endregion-->
 
             <!--#region CREAR-->
             <Button x:Name="BtnGenerar"
                         Content="Generar reporte"
                         Grid.Row="17"
-                        Grid.Column="4"
-                        Background="Red"
+                        Grid.Column="5"
+                        Visibility="Hidden"
+                        Background="Green"
                         Foreground="White"
                         Style="{DynamicResource estiloCrear}"
                         Click="CrearGeneral" Margin="22,0,21,0"/>

@@ -361,6 +361,7 @@
                            VerticalAlignment="Center" 
                            Grid.Column="3"
                            Grid.Row="2"
+                           FontSize="11"
                            HorizontalAlignment="Center" 
                            Foreground="DarkGray" Grid.ColumnSpan="2" 
                            Height="18" Width="267">
@@ -399,6 +400,7 @@
                            VerticalAlignment="Center" 
                            Grid.Column="5"
                            Grid.Row="2"
+                           FontSize="11"
                            HorizontalAlignment="Center" Margin="5,0,0,3" 
                            Foreground="DarkGray">
                     <TextBlock.Style>

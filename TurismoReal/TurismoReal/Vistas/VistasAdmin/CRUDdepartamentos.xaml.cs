@@ -2,8 +2,10 @@
 using CapaDeNegocio.Clases;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace TurismoReal.Vistas.VistasAdmin
 {
@@ -43,7 +45,8 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        #region ValidarCamposVacios
+        #region Valdiaciones generales
+        #region VALIDAR CAMPOS VACÍOS
         public bool CamposLlenos()
         {
             if (tbNombreDepto.Text == ""
@@ -64,12 +67,138 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
+        #region VALIDACIÓN ALFA NÚMERICO
+        public bool IsAlphaNumeric(string texto)
+        {
+            Regex objAlphaNumericPattern = new Regex("[^a-zA-Z0-9]");
+            return !objAlphaNumericPattern.IsMatch(texto);
+        }
+        #endregion
+
+        #region VALIDAR SOLO NÚMEROS
+        private void Verificar(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+        #endregion
+        #endregion
+
         public int idDepartamento;
         public int idRegion;
         public int idComuna;
         #region Crear
         private void Crear(object sender, RoutedEventArgs e)
         {
+            //Validaciones basicas
+            #region NOMBRE/DESCRIPCIÓN
+            if (tbNombreDepto.Text == "")
+            {
+                MessageBox.Show("El nombre no puede quedar vacío");
+                tbNombreDepto.Focus();
+                return;
+            }
+            else if (tbNombreDepto.Text != "")
+            {
+                if (tbNombreDepto.Text.Length > 30)
+                {
+                    MessageBox.Show("El nombre es demasiado extenso");
+                    tbNombreDepto.Clear();
+                    tbNombreDepto.Focus();
+                    return;
+                }
+                else if (tbNombreDepto.Text.Length < 3)
+                {
+                    MessageBox.Show("El nombre es muy corto");
+                    tbNombreDepto.Clear();
+                    tbNombreDepto.Focus();
+                    return;
+                }
+                //valido que se ingresen solo letras
+                else if (Regex.IsMatch(tbNombreDepto.Text, @"^[a-zA-Z]+$") == false)
+                {
+                    MessageBox.Show("El nombre solo puede contener letras");
+                    tbNombreDepto.Clear();
+                    tbNombreDepto.Focus();
+                    return;
+                }
+            }
+            #endregion
+
+            #region COMBOBOX REGION COMUNA
+            if (cbRegion.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar una Region");
+                return;
+            }
+            else if (cbComuna.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar una Comuna");
+                return;
+            }
+            #endregion
+
+            #region DIRECCIÓN
+            if (tbDireccion.Text == "")
+            {
+                MessageBox.Show("La dirección no puede quedar vacía!");
+                tbDireccion.Focus();
+                return;
+            }
+            else if (tbDireccion.Text.Length < 6)
+            {
+                MessageBox.Show("La dirección es muy corta, ¿Está bien escrita?");
+                tbDireccion.Clear();
+                tbDireccion.Focus();
+                return;
+            }
+            else if (tbDireccion.Text.Length > 35)
+            {
+                MessageBox.Show("La dirección es muy extensa");
+                tbDireccion.Clear();
+                tbDireccion.Focus();
+                return;
+            }
+            else if (IsAlphaNumeric(tbDireccion.Text.ToString()) == false)
+            {
+                MessageBox.Show("La dirección solo debe contener letras y números");
+                tbDireccion.Clear();
+                tbDireccion.Focus();
+                return;
+            }
+            #endregion
+
+            #region HABITACIONES, BAÑOS Y PRECIO
+            if (tbCantHabitaciones.Text == "")
+            {
+                MessageBox.Show("Debe ingresar la cantidad de habitaciones");
+                tbCantHabitaciones.Focus();
+                return;
+            }
+            else if (tbCantBanos.Text == "")
+            {
+                MessageBox.Show("Debe ingresar la cantidad de baños");
+                tbCantBanos.Focus();
+                return;
+            }
+            else if (tbPrecio.Text == "")
+            {
+                MessageBox.Show("Debe ingresar el precio por noche");
+                tbPrecio.Focus();
+                return;
+            }
+            #endregion
+
+            #region ESTADO
+            if (cbEstadoDepto.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar un Estado del Depto.");
+                return;
+            }
+            #endregion
+
             if (CamposLlenos() == true)
             {
                 int estadoDepto = objeto_CN_EstadoDepto.IdEstadoDepto(cbEstadoDepto.Text);

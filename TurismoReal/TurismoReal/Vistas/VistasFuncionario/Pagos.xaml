@@ -1029,7 +1029,7 @@
                        Text="Medio de Pago"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
-            
+
             <ComboBox Style="{DynamicResource ComboBoxStyle}" Grid.Row="7"
                       Foreground="Black"
                       Grid.Column="2"
@@ -1125,6 +1125,26 @@
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
+            <TextBlock IsHitTestVisible="False" 
+                           Text="Ingrese valor unitario" 
+                           VerticalAlignment="Center" 
+                           Grid.Column="2"
+                           Grid.Row="11"
+                           FontSize="11"
+                           HorizontalAlignment="Center" Margin="5,0,0,3" 
+                           Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger 
+                                    Binding="{Binding Text, ElementName=tbValorUnitario}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
 
             <!--Texto y box Descripcion-->
             <TextBlock Grid.Row="13"
@@ -1141,8 +1161,28 @@
                      KeyUp="Calculo"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
-                     Background="#F3E5F5" Margin="0,0,116,30" Grid.RowSpan="2"/>
-            
+                     Background="#F3E5F5" Margin="0,0,92,0"/>
+            <TextBlock IsHitTestVisible="False" 
+                           Text="Ingrese cantidad" 
+                           VerticalAlignment="Center" 
+                           Grid.Column="2"
+                           Grid.Row="13"
+                           FontSize="11"
+                           HorizontalAlignment="Left" Margin="6,0,0,0"
+                           Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger 
+                                    Binding="{Binding Text, ElementName=tbCantidad}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
 
             <CheckBox Grid.Row="13" 
                       Grid.Column="2" 
@@ -1150,7 +1190,7 @@
                       x:Name="chkMulta"
                       Visibility="Hidden"
                       VerticalAlignment="Center"/>
-            
+
             <!--Texto y box Descripcion-->
             <TextBlock Grid.Row="13"
                        Grid.Column="4"
@@ -1182,6 +1222,26 @@
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
+            <TextBlock IsHitTestVisible="False" 
+                           Text="Ingrese efectivo" 
+                           VerticalAlignment="Center" 
+                           Grid.Column="5"
+                           Grid.Row="14"
+                           FontSize="11"
+                           HorizontalAlignment="Center" Margin="5,0,0,3" 
+                           Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger 
+                                    Binding="{Binding Text, ElementName=tbEfectivo}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
 
             <!--Texto y box Descripcion-->
             <TextBlock Grid.Row="15"
@@ -1210,6 +1270,27 @@
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
+            <TextBlock IsHitTestVisible="False" 
+                           Text="Ingrese detalle boleta" 
+                           VerticalAlignment="Center" 
+                           Grid.Column="2"
+                           Grid.Row="15"
+                           FontSize="11"
+                           HorizontalAlignment="Center" Margin="5,0,0,3" 
+                           Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger 
+                                    Binding="{Binding Text, ElementName=tbDescripcion}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            
 
             <!--#region DataGrid-->
             <TextBlock Grid.Row="2"

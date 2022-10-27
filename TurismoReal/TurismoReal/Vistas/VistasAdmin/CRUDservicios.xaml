@@ -820,6 +820,26 @@
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
+            <TextBlock IsHitTestVisible="False" 
+                           Text="Ingrese nombre o descripción" 
+                           VerticalAlignment="Center" 
+                           Grid.Column="2"
+                           Grid.Row="4"
+                           FontSize="12"
+                           HorizontalAlignment="Center" Margin="5,0,0,3" 
+                           Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger 
+                                    Binding="{Binding Text, ElementName=tbDescripcion}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
 
             <TextBlock Grid.Row="4"
                        Grid.Column="4"
@@ -842,9 +862,30 @@
             <TextBox Grid.Row="6"
                      Grid.Column="2"
                      x:Name="tbPrecio"
+                     KeyDown="Verificar"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
+            <TextBlock IsHitTestVisible="False" 
+                           Text="Ingrese valor (sólo números)" 
+                           VerticalAlignment="Center" 
+                           Grid.Column="2"
+                           Grid.Row="6"
+                           FontSize="11"
+                           HorizontalAlignment="Center" Margin="5,0,0,3" 
+                           Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger 
+                                    Binding="{Binding Text, ElementName=tbPrecio}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
 
             <TextBlock Grid.Row="8"
                        Grid.Column="1"

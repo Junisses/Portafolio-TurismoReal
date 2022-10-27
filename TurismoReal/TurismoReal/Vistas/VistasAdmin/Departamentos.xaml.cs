@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,7 +22,7 @@ namespace TurismoReal.Vistas.VistasAdmin
     /// </summary>
     public partial class Departamentos : UserControl
     {
-        readonly CN_Departamentos objeto_CN_Departamentos= new CN_Departamentos();
+        readonly CN_Departamentos objeto_CN_Departamentos = new CN_Departamentos();
         readonly CN_EstadoDepto objeto_CN_EstadoDepto = new CN_EstadoDepto();
         readonly CN_Region objeto_CN_Region = new CN_Region();
         readonly CN_Comuna objeto_CN_Comuna = new CN_Comuna();
@@ -58,7 +59,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.idDepartamento = id;
             ventana.Consultar();
             FrameDepartamentos.Content = ventana;
-            ventana.Titulo.Text = "Consultar Departamento " +id;
+            ventana.Titulo.Text = "Consultar Departamento " + id;
             ventana.tbNombreDepto.IsEnabled = false;
             ventana.cbRegion.IsEnabled = false;
             ventana.cbComuna.IsEnabled = false;
@@ -107,7 +108,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.idDepartamento = id;
             ventana.Consultar();
             FrameDepartamentos.Content = ventana;
-            ventana.Titulo.Text = "Eliminar Depto "+id;
+            ventana.Titulo.Text = "Eliminar Depto " + id;
             ventana.tbNombreDepto.IsEnabled = false;
             ventana.cbRegion.IsEnabled = false;
             ventana.cbComuna.IsEnabled = false;
@@ -133,12 +134,43 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
 
         #endregion
+        public bool IsAlphaNumeric(string texto)
+        {
+            Regex objAlphaNumericPattern = new Regex("[^a-zA-Z0-9]");
+            return !objAlphaNumericPattern.IsMatch(texto);
+        }
         private void Ver(object sender, RoutedEventArgs e)
         {
-            GridDatos.ItemsSource = objeto_CN_Departamentos.BuscarDepto(tbBuscar.Text).DefaultView;
-            LimpiarData();
+            if (tbBuscar.Text != "")
+            {
+                if (tbBuscar.Text.Length > 30)
+                {
+                    MessageBox.Show("La dirección es demasiado extensa!");
+                    tbBuscar.Focus();
+                    LimpiarData();
+                    return;
+                }
+                else if (IsAlphaNumeric(tbBuscar.Text.ToString()) == false)
+                {
+                    MessageBox.Show("Para buscar dirección solo ingrese letras y números");
+                    tbBuscar.Clear();
+                    tbBuscar.Focus();
+                    return;
+                }
+                else
+                {
+                    GridDatos.ItemsSource = objeto_CN_Departamentos.BuscarDepto(tbBuscar.Text).DefaultView;
+                    LimpiarData();
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Se deben ingresar datos para buscar");
+                CargarDatos();
+            }
+            #endregion
         }
-        #endregion
     }
 }
 
