@@ -102,18 +102,13 @@ namespace TurismoReal.Vistas.VistasAdmin
 
             
 
-            else if (CamposLlenos() == true)
+            if (CamposLlenos() == true)
             {
                 objeto_CE_Galeria.DescripcionImagen = tbDescripcion.Text;
                 objeto_CE_Galeria.IdDepartamento = int.Parse(tbIDdepto.Text);
 
                 #region IMAGEN
-                if (objeto_CE_Galeria.idGaleria == 1)
-                {
-                    MessageBox.Show("No se ha seleccionado una imagen!");
-                }
-                
-                else if (imagensubida == true)
+                if (imagensubida == true)
                 {
                     objeto_CE_Galeria.Imagen = img;
 

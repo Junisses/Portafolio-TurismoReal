@@ -14,6 +14,8 @@ namespace CapaDeEntidad.Clases
         private DateTime _Fecha;
         private string _Comprobante;
         private int _Monto;
+        private int _Efectivo;
+        private int _Vuelto;
         private string _Descripcion;
         private int _IdReserva;
         private int _IdServicio;
@@ -28,5 +30,7 @@ namespace CapaDeEntidad.Clases
         public int IdReserva { get => _IdReserva; set => _IdReserva = value; }
         public string Banco { get => _Banco; set => _Banco = value; }
         public int IdServicio { get => _IdServicio; set => _IdServicio = value; }
+        public int Efectivo { get => _Efectivo; set => _Efectivo = value; }
+        public int Vuelto { get => _Vuelto; set => _Vuelto = value; }
     }
 }

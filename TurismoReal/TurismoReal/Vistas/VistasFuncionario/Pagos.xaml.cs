@@ -103,12 +103,20 @@ namespace TurismoReal.Vistas.VistasFuncionario
                     int vuelto = efectivo - total;
 
                     objeto_CE_Boletas.MedioDePago = cbMedioPago.Text;
-                    //Me falta guardar con cuanto efectivo pago
                     objeto_CE_Boletas.Fecha = DateTime.Now;
                     objeto_CE_Boletas.Banco = cbBanco.Text;
-                    objeto_CE_Boletas.Comprobante = comprobante + " " + vuelto.ToString();
-                    //Añadir vuelto
+                    objeto_CE_Boletas.Comprobante = comprobante;
                     objeto_CE_Boletas.Monto = total;
+                    if (cbMedioPago.Text == "Efectivo")
+                    { 
+                        objeto_CE_Boletas.Efectivo = int.Parse(tbEfectivo.Text);
+                        objeto_CE_Boletas.Vuelto = int.Parse(vuelto.ToString());
+                    }
+                    else
+                    {
+                        objeto_CE_Boletas.Efectivo = 0;
+                        objeto_CE_Boletas.Vuelto = 0;
+                    }
                     objeto_CE_Boletas.Descripcion = tbDescripcion.Text + " x " + tbCantidad.Text;
                     objeto_CE_Boletas.IdReserva = idReserva;
                     objeto_CE_Boletas.IdServicio = idServicio;
@@ -151,7 +159,6 @@ namespace TurismoReal.Vistas.VistasFuncionario
                     {
                         if (CamposLlenos() == true)
                         {
-                            tbVuelto.Text = "0";
                             objeto_CN_Boletas.Insertar(objeto_CE_Boletas);
                             
                             Imprimir(comprobante, vuelto, total);
@@ -172,10 +179,6 @@ namespace TurismoReal.Vistas.VistasFuncionario
             {
                 if (CamposLlenos() == true)
                 {
-                    objeto_CE_Multa.Detalle = tbDescripcion.Text;
-                    objeto_CE_Multa.Monto = int.Parse(tbMonto.Text);
-                    objeto_CE_Multa.IdReserva = idReserva;
-
                     string comprobante = "CM-" + DateTime.Now.ToString("HHmmssddMMyyyy") + "-0" + idReserva;
                     int valor = int.Parse("0"+tbValorUnitario.Text);
                     int cantidad = int.Parse("0" + tbCantidad.Text);
@@ -183,14 +186,25 @@ namespace TurismoReal.Vistas.VistasFuncionario
                     int efectivo = int.Parse("0" + tbEfectivo.Text);
                     int vuelto = efectivo - total;
 
+                    //DETALLE MULTA
+                    objeto_CE_Multa.Detalle = tbDescripcion.Text;
+                    objeto_CE_Multa.MedioDePago = cbMedioPago.Text;
+                    objeto_CE_Multa.Banco = cbBanco.Text;
+                    objeto_CE_Multa.Comprobante = comprobante;
+                    objeto_CE_Multa.Monto = int.Parse(tbMonto.Text);
+                    objeto_CE_Multa.Efectivo = int.Parse(tbEfectivo.Text);
+                    objeto_CE_Multa.Vuelto = vuelto.ToString();
+                    objeto_CE_Multa.IdReserva = idReserva;
+
+                    //BOLETA
                     objeto_CE_Boletas.MedioDePago = cbMedioPago.Text;
-                    //Me falta guardar con cuanto efectivo pago
                     objeto_CE_Boletas.Fecha = DateTime.Now;
                     objeto_CE_Boletas.Banco = cbBanco.Text;
-                    objeto_CE_Boletas.Comprobante = comprobante + " " + vuelto.ToString();
-                    //Añadir vuelto
+                    objeto_CE_Boletas.Comprobante = comprobante ;
                     objeto_CE_Boletas.Monto = total;
-                    objeto_CE_Boletas.Descripcion = tbDescripcion.Text;
+                    objeto_CE_Boletas.Efectivo = int.Parse(tbEfectivo.Text);
+                    objeto_CE_Boletas.Vuelto = int.Parse(vuelto.ToString());
+                    objeto_CE_Boletas.Descripcion = tbDescripcion.Text + " x " + tbCantidad.Text;
                     objeto_CE_Boletas.IdReserva = idReserva;
                     objeto_CE_Boletas.IdServicio = idServicio;
 
@@ -406,10 +420,10 @@ namespace TurismoReal.Vistas.VistasFuncionario
             Pagina = Pagina.Replace("@TOTAL", total.ToString());
             //
             Pagina = Pagina.Replace("@metodoPago", cbMedioPago.Text.ToString());
-            if (cbMedioPago.Text == "Efectivo")
+            if (cbMedioPago.Text.ToString() == "Efectivo")
             {
-                Pagina = Pagina.Replace("@tipo", "");
-                Pagina = Pagina.Replace("@efectivo", "");
+                Pagina = Pagina.Replace("@tipo", "Dinero pagado:");
+                Pagina = Pagina.Replace("@efectivo", tbEfectivo.Text);
             }
             else
             {
@@ -464,6 +478,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
             tbCantidad.Visibility = Visibility.Hidden;
             txtCantidad.Visibility = Visibility.Hidden;
             txtValor.Visibility = Visibility.Hidden;
+            Placeholder.Visibility = Visibility.Hidden;
 
             var a = objeto_CN_Boletas.Consulta(id);
 
@@ -472,6 +487,8 @@ namespace TurismoReal.Vistas.VistasFuncionario
             cFechaPago.Text = a.Fecha.ToString();
             cbBanco.Text = a.Banco.ToString();
             tbMonto.Text = a.Monto.ToString();
+            tbEfectivo.Text = a.Efectivo.ToString();
+            tbVuelto.Text = a.Vuelto.ToString();
             tbDescripcion.Text = a.Descripcion.ToString();
 
         }

@@ -29,6 +29,8 @@ namespace CapaDeDatos.Clases
             com.Parameters.AddWithValue("@cantHabitaciones", Departamentos.CantHabitaciones);
             com.Parameters.AddWithValue("@cantBanos", Departamentos.CantBanos);
             com.Parameters.AddWithValue("@precioNoche", Departamentos.PrecioNoche);
+            com.Parameters.Add("@mantInicio", SqlDbType.Date).Value = Departamentos.MantInicio;
+            com.Parameters.Add("@mantTermino", SqlDbType.Date).Value = Departamentos.MantTermino;
             com.Parameters.AddWithValue("@idComuna", Departamentos.IdComuna);
             com.Parameters.AddWithValue("@idEstadoDepto", Departamentos.IdEstadoDepto);
 
@@ -62,21 +64,6 @@ namespace CapaDeDatos.Clases
             ce.IdEstadoDepto = Convert.ToInt32(row[9]);
 
             return ce;
-        }
-
-        #endregion
-
-        #region Eliminar
-        public void CD_Eliminar(CE_Departamentos Departamentos)
-        {
-            SqlCommand com = new SqlCommand();
-            com.Connection = con.AbrirConexion();
-            com.CommandText = "dbo.SP_D_Eliminar";
-            com.CommandType = CommandType.StoredProcedure;
-            com.Parameters.AddWithValue("@idDepartamento", Departamentos.IdDepartamento);
-            com.ExecuteNonQuery();
-            com.Parameters.Clear();
-            con.CerrarConexion();
         }
 
         #endregion

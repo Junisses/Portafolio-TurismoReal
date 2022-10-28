@@ -100,32 +100,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        #region ELIMINAR
-        private void Eliminar(object sender, RoutedEventArgs e)
-        {
-            int id = (int)((Button)sender).CommandParameter;
-            CRUDdepartamentos ventana = new CRUDdepartamentos();
-            ventana.idDepartamento = id;
-            ventana.Consultar();
-            FrameDepartamentos.Content = ventana;
-            ventana.Titulo.Text = "Eliminar Depto " + id;
-            ventana.tbNombreDepto.IsEnabled = false;
-            ventana.cbRegion.IsEnabled = false;
-            ventana.cbComuna.IsEnabled = false;
-            ventana.tbDireccion.IsEnabled = false;
-            ventana.tbCantHabitaciones.IsEnabled = false;
-            ventana.tbCantBanos.IsEnabled = false;
-            ventana.tbPrecio.IsEnabled = false;
-            ventana.cbEstadoDepto.IsEnabled = false;
-            ventana.txtGaleria.Visibility = Visibility.Visible;
-            ventana.BtnGaleria.Visibility = Visibility.Visible;
-            ventana.txtGaleria.IsEnabled = false;
-            ventana.BtnGaleria.IsEnabled = false;
-            ventana.BtnEliminar.Visibility = Visibility.Visible;
-        }
-
-        #endregion
-
         #region FUNCION BUSCAR
         #region Limpiar
         public void LimpiarData()

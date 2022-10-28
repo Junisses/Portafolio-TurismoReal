@@ -221,12 +221,12 @@ namespace TurismoReal.Vistas.VistasFuncionario
             ventana.txtCantidad.Visibility = Visibility.Hidden;
 
             ventana.tbDescripcion.IsEnabled = false;
-            ventana.tbDescripcion.Text = "Pago saldo de reserva";
+            ventana.tbDescripcion.Text = "Pago reserva completa";
 
             ventana.cFechaPago.IsEnabled = false;
             ventana.cFechaPago.Text = b.Fecha.ToString();
 
-            ventana.Titulo.Text = "Cobro de Saldo Reserva #" + idReserva;
+            ventana.Titulo.Text = "Pago de Reserva #" + idReserva;
         }
 
         private void Cargar(object sender, RoutedEventArgs e)

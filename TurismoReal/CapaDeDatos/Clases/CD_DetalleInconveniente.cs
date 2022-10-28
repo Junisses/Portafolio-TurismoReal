@@ -24,7 +24,12 @@ namespace CapaDeDatos.Clases
                 CommandType = CommandType.StoredProcedure,
             };
             com.Parameters.AddWithValue("@detalle", Multas.Detalle);
+            com.Parameters.AddWithValue("@medioDePago", Multas.MedioDePago);
+            com.Parameters.AddWithValue("@banco", Multas.Banco);
+            com.Parameters.AddWithValue("@comprobante", Multas.Comprobante);
             com.Parameters.AddWithValue("@monto", Multas.Monto);
+            com.Parameters.AddWithValue("@efectivo", Multas.Efectivo);
+            com.Parameters.AddWithValue("@vuelto", Multas.Vuelto);
             com.Parameters.AddWithValue("@idReserva", Multas.IdReserva);
 
             com.ExecuteNonQuery();

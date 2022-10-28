@@ -268,17 +268,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        #region Eliminar
-        private void Eliminar(object sender, RoutedEventArgs e)
-        {
-            objeto_CE_Departamentos.IdDepartamento = idDepartamento;
-
-            objeto_CN_Departamentos.Eliminar(objeto_CE_Departamentos);
-
-            Content = new Departamentos();
-        }
-        #endregion
-
         #region Galeria
         public void BtnGaleria_Click(object sender, RoutedEventArgs e)
         {

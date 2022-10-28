@@ -29,6 +29,8 @@ namespace CapaDeDatos.Clases
             com.Parameters.AddWithValue("@banco", Boletas.Banco);
             com.Parameters.AddWithValue("@comprobante", Boletas.Comprobante);
             com.Parameters.AddWithValue("@monto", Boletas.Monto);
+            com.Parameters.AddWithValue("@efectivo", Boletas.Efectivo);
+            com.Parameters.AddWithValue("@vuelto", Boletas.Vuelto);
             com.Parameters.AddWithValue("@descripcion", Boletas.Descripcion);
             com.Parameters.AddWithValue("@idReserva", Boletas.IdReserva);
             if (Boletas.IdServicio == 0)
@@ -65,18 +67,18 @@ namespace CapaDeDatos.Clases
             ce.Banco = Convert.ToString(row[3]);
             ce.Comprobante = Convert.ToString(row[4]);
             ce.Monto = Convert.ToInt32(row[5]);
-            ce.Descripcion = Convert.ToString(row[6]);
-            ce.IdReserva = Convert.ToInt32(row[7]);
+            ce.Efectivo = Convert.ToInt32(row[6]);
+            ce.Vuelto = Convert.ToInt32(row[7]);
+            ce.Descripcion = Convert.ToString(row[8]);
+            ce.IdReserva = Convert.ToInt32(row[9]);
 
             //Fecha actual del campo check in
             ce.IdServicio = 0;
             //En caso de que este este completo, mostrar la fecha
             if (!row.IsNull("idServicio"))
             {
-                ce.IdServicio = Convert.ToInt32(row[8]);
+                ce.IdServicio = Convert.ToInt32(row[10]);
             }
-
-
             return ce;
         }
 
@@ -101,8 +103,10 @@ namespace CapaDeDatos.Clases
             ce.Fecha = DateTime.Now;
             ce.Banco = Convert.ToString(row[3]);
             ce.Monto = Convert.ToInt32(row[5]);
-            ce.Descripcion = Convert.ToString(row[6]);
-            ce.IdReserva = Convert.ToInt32(row[7]);
+            ce.Efectivo = Convert.ToInt32(row[6]);
+            ce.Vuelto = Convert.ToInt32(row[7]);
+            ce.Descripcion = Convert.ToString(row[8]);
+            ce.IdReserva = Convert.ToInt32(row[9]);
 
             return ce;
         }
@@ -182,8 +186,10 @@ namespace CapaDeDatos.Clases
             ce.Fecha = Convert.ToDateTime(row[2]);
             ce.Banco = Convert.ToString(row[3]);
             ce.Monto = Convert.ToInt32(row[5]);
-            ce.Descripcion = Convert.ToString(row[6]);
-            ce.IdReserva = Convert.ToInt32(row[7]);
+            ce.Efectivo = Convert.ToInt32(row[6]);
+            ce.Vuelto = Convert.ToInt32(row[7]);
+            ce.Descripcion = Convert.ToString(row[8]);
+            ce.IdReserva = Convert.ToInt32(row[9]);
 
             return ce;
         }

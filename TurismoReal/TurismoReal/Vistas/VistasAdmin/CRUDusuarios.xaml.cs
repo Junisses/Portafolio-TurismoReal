@@ -552,18 +552,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        #region DELETE
-        private void Eliminar(object sender, RoutedEventArgs e)
-        {
-            objeto_CE_Usuarios.IdUsuario = idUsuario;
-
-            objeto_CN_Usuarios.Eliminar(objeto_CE_Usuarios);
-
-            Content = new Usuarios();
-        }
-
-        #endregion
-
         #endregion
 
         #region ACTUALIZAR CONTRASEÑA
