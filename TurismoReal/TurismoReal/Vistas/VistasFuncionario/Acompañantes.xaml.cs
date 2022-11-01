@@ -70,7 +70,12 @@ namespace TurismoReal.Vistas.VistasFuncionario
                 else
                 {
                     GridDatos.ItemsSource = objeto_CN_Acompanantes.Buscar(tbBuscar.Text).DefaultView;
-                    LimpiarData();
+                    LimpiarData(); 
+                    if (GridDatos.Items.Count == 0)
+                    {
+                        MessageBox.Show("No se encontraron resultados", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
+                        CargarDatos();
+                    }
                 }
                 
             }
@@ -95,11 +100,17 @@ namespace TurismoReal.Vistas.VistasFuncionario
                 {
                     GridDatos.ItemsSource = objeto_CN_Acompanantes.BuscarRut(tbBuscarRut.Text).DefaultView;
                     LimpiarData();
+                    if (GridDatos.Items.Count == 0)
+                    {
+                        MessageBox.Show("No se encontraron resultados", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
+                        CargarDatos();
+                    }
                 }
             }
             else
             {
                 MessageBox.Show("Se deben ingresar datos para buscar");
+                CargarDatos();
             }
 
             

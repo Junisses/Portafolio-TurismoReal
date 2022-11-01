@@ -27,7 +27,10 @@ namespace TurismoReal.Vistas
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            if (MessageBox.Show("¿Esta seguro de cerrar la aplicación?", "AVISO", MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
+            {
+                Application.Current.Shutdown();
+            }
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)

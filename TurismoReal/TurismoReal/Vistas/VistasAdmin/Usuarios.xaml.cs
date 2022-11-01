@@ -110,6 +110,11 @@ namespace TurismoReal.Vistas.VistasAdmin
                 {
                     GridDatos.ItemsSource = objeto_CN_Usuarios.Buscar(tbBuscar.Text).DefaultView;
                     LimpiarData();
+                    if (GridDatos.Items.Count == 0)
+                    {
+                        MessageBox.Show("No se encontraron resultados", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
+                        CargarDatos();
+                    }
                 }
 
             }
@@ -117,7 +122,12 @@ namespace TurismoReal.Vistas.VistasAdmin
             {
                 GridDatos.ItemsSource = objeto_CN_Usuarios.Filtro(cbFiltroTipo.Text).DefaultView;
                 LimpiarData();
-                
+                if (GridDatos.Items.Count == 0)
+                {
+                    MessageBox.Show("No se encontraron resultados", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
+                    CargarDatos();
+                }
+
             }
             else
             {

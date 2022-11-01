@@ -49,10 +49,16 @@ namespace TurismoReal.Vistas.VistasAdmin
             if (tbBuscar.Text != "")
             {
                 GridDatos.ItemsSource = objeto_CN_Boletas.Buscar(tbBuscar.Text).DefaultView;
+                if (GridDatos.Items.Count == 0)
+                {
+                    MessageBox.Show("No se encontraron resultados", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
+                    CargarDatos();
+                }
             }
             else
             {
                 MessageBox.Show("Ingrese N° de comprobante para buscar");
+                CargarDatos();
             }
             LimpiarData();
         }

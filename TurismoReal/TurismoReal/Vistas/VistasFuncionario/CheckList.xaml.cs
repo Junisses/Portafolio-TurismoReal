@@ -74,12 +74,18 @@ namespace TurismoReal.Vistas.VistasFuncionario
                 {
                     GridDatos.ItemsSource = objeto_CN_Departamentos.BuscarDepto(tbBuscar.Text).DefaultView;
                     LimpiarData();
+                    if (GridDatos.Items.Count == 0)
+                    {
+                        MessageBox.Show("No se encontraron resultados", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
+                        CargarDatos();
+                    }
                 }
 
             }
             else
             {
                 MessageBox.Show("Ingrese una dirección para buscar");
+                CargarDatos();
             }
         }
             #endregion

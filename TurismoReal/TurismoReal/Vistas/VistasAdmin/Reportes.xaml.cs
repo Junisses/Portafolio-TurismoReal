@@ -102,6 +102,11 @@ namespace TurismoReal.Vistas.VistasAdmin
         private void Deptos(int idRegion)
         {
             GridDatos.ItemsSource = objeto_CN_Departamentos.Filtro(idRegion.ToString()).DefaultView;
+            if (GridDatos.Items.Count == 0)
+            {
+                MessageBox.Show("No se encontraron resultados", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
+                CargarDatos();
+            }
         }
 
         #endregion

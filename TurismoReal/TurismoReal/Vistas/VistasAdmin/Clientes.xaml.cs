@@ -1,6 +1,7 @@
 ﻿using CapaDeNegocio.Clases;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -69,6 +70,11 @@ namespace TurismoReal.Vistas.VistasAdmin
                 {
                     GridDatos.ItemsSource = objeto_CN_Usuarios.Buscar(tbBuscar.Text).DefaultView;
                     LimpiarData();
+                    if (GridDatos.Items.Count == 0)
+                    {
+                        MessageBox.Show("No se encontraron resultados");
+                        CargarDatos();
+                    }
                 }
 
             }
@@ -93,11 +99,17 @@ namespace TurismoReal.Vistas.VistasAdmin
                 {
                     GridDatos.ItemsSource = objeto_CN_Usuarios.BuscarRut(tbRut.Text).DefaultView;
                     LimpiarData();
+                    if (GridDatos.Items.Count == 0)
+                    {
+                        MessageBox.Show("No se encontraron resultados", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
+                        CargarDatos();
+                    }
                 }
             }
             else
             {
                 MessageBox.Show("Se deben ingresar datos para buscar");
+                CargarDatos();
             }
 
 
