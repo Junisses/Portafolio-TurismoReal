@@ -18,7 +18,7 @@ namespace CapaDeEntidad.Clases
         private int _Vuelto;
         private string _Descripcion;
         private int _IdReserva;
-        private int _IdServicio;
+        private int _IdDetalleServicio;
 
 
         public int IdBoleta { get => _IdBoleta; set => _IdBoleta = value; }
@@ -29,8 +29,8 @@ namespace CapaDeEntidad.Clases
         public string Descripcion { get => _Descripcion; set => _Descripcion = value; }
         public int IdReserva { get => _IdReserva; set => _IdReserva = value; }
         public string Banco { get => _Banco; set => _Banco = value; }
-        public int IdServicio { get => _IdServicio; set => _IdServicio = value; }
         public int Efectivo { get => _Efectivo; set => _Efectivo = value; }
         public int Vuelto { get => _Vuelto; set => _Vuelto = value; }
+        public int IdDetalleServicio { get => _IdDetalleServicio; set => _IdDetalleServicio = value; }
     }
 }

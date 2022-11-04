@@ -12,7 +12,7 @@ namespace CapaDeDatos.Clases
     public class CD_Boletas
     {
         private readonly CD_Conexion con = new CD_Conexion();
-        private CE_Boletas ce = new CE_Boletas();
+        private readonly CE_Boletas ce = new CE_Boletas();
 
         //CRUD Boletas
         #region Insertar
@@ -33,14 +33,40 @@ namespace CapaDeDatos.Clases
             com.Parameters.AddWithValue("@vuelto", Boletas.Vuelto);
             com.Parameters.AddWithValue("@descripcion", Boletas.Descripcion);
             com.Parameters.AddWithValue("@idReserva", Boletas.IdReserva);
-            if (Boletas.IdServicio == 0)
+            if (Boletas.IdDetalleServicio == 0)
             {
-                com.Parameters.Add("@idServicio", SqlDbType.Int).Value = System.Data.SqlTypes.SqlInt32.Null;
+                com.Parameters.Add("@idDetalleServicio", SqlDbType.Int).Value = System.Data.SqlTypes.SqlInt32.Null;
             }
             else
             {
-                com.Parameters.AddWithValue("@idServicio", Boletas.IdServicio);
+                com.Parameters.AddWithValue("@idDetalleServicio", Boletas.IdDetalleServicio);
             }
+            com.ExecuteNonQuery();
+            com.Parameters.Clear();
+            con.CerrarConexion();
+        }
+        #endregion
+
+        #region DETALLE SERVICIO
+        public void CD_InsertarDS(CE_Boletas Boletas)
+        {
+            SqlCommand com = new SqlCommand()
+            {
+                Connection = con.AbrirConexion(),
+                CommandText = "dbo.SP_B_IngresarDS",
+                CommandType = CommandType.StoredProcedure,
+            };
+            com.Parameters.AddWithValue("@medioDePago", Boletas.MedioDePago);
+            com.Parameters.Add("@fecha", SqlDbType.Date).Value = Boletas.Fecha;
+            com.Parameters.AddWithValue("@banco", Boletas.Banco);
+            com.Parameters.AddWithValue("@comprobante", Boletas.Comprobante);
+            com.Parameters.AddWithValue("@monto", Boletas.Monto);
+            com.Parameters.AddWithValue("@efectivo", Boletas.Efectivo);
+            com.Parameters.AddWithValue("@vuelto", Boletas.Vuelto);
+            com.Parameters.AddWithValue("@descripcion", Boletas.Descripcion);
+            com.Parameters.AddWithValue("@idReserva", Boletas.IdReserva);
+            com.Parameters.AddWithValue("@idDetalleServicio", Boletas.IdDetalleServicio);
+
             com.ExecuteNonQuery();
             com.Parameters.Clear();
             con.CerrarConexion();
@@ -73,11 +99,11 @@ namespace CapaDeDatos.Clases
             ce.IdReserva = Convert.ToInt32(row[9]);
 
             //Fecha actual del campo check in
-            ce.IdServicio = 0;
+            ce.IdDetalleServicio = 0;
             //En caso de que este este completo, mostrar la fecha
-            if (!row.IsNull("idServicio"))
+            if (!row.IsNull("idDetalleServicio"))
             {
-                ce.IdServicio = Convert.ToInt32(row[10]);
+                ce.IdDetalleServicio = Convert.ToInt32(row[10]);
             }
             return ce;
         }

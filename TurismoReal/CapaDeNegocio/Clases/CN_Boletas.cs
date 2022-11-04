@@ -21,6 +21,11 @@ namespace CapaDeNegocio.Clases
             objDatos.CD_Insertar(Boletas);
         }
 
+        public void InsertarDS(CE_Boletas Boletas)
+        {
+            objDatos.CD_InsertarDS(Boletas);
+        }
+
         #endregion
 
         #region Consultar

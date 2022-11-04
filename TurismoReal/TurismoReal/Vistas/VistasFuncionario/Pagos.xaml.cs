@@ -33,7 +33,8 @@ namespace TurismoReal.Vistas.VistasFuncionario
         readonly CN_DetalleInconveniente objeto_CN_Multa = new CN_DetalleInconveniente();
         readonly CE_DetalleInconveniente objeto_CE_Multa = new CE_DetalleInconveniente();
 
-        readonly CN_Usuarios objeto_CN_Usuarios = new CN_Usuarios();
+        readonly CN_DetalleServicio objeto_CN_DServicio = new CN_DetalleServicio();
+        readonly CE_DetalleServicio objeto_CE_DServicio = new CE_DetalleServicio();
 
         public Pagos()
         {
@@ -89,56 +90,168 @@ namespace TurismoReal.Vistas.VistasFuncionario
             {
                 MessageBox.Show("Porfavor seleccione un banco.\nSi el medio de pago es efectivo, indique N/A");
             }
-            
 
+            #region PAGOS NORMALES
             if (chkMulta.IsChecked == false)
             {
-                if (CamposLlenos() == true)
+                #region CON SERVICIO
+                if (idServicio != 0)
                 {
-                    string comprobante = "C-" + DateTime.Now.ToString("HHmmssddMMyyyy") + "-0" + idReserva;
                     int valor = int.Parse(tbValorUnitario.Text);
                     int cantidad = int.Parse("0" + tbCantidad.Text);
                     int total = cantidad * valor;
-                    int efectivo = int.Parse("0" + tbEfectivo.Text);
-                    int vuelto = efectivo - total;
 
-                    objeto_CE_Boletas.MedioDePago = cbMedioPago.Text;
-                    objeto_CE_Boletas.Fecha = DateTime.Now;
-                    objeto_CE_Boletas.Banco = cbBanco.Text;
-                    objeto_CE_Boletas.Comprobante = comprobante;
-                    objeto_CE_Boletas.Monto = total;
-                    if (cbMedioPago.Text == "Efectivo")
-                    { 
-                        objeto_CE_Boletas.Efectivo = int.Parse(tbEfectivo.Text);
-                        objeto_CE_Boletas.Vuelto = int.Parse(vuelto.ToString());
-                    }
-                    else
-                    {
-                        objeto_CE_Boletas.Efectivo = 0;
-                        objeto_CE_Boletas.Vuelto = 0;
-                    }
-                    objeto_CE_Boletas.Descripcion = tbDescripcion.Text + " x " + tbCantidad.Text;
-                    objeto_CE_Boletas.IdReserva = idReserva;
-                    objeto_CE_Boletas.IdServicio = idServicio;
+                    objeto_CE_DServicio.Fecha = DateTime.Now;
+                    objeto_CE_DServicio.MontoTotal = total;
+                    objeto_CE_DServicio.IdServicio = idServicio;
+                    objeto_CE_DServicio.IdUsuario = idUsuario;
 
-                    if (tbCantidad.Text == "")
+                    objeto_CN_DServicio.Insertar(objeto_CE_DServicio);
+
+                    if (CamposLlenos() == true)
                     {
-                        MessageBox.Show("La cantidad no puede quedar en blanco");
-                        tbCantidad.Focus();
-                    }
-                    else if (int.Parse("0" + tbCantidad.Text) == 0)
-                    {
-                        MessageBox.Show("La cantidad no puede ser 0");
-                        tbCantidad.Focus();
-                    }
-                    else if (cbMedioPago.Text == "Efectivo")
-                    {
-                        if (int.Parse("0" + tbEfectivo.Text) < int.Parse(tbMonto.Text))
+                        string comprobante = "C-" + DateTime.Now.ToString("HHmmssddMMyyyy") + "-0" + idReserva;
+                        int efectivo = int.Parse("0" + tbEfectivo.Text);
+                        int vuelto = efectivo - total;
+
+                        objeto_CE_Boletas.MedioDePago = cbMedioPago.Text;
+                        objeto_CE_Boletas.Fecha = DateTime.Now;
+                        objeto_CE_Boletas.Banco = cbBanco.Text;
+                        objeto_CE_Boletas.Comprobante = comprobante;
+                        objeto_CE_Boletas.Monto = total;
+                        if (cbMedioPago.Text == "Efectivo")
                         {
-                            MessageBox.Show("No se puede pagar menos de $" + tbMonto.Text + " en efectivo");
-                            tbEfectivo.Focus();
+                            objeto_CE_Boletas.Efectivo = int.Parse(tbEfectivo.Text);
+                            objeto_CE_Boletas.Vuelto = int.Parse(vuelto.ToString());
                         }
                         else
+                        {
+                            objeto_CE_Boletas.Efectivo = 0;
+                            objeto_CE_Boletas.Vuelto = 0;
+                        }
+                        objeto_CE_Boletas.Descripcion = tbDescripcion.Text + " x " + tbCantidad.Text;
+                        objeto_CE_Boletas.IdReserva = idReserva;
+
+                        if (tbCantidad.Text == "")
+                        {
+                            MessageBox.Show("La cantidad no puede quedar en blanco");
+                            tbCantidad.Focus();
+                        }
+                        else if (int.Parse("0" + tbCantidad.Text) == 0)
+                        {
+                            MessageBox.Show("La cantidad no puede ser 0");
+                            tbCantidad.Focus();
+                        }
+                        else if (cbMedioPago.Text == "Efectivo")
+                        {
+                            if (int.Parse("0" + tbEfectivo.Text) < int.Parse(tbMonto.Text))
+                            {
+                                MessageBox.Show("No se puede pagar menos de $" + tbMonto.Text + " en efectivo");
+                                tbEfectivo.Focus();
+                            }
+                            else
+                            {
+                                if (CamposLlenos() == true)
+                                {
+                                    objeto_CN_Boletas.InsertarDS(objeto_CE_Boletas);
+
+                                    Imprimir(comprobante, vuelto, total);
+                                    MessageBox.Show("Se ingreso exitosamente!!");
+
+                                    Content = new CheckInOut();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Asegurese de no dejar campos en blanco!");
+                                }
+                            }
+                        }
+                        else if (cbMedioPago.Text != "Efectivo")
+                        {
+                            if (CamposLlenos() == true)
+                            {
+                                objeto_CN_Boletas.InsertarDS(objeto_CE_Boletas);
+
+                                Imprimir(comprobante, vuelto, total);
+                                MessageBox.Show("Se ingreso exitosamente!!");
+
+                                Content = new CheckInOut();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Asegurese de que no queden campos vacíos!");
+                            }
+
+                        }
+                    }
+                }
+                #endregion
+
+                #region SIN SERVICIOS
+                else if (idServicio == 0)
+                {
+                    if (CamposLlenos() == true)
+                    {
+                        string comprobante = "C-" + DateTime.Now.ToString("HHmmssddMMyyyy") + "-0" + idReserva;
+                        int valor = int.Parse(tbValorUnitario.Text);
+                        int cantidad = int.Parse("0" + tbCantidad.Text);
+                        int total = cantidad * valor;
+                        int efectivo = int.Parse("0" + tbEfectivo.Text);
+                        int vuelto = efectivo - total;
+
+                        objeto_CE_Boletas.MedioDePago = cbMedioPago.Text;
+                        objeto_CE_Boletas.Fecha = DateTime.Now;
+                        objeto_CE_Boletas.Banco = cbBanco.Text;
+                        objeto_CE_Boletas.Comprobante = comprobante;
+                        objeto_CE_Boletas.Monto = total;
+                        if (cbMedioPago.Text == "Efectivo")
+                        {
+                            objeto_CE_Boletas.Efectivo = int.Parse(tbEfectivo.Text);
+                            objeto_CE_Boletas.Vuelto = int.Parse(vuelto.ToString());
+                        }
+                        else
+                        {
+                            objeto_CE_Boletas.Efectivo = 0;
+                            objeto_CE_Boletas.Vuelto = 0;
+                        }
+                        objeto_CE_Boletas.Descripcion = tbDescripcion.Text + " x " + tbCantidad.Text;
+                        objeto_CE_Boletas.IdReserva = idReserva;
+
+                        if (tbCantidad.Text == "")
+                        {
+                            MessageBox.Show("La cantidad no puede quedar en blanco");
+                            tbCantidad.Focus();
+                        }
+                        else if (int.Parse("0" + tbCantidad.Text) == 0)
+                        {
+                            MessageBox.Show("La cantidad no puede ser 0");
+                            tbCantidad.Focus();
+                        }
+                        else if (cbMedioPago.Text == "Efectivo")
+                        {
+                            if (int.Parse("0" + tbEfectivo.Text) < int.Parse(tbMonto.Text))
+                            {
+                                MessageBox.Show("No se puede pagar menos de $" + tbMonto.Text + " en efectivo");
+                                tbEfectivo.Focus();
+                            }
+                            else
+                            {
+                                if (CamposLlenos() == true)
+                                {
+                                    objeto_CN_Boletas.Insertar(objeto_CE_Boletas);
+
+                                    Imprimir(comprobante, vuelto, total);
+                                    MessageBox.Show("Se ingreso exitosamente!!");
+
+                                    Content = new CheckInOut();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Asegurese de no dejar campos en blanco!");
+                                }
+                            }
+                        }
+                        else if (cbMedioPago.Text != "Efectivo")
                         {
                             if (CamposLlenos() == true)
                             {
@@ -151,29 +264,15 @@ namespace TurismoReal.Vistas.VistasFuncionario
                             }
                             else
                             {
-                                MessageBox.Show("Asegurese de no dejar campos en blanco!");
+                                MessageBox.Show("Asegurese de que no queden campos vacíos!");
                             }
-                        }
-                    }
-                    else if (cbMedioPago.Text != "Efectivo")
-                    {
-                        if (CamposLlenos() == true)
-                        {
-                            objeto_CN_Boletas.Insertar(objeto_CE_Boletas);
-                            
-                            Imprimir(comprobante, vuelto, total);
-                            MessageBox.Show("Se ingreso exitosamente!!");
 
-                            Content = new CheckInOut();
                         }
-                        else
-                        {
-                            MessageBox.Show("Asegurese de que no queden campos vacíos!");
-                        }
-                        
                     }
-                }
+                    }
             }
+            #endregion  
+            #endregion
             #region CREAR MULTA
             else
             {
@@ -206,7 +305,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
                     objeto_CE_Boletas.Vuelto = int.Parse(vuelto.ToString());
                     objeto_CE_Boletas.Descripcion = tbDescripcion.Text + " x " + tbCantidad.Text;
                     objeto_CE_Boletas.IdReserva = idReserva;
-                    objeto_CE_Boletas.IdServicio = idServicio;
+                    objeto_CE_Boletas.IdDetalleServicio = idServicio;
 
                     if (int.Parse("0" + tbValorUnitario.Text) == 0)
                     {
@@ -497,26 +596,30 @@ namespace TurismoReal.Vistas.VistasFuncionario
         #region DATOS COMBOBOX
         public void CargarCombobox()
         {
-            List<CB_MedioPago> listMedio = new List<CB_MedioPago>();
-            listMedio.Add(new CB_MedioPago { IdMedioPago = 1, MedioPago = "Efectivo"});
-            listMedio.Add(new CB_MedioPago { IdMedioPago = 2, MedioPago = "Debito" });
-            listMedio.Add(new CB_MedioPago { IdMedioPago = 3, MedioPago = "Credito" });
+            List<CB_MedioPago> listMedio = new List<CB_MedioPago>
+            {
+                new CB_MedioPago { IdMedioPago = 1, MedioPago = "Efectivo" },
+                new CB_MedioPago { IdMedioPago = 2, MedioPago = "Debito" },
+                new CB_MedioPago { IdMedioPago = 3, MedioPago = "Credito" }
+            };
 
             cbMedioPago.SelectedValuePath = "MedioPago";
             cbMedioPago.DisplayMemberPath = "MedioPago";
             cbMedioPago.ItemsSource = listMedio;
 
-            List<CB_Banco> listBanco = new List<CB_Banco>();
-            listBanco.Add(new CB_Banco { IdBanco = 1, BancoName = "N/A" });
-            listBanco.Add(new CB_Banco { IdBanco = 2, BancoName = "CHILE" });
-            listBanco.Add(new CB_Banco { IdBanco = 3, BancoName = "SCOTIABANK" });
-            listBanco.Add(new CB_Banco { IdBanco = 4, BancoName = "CREDITO E INVERSIONES" });
-            listBanco.Add(new CB_Banco { IdBanco = 5, BancoName = "BCI" });
-            listBanco.Add(new CB_Banco { IdBanco = 6, BancoName = "CONSORCIO" });
-            listBanco.Add(new CB_Banco { IdBanco = 7, BancoName = "SANTANDER" });
-            listBanco.Add(new CB_Banco { IdBanco = 8, BancoName = "ITAÚ" });
-            listBanco.Add(new CB_Banco { IdBanco = 9, BancoName = "FALABELLA" });
-            listBanco.Add(new CB_Banco { IdBanco = 10, BancoName = "INTERNACIONAL" });
+            List<CB_Banco> listBanco = new List<CB_Banco>
+            {
+                new CB_Banco { IdBanco = 1, BancoName = "N/A" },
+                new CB_Banco { IdBanco = 2, BancoName = "CHILE" },
+                new CB_Banco { IdBanco = 3, BancoName = "SCOTIABANK" },
+                new CB_Banco { IdBanco = 4, BancoName = "CREDITO E INVERSIONES" },
+                new CB_Banco { IdBanco = 5, BancoName = "BCI" },
+                new CB_Banco { IdBanco = 6, BancoName = "CONSORCIO" },
+                new CB_Banco { IdBanco = 7, BancoName = "SANTANDER" },
+                new CB_Banco { IdBanco = 8, BancoName = "ITAÚ" },
+                new CB_Banco { IdBanco = 9, BancoName = "FALABELLA" },
+                new CB_Banco { IdBanco = 10, BancoName = "INTERNACIONAL" }
+            };
 
             cbBanco.SelectedValuePath = "BancoName";
             cbBanco.DisplayMemberPath = "BancoName";

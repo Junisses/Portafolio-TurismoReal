@@ -49,6 +49,7 @@
     <Compile Include="Clases\CE_Comuna.cs" />
     <Compile Include="Clases\CE_Departamentos.cs" />
     <Compile Include="Clases\CE_DetalleInconveniente.cs" />
+    <Compile Include="Clases\CE_DetalleServicio.cs" />
     <Compile Include="Clases\CE_EstadoDepto.cs" />
     <Compile Include="Clases\CE_Galeria.cs" />
     <Compile Include="Clases\CE_Gastos.cs" />
