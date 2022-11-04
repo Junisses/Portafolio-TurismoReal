@@ -133,10 +133,10 @@ namespace TurismoReal.Vistas.VistasFuncionario
             var det = objeto_CN_Boletas.Detalle(idReserva);
 
             //VALIDACION EN CASO DE QUE NO TENGA EL REGISTRO
-            if (det == null)
+            if (det.MedioDePago == null || det.Monto == 0)
             {
-                Pagina = Pagina.Replace("@medioPago", "NULL ");
-                Pagina = Pagina.Replace("@valorReserva", 0.ToString());
+                MessageBox.Show("Asegurese de realizar el \npago completo de la reserva!!", "INFORMACIÓN", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Information);
+                return;
             }
             else
             {

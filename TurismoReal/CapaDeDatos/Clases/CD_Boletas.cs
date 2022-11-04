@@ -181,17 +181,21 @@ namespace CapaDeDatos.Clases
             da.Fill(ds);
             DataTable dt;
             dt = ds.Tables[0];
-            DataRow row = dt.Rows[0];
-            ce.MedioDePago = Convert.ToString(row[1]);
-            ce.Fecha = Convert.ToDateTime(row[2]);
-            ce.Banco = Convert.ToString(row[3]);
-            ce.Monto = Convert.ToInt32(row[5]);
-            ce.Efectivo = Convert.ToInt32(row[6]);
-            ce.Vuelto = Convert.ToInt32(row[7]);
-            ce.Descripcion = Convert.ToString(row[8]);
-            ce.IdReserva = Convert.ToInt32(row[9]);
 
+            if (dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0];
+                ce.MedioDePago = Convert.ToString(row[1]);
+                ce.Fecha = Convert.ToDateTime(row[2]);
+                ce.Banco = Convert.ToString(row[3]);
+                ce.Monto = Convert.ToInt32(row[5]);
+                ce.Efectivo = Convert.ToInt32(row[6]);
+                ce.Vuelto = Convert.ToInt32(row[7]);
+                ce.Descripcion = Convert.ToString(row[8]);
+                ce.IdReserva = Convert.ToInt32(row[9]);
+            }
             return ce;
+
         }
 
         #endregion 
