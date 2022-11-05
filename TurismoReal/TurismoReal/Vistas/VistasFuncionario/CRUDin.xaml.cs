@@ -17,6 +17,7 @@ using Org.BouncyCastle.Asn1.Cms;
 using System.Linq;
 using NPOI.SS.Formula.Functions;
 using System.Data;
+using System.Globalization;
 
 namespace TurismoReal.Vistas.VistasFuncionario
 {
@@ -71,8 +72,8 @@ namespace TurismoReal.Vistas.VistasFuncionario
             cFechaDesde.Text = a.FechaDesde.ToString();
             cFechaHasta.Text = a.FechaHasta.ToString();
             cbEstadoReserva.Text = a.EstadoRerserva.ToString();
-            tbPrecioNoche.Text = a.PrecioNocheReserva.ToString();
-            tbSaldo.Text = a.Saldo.ToString();
+            tbPrecioNoche.Text = a.PrecioNocheReserva.ToString("0,0", CultureInfo.InvariantCulture);
+            tbSaldo.Text = a.Saldo.ToString("0,0", CultureInfo.InvariantCulture);
 
 
            cFechaIngreso.IsEnabled = false;
@@ -88,14 +89,14 @@ namespace TurismoReal.Vistas.VistasFuncionario
                 objeto_CE_Reservas.CheckIN = DateTime.Parse(cFechaIngreso.Text);
 
                 objeto_CN_Reservas.ActualizarIN(objeto_CE_Reservas);
-                MessageBox.Show("Se ingreso exitosamente!!");
+                MessageBox.Show("Se ingreso exitosamente!!", "INFORMACIÓN", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Information);
                 BtnCrear.IsEnabled = false;
                 cFechaIngreso.IsEnabled = false;
 
             }
             else
             {
-                MessageBox.Show("La fecha de ingreso esta vacía");
+                MessageBox.Show("La fecha de ingreso esta vacía", "ALERTA", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Warning);
             }
         }
 
@@ -141,7 +142,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
             else
             {
                 Pagina = Pagina.Replace("@medioPago", det.MedioDePago.ToString());
-                Pagina = Pagina.Replace("@valorReserva", det.Monto.ToString());
+                Pagina = Pagina.Replace("@valorReserva", det.Monto.ToString("0,0", CultureInfo.InvariantCulture));
             }
             
             //LISTADO DE ARTEFACTOS
@@ -166,7 +167,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
                 filas += "<tr>";
                 filas += "<td align=\"left\">" + descripcion + "</td>";
                 filas += "<td align=\"center\">" + cantidad + "</td>";
-                filas += "<td align=\"right\">" + resultado + "</td>";
+                filas += "<td align=\"right\">" + resultado.ToString("0,0", CultureInfo.InvariantCulture) + "</td>";
                 filas += "</tr>";
             }
             Pagina = Pagina.Replace("@listado", filas);

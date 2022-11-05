@@ -544,6 +544,7 @@
                      HorizontalContentAlignment="Center"
                      Background="#F3E5F5" 
                      Grid.ColumnSpan="2" 
+                     TabIndex="1"
                      Margin="184,0,0,35" Grid.RowSpan="2"/>
             <TextBlock IsHitTestVisible="False" 
                            Text="Ingrese descripción de la imagen" 
@@ -647,6 +648,7 @@
                     Grid.ColumnSpan="2"
                     Content="Cargar Imagen" 
                     x:Name="BtnCrear"
+                    TabIndex="2"
                     Click="Subir"
                     BorderBrush="#A64B9F"
                     Background="#A64B9F"

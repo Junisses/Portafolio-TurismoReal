@@ -57,7 +57,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             }
             else
             {
-                MessageBox.Show("Ingrese N° de comprobante para buscar");
+                MessageBox.Show("Ingrese N° de comprobante para buscar", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 CargarDatos();
             }
             LimpiarData();

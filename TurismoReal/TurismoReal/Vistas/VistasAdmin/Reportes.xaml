@@ -497,7 +497,7 @@
                 <!--#region titulo-->
                 <TextBlock Grid.Row="0"
                        Grid.ColumnSpan="6"
-                       Text="Reportes estadisticos"
+                       Text="Reportes estadísticos"
                        Foreground="Black"
                        FontSize="30"
                        HorizontalAlignment="Center"
@@ -508,7 +508,7 @@
                 <!--#region filtro region-->
                 <TextBlock Grid.Row="2"
                        Grid.Column="2"
-                       Text="Filtrar por Region"
+                       Text="Filtrar por Región"
                        Foreground="Black"
                        FontSize="15"
                        HorizontalAlignment="Left"
@@ -591,7 +591,7 @@
                                         Binding="{Binding cantBanos}"/>
                         <DataGridTextColumn Header="Precio Noche"
                                         Width="*"
-                                        Binding="{Binding precioNoche}"/>
+                                        Binding="{Binding precioNoche, StringFormat=\{0:C0\}}"/>
                         <DataGridTextColumn Header="Estado"
                                         Width="*"
                                         Binding="{Binding estadoDepto}"/>
@@ -618,10 +618,10 @@
                     </DataGrid.Columns>
                 </DataGrid>
                 <!--#endregion-->
-                <!--#region BOTON PARA SUBIR IMAGENES A LA GALERIA-->
+                <!--#region BOTON PARA GENERAR REPORTES GENERALES-->
                 <TextBlock Grid.Row="7"
                        Grid.Column="4"
-                       Text="Generar reporte por zona, según la region"
+                       Text="Generar reporte por zona, según la región"
                        Foreground="Gray"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>

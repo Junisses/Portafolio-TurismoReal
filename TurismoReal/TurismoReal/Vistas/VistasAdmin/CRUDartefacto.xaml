@@ -754,6 +754,7 @@
             <TextBox Style="{DynamicResource TextBoxStyle}" 
                      Grid.Row="4"
                      Grid.Column="2"
+                     TabIndex="1"
                      x:Name="tbDescripcion"
                      HorizontalContentAlignment="Center"
                      Background="#F3E5F5"/>
@@ -786,7 +787,7 @@
             <TextBox Grid.Row="8"
                      Grid.Column="2"
                      x:Name="tbTamaño"
-                     KeyDown="Verificar"
+                     TabIndex="3"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
@@ -819,6 +820,7 @@
             <TextBox Grid.Row="6"
                      Grid.Column="2"
                      x:Name="tbColor"
+                     TabIndex="2"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
@@ -856,6 +858,7 @@
             <ComboBox Style="{DynamicResource ComboBoxStyle}"
                       Grid.Row="10"
                       Grid.Column="2"
+                      TabIndex="4"
                       Cursor="Hand"
                       HorizontalContentAlignment="Center"
                       x:Name="cbUnidad">
@@ -898,7 +901,7 @@
                        VerticalAlignment="Center"/>
             <TextBox Grid.Row="12"
                      Grid.Column="2"
-                     KeyDown="Verificar"
+                     TabIndex="5"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      x:Name="tbValor" 
@@ -956,7 +959,7 @@
                                         Binding="{Binding descripcion}"/>
                     <DataGridTextColumn Header="Valor"
                                         Width="*"
-                                        Binding="{Binding valor}"/>
+                                        Binding="{Binding valor, StringFormat=\{0:C0\}}"/>
                     <DataGridTextColumn Header="Tamaño"
                                         Width="55"
                                         Binding="{Binding tamano}"/>

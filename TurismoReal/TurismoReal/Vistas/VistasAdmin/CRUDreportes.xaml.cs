@@ -6,6 +6,7 @@ using iTextSharp.tool.xml;
 using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -70,14 +71,21 @@ namespace TurismoReal.Vistas.VistasAdmin
         #region Crear
         private void Crear(object sender, RoutedEventArgs e)
         {
-            if (cFechaDesde.Text == "")
+            if (DateTime.Parse(cFechaDesde.Text) > DateTime.Parse(cFechaHasta.Text))
             {
-                MessageBox.Show("Por favor indique desde que fecha desea el reporte");
+                MessageBox.Show("La fecha desde no puede ser\nmayor a la fecha hasta!!", "ALERTA", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Stop);
+                cFechaDesde.Text = "";
+                cFechaHasta.Text = "";
+                return;
+            }
+            else if (cFechaDesde.Text == "")
+            {
+                MessageBox.Show("Por favor indique desde que fecha desea el reporte", "ALERTA", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Warning);
                 cFechaDesde.Focus();
             }
             else if (cFechaHasta.Text == "")
             {
-                MessageBox.Show("Por favor indique hasta que fecha desea el reporte");
+                MessageBox.Show("Por favor indique hasta que fecha desea el reporte", "ALERTA", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Warning);
                 cFechaHasta.Focus();
             }
             else
@@ -98,15 +106,22 @@ namespace TurismoReal.Vistas.VistasAdmin
 
         private void CrearGeneral(object sender, RoutedEventArgs e)
         {
-            
-            if (cFechaDesde.Text == "")
+            if (DateTime.Parse(cFechaDesde.Text) > DateTime.Parse(cFechaHasta.Text))
             {
-                MessageBox.Show("Por favor indique desde que fecha desea el reporte");
+                MessageBox.Show("La fecha desde no puede ser\nmayor a la fecha hasta!!", "AVISO", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Stop);
+                cFechaDesde.Text = "";
+                cFechaHasta.Text = "";
+                return;
+            }
+
+            else if (cFechaDesde.Text == "")
+            {
+                MessageBox.Show("Por favor indique desde que fecha desea el reporte", "ALERTA", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Warning);
                 cFechaDesde.Focus();
             }
             else if (cFechaHasta.Text == "")
             {
-                MessageBox.Show("Por favor indique hasta que fecha desea el reporte");
+                MessageBox.Show("Por favor indique hasta que fecha desea el reporte", "ALERTA", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Warning);
                 cFechaHasta.Focus();
             }
             else 
@@ -151,16 +166,13 @@ namespace TurismoReal.Vistas.VistasAdmin
             Pagina = Pagina.Replace("@hasta", fechaHasta.ToString("dd/MM/yyyy"));
             //Ganancias
             var r = objeto_CN_Reportes.Consulta();
-            Pagina = Pagina.Replace("@ganancias", r.Total.ToString());
+            Pagina = Pagina.Replace("@ganancias", r.Total.ToString("0,0", CultureInfo.InvariantCulture));
             //Reservas
             Pagina = Pagina.Replace("@reservas", r.CantReservas.ToString());
             Pagina = Pagina.Replace("@3", "");
             //Gastos
             Pagina = Pagina.Replace("@4", " que genera el departamento son de ");
-            Pagina = Pagina.Replace("@gastos", r.Gastos.ToString());
-            //TEXTO
-            Pagina = Pagina.Replace("@reservas", 0.ToString());
-            Pagina = Pagina.Replace("@gastos", 0.ToString());
+            Pagina = Pagina.Replace("@gastos", r.Gastos.ToString("0,0", CultureInfo.InvariantCulture));
 
 
             if (savefile.ShowDialog() == DialogResult.OK)
@@ -208,16 +220,13 @@ namespace TurismoReal.Vistas.VistasAdmin
             Pagina = Pagina.Replace("@hasta", fechaHasta.ToString("dd/MM/yyyy"));
             //Ganancias
             var repo = objeto_CN_Reportes.Consulta();
-            Pagina = Pagina.Replace("@ganancias", repo.Total.ToString());
+            Pagina = Pagina.Replace("@ganancias", repo.Total.ToString("0,0", CultureInfo.InvariantCulture));
             //Reservas
             Pagina = Pagina.Replace("@reservas", repo.CantReservas.ToString());
             Pagina = Pagina.Replace("@3", " en los departamentos de esta zona ");
             //Gastos
             Pagina = Pagina.Replace("@4", " que generan los departamentos de esta zona son de ");
-            Pagina = Pagina.Replace("@gastos", repo.Gastos.ToString());
-            //TEXTO
-            Pagina = Pagina.Replace("@reservas", 0.ToString());
-            Pagina = Pagina.Replace("@gastos", 0.ToString());
+            Pagina = Pagina.Replace("@gastos", repo.Gastos.ToString("0,0", CultureInfo.InvariantCulture));
 
 
             if (savefile.ShowDialog() == DialogResult.OK)

@@ -281,7 +281,7 @@
                          Grid.Column="2"
                          Grid.Row="2"/>
                 <TextBlock IsHitTestVisible="False" 
-                           Text="Ingrese Nombre / Apellido" 
+                           Text="Ingrese Nombre o Apellido" 
                            VerticalAlignment="Center" 
                            Grid.Column="2"
                            Grid.Row="2"

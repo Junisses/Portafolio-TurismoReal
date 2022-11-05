@@ -68,7 +68,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             #region DESCRIPCIÓN
             if (tbDescripcion.Text == "")
             {
-                MessageBox.Show("La descripción no puede quedar vacía");
+                MessageBox.Show("La descripción no puede quedar vacía", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbDescripcion.Focus();
                 return;
             }
@@ -76,41 +76,42 @@ namespace TurismoReal.Vistas.VistasAdmin
             {
                 if (tbDescripcion.Text.Length > 30)
                 {
-                    MessageBox.Show("La descripción es demasiado extensa");
+                    MessageBox.Show("La descripción es demasiado extensa", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbDescripcion.Clear();
                     tbDescripcion.Focus();
                     return;
                 }
                 else if (tbDescripcion.Text.Length < 3)
                 {
-                    MessageBox.Show("La descripción es muy corta");
+                    MessageBox.Show("La descripción es muy corta", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbDescripcion.Clear();
                     tbDescripcion.Focus();
                     return;
                 }
                 //valido que se ingresen solo letras
-                else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-Z]+$") == false)
+                else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$") == false)
                 {
-                    MessageBox.Show("La descripción solo puede contener letras");
+                    MessageBox.Show("La descripción solo puede contener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbDescripcion.Clear();
                     tbDescripcion.Focus();
                     return;
                 }
             }
             #endregion
+
             if (CamposLlenos() == true)
             {
                 objeto_CE_TipoServicio.TipoServicio = tbDescripcion.Text;
 
                 objeto_CN_TipoServicio.Insertar(objeto_CE_TipoServicio);
                 CargarDatos();
-                MessageBox.Show("Se ha guardado correctamente");
+                MessageBox.Show("Se ha guardado correctamente", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
                 LimpiarData();
 
             }
             else
             {
-                MessageBox.Show("No hay descripción!");
+                MessageBox.Show("No hay descripción!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -148,6 +149,40 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         private void Actualizar(object sender, RoutedEventArgs e)
         {
+            #region DESCRIPCIÓN
+            if (tbDescripcion.Text == "")
+            {
+                MessageBox.Show("La descripción no puede quedar vacía", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbDescripcion.Focus();
+                return;
+            }
+            else if (tbDescripcion.Text != "")
+            {
+                if (tbDescripcion.Text.Length > 30)
+                {
+                    MessageBox.Show("La descripción es demasiado extensa", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+                else if (tbDescripcion.Text.Length < 3)
+                {
+                    MessageBox.Show("La descripción es muy corta", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+                //valido que se ingresen solo letras
+                else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$") == false)
+                {
+                    MessageBox.Show("La descripción solo puede contener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+            }
+            #endregion
+
             if (CamposLlenos() == true)
             {
                 objeto_CE_TipoServicio.IdTipoServicio = int.Parse(tbID.Text);
@@ -155,13 +190,13 @@ namespace TurismoReal.Vistas.VistasAdmin
 
                 objeto_CN_TipoServicio.ActualizarDatos(objeto_CE_TipoServicio);
                 CargarDatos();
-                MessageBox.Show("Se actualizó exitosamente!!");
+                MessageBox.Show("Se actualizó exitosamente!!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
                 LimpiarData();
                 BtnCrear.IsEnabled = true;
             }
             else
             {
-                MessageBox.Show("No se han ingresado datos");
+                MessageBox.Show("No se han ingresado datos", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -171,7 +206,7 @@ namespace TurismoReal.Vistas.VistasAdmin
         {
             int id = (int)((Button)sender).CommandParameter;
             tbDescripcion.IsEnabled = false;
-            if (MessageBox.Show("¿Esta seguro de eliminar el tipo de servicio " + tbDescripcion.Text +"?", "Eliminar Tipo Servicio", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("¿Está seguro de eliminar el tipo de servicio " + tbDescripcion.Text +"?", "Eliminar Tipo Servicio", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 objeto_CE_TipoServicio.IdTipoServicio = id;
                 objeto_CN_TipoServicio.Eliminar(objeto_CE_TipoServicio);

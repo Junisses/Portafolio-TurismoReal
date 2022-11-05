@@ -66,7 +66,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
             {
                 if (tbBuscar.Text.Length > 25)
                 {
-                    MessageBox.Show("Por favor, no ingrese tantos caracteres");
+                    MessageBox.Show("Por favor, no ingrese tantos caracteres", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbBuscar.Clear();
                     return;
                 }
@@ -84,7 +84,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
             }
             else
             {
-                MessageBox.Show("Ingrese una dirección para buscar");
+                MessageBox.Show("Ingrese una dirección para buscar", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 CargarDatos();
             }
         }

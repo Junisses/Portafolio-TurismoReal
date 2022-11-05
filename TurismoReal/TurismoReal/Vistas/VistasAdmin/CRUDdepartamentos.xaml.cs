@@ -2,10 +2,13 @@
 using CapaDeNegocio.Clases;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
+using MessageBox = System.Windows.MessageBox;
 
 namespace TurismoReal.Vistas.VistasAdmin
 {
@@ -70,19 +73,10 @@ namespace TurismoReal.Vistas.VistasAdmin
         #region VALIDACIÓN ALFA NÚMERICO
         public bool IsAlphaNumeric(string texto)
         {
-            Regex objAlphaNumericPattern = new Regex("[^a-zA-Z0-9]");
+            Regex objAlphaNumericPattern = new Regex("[^a-zA-ZñÑáéíóúÁÉÍÓÚ -Z0-9]");
             return !objAlphaNumericPattern.IsMatch(texto);
         }
-        #endregion
 
-        #region VALIDAR SOLO NÚMEROS
-        private void Verificar(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
-                e.Handled = false;
-            else
-                e.Handled = true;
-        }
         #endregion
         #endregion
 
@@ -92,11 +86,11 @@ namespace TurismoReal.Vistas.VistasAdmin
         #region Crear
         private void Crear(object sender, RoutedEventArgs e)
         {
-            //Validaciones basicas
+            //Validaciones 
             #region NOMBRE/DESCRIPCIÓN
             if (tbNombreDepto.Text == "")
             {
-                MessageBox.Show("El nombre no puede quedar vacío");
+                MessageBox.Show("El nombre no puede quedar vacío", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbNombreDepto.Focus();
                 return;
             }
@@ -104,22 +98,22 @@ namespace TurismoReal.Vistas.VistasAdmin
             {
                 if (tbNombreDepto.Text.Length > 30)
                 {
-                    MessageBox.Show("El nombre es demasiado extenso");
+                    MessageBox.Show("El nombre es demasiado extenso", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbNombreDepto.Clear();
                     tbNombreDepto.Focus();
                     return;
                 }
                 else if (tbNombreDepto.Text.Length < 3)
                 {
-                    MessageBox.Show("El nombre es muy corto");
+                    MessageBox.Show("El nombre es muy corto", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbNombreDepto.Clear();
                     tbNombreDepto.Focus();
                     return;
                 }
                 //valido que se ingresen solo letras
-                else if (Regex.IsMatch(tbNombreDepto.Text, @"^[a-zA-Z]+$") == false)
+                else if (Regex.IsMatch(tbNombreDepto.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$") == false)
                 {
-                    MessageBox.Show("El nombre solo puede contener letras");
+                    MessageBox.Show("El nombre solo puede contener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbNombreDepto.Clear();
                     tbNombreDepto.Focus();
                     return;
@@ -130,12 +124,12 @@ namespace TurismoReal.Vistas.VistasAdmin
             #region COMBOBOX REGION COMUNA
             if (cbRegion.Text == "")
             {
-                MessageBox.Show("Debe seleccionar una Region");
+                MessageBox.Show("Debe seleccionar una Region", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             else if (cbComuna.Text == "")
             {
-                MessageBox.Show("Debe seleccionar una Comuna");
+                MessageBox.Show("Debe seleccionar una Comuna", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             #endregion
@@ -143,27 +137,27 @@ namespace TurismoReal.Vistas.VistasAdmin
             #region DIRECCIÓN
             if (tbDireccion.Text == "")
             {
-                MessageBox.Show("La dirección no puede quedar vacía!");
+                MessageBox.Show("La dirección no puede quedar vacía!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbDireccion.Focus();
                 return;
             }
             else if (tbDireccion.Text.Length < 6)
             {
-                MessageBox.Show("La dirección es muy corta, ¿Está bien escrita?");
+                MessageBox.Show("La dirección es muy corta, ¿Está bien escrita?", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbDireccion.Clear();
                 tbDireccion.Focus();
                 return;
             }
             else if (tbDireccion.Text.Length > 35)
             {
-                MessageBox.Show("La dirección es muy extensa");
+                MessageBox.Show("La dirección es muy extensa", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbDireccion.Clear();
                 tbDireccion.Focus();
                 return;
             }
             else if (IsAlphaNumeric(tbDireccion.Text.ToString()) == false)
             {
-                MessageBox.Show("La dirección solo debe contener letras y números");
+                MessageBox.Show("La dirección solo debe contener letras y números", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbDireccion.Clear();
                 tbDireccion.Focus();
                 return;
@@ -171,21 +165,89 @@ namespace TurismoReal.Vistas.VistasAdmin
             #endregion
 
             #region HABITACIONES, BAÑOS Y PRECIO
+            //HABITACIONES
             if (tbCantHabitaciones.Text == "")
             {
-                MessageBox.Show("Debe ingresar la cantidad de habitaciones");
+                MessageBox.Show("Debe ingresar la cantidad de habitaciones", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbCantHabitaciones.Focus();
                 return;
             }
+            else if (Regex.IsMatch(tbCantHabitaciones.Text, @"^[z0-9]+$") == false)
+            {
+                MessageBox.Show("Ingrese solo números para especificar\nla cantidad de habitaciones!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantHabitaciones.Clear();
+                tbCantHabitaciones.Focus();
+                return;
+            }
+            else if (tbCantHabitaciones.Text == "0")
+            {
+                MessageBox.Show("La cantidad de habitaciones no puede ser 0", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantHabitaciones.Clear();
+                tbCantHabitaciones.Focus();
+                return;
+            }
+            else if (tbCantHabitaciones.Text.Length > 1)
+            {
+                MessageBox.Show("Ingrese un número no mayor a 10", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantHabitaciones.Focus();
+                tbCantHabitaciones.Clear();
+                return;
+            }
+
+            //BAÑOS
             else if (tbCantBanos.Text == "")
             {
-                MessageBox.Show("Debe ingresar la cantidad de baños");
+                MessageBox.Show("Debe ingresar la cantidad de baños", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbCantBanos.Focus();
                 return;
             }
+            else if (Regex.IsMatch(tbCantBanos.Text, @"^[z0-9]+$") == false)
+            {
+                MessageBox.Show("Ingrese solo números para especificar\nla cantidad de baños!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantBanos.Clear();
+                tbCantBanos.Focus();
+                return;
+            }
+            else if (tbCantBanos.Text == "0")
+            {
+                MessageBox.Show("La cantidad de baños no puede ser 0", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantBanos.Clear();
+                tbCantBanos.Focus();
+                return;
+            }
+            else if (tbCantBanos.Text.Length > 1)
+            {
+                MessageBox.Show("Ingrese un número no mayor a 10", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantBanos.Clear();
+                tbCantBanos.Focus();
+                return;
+            }
+
+            //PRECIO
             else if (tbPrecio.Text == "")
             {
-                MessageBox.Show("Debe ingresar el precio por noche");
+                MessageBox.Show("Debe ingresar el precio por noche", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbPrecio.Focus();
+                return;
+            }
+            else if (Regex.IsMatch(tbPrecio.Text, @"^[z0-9]+$") == false)
+            {
+                MessageBox.Show("El precio solo puede tener números", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbPrecio.Clear();
+                tbPrecio.Focus();
+                return;
+            }
+            else if (tbPrecio.Text == "0")
+            {
+                MessageBox.Show("El precio no puede ser 0", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbPrecio.Clear();
+                tbPrecio.Focus();
+                return;
+            }
+            else if (tbPrecio.Text.Length > 6 || tbPrecio.Text.Length < 5)
+            {
+                MessageBox.Show("El precio puede tener un largo de hasta 6 dígitos\n(10.000 - 999.999)", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbPrecio.Clear();
                 tbPrecio.Focus();
                 return;
             }
@@ -194,7 +256,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             #region ESTADO
             if (cbEstadoDepto.Text == "")
             {
-                MessageBox.Show("Debe seleccionar un Estado del Depto.");
+                MessageBox.Show("Debe seleccionar un Estado del Depto.", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             #endregion
@@ -213,13 +275,13 @@ namespace TurismoReal.Vistas.VistasAdmin
                 objeto_CE_Departamentos.IdEstadoDepto = estadoDepto;
 
                 objeto_CN_Departamentos.Insertar(objeto_CE_Departamentos);
-
+                MessageBox.Show("Se ha ingresado un nuevo departamento!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
                 Content = new Departamentos();
             }
 
             else
             {
-                MessageBox.Show("No se pudo ingresar el depto,\n revise los datos e intentelo denuevo");
+                MessageBox.Show("No se pudo ingresar el depto,\n revise los datos e intentelo denuevo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -227,6 +289,181 @@ namespace TurismoReal.Vistas.VistasAdmin
         #region Actualizar
         private void Actualizar(object sender, RoutedEventArgs e)
         {
+            //Validaciones 
+            #region NOMBRE/DESCRIPCIÓN
+            if (tbNombreDepto.Text == "")
+            {
+                MessageBox.Show("El nombre no puede quedar vacío", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbNombreDepto.Focus();
+                return;
+            }
+            else if (tbNombreDepto.Text != "")
+            {
+                if (tbNombreDepto.Text.Length > 30)
+                {
+                    MessageBox.Show("El nombre es demasiado extenso", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbNombreDepto.Clear();
+                    tbNombreDepto.Focus();
+                    return;
+                }
+                else if (tbNombreDepto.Text.Length < 3)
+                {
+                    MessageBox.Show("El nombre es muy corto", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbNombreDepto.Clear();
+                    tbNombreDepto.Focus();
+                    return;
+                }
+                //valido que se ingresen solo letras
+                else if (Regex.IsMatch(tbNombreDepto.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$") == false)
+                {
+                    MessageBox.Show("El nombre solo puede contener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbNombreDepto.Clear();
+                    tbNombreDepto.Focus();
+                    return;
+                }
+            }
+            #endregion
+
+            #region COMBOBOX REGION COMUNA
+            if (cbRegion.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar una Region", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            else if (cbComuna.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar una Comuna", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            #endregion
+
+            #region DIRECCIÓN
+            if (tbDireccion.Text == "")
+            {
+                MessageBox.Show("La dirección no puede quedar vacía!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbDireccion.Focus();
+                return;
+            }
+            else if (tbDireccion.Text.Length < 6)
+            {
+                MessageBox.Show("La dirección es muy corta, ¿Está bien escrita?", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbDireccion.Clear();
+                tbDireccion.Focus();
+                return;
+            }
+            else if (tbDireccion.Text.Length > 35)
+            {
+                MessageBox.Show("La dirección es muy extensa", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbDireccion.Clear();
+                tbDireccion.Focus();
+                return;
+            }
+            else if (IsAlphaNumeric(tbDireccion.Text.ToString()) == false)
+            {
+                MessageBox.Show("La dirección solo debe contener letras y números", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbDireccion.Clear();
+                tbDireccion.Focus();
+                return;
+            }
+            #endregion
+
+            #region HABITACIONES, BAÑOS Y PRECIO
+            //HABITACIONES
+            if (tbCantHabitaciones.Text == "")
+            {
+                MessageBox.Show("Debe ingresar la cantidad de habitaciones", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantHabitaciones.Focus();
+                return;
+            }
+            else if (Regex.IsMatch(tbCantHabitaciones.Text, @"^[z0-9]+$") == false)
+            {
+                MessageBox.Show("Ingrese solo números para especificar\nla cantidad de habitaciones!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantHabitaciones.Clear();
+                tbCantHabitaciones.Focus();
+                return;
+            }
+            else if (tbCantHabitaciones.Text == "0")
+            {
+                MessageBox.Show("La cantidad de habitaciones no puede ser 0", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantHabitaciones.Clear();
+                tbCantHabitaciones.Focus();
+                return;
+            }
+            else if (tbCantHabitaciones.Text.Length > 1)
+            {
+                MessageBox.Show("Ingrese un número no mayor a 10", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantHabitaciones.Focus();
+                tbCantHabitaciones.Clear();
+                return;
+            }
+
+            //BAÑOS
+            else if (tbCantBanos.Text == "")
+            {
+                MessageBox.Show("Debe ingresar la cantidad de baños", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantBanos.Focus();
+                return;
+            }
+            else if (Regex.IsMatch(tbCantBanos.Text, @"^[z0-9]+$") == false)
+            {
+                MessageBox.Show("Ingrese solo números para especificar\nla cantidad de baños!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantBanos.Clear();
+                tbCantBanos.Focus();
+                return;
+            }
+            else if (tbCantBanos.Text == "0")
+            {
+                MessageBox.Show("La cantidad de baños no puede ser 0", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantBanos.Clear();
+                tbCantBanos.Focus();
+                return;
+            }
+            else if (tbCantBanos.Text.Length > 1)
+            {
+                MessageBox.Show("Ingrese un número no mayor a 10", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantBanos.Clear();
+                tbCantBanos.Focus();
+                return;
+            }
+
+            //PRECIO
+            else if (tbPrecio.Text == "")
+            {
+                MessageBox.Show("Debe ingresar el precio por noche", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbPrecio.Focus();
+                return;
+            }
+            else if (Regex.IsMatch(tbPrecio.Text, @"^[z0-9]+$") == false)
+            {
+                MessageBox.Show("El precio solo puede tener números", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbPrecio.Clear();
+                tbPrecio.Focus();
+                return;
+            }
+            else if (tbPrecio.Text == "0")
+            {
+                MessageBox.Show("El precio no puede ser 0", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbPrecio.Clear();
+                tbPrecio.Focus();
+                return;
+            }
+            else if (tbPrecio.Text.Length > 6 || tbPrecio.Text.Length < 5)
+            {
+                MessageBox.Show("El precio puede tener un largo de hasta 6 dígitos\n(10.000 - 999.999)", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbPrecio.Clear();
+                tbPrecio.Focus();
+                return;
+            }
+            #endregion
+
+            #region ESTADO
+            if (cbEstadoDepto.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar un Estado del Depto.", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            #endregion
+
             if (CamposLlenos() == true)
             {
                 int estadoDepto = objeto_CN_EstadoDepto.IdEstadoDepto(cbEstadoDepto.Text);
@@ -242,12 +479,12 @@ namespace TurismoReal.Vistas.VistasAdmin
                 objeto_CE_Departamentos.IdEstadoDepto = estadoDepto;
 
                 objeto_CN_Departamentos.ActualizarDatos(objeto_CE_Departamentos);
-
+                MessageBox.Show("Se ha actualizado correctamente!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
                 Content = new Departamentos();
             }
             else
             {
-                MessageBox.Show("Por favor, no dejar campos vacios");
+                MessageBox.Show("Por favor, no dejar campos vacios", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion

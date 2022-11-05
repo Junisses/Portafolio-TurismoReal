@@ -347,7 +347,7 @@
                                         Binding="{Binding fecha}"/>
                         <DataGridTextColumn Header="Monto"
                                         Width="110"
-                                        Binding="{Binding monto}"/>
+                                        Binding="{Binding monto, StringFormat=\{0:C0\}}"/>
                         <DataGridTextColumn Header="Descripción"
                                         Width="*"
                                         Binding="{Binding descripcion}"/>

@@ -85,14 +85,14 @@ namespace TurismoReal.Vistas.VistasFuncionario
             {
                 if (tbBuscar.Text.Length > 25)
                 {
-                    MessageBox.Show("Por favor, no ingrese tantos caracteres");
+                    MessageBox.Show("Por favor, no ingrese tantos caracteres", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     LimpiarData();
                     tbBuscar.Focus();
                     return;
                 }
-                else if (Regex.IsMatch(tbBuscar.Text, @"^[a-zA-Z]+$") == false)
+                else if (Regex.IsMatch(tbBuscar.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$") == false)
                 {
-                    MessageBox.Show("La búsqueda se realiza solo con letras");
+                    MessageBox.Show("La búsqueda se realiza solo con letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     LimpiarData();
                     tbBuscar.Focus();
                     return;
@@ -112,7 +112,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
             
             else
             {
-                MessageBox.Show("Ingrese una descripción para buscar");
+                MessageBox.Show("Ingrese una descripción para buscar", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion

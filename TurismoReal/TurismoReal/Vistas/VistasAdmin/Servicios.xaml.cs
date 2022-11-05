@@ -115,14 +115,14 @@ namespace TurismoReal.Vistas.VistasAdmin
             {
                 if (tbBuscar.Text.Length > 20)
                 {
-                    MessageBox.Show("La descripción es demasiado extensa!");
+                    MessageBox.Show("La descripción es demasiado extensa para buscar!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     LimpiarData();
                     tbBuscar.Focus();
                     return;
                 }
-                else if (Regex.IsMatch(tbBuscar.Text, @"^[a-zA-Z]+$") == false)
+                else if (Regex.IsMatch(tbBuscar.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$") == false)
                 {
-                    MessageBox.Show("La búsqueda solo puede contener letras");
+                    MessageBox.Show("La búsqueda solo puede contener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbBuscar.Clear();
                     tbBuscar.Focus();
                     return;
@@ -140,7 +140,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             }
             else
             {
-                MessageBox.Show("Se deben ingresar datos para buscar");
+                MessageBox.Show("Se deben ingresar datos para buscar", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 CargarDatos();
             }
             

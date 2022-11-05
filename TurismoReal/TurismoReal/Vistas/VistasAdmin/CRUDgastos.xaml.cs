@@ -2,6 +2,7 @@
 using CapaDeNegocio.Clases;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -76,15 +77,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        #region VALIDAR SOLO NÚMEROS
-        private void Verificar(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
-                e.Handled = false;
-            else
-                e.Handled = true;
-        }
-        #endregion
 
         public int idTipoGastos;
         public int idGastos;
@@ -95,7 +87,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             #region DESCRIPCIÓN
             if (tbDescripcion.Text == "")
             {
-                MessageBox.Show("La descripción no puede quedar vacía");
+                MessageBox.Show("La descripción no puede quedar vacía", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbDescripcion.Focus();
                 return;
             }
@@ -103,22 +95,22 @@ namespace TurismoReal.Vistas.VistasAdmin
             {
                 if (tbDescripcion.Text.Length > 35)
                 {
-                    MessageBox.Show("Es demasiado extensa la descripción");
+                    MessageBox.Show("Es demasiado extensa la descripción", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbDescripcion.Clear();
                     tbDescripcion.Focus();
                     return;
                 }
                 else if (tbDescripcion.Text.Length < 3)
                 {
-                    MessageBox.Show("Es muy corta la descripción");
+                    MessageBox.Show("Es muy corta la descripción", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbDescripcion.Clear();
                     tbDescripcion.Focus();
                     return;
                 }
                 //valido que se ingresen solo letras
-                else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-Z]+$") == false)
+                else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$") == false)
                 {
-                    MessageBox.Show("Solo se pueden ingresar letras en la descripción");
+                    MessageBox.Show("Solo se pueden ingresar letras en la descripción", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbDescripcion.Clear();
                     tbDescripcion.Focus();
                     return;
@@ -129,29 +121,44 @@ namespace TurismoReal.Vistas.VistasAdmin
             #region MONTO
             if (tbMonto.Text == "")
             {
-                MessageBox.Show("El monto no puede quedar en blanco");
+                MessageBox.Show("El monto no puede quedar en blanco", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbMonto.Focus();
             }
             else if (int.Parse(tbMonto.Text) == 0)
             {
-                MessageBox.Show("El monto no puede ser 0");
+                MessageBox.Show("El monto no puede ser 0", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbMonto.Clear();
                 tbMonto.Focus();
+            }
+
+            else if (Regex.IsMatch(tbMonto.Text, @"^[z0-9]+$") == false)
+            {
+                MessageBox.Show("Ingrese solo números en el monto", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbMonto.Clear();
+                tbMonto.Focus();
+                return;
+            }
+            else if (tbMonto.Text.Length >= 7)
+            {
+                MessageBox.Show("El monto es demasiado grande!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbMonto.Focus();
+                tbMonto.Clear();
+                return;
             }
             #endregion
 
             #region FECHA
             else if (cFecha.Text == "")
             {
-                MessageBox.Show("Por favor, indique la fecha que se pago");
+                MessageBox.Show("Por favor, indique la fecha que se pago", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 cFecha.Focus();
             }
             #endregion
 
-            #region MONTO
+            #region TIPO GASTO
             else if (cbTipoGasto.Text == "")
             {
-                MessageBox.Show("Indique el tipo de gasto!");
+                MessageBox.Show("Indique el tipo de gasto!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             #endregion
 
@@ -169,17 +176,17 @@ namespace TurismoReal.Vistas.VistasAdmin
 
                     objeto_CN_Gastos.Insertar(objeto_CE_Gastos);
                     CargarDatos();
-                    MessageBox.Show("Se registro exitosamente");
+                    MessageBox.Show("Se registro exitosamente", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
                     LimpiarData();
                 }
                 catch
                 {
-                    MessageBox.Show("No pueden quedar campos vacíos!");
+                    MessageBox.Show("No pueden quedar campos vacíos!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("No se pudo registrar el Gasto,\n revise los datos e intentelo denuevo");
+                MessageBox.Show("No se pudo registrar el Gasto,\n revise los datos e intentelo denuevo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -208,8 +215,86 @@ namespace TurismoReal.Vistas.VistasAdmin
         #region Actualizar
         public void Actualizar(object sender, RoutedEventArgs e)
         {
+            //Validaciones
+            #region DESCRIPCIÓN
+            if (tbDescripcion.Text == "")
+            {
+                MessageBox.Show("La descripción no puede quedar vacía", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbDescripcion.Focus();
+                return;
+            }
+            else if (tbDescripcion.Text != "")
+            {
+                if (tbDescripcion.Text.Length > 35)
+                {
+                    MessageBox.Show("Es demasiado extensa la descripción", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+                else if (tbDescripcion.Text.Length < 3)
+                {
+                    MessageBox.Show("Es muy corta la descripción", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+                //valido que se ingresen solo letras
+                else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$") == false)
+                {
+                    MessageBox.Show("Solo se pueden ingresar letras en la descripción", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+            }
+            #endregion
 
-            if (CamposLlenos() == true)
+            #region MONTO
+            if (tbMonto.Text == "")
+            {
+                MessageBox.Show("El monto no puede quedar en blanco", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbMonto.Focus();
+            }
+            else if (int.Parse(tbMonto.Text) == 0)
+            {
+                MessageBox.Show("El monto no puede ser 0", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbMonto.Clear();
+                tbMonto.Focus();
+            }
+
+            else if (Regex.IsMatch(tbMonto.Text, @"^[z0-9]+$") == false)
+            {
+                MessageBox.Show("Ingrese solo números en el monto", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbMonto.Clear();
+                tbMonto.Focus();
+                return;
+            }
+            else if (tbMonto.Text.Length >= 7)
+            {
+                MessageBox.Show("El monto es demasiado grande!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbMonto.Focus();
+                tbMonto.Clear();
+                return;
+            }
+            #endregion
+
+            #region FECHA
+            else if (cFecha.Text == "")
+            {
+                MessageBox.Show("Por favor, indique la fecha que se pago", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cFecha.Focus();
+            }
+            #endregion
+
+            #region TIPO GASTO
+            else if (cbTipoGasto.Text == "")
+            {
+                MessageBox.Show("Indique el tipo de gasto!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            #endregion
+
+            else if (CamposLlenos() == true)
             {
                 int tipogasto = objeto_CN_TipoGasto.IdTipoGasto(cbTipoGasto.Text);
 
@@ -223,13 +308,13 @@ namespace TurismoReal.Vistas.VistasAdmin
                 objeto_CN_Gastos.ActualizarDatos(objeto_CE_Gastos);
 
                 CargarDatos();
-                MessageBox.Show("Se actualizó exitosamente!!");
+                MessageBox.Show("Se actualizó exitosamente!!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
                 LimpiarData();
                 BtnCrear.IsEnabled = true;
             }
             else
             {
-                MessageBox.Show("Por favor, no dejar campos vacios");
+                MessageBox.Show("Por favor, no dejar campos vacios", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -251,7 +336,7 @@ namespace TurismoReal.Vistas.VistasAdmin
 
             tbID.Text = id.ToString();
             tbDescripcion.Text = a.Descripcion.ToString();
-            tbMonto.Text = a.Monto.ToString();
+            tbMonto.Text = a.Monto.ToString("0,0", CultureInfo.InvariantCulture);
             cFecha.Text = a.FechaGastos.ToString();
             cbTipoGasto.Text = c.TipoGasto.ToString();
         }
@@ -262,7 +347,7 @@ namespace TurismoReal.Vistas.VistasAdmin
         {
 
             int id = (int)((Button)sender).CommandParameter;
-            if (MessageBox.Show("¿Esta seguro de eliminar el artefacto?", "Eliminar Artefacto", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("¿Está seguro de eliminar el gasto?", "Eliminar Gasto", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 objeto_CE_Gastos.IdGastos = id;
                 objeto_CN_Gastos.Eliminar(objeto_CE_Gastos);

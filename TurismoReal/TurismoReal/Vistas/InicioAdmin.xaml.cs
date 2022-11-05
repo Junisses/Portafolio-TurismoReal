@@ -25,9 +25,6 @@ namespace TurismoReal.Vistas
             {
                 Application.Current.Shutdown();
             }
-            else
-            {
-            }
         }
 
         private void TBShow(object sender, RoutedEventArgs e)
@@ -99,9 +96,12 @@ namespace TurismoReal.Vistas
 
         private void BtnCerrarSesion(object sender, RoutedEventArgs e)
         {
-            LoginView lg = new LoginView();
-            lg.Show();
-            this.Close();
+            if (MessageBox.Show("¿Está seguro de cerrar sesión?", "AVISO", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                LoginView lg = new LoginView();
+                lg.Show();
+                this.Close();
+            }
         }
 
         private void Reportes(object sender, RoutedEventArgs e)

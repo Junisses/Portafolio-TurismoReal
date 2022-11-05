@@ -19,6 +19,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Button = System.Windows.Controls.Button;
 using System.Windows.Input;
+using System.Globalization;
 
 namespace TurismoReal.Vistas.VistasFuncionario
 {
@@ -84,11 +85,11 @@ namespace TurismoReal.Vistas.VistasFuncionario
         {
             if (cbMedioPago.SelectedIndex == -1)
             {
-                MessageBox.Show("Por favor seleccione un medio de pago");
+                MessageBox.Show("Por favor seleccione un medio de pago", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else if(cbBanco.SelectedIndex == -1)
             {
-                MessageBox.Show("Porfavor seleccione un banco.\nSi el medio de pago es efectivo, indique N/A");
+                MessageBox.Show("Porfavor seleccione un banco.\nSi el medio de pago es efectivo, indique N/A", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
             #region PAGOS NORMALES
@@ -124,7 +125,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
                             objeto_CE_Boletas.Efectivo = int.Parse(tbEfectivo.Text);
                             objeto_CE_Boletas.Vuelto = int.Parse(vuelto.ToString());
                         }
-                        else
+                        else if (cbMedioPago.Text == "Credito" || cbMedioPago.Text == "Debito")
                         {
                             objeto_CE_Boletas.Efectivo = 0;
                             objeto_CE_Boletas.Vuelto = 0;
@@ -134,19 +135,19 @@ namespace TurismoReal.Vistas.VistasFuncionario
 
                         if (tbCantidad.Text == "")
                         {
-                            MessageBox.Show("La cantidad no puede quedar en blanco");
+                            MessageBox.Show("La cantidad no puede quedar en blanco", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                             tbCantidad.Focus();
                         }
                         else if (int.Parse("0" + tbCantidad.Text) == 0)
                         {
-                            MessageBox.Show("La cantidad no puede ser 0");
+                            MessageBox.Show("La cantidad no puede ser 0", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                             tbCantidad.Focus();
                         }
                         else if (cbMedioPago.Text == "Efectivo")
                         {
                             if (int.Parse("0" + tbEfectivo.Text) < int.Parse(tbMonto.Text))
                             {
-                                MessageBox.Show("No se puede pagar menos de $" + tbMonto.Text + " en efectivo");
+                                MessageBox.Show("No se puede pagar menos de $" + tbMonto.Text + " en efectivo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                                 tbEfectivo.Focus();
                             }
                             else
@@ -156,13 +157,13 @@ namespace TurismoReal.Vistas.VistasFuncionario
                                     objeto_CN_Boletas.InsertarDS(objeto_CE_Boletas);
 
                                     Imprimir(comprobante, vuelto, total);
-                                    MessageBox.Show("Se ingreso exitosamente!!");
+                                    MessageBox.Show("Se ingreso exitosamente!!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
 
                                     Content = new CheckInOut();
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Asegurese de no dejar campos en blanco!");
+                                    MessageBox.Show("Asegurese de no dejar campos en blanco!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                                 }
                             }
                         }
@@ -173,13 +174,13 @@ namespace TurismoReal.Vistas.VistasFuncionario
                                 objeto_CN_Boletas.InsertarDS(objeto_CE_Boletas);
 
                                 Imprimir(comprobante, vuelto, total);
-                                MessageBox.Show("Se ingreso exitosamente!!");
+                                MessageBox.Show("Se ingreso exitosamente!!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
 
                                 Content = new CheckInOut();
                             }
                             else
                             {
-                                MessageBox.Show("Asegurese de que no queden campos vacíos!");
+                                MessageBox.Show("Asegurese de que no queden campos vacíos!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                             }
 
                         }
@@ -219,19 +220,19 @@ namespace TurismoReal.Vistas.VistasFuncionario
 
                         if (tbCantidad.Text == "")
                         {
-                            MessageBox.Show("La cantidad no puede quedar en blanco");
+                            MessageBox.Show("La cantidad no puede quedar en blanco", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                             tbCantidad.Focus();
                         }
                         else if (int.Parse("0" + tbCantidad.Text) == 0)
                         {
-                            MessageBox.Show("La cantidad no puede ser 0");
+                            MessageBox.Show("La cantidad no puede ser 0", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                             tbCantidad.Focus();
                         }
                         else if (cbMedioPago.Text == "Efectivo")
                         {
                             if (int.Parse("0" + tbEfectivo.Text) < int.Parse(tbMonto.Text))
                             {
-                                MessageBox.Show("No se puede pagar menos de $" + tbMonto.Text + " en efectivo");
+                                MessageBox.Show("No se puede pagar menos de $" + tbMonto.Text + " en efectivo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                                 tbEfectivo.Focus();
                             }
                             else
@@ -241,13 +242,13 @@ namespace TurismoReal.Vistas.VistasFuncionario
                                     objeto_CN_Boletas.Insertar(objeto_CE_Boletas);
 
                                     Imprimir(comprobante, vuelto, total);
-                                    MessageBox.Show("Se ingreso exitosamente!!");
+                                    MessageBox.Show("Se ingreso exitosamente!!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
 
                                     Content = new CheckInOut();
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Asegurese de no dejar campos en blanco!");
+                                    MessageBox.Show("Asegurese de no dejar campos en blanco!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                                 }
                             }
                         }
@@ -258,13 +259,13 @@ namespace TurismoReal.Vistas.VistasFuncionario
                                 objeto_CN_Boletas.Insertar(objeto_CE_Boletas);
 
                                 Imprimir(comprobante, vuelto, total);
-                                MessageBox.Show("Se ingreso exitosamente!!");
+                                MessageBox.Show("Se ingreso exitosamente!!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
 
                                 Content = new CheckInOut();
                             }
                             else
                             {
-                                MessageBox.Show("Asegurese de que no queden campos vacíos!");
+                                MessageBox.Show("Asegurese de que no queden campos vacíos!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                             }
 
                         }
@@ -309,29 +310,48 @@ namespace TurismoReal.Vistas.VistasFuncionario
 
                     if (int.Parse("0" + tbValorUnitario.Text) == 0)
                     {
-                        MessageBox.Show("El valor no puede ser 0");
+                        MessageBox.Show("El valor de la multa no puede ser 0", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        tbValorUnitario.Clear();
                         tbValorUnitario.Focus();
+                    }
+
+                    else if (Regex.IsMatch(tbValorUnitario.Text, @"^[z0-9]+$") == false)
+                    {
+                        MessageBox.Show("Ingrese solo números en el valor de la multa", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        tbValorUnitario.Clear();
+                        tbValorUnitario.Focus();
+                        return;
                     }
                     else if (tbValorUnitario.Text == "")
                     {
-                        MessageBox.Show("El valor no puede quedar en blanco");
+                        MessageBox.Show("El valor de la multa no puede quedar en blanco", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                         tbValorUnitario.Focus();
                     }
                     else if (tbValorUnitario.Text.Length < 4)
                     {
-                        MessageBox.Show("Resvise el monto ingresado\nNo hay montos a pagar menores a mil!");
+                        MessageBox.Show("Resvise el valor de la multa ingresado.\nNo hay montos a pagar menores a mil!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        tbValorUnitario.Clear();
+                        tbValorUnitario.Focus();
+                        return;
+                    }
+                    else if (tbValorUnitario.Text.Length > 6)
+                    {
+                        MessageBox.Show("El valor de la multa es muy elevado\n(ingrese números desde el 1.000 hasta el 999.999)", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        tbValorUnitario.Focus();
+                        tbValorUnitario.Clear();
                         return;
                     }
 
+
                     else if (tbDescripcion.Text == "")
                     {
-                        MessageBox.Show("La descripción no puede quedar en blanco");
+                        MessageBox.Show("La descripción no puede quedar en blanco", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                         tbDescripcion.Focus();
                     }
                     //valido que se ingresen solo letras
-                    else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-Z]+$") == false)
+                    else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$") == false)
                     {
-                        MessageBox.Show("La descripción solo puede tener letras");
+                        MessageBox.Show("La descripción solo puede tener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                         tbDescripcion.Clear();
                         tbDescripcion.Focus();
                         return;
@@ -341,7 +361,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
                     {
                         if (int.Parse("0" + tbEfectivo.Text) < int.Parse(tbMonto.Text))
                         {
-                            MessageBox.Show("No se puede pagar menos de $" + tbMonto.Text + " en efectivo");
+                            MessageBox.Show("No se puede pagar menos de $" + tbMonto.Text + " en efectivo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                             tbEfectivo.Focus();
                         }
                         else
@@ -352,13 +372,13 @@ namespace TurismoReal.Vistas.VistasFuncionario
                                 objeto_CN_Multa.Insertar(objeto_CE_Multa);
 
                                 Imprimir(comprobante, vuelto, total);
-                                MessageBox.Show("Se ingreso una multa");
+                                MessageBox.Show("Se ingreso una multa", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
 
                                 Content = new CheckInOut();
                             }
                             else
                             {
-                                MessageBox.Show("Revise que no queden campos en blanco!");
+                                MessageBox.Show("Revise que no queden campos en blanco!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                             }
                             
                         }
@@ -373,13 +393,13 @@ namespace TurismoReal.Vistas.VistasFuncionario
                             objeto_CN_Multa.Insertar(objeto_CE_Multa);
                             
                             Imprimir(comprobante, vuelto, total);
-                            MessageBox.Show("Se ingreso una multa");
+                            MessageBox.Show("Se ingreso una multa", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
 
                             Content = new CheckInOut();
                         }
                         else
                         {
-                            MessageBox.Show("Asegurese de que no queden campos vacíos");
+                            MessageBox.Show("Asegurese de que no queden campos vacíos", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
                         
                     }
@@ -396,7 +416,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
             
             if (tbCantidad.Text.Length > 2)
             {
-                MessageBox.Show("Es demasiado grande la cantidad");
+                MessageBox.Show("Es demasiado grande la cantidad", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbCantidad.Clear();
                 return;
             }
@@ -421,20 +441,20 @@ namespace TurismoReal.Vistas.VistasFuncionario
         {
             if (tbValorUnitario.Text.Length > 6)
             {
-                MessageBox.Show("Es demasiado grande el valor, no contamos con precios tan elevados");
+                MessageBox.Show("Es demasiado grande el valor, no contamos con precios tan elevados", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbValorUnitario.Clear();
                 tbValorUnitario.Focus();
                 return;
             }
             else if (tbValorUnitario.Text == "")
             {
-                MessageBox.Show("El valor no puede quedar en blanco");
+                MessageBox.Show("El valor no puede quedar en blanco", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbValorUnitario.Clear();
                 tbValorUnitario.Focus();
             }
             else if (int.Parse(tbValorUnitario.Text) == 0)
             {
-                MessageBox.Show("El valor no puede ser 0");
+                MessageBox.Show("El valor no puede ser 0", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbValorUnitario.Clear();
                 tbValorUnitario.Focus();
             }
@@ -474,7 +494,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
         {
             if (tbValorUnitario.Text.Length > 6)
             {
-                MessageBox.Show("Es demasiado grande el valor, no contamos con precios tan elevados");
+                MessageBox.Show("Es demasiado grande el valor, no contamos con precios tan elevados", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbValorUnitario.Clear();
                 tbValorUnitario.Focus();
                 return;
@@ -513,16 +533,16 @@ namespace TurismoReal.Vistas.VistasFuncionario
             //
             Pagina = Pagina.Replace("@descripcion", tbDescripcion.Text.ToString());
             Pagina = Pagina.Replace("@cantidad", tbCantidad.Text.ToString());
-            Pagina = Pagina.Replace("@valorU", tbValorUnitario.Text.ToString());
-            Pagina = Pagina.Replace("@totalItem", total.ToString());
+            Pagina = Pagina.Replace("@valorU", int.Parse(tbValorUnitario.Text).ToString("0,0", CultureInfo.InvariantCulture));
+            Pagina = Pagina.Replace("@totalItem", total.ToString("0,0", CultureInfo.InvariantCulture));
             //
-            Pagina = Pagina.Replace("@TOTAL", total.ToString());
+            Pagina = Pagina.Replace("@TOTAL", total.ToString("0,0", CultureInfo.InvariantCulture));
             //
             Pagina = Pagina.Replace("@metodoPago", cbMedioPago.Text.ToString());
             if (cbMedioPago.Text.ToString() == "Efectivo")
             {
                 Pagina = Pagina.Replace("@tipo", "Dinero pagado:");
-                Pagina = Pagina.Replace("@efectivo", tbEfectivo.Text);
+                Pagina = Pagina.Replace("@efectivo", int.Parse(tbEfectivo.Text).ToString("0,0", CultureInfo.InvariantCulture));
             }
             else
             {
@@ -530,13 +550,17 @@ namespace TurismoReal.Vistas.VistasFuncionario
                 Pagina = Pagina.Replace("@efectivo", cbBanco.Text.ToString()); ;
             }
             
-            if (tbEfectivo.Text == "0")
+            if (cbMedioPago.Text == "Credito" || cbMedioPago.Text == "Debito")
+            {
+                Pagina = Pagina.Replace("@cambio", 0.ToString());
+            }
+            else if (tbEfectivo.Text == "0")
             {
                 Pagina = Pagina.Replace("@cambio", 0.ToString());
             }
             else
             {
-                Pagina = Pagina.Replace("@cambio", vuelto.ToString());
+                Pagina = Pagina.Replace("@cambio", vuelto.ToString("0,0", CultureInfo.InvariantCulture));
             }
             
 
@@ -585,9 +609,9 @@ namespace TurismoReal.Vistas.VistasFuncionario
             cbMedioPago.Text = a.MedioDePago.ToString();
             cFechaPago.Text = a.Fecha.ToString();
             cbBanco.Text = a.Banco.ToString();
-            tbMonto.Text = a.Monto.ToString();
-            tbEfectivo.Text = a.Efectivo.ToString();
-            tbVuelto.Text = a.Vuelto.ToString();
+            tbMonto.Text = a.Monto.ToString("0,0", CultureInfo.InvariantCulture);
+            tbEfectivo.Text = a.Efectivo.ToString("0,0", CultureInfo.InvariantCulture);
+            tbVuelto.Text = a.Vuelto.ToString("0,0", CultureInfo.InvariantCulture);
             tbDescripcion.Text = a.Descripcion.ToString();
 
         }

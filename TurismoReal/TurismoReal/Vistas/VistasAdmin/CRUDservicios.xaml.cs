@@ -56,31 +56,6 @@ namespace TurismoReal.Vistas.VistasAdmin
             }
         }
 
-        #region VALIDAR SOLO NÚMEROS
-        private void Verificar(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
-                e.Handled = false;
-            else
-                e.Handled = true;
-        }
-        #endregion
-
-        #region Disponibilidad
-        private void Disponible_Check(object sender, RoutedEventArgs e)
-        {
-            string disp;
-            if (ckbDisponible.IsChecked == true)
-            {
-                disp = "Disponible";
-            }
-            else
-            {
-                disp = "No Disponible";
-            }
-        }
-
-        #endregion
         #endregion
 
 
@@ -91,7 +66,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             #region NOMBRE/DESCRIPCIÓN
             if (tbDescripcion.Text == "")
             {
-                MessageBox.Show("La descripción no puede quedar vacía");
+                MessageBox.Show("La descripción no puede quedar vacía", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbDescripcion.Focus();
                 return;
             }
@@ -99,22 +74,22 @@ namespace TurismoReal.Vistas.VistasAdmin
             {
                 if (tbDescripcion.Text.Length > 30)
                 {
-                    MessageBox.Show("La descripción es demasiado extensa");
+                    MessageBox.Show("La descripción es demasiado extensa", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbDescripcion.Clear();
                     tbDescripcion.Focus();
                     return;
                 }
                 else if (tbDescripcion.Text.Length < 3)
                 {
-                    MessageBox.Show("La descripción es muy corta");
+                    MessageBox.Show("La descripción es muy corta", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbDescripcion.Clear();
                     tbDescripcion.Focus();
                     return;
                 }
                 //valido que se ingresen solo letras
-                else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-Z]+$") == false)
+                else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$") == false)
                 {
-                    MessageBox.Show("La descripción solo puede contener letras");
+                    MessageBox.Show("La descripción solo puede contener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbDescripcion.Clear();
                     tbDescripcion.Focus();
                     return;
@@ -125,23 +100,45 @@ namespace TurismoReal.Vistas.VistasAdmin
             #region PRECIO
             if (tbPrecio.Text == "")
             {
-                MessageBox.Show("Debe ingresar precio del servicio");
+                MessageBox.Show("Debe ingresar precio del servicio", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbPrecio.Focus();
                 return;
             }
             else if (int.Parse(tbPrecio.Text) == 0)
             {
-                MessageBox.Show("El precio no puede ser 0");
+                MessageBox.Show("El precio no puede ser 0", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbPrecio.Clear();
                 tbPrecio.Focus();
                 return;
             }
+            else if (Regex.IsMatch(tbPrecio.Text, @"^[z0-9]+$") == false)
+            {
+                MessageBox.Show("Ingrese solo números en el precio", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbPrecio.Clear();
+                tbPrecio.Focus();
+                return;
+            }
+            else if (tbPrecio.Text.Length < 4)
+            {
+                MessageBox.Show("El precio es muy bajo, no contamos con valores\nmenores a mil!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbPrecio.Focus();
+                tbPrecio.Clear();
+                return;
+            }
+            else if (tbPrecio.Text.Length > 5)
+            {
+                MessageBox.Show("El precio es muy elevado, no contamos con servicios\ntan caros!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbPrecio.Focus();
+                tbPrecio.Clear();
+                return;
+            }
+
             #endregion
 
             #region ESTADO
             else if (cbTipoServicio.Text == "")
             {
-                MessageBox.Show("Debe seleccionar un Tipo de servicio");
+                MessageBox.Show("Debe seleccionar un Tipo de servicio", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             #endregion
@@ -149,7 +146,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             #region ESTADO DE CUENTA
             else if (ckbDisponible.IsChecked == false)
             {
-                MessageBox.Show("Se ingreso un servicio que no se encuentra disponible", "INFORMACIÓN");
+                MessageBox.Show("Se ingreso un servicio que no se encuentra disponible", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             #endregion
 
@@ -177,12 +174,12 @@ namespace TurismoReal.Vistas.VistasAdmin
                 }
                 catch
                 {
-                    MessageBox.Show("No pueden quedar campos vacíos!");
+                    MessageBox.Show("No pueden quedar campos vacíos!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("No se pudo ingresar el servicio,\n revise los datos e intentelo denuevo");
+                MessageBox.Show("No se pudo ingresar el servicio,\n revise los datos e intentelo denuevo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -190,6 +187,94 @@ namespace TurismoReal.Vistas.VistasAdmin
         #region Actualizar
         private void Actualizar(object sender, RoutedEventArgs e)
         {
+            //Validaciones
+            #region NOMBRE/DESCRIPCIÓN
+            if (tbDescripcion.Text == "")
+            {
+                MessageBox.Show("La descripción no puede quedar vacía", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbDescripcion.Focus();
+                return;
+            }
+            else if (tbDescripcion.Text != "")
+            {
+                if (tbDescripcion.Text.Length > 30)
+                {
+                    MessageBox.Show("La descripción es demasiado extensa", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+                else if (tbDescripcion.Text.Length < 3)
+                {
+                    MessageBox.Show("La descripción es muy corta", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+                //valido que se ingresen solo letras
+                else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$") == false)
+                {
+                    MessageBox.Show("La descripción solo puede contener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+            }
+            #endregion
+
+            #region PRECIO
+            if (tbPrecio.Text == "")
+            {
+                MessageBox.Show("Debe ingresar precio del servicio", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbPrecio.Focus();
+                return;
+            }
+            else if (int.Parse(tbPrecio.Text) == 0)
+            {
+                MessageBox.Show("El precio no puede ser 0", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbPrecio.Clear();
+                tbPrecio.Focus();
+                return;
+            }
+            else if (Regex.IsMatch(tbPrecio.Text, @"^[z0-9]+$") == false)
+            {
+                MessageBox.Show("Ingrese solo números en el precio", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbPrecio.Clear();
+                tbPrecio.Focus();
+                return;
+            }
+            else if (tbPrecio.Text.Length < 4)
+            {
+                MessageBox.Show("El precio es muy bajo, no contamos con valores\nmenores a mil!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbPrecio.Focus();
+                tbPrecio.Clear();
+                return;
+            }
+            else if (tbPrecio.Text.Length > 5)
+            {
+                MessageBox.Show("El precio es muy elevado, no contamos con servicios\ntan caros!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbPrecio.Focus();
+                tbPrecio.Clear();
+                return;
+            }
+
+            #endregion
+
+            #region ESTADO
+            else if (cbTipoServicio.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar un Tipo de servicio", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            #endregion
+
+            #region ESTADO DE CUENTA
+            else if (ckbDisponible.IsChecked == false)
+            {
+                MessageBox.Show("Se ingreso un servicio que no se encuentra disponible", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            #endregion
+
             if (CamposLlenos() == true)
             {
                 int tiposervicio = objeto_CN_TipoServicio.IdTipoServicio(cbTipoServicio.Text);
@@ -212,7 +297,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             }
             else
             {
-                MessageBox.Show("Por favor, no dejar campos vacios");
+                MessageBox.Show("Por favor, no dejar campos vacios", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion

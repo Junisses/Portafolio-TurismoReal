@@ -92,16 +92,16 @@ namespace TurismoReal.Vistas.VistasAdmin
 
             if (tbBuscar.Text != "")
             {
-                if (Regex.IsMatch(tbBuscar.Text, @"^[a-zA-Z]+$") == false)
+                if (Regex.IsMatch(tbBuscar.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ]") == false)
                 {
-                    MessageBox.Show("Para buscar por Nombre/Apellido\nsolo se deben ingresar letras!");
+                    MessageBox.Show("Para buscar por Nombre o Apellido\nsolo se deben ingresar letras!\n(evite espacios)", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbBuscar.Clear();
                     tbBuscar.Focus();
-                    LimpiarData();
                     return;
                 }
                 else if (tbBuscar.Text.Length > 25)
                 {
-                    MessageBox.Show("Por favor, no ingrese tantas letras");
+                    MessageBox.Show("Por favor, no ingrese tantas letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbBuscar.Focus();
                     LimpiarData();
                     return;
@@ -131,7 +131,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             }
             else
             {
-                MessageBox.Show("Se deben ingresar datos para buscar usuario");
+                MessageBox.Show("Se deben ingresar datos para buscar usuario", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 CargarDatos();
             }
         }

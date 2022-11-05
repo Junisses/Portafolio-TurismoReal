@@ -852,11 +852,12 @@
                      Grid.Row="3"
                      Grid.Column="2"
                      Grid.ColumnSpan="4"
+                     TabIndex="1"
                      x:Name="tbNombreDepto"
                      HorizontalContentAlignment="Center"
                      Background="#F3E5F5"/>
             <TextBlock IsHitTestVisible="False" 
-                           Text="Ingrese Nombre o descrpción (ej: Mar y Sol)" 
+                           Text="Ingrese Nombre o descripción (ej: Mar y Sol)" 
                            VerticalAlignment="Center" 
                            Grid.Column="2"
                            Grid.Row="3"
@@ -880,13 +881,14 @@
             <!--Texto y box para Region-->
             <TextBlock Grid.Row="5"
                        Grid.Column="1"
-                       Text="Region"
+                       Text="Región"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
             <ComboBox Style="{DynamicResource ComboBoxStyle}" 
                       Grid.Row="5"
                       Grid.Column="2"
                       Cursor="Hand"
+                      TabIndex="2"
                       SelectionChanged="Region"
                       HorizontalContentAlignment="Center"
                       x:Name="cbRegion"
@@ -933,6 +935,7 @@
                       Grid.Row="5"
                       Grid.Column="5"
                       Cursor="Hand"
+                      TabIndex="3"
                       HorizontalContentAlignment="Center"
                       x:Name="cbComuna"
                       ItemsSource="{Binding}"
@@ -978,6 +981,7 @@
                      Grid.Column="2"
                      Grid.ColumnSpan="4"
                      x:Name="tbDireccion"
+                     TabIndex="4"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
@@ -1012,7 +1016,7 @@
             <TextBox Grid.Row="9"
                      Grid.Column="2"
                      x:Name="tbCantHabitaciones"
-                     KeyDown="Verificar"
+                     TabIndex="5"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5" Margin="0,0,90,0"/>
@@ -1046,7 +1050,7 @@
             <TextBox Grid.Row="9"
                      Grid.Column="5"
                      x:Name="tbCantBanos"
-                     KeyDown="Verificar"
+                     TabIndex="6"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5" Margin="0,0,102,0"/>
@@ -1056,7 +1060,7 @@
                            Grid.Column="5"
                            Grid.Row="9"
                            FontSize="11"
-                           HorizontalAlignment="Center" Margin="0,0,90,0"
+                           HorizontalAlignment="Center" Margin="0,0,102,0"
                            Foreground="DarkGray">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
@@ -1080,7 +1084,7 @@
             <TextBox Grid.Row="11"
                      Grid.Column="2"
                      x:Name="tbPrecio"
-                     KeyDown="Verificar"
+                     TabIndex="7"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
@@ -1115,6 +1119,7 @@
                       Grid.Row="11"
                       Grid.Column="5"
                       Cursor="Hand"
+                      TabIndex="8"
                       HorizontalContentAlignment="Center"
                       x:Name="cbEstadoDepto">
                 <ComboBox.ItemContainerStyle>

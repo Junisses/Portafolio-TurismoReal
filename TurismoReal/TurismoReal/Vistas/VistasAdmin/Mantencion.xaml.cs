@@ -60,11 +60,18 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        #region AGREGAR IMAGEN
+        #region MANTENCION
         public int idDepartamento;
         private void Crear(object sender, RoutedEventArgs e)
         {
-            if (CamposLlenos() == true)
+            if (DateTime.Parse(cMantencionI.Text) > DateTime.Parse(cMantencionT.Text))
+            {
+                MessageBox.Show("La fecha de inicio no puede ser\nmayor a la fecha de termino!!", "AVISO", MessageBoxButton.OK, MessageBoxImage.Stop);
+                LimpiarData();
+                return;
+            }
+
+            else if (CamposLlenos() == true)
             {
                 objeto_CE_Departamentos.IdDepartamento = idDepartamento;
                 objeto_CE_Departamentos.MantInicio = DateTime.Parse(cMantencionI.Text);
@@ -72,12 +79,12 @@ namespace TurismoReal.Vistas.VistasAdmin
 
                 objeto_CN_Departamentos.Mantencion(objeto_CE_Departamentos);
                 CargarDatos();
-                MessageBox.Show("Se ha registrado el mantenimiento!");
+                MessageBox.Show("Se ha registrado el mantenimiento!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
                 LimpiarData();
             }
             else
             {
-                MessageBox.Show("No se ha seleccionado una imagen");
+                MessageBox.Show("Seleccione ambos rangos de fechas!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 

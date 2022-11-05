@@ -73,7 +73,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             
             else
             {
-                MessageBox.Show("Para generar este reporte debe indicar que region desea\nen el filtro por region!");
+                MessageBox.Show("Para generar este reporte debe indicar que region desea\nen el filtro por region!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion

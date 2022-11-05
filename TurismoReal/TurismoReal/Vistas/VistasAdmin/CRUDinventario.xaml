@@ -761,7 +761,7 @@
             <TextBox Grid.Row="6"
                      Grid.Column="2"
                      x:Name="tbCantidad"
-                     KeyDown="Verificar"
+                     TabIndex="1"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
@@ -801,6 +801,7 @@
                       Grid.Row="8"
                       Grid.Column="2"
                       Cursor="Hand"
+                      TabIndex="2"
                       HorizontalContentAlignment="Center"
                       x:Name="cbArtefacto">
                 <ComboBox.ItemContainerStyle>

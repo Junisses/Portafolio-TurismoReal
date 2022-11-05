@@ -2,6 +2,7 @@
 using CapaDeNegocio.Clases;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,8 +52,8 @@ namespace TurismoReal.Vistas.VistasFuncionario
             cFechaDesde.Text = a.FechaDesde.ToString();
             cFechaHasta.Text = a.FechaHasta.ToString();
             cbEstadoReserva.Text = a.EstadoRerserva.ToString();
-            tbPrecioNoche.Text = a.PrecioNocheReserva.ToString();
-            tbSaldo.Text = a.Saldo.ToString();
+            tbPrecioNoche.Text = a.PrecioNocheReserva.ToString("0,0", CultureInfo.InvariantCulture);
+            tbSaldo.Text = a.Saldo.ToString("0,0", CultureInfo.InvariantCulture);
             cFechaIngreso.Text = a.CheckIN.ToString();
 
 
@@ -70,13 +71,13 @@ namespace TurismoReal.Vistas.VistasFuncionario
                 objeto_CE_Reservas.CheckOUT = DateTime.Parse(cFechaSalida.Text);
 
                 objeto_CN_Reservas.ActualizarOUT(objeto_CE_Reservas);
-                MessageBox.Show("Se ingreso exitosamente!!");
+                MessageBox.Show("Se ingreso exitosamente!!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
                 BtnCrear.IsEnabled = false;
                 cFechaSalida.IsEnabled = false;
             }
             else
             {
-                MessageBox.Show("La fecha de salida esta vacía");
+                MessageBox.Show("La fecha de salida esta vacía", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 

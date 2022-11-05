@@ -529,6 +529,7 @@
                      Grid.Row="8"
                      Grid.Column="1"
                      x:Name="tbDescripcion"
+                     TabIndex="1"
                      HorizontalContentAlignment="Center"
                      Background="#F3E5F5" 
                      Grid.ColumnSpan="2" 
@@ -538,6 +539,7 @@
                            VerticalAlignment="Center" 
                            Grid.Column="2"
                            Grid.Row="8"
+                       
                            FontSize="11"
                            HorizontalAlignment="Center" Margin="5,0,0,3" 
                            Foreground="DarkGray">
@@ -574,7 +576,7 @@
                     <DataGridTextColumn Header="ID"
                                         Width="*"
                                         Binding="{Binding idTipoServicio}"/>
-                    <DataGridTextColumn Header="Descripcion"
+                    <DataGridTextColumn Header="Descripción"
                                         Width="*"
                                         Binding="{Binding tipoServicio}"/>
                     <DataGridTemplateColumn Header="Opciones"

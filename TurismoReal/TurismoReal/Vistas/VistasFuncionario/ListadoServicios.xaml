@@ -339,15 +339,15 @@
                       GridLinesVisibility="Horizontal"
                       HorizontalGridLinesBrush="#A64B9F">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Descripcion" 
+                        <DataGridTextColumn Header="Descripción" 
                                         Width="*"
                                         Binding="{Binding descripcion}"/>
                         <DataGridTextColumn Header="Disponibilidad"
-                                        Width="170"
+                                        Width="180"
                                         Binding="{Binding disponibilidad}"/>
                         <DataGridTextColumn Header="Valor"
-                                        Width="70"
-                                        Binding="{Binding precio}"/>
+                                        Width="100"
+                                        Binding="{Binding precio, StringFormat=\{0:C0\}}"/>
                         <DataGridTextColumn Header="Tipo de Servicio"
                                         Width="130"
                                         Binding="{Binding tipoServicio}"/>

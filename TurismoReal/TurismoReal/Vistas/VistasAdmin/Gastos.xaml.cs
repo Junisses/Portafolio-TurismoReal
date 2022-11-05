@@ -68,7 +68,7 @@ namespace TurismoReal.Vistas.VistasAdmin
         #endregion
         public bool IsAlphaNumeric(string texto)
         {
-            Regex objAlphaNumericPattern = new Regex("[^a-zA-Z0-9]");
+            Regex objAlphaNumericPattern = new Regex("[^a-zA-ZñÑáéíóúÁÉÍÓÚ -Z0-9]");
             return !objAlphaNumericPattern.IsMatch(texto);
         }
 
@@ -78,22 +78,20 @@ namespace TurismoReal.Vistas.VistasAdmin
             {
                 if (tbBuscar.Text.Length > 30)
                 {
-                    MessageBox.Show("La dirección es demasiado extensa!");
+                    MessageBox.Show("La dirección es demasiado extensa!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbBuscar.Focus();
                     LimpiarData();
                     return;
                 }
                 else if (IsAlphaNumeric(tbBuscar.Text.ToString()) == false)
                 {
-                    MessageBox.Show("Para buscar dirección solo ingrese letras y números");
+                    MessageBox.Show("Para buscar dirección solo ingrese letras y números", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbBuscar.Clear();
                     tbBuscar.Focus();
                     return;
                 }
                 else
                 {
-                    GridDatos.ItemsSource = objeto_CN_Departamentos.BuscarDepto(tbBuscar.Text).DefaultView;
-                    LimpiarData();
                     GridDatos.ItemsSource = objeto_CN_Departamentos.BuscarDepto(tbBuscar.Text).DefaultView;
                     LimpiarData();
                     if (GridDatos.Items.Count == 0)
@@ -106,7 +104,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             }
             else
             {
-                MessageBox.Show("Se deben ingresar datos para buscar");
+                MessageBox.Show("Se deben ingresar datos para buscar", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 CargarDatos();
             }
         }

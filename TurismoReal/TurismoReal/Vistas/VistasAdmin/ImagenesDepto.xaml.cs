@@ -69,7 +69,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             #region NOMBRE/DESCRIPCIÓN
             if (tbDescripcion.Text == "")
             {
-                MessageBox.Show("La descripción no puede quedar vacía");
+                MessageBox.Show("La descripción no puede quedar vacía", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbDescripcion.Focus();
                 return;
             }
@@ -77,22 +77,22 @@ namespace TurismoReal.Vistas.VistasAdmin
             {
                 if (tbDescripcion.Text.Length > 30)
                 {
-                    MessageBox.Show("La descripción es demasiado extensa");
+                    MessageBox.Show("La descripción es demasiado extensa", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbDescripcion.Clear();
                     tbDescripcion.Focus();
                     return;
                 }
                 else if (tbDescripcion.Text.Length < 3)
                 {
-                    MessageBox.Show("La descrición es muy corta");
+                    MessageBox.Show("La descripción es muy corta", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbDescripcion.Clear();
                     tbDescripcion.Focus();
                     return;
                 }
                 //valido que se ingresen solo letras
-                else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-Z]+$") == false)
+                else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$") == false)
                 {
-                    MessageBox.Show("La descripción solo puede tener letras");
+                    MessageBox.Show("La descripción solo puede tener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbDescripcion.Clear();
                     tbDescripcion.Focus();
                     return;
@@ -114,19 +114,19 @@ namespace TurismoReal.Vistas.VistasAdmin
 
                     objeto_CN_Galeria.Insertar(objeto_CE_Galeria);
                     CargarDatos();
-                    MessageBox.Show("Se ha guardado la imagen!");
+                    MessageBox.Show("Se ha guardado la imagen!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
                     LimpiarData();
                 }
                 #endregion
                 else
                 {
-                    MessageBox.Show("La imagen no se ha guardado, intentelo denuevo");
+                    MessageBox.Show("La imagen no se ha guardado, intentelo denuevo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
 
             }
             else
             {
-                MessageBox.Show("No se ha seleccionado una imagen");
+                MessageBox.Show("No se ha seleccionado una imagen", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -193,6 +193,40 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         private void Actualizar(object sender, RoutedEventArgs e)
         {
+            #region NOMBRE/DESCRIPCIÓN
+            if (tbDescripcion.Text == "")
+            {
+                MessageBox.Show("La descripción no puede quedar vacía", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbDescripcion.Focus();
+                return;
+            }
+            else if (tbDescripcion.Text != "")
+            {
+                if (tbDescripcion.Text.Length > 30)
+                {
+                    MessageBox.Show("La descripción es demasiado extensa", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+                else if (tbDescripcion.Text.Length < 3)
+                {
+                    MessageBox.Show("La descrición es muy corta", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+                //valido que se ingresen solo letras
+                else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$") == false)
+                {
+                    MessageBox.Show("La descripción solo puede tener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbDescripcion.Clear();
+                    tbDescripcion.Focus();
+                    return;
+                }
+            }
+            #endregion
+
             if (CamposLlenos() == true)
             {
                 objeto_CE_Galeria.idGaleria = int.Parse(tbID.Text);
@@ -201,14 +235,14 @@ namespace TurismoReal.Vistas.VistasAdmin
 
                 objeto_CN_Galeria.ActualizarIMG(objeto_CE_Galeria);
                 CargarDatos();
-                MessageBox.Show("Se actualizó exitosamente!!");
+                MessageBox.Show("Se actualizó exitosamente!!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
                 LimpiarData();
                 BtnCrear.IsEnabled = true;
                 BtnGuardar.IsEnabled = true;
             }
             else
             {
-                MessageBox.Show("No se a cambiado la imagen");
+                MessageBox.Show("No se a cambiado la imagen", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -217,7 +251,7 @@ namespace TurismoReal.Vistas.VistasAdmin
         private void Eliminar(object sender, RoutedEventArgs e)
         {
             int id = (int)((Button)sender).CommandParameter;
-            if (MessageBox.Show("¿Esta seguro de eliminar la imagen?", "Eliminar Imagen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("¿Está seguro de eliminar la imagen?", "Eliminar Imagen", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 objeto_CE_Galeria.idGaleria = id;
                 objeto_CN_Galeria.Eliminar(objeto_CE_Galeria);

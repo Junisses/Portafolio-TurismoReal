@@ -799,6 +799,7 @@
                        VerticalAlignment="Center"/>
             <TextBox Style="{DynamicResource TextBoxStyle}" 
                      Grid.Row="4"
+                     TabIndex="1"
                      Grid.Column="2"
                      x:Name="tbNombre"
                      HorizontalContentAlignment="Center"
@@ -831,6 +832,7 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
             <TextBox Grid.Row="4"
+                     TabIndex="2"
                      Grid.Column="5"
                      x:Name="tbApellido"
                      HorizontalContentAlignment="Center"
@@ -864,6 +866,7 @@
                        VerticalAlignment="Center"/>
             <CheckBox Style="{DynamicResource CheckBoxStyle}" 
                       Grid.Row="6" 
+                      TabIndex="3"
                       Grid.Column="2" 
                       HorizontalAlignment="Left" 
                       VerticalAlignment="Center"
@@ -878,6 +881,7 @@
             <TextBox Grid.Row="6"
                      Grid.Column="5"
                      x:Name="tbRut"
+                     TabIndex="4"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
@@ -910,6 +914,7 @@
                        VerticalAlignment="Center"/>
             <TextBox Grid.Row="8"
                      Grid.Column="2"
+                     TabIndex="5"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      x:Name="tbCorreo" 
@@ -943,7 +948,7 @@
             <TextBox Grid.Row="8"
                      Grid.Column="5"
                      x:Name="tbCel" 
-                     KeyDown="Verificar"
+                     TabIndex="6"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
@@ -976,11 +981,12 @@
             <TextBox Grid.Row="10"
                      Grid.Column="2"
                      x:Name="tbPais"
+                     TabIndex="7"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
             <TextBlock IsHitTestVisible="False" 
-                           Text="Ingrese país de recidencia" 
+                           Text="Ingrese país de residencia" 
                            VerticalAlignment="Center" 
                            Grid.Column="2"
                            Grid.Row="10"
@@ -1001,6 +1007,39 @@
             </TextBlock>
 
 
+            
+            <TextBlock Grid.Row="10"
+                       Grid.Column="4"
+                       Text="Usuario"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"/>
+            <TextBox Grid.Row="10"
+                     Grid.Column="5"
+                     x:Name="tbUser"
+                     TabIndex="8"
+                     HorizontalContentAlignment="Center"
+                     Style="{DynamicResource TextBoxStyle}" 
+                     Background="#F3E5F5"/>
+            <TextBlock IsHitTestVisible="False" 
+                           Text="Ingrese nombre de usuario" 
+                           VerticalAlignment="Center" 
+                           Grid.Column="5"
+                           Grid.Row="10"
+                            FontSize="11"
+                           HorizontalAlignment="center" Margin="5,0,0,3" 
+                           Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger 
+                                    Binding="{Binding Text, ElementName=tbUser}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
             <TextBlock Grid.Row="12"
                        Grid.Column="1"
                        Text="Tipo de Usuario"
@@ -1009,6 +1048,7 @@
             <ComboBox Grid.Row="12"
                       Grid.Column="2"
                       Cursor="Hand"
+                      TabIndex="9"
                       HorizontalContentAlignment="Center"
                       x:Name="cbTipoUsuario"
                       Style="{DynamicResource ComboBoxStyle}" >
@@ -1051,6 +1091,7 @@
                       Grid.Column="5" 
                       HorizontalAlignment="Left" 
                       x:Name="chkHabilitar"
+                      TabIndex="10"
                       VerticalAlignment="Center"
                       Style="{DynamicResource CheckBoxStyle}"/>
             <TextBlock x:Name="txtContra" Grid.Row="16"
@@ -1059,44 +1100,14 @@
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        Visibility="Hidden"/>
-            <PasswordBox Style="{DynamicResource PasswordBoxStyle}" Grid.Row="16"
+            <PasswordBox Style="{DynamicResource PasswordBoxStyle}" 
+                         Grid.Row="16"
                      Grid.Column="2"
                      x:Name="tbContrasena"
+                     TabIndex="11"
                      HorizontalContentAlignment="Center"
                      Background="#F3E5F5"
                      Visibility="Hidden"/>
-            <TextBlock Grid.Row="10"
-                       Grid.Column="4"
-                       Text="Usuario"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"/>
-            <TextBox Grid.Row="10"
-                     Grid.Column="5"
-                     x:Name="tbUser"
-                     HorizontalContentAlignment="Center"
-                     Style="{DynamicResource TextBoxStyle}" 
-                     Background="#F3E5F5"/>
-            <TextBlock IsHitTestVisible="False" 
-                           Text="Ingrese nombre de usuario" 
-                           VerticalAlignment="Center" 
-                           Grid.Column="5"
-                           Grid.Row="10"
-                            FontSize="11"
-                           HorizontalAlignment="center" Margin="5,0,0,3" 
-                           Foreground="DarkGray">
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Style.Triggers>
-                            <DataTrigger 
-                                    Binding="{Binding Text, ElementName=tbUser}" Value="">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
-            
             
             <Button Style="{DynamicResource ButtonStyleRegresar}" 
                     x:Name="ChangePassword" 

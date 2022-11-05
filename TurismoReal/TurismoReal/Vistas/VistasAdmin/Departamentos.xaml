@@ -368,7 +368,7 @@
                                         Binding="{Binding cantBanos}"/>
                         <DataGridTextColumn Header="Precio Noche"
                                         Width="*"
-                                        Binding="{Binding precioNoche}"/>
+                                        Binding="{Binding precioNoche, StringFormat=\{0:C0\}}"/>
                         <DataGridTextColumn Header="Estado"
                                         Width="*"
                                         Binding="{Binding estadoDepto}"/>

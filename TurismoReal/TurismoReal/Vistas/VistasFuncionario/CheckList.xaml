@@ -423,7 +423,7 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Descripcion"
+                        <DataGridTextColumn Header="Descripción"
                                         Width="*"
                                         Binding="{Binding descripcion}"/>
                         <DataGridTextColumn Header="Dirección"
@@ -437,7 +437,7 @@
                                         Binding="{Binding cantBanos}"/>
                         <DataGridTextColumn Header="Precio Noche"
                                         Width="*"
-                                        Binding="{Binding precioNoche}"/>
+                                        Binding="{Binding precioNoche, StringFormat=\{0:C0\}}"/>
                         <DataGridTextColumn Header="Estado"
                                         Width="*"
                                         Binding="{Binding estadoDepto}"/>

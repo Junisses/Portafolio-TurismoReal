@@ -675,7 +675,7 @@
                                         Binding="{Binding cantidad}"/>
                     <DataGridTextColumn Header="Valor Unitario"
                                         Width="*"
-                                        Binding="{Binding valor}"/>
+                                        Binding="{Binding valor, StringFormat=\{0:C0\}}"/>
                     <DataGridTemplateColumn Header="Check"
                                             Width="100">
                         <DataGridTemplateColumn.CellTemplate>

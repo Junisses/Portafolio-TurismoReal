@@ -1,6 +1,7 @@
 ﻿using CapaDeEntidad.Clases;
 using CapaDeNegocio.Clases;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -65,15 +66,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        #region VALIDAR SOLO NÚMEROS
-        private void Verificar(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
-                e.Handled = false;
-            else
-                e.Handled = true;
-        }
-        #endregion
 
         public int idArtefactos;
         public int idInventario;
@@ -84,21 +76,36 @@ namespace TurismoReal.Vistas.VistasAdmin
             #region CANTIDAD
             if (tbCantidad.Text == "")
             {
-                MessageBox.Show("La cantidad no puede quedar vacía");
+                MessageBox.Show("La cantidad no puede quedar vacía", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbCantidad.Focus();
             }
             else if (int.Parse(tbCantidad.Text) == 0)
             {
-                MessageBox.Show("La cantidad no puede ser 0");
+                MessageBox.Show("La cantidad no puede ser 0", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbCantidad.Clear();
                 tbCantidad.Focus();
+            }
+
+            else if (Regex.IsMatch(tbCantidad.Text, @"^[z0-9]+$") == false)
+            {
+                MessageBox.Show("Ingrese solo números en la cantidad", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantidad.Clear();
+                tbCantidad.Focus();
+                return;
+            }
+            else if (tbCantidad.Text.Length > 2)
+            {
+                MessageBox.Show("La cantidad es mucha, asegurese que sea un número\nentre 1 y 99", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantidad.Focus();
+                tbCantidad.Clear();
+                return;
             }
             #endregion
 
             #region ARTEFACTO
             else if (cbArtefacto.Text == "")
             {
-                MessageBox.Show("Indique el artefacto!");
+                MessageBox.Show("Indique el artefacto!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             #endregion
 
@@ -114,17 +121,17 @@ namespace TurismoReal.Vistas.VistasAdmin
 
                     objeto_CN_Inventario.Insertar(objeto_CE_Inventario);
                     CargarDatos();
-                    MessageBox.Show("Se registro exitosamente");
+                    MessageBox.Show("Se registro exitosamente", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
                     LimpiarData();
                 }
                 catch
                 {
-                    MessageBox.Show("No pueden quedar campos vacíos!");
+                    MessageBox.Show("No pueden quedar campos vacíos!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("No se pudo registrar el Artefacto,\n revise los datos e intentelo denuevo");
+                MessageBox.Show("No se pudo registrar el Artefacto,\n revise los datos e intentelo denuevo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -149,8 +156,43 @@ namespace TurismoReal.Vistas.VistasAdmin
         #region Actualizar
         public void Actualizar(object sender, RoutedEventArgs e)
         {
-            
-            if (CamposLlenos() == true)
+            #region CANTIDAD
+            if (tbCantidad.Text == "")
+            {
+                MessageBox.Show("La cantidad no puede quedar vacía", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantidad.Focus();
+            }
+            else if (int.Parse(tbCantidad.Text) == 0)
+            {
+                MessageBox.Show("La cantidad no puede ser 0", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantidad.Clear();
+                tbCantidad.Focus();
+            }
+
+            else if (Regex.IsMatch(tbCantidad.Text, @"^[z0-9]+$") == false)
+            {
+                MessageBox.Show("Ingrese solo números en la cantidad", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantidad.Clear();
+                tbCantidad.Focus();
+                return;
+            }
+            else if (tbCantidad.Text.Length > 2)
+            {
+                MessageBox.Show("La cantidad es mucha, asegurese que sea un número\nentre 1 y 99", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCantidad.Focus();
+                tbCantidad.Clear();
+                return;
+            }
+            #endregion
+
+            #region ARTEFACTO
+            else if (cbArtefacto.Text == "")
+            {
+                MessageBox.Show("Indique el artefacto!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            #endregion
+
+            else if (CamposLlenos() == true)
             {
                 int artefacto = objeto_CN_Artefactos.IdArtefacto(cbArtefacto.Text);
 
@@ -160,13 +202,13 @@ namespace TurismoReal.Vistas.VistasAdmin
 
                 objeto_CN_Inventario.ActualizarDatos(objeto_CE_Inventario);
                 CargarDatos();
-                MessageBox.Show("Se actualizó exitosamente!!");
+                MessageBox.Show("Se actualizó exitosamente!!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
                 LimpiarData();
                 BtnCrear.IsEnabled = true;
             }
             else
             {
-                MessageBox.Show("Por favor, no dejar campos vacios");
+                MessageBox.Show("Por favor, no dejar campos vacios", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -194,7 +236,7 @@ namespace TurismoReal.Vistas.VistasAdmin
         {
 
             int id = (int)((Button)sender).CommandParameter;
-            if (MessageBox.Show("¿Esta seguro de eliminar el artefacto?", "Eliminar Artefacto", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("¿Está seguro de eliminar el inventario?", "Eliminar Inventario", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 objeto_CE_Inventario.IdInventario = id;
                 objeto_CN_Inventario.Eliminar(objeto_CE_Inventario);

@@ -1034,6 +1034,7 @@
                       Foreground="Black"
                       Grid.Column="2"
                       Cursor="Hand"
+                      TabIndex="1"
                       HorizontalContentAlignment="Center"
                       x:Name="cbMedioPago">
                 <ComboBox.ItemContainerStyle>
@@ -1078,6 +1079,7 @@
                       Foreground="Black"
                       Grid.Column="2"
                       Cursor="Hand"
+                      TabIndex="2"
                       IsReadOnly="True"
                       Text="Seleccionar Banco" 
                       HorizontalContentAlignment="Center"
@@ -1122,7 +1124,7 @@
             <TextBox Grid.Row="11"
                      Grid.Column="2"
                      KeyUp="Multa"
-                     KeyDown="Verificar"
+                     TabIndex="3"
                      x:Name="tbValorUnitario"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
@@ -1160,7 +1162,7 @@
                      Grid.Column="2"
                      x:Name="tbCantidad"
                      Text="1"
-                     KeyDown="Verificar"
+                     TabIndex="4"
                      KeyUp="Calculo"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
@@ -1220,6 +1222,7 @@
                      Grid.Column="5"
                      x:Name="tbEfectivo"
                      Text="0"
+                     TabIndex="6"
                      KeyUp="Vuelto"
                      KeyDown="Verificar"
                      HorizontalContentAlignment="Center"
@@ -1270,6 +1273,7 @@
             <TextBox Grid.Row="15"
                      Grid.Column="2"
                      x:Name="tbDescripcion"
+                     TabIndex="5"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
@@ -1324,8 +1328,8 @@
                                         Width="*"
                                         Binding="{Binding descripcion}"/>
                     <DataGridTextColumn Header="Monto"
-                                        Width="80"
-                                        Binding="{Binding monto}"/>
+                                        Width="100"
+                                        Binding="{Binding monto, StringFormat=\{0:C0\}}"/>
 
                     <DataGridTemplateColumn Header="Consultar"
                                             Width="80">

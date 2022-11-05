@@ -817,6 +817,7 @@
             <TextBox Grid.Row="4"
                      Grid.Column="2"
                      x:Name="tbDescripcion"
+                     TabIndex="1"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
@@ -847,12 +848,12 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
             <CheckBox Grid.Row="4"
+                      TabIndex="4"
                          Grid.Column="5"
                          Style="{DynamicResource CheckBoxStyle}" 
                          VerticalAlignment="Center"
                          HorizontalAlignment="Left"
-                         x:Name="ckbDisponible"
-                         Click="Disponible_Check"/>
+                         x:Name="ckbDisponible"/>
 
             <TextBlock Grid.Row="6"
                        Grid.Column="1"
@@ -862,7 +863,7 @@
             <TextBox Grid.Row="6"
                      Grid.Column="2"
                      x:Name="tbPrecio"
-                     KeyDown="Verificar"
+                     TabIndex="2"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 
                      Background="#F3E5F5"/>
@@ -896,6 +897,7 @@
                       Grid.Row="8"
                       Grid.Column="2"
                       Cursor="Hand"
+                      TabIndex="3"
                       HorizontalContentAlignment="Center"
                       x:Name="cbTipoServicio">
                 <ComboBox.ItemContainerStyle>

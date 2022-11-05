@@ -270,8 +270,7 @@
                             VerticalAlignment="Center"
                             HorizontalAlignment="Right"
                             Cursor="Hand" 
-                            Click="BtnCerrarSesion"
-                            >
+                            Click="BtnCerrarSesion">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#460044"/>

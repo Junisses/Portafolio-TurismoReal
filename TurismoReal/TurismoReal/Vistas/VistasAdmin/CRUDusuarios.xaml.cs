@@ -146,23 +146,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        #region VALIDACIÓN ALFA NÚMERICO
-        public bool IsAlphaNumeric(string texto)
-        {
-            Regex objAlphaNumericPattern = new Regex("[^a-zA-Z0-9]");
-            return !objAlphaNumericPattern.IsMatch(texto);
-        }
-        #endregion
-
-        #region VALIDAR SOLO NÚMEROS
-        private void Verificar(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
-                e.Handled = false;
-            else
-                e.Handled = true;
-        }
-        #endregion
 
         #endregion
 
@@ -174,12 +157,12 @@ namespace TurismoReal.Vistas.VistasAdmin
         #region CREAR
         private void Crear(object sender, RoutedEventArgs e)
         {
-            //Validaciones basicas
+            //Validaciones
             #region NOMBRE Y APELLIDO
             //NOMBRE
             if (tbNombre.Text == "")
             {
-                MessageBox.Show("El nombre no puede quedar vacio");
+                MessageBox.Show("El nombre no puede quedar vacio", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbNombre.Focus();
                 return;
             }
@@ -187,22 +170,22 @@ namespace TurismoReal.Vistas.VistasAdmin
             {
                 if (tbNombre.Text.Length > 25)
                 {
-                    MessageBox.Show("El nombre es demasiado extenso");
+                    MessageBox.Show("El nombre es demasiado extenso", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbNombre.Clear();
                     tbNombre.Focus();
                     return;
                 }
                 else if (tbNombre.Text.Length < 3)
                 {
-                    MessageBox.Show("El nombre es muy corto, asegurese de ingresarlo bien");
+                    MessageBox.Show("El nombre es muy corto, asegurese de ingresarlo bien", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbNombre.Clear();
                     tbNombre.Focus();
                     return;
                 }
                 //valido que se ingresen solo letras
-                else if (Regex.IsMatch(tbNombre.Text, @"^[a-zA-Z]+$") == false)
+                else if (Regex.IsMatch(tbNombre.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$") == false)
                 {
-                    MessageBox.Show("El nombre solo puede contener letras");
+                    MessageBox.Show("El nombre solo puede contener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbNombre.Clear();
                     tbNombre.Focus();
                     return;
@@ -212,7 +195,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             //APELLIDO
             if (tbApellido.Text == "")
             {
-                MessageBox.Show("El Apellido no puede quedar vacio");
+                MessageBox.Show("El Apellido no puede quedar vacio", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbApellido.Focus();
                 return;
             }
@@ -220,22 +203,22 @@ namespace TurismoReal.Vistas.VistasAdmin
             {
                 if (tbApellido.Text.Length > 25)
                 {
-                    MessageBox.Show("El apellido es demasiado extenso");
+                    MessageBox.Show("El apellido es demasiado extenso", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbApellido.Clear();
                     tbApellido.Focus();
                     return;
                 }
                 else if (tbApellido.Text.Length < 3)
                 {
-                    MessageBox.Show("El apellido es muy corto, asegurese de que este bien");
+                    MessageBox.Show("El apellido es muy corto, asegurese de que este bien", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbApellido.Clear();
                     tbApellido.Focus();
                     return;
                 }
                 //valido que se ingresen solo letras
-                else if (Regex.IsMatch(tbApellido.Text, @"^[a-zA-Z]+$") == false)
+                else if (Regex.IsMatch(tbApellido.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$") == false)
                 {
-                    MessageBox.Show("El Apellido solo puede contener letras");
+                    MessageBox.Show("El Apellido solo puede contener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbApellido.Clear();
                     tbApellido.Focus();
                     return;
@@ -246,25 +229,25 @@ namespace TurismoReal.Vistas.VistasAdmin
             #region RUT O PASAPORTE
             if (chkPasaporte.IsChecked == false && tbRut.Text == "")
             {
-                MessageBox.Show("El rut no puede quedar vacío");
+                MessageBox.Show("El rut no puede quedar vacío", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbRut.Focus();
 
                 if (ValidarRut(tbRut.Text.ToString()) == false)
                 {
-                    MessageBox.Show("Resvise que el rut este bien ingresado");
+                    MessageBox.Show("Resvise que el rut este bien ingresado", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbRut.Clear();
                     tbRut.Focus();
                     return;
                 }
                 else if (tbRut.Text.Length < 8)
                 {
-                    MessageBox.Show("Ingrese todos los digitos de su rut");
+                    MessageBox.Show("Ingrese todos los digitos de su rut", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbRut.Clear();
                     tbRut.Focus();
                 }
                 else if (tbRut.Text.Length > 9)
                 {
-                    MessageBox.Show("Ingrese solo los digitos de su rut, sin puntos ni guiones");
+                    MessageBox.Show("Ingrese solo los digitos de su rut, sin puntos ni guiones", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbRut.Clear();
                     tbRut.Focus();
                 }
@@ -273,12 +256,12 @@ namespace TurismoReal.Vistas.VistasAdmin
             {
                 if (tbRut.Text == "")
                 {
-                    MessageBox.Show("El N° pasaporte no puede quedar vacío");
+                    MessageBox.Show("El N° pasaporte no puede quedar vacío", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbRut.Focus();
                 }
                 else if (tbRut.Text.Length > 9 || tbRut.Text.Length < 9)
                 {
-                    MessageBox.Show("Asegurese de ingresar bien el N° Pasaporte");
+                    MessageBox.Show("Asegurese de ingresar bien el N° Pasaporte", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbRut.Clear();
                     tbRut.Focus();
                 }
@@ -288,13 +271,13 @@ namespace TurismoReal.Vistas.VistasAdmin
             #region CORREO
              if (tbCorreo.Text == "")
              {
-                 MessageBox.Show("El Correo no puede quedar vacio");
+                 MessageBox.Show("El Correo no puede quedar vacio", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                  tbCorreo.Focus();
                  return;
              }
             else if (ValidarCorreo(tbCorreo.Text.ToString()) == false)
             {
-                MessageBox.Show("Ingresar formato de correo");
+                MessageBox.Show("Ingresar formato de correo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbCorreo.Clear();
                 tbCorreo.Focus();
                 return;
@@ -304,13 +287,22 @@ namespace TurismoReal.Vistas.VistasAdmin
             #region CELULAR
             else if (tbCel.Text == "")
             {
-                MessageBox.Show("Ingrese número de celular");
+                MessageBox.Show("Ingrese número de celular", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbCel.Focus();
                 return;
             }
-            else if (tbCel.Text.Length != 9 && Regex.IsMatch(tbCel.Text, @"^\d +$:") == false)
+            else if (Regex.IsMatch(tbCel.Text, @"^[z0-9]+$") == false )
             {
-                MessageBox.Show("Ingrese los 9 digitos de su celular");
+                MessageBox.Show("Ingrese solo números para el celular", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCel.Clear();
+                tbCel.Focus();
+                return;
+            }
+            else if (tbCel.Text.Length < 9 || tbCel.Text.Length > 9)
+            {
+                MessageBox.Show("Ingrese los 9 dígitos de su celular", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCel.Clear();
+                tbCel.Focus();
                 return;
             }
             #endregion
@@ -318,14 +310,14 @@ namespace TurismoReal.Vistas.VistasAdmin
             #region PAIS
             else if (tbPais.Text == "")
             {
-                MessageBox.Show("Ingrese un País");
+                MessageBox.Show("Ingrese un País", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbPais.Focus();
                 return;
             }
 
-            else if (Regex.IsMatch(tbPais.Text, @"^[a-zA-Z]+$") == false)
+            else if (Regex.IsMatch(tbPais.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$") == false)
             {
-                MessageBox.Show("El País solo puede contener letras");
+                MessageBox.Show("El País solo puede contener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbPais.Clear();
                 tbPais.Focus();
                 return;
@@ -333,7 +325,7 @@ namespace TurismoReal.Vistas.VistasAdmin
 
             else if (tbPais.Text.Length < 4)
             {
-                MessageBox.Show("Asegurese que el nombre del País este correcto");
+                MessageBox.Show("Asegurese que el nombre del País este correcto", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbPais.Focus();
                 return;
             }
@@ -342,27 +334,27 @@ namespace TurismoReal.Vistas.VistasAdmin
             #region USER NAME
             else if (tbUser.Text == "")
             {
-                MessageBox.Show("El usuario no puede quedar vacio");
+                MessageBox.Show("El usuario no puede quedar vacio", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbUser.Focus();
                 return;
             }
             else if (tbUser.Text.Length < 1 || tbUser.Text.Length < 2)
             {
-                MessageBox.Show("El nombre de usuario no puede ser tan corto");
+                MessageBox.Show("El nombre de usuario no puede ser tan corto", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbUser.Clear();
                 tbUser.Focus();
                 return;
             }
             else if (tbUser.Text.Length > 25)
             {
-                MessageBox.Show("El nombre de usuario es demasiado extenso");
+                MessageBox.Show("El nombre de usuario es demasiado extenso", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbUser.Clear();
                 tbUser.Focus();
                 return;
             }
-            else if (IsAlphaNumeric(tbUser.Text.ToString()) == false)
+            else if (Regex.IsMatch(tbUser.Text, @"^[A-Za-z0-9_.]+$") == false)
             {
-                MessageBox.Show("El usuario debe ser con letras y/o números");
+                MessageBox.Show("El usuario puede contener letras, números, puntos y guiones bajos", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbUser.Clear();
                 tbUser.Focus();
                 return;
@@ -372,7 +364,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             #region TIPO USUARIO
             else if (cbTipoUsuario.Text == "")
             {
-                MessageBox.Show("Debe seleccionar un tipo de usuario!!");
+                MessageBox.Show("Debe seleccionar un tipo de usuario!!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             #endregion
@@ -380,12 +372,12 @@ namespace TurismoReal.Vistas.VistasAdmin
             #region CONTRASEÑA
             else if (tbContrasena.Password.Length < 6)
             {
-                MessageBox.Show("La contraseña debe tener más de 6 caracteres");
+                MessageBox.Show("La contraseña debe tener más de 6 caracteres", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             else if (tbContrasena.Password == "")
             {
-                MessageBox.Show("La contraseña debe tener más de 6 caracteres");
+                MessageBox.Show("La contraseña debe tener más de 6 caracteres", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             #endregion
@@ -393,7 +385,7 @@ namespace TurismoReal.Vistas.VistasAdmin
             #region ESTADO DE CUENTA
             else if (chkHabilitar.IsChecked == false)
             {
-                MessageBox.Show("Se ingreso un usuario con su cuenta deshabilitada", "INFORMACIÓN");
+                MessageBox.Show("Se ingreso un usuario con su cuenta deshabilitada", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             #endregion
 
@@ -436,17 +428,17 @@ namespace TurismoReal.Vistas.VistasAdmin
                     objeto_CE_Usuarios.IdTipoUsuario = tipousuario;
 
                     objeto_CN_Usuarios.Insertar(objeto_CE_Usuarios);
-
+                    MessageBox.Show("Se ha ingresado un nuevo usuario!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
                     Content = new Usuarios();
                 }
                 catch
                 {
-                    MessageBox.Show("Revise bien sus datos");
+                    MessageBox.Show("Revise bien sus datos", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("No se pudo ingresar usuario, revise que ningun dato quede vacío!");
+                MessageBox.Show("No se pudo ingresar usuario, revise que ningun dato quede vacío!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -490,7 +482,226 @@ namespace TurismoReal.Vistas.VistasAdmin
         #region UPDATE
         private void Actualizar(object sender, RoutedEventArgs e)
         {
-            if(CamposLlenos() == true)
+            //Validaciones
+            #region NOMBRE Y APELLIDO
+            //NOMBRE
+            if (tbNombre.Text == "")
+            {
+                MessageBox.Show("El nombre no puede quedar vacio", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbNombre.Focus();
+                return;
+            }
+            else if (tbNombre.Text != "")
+            {
+                if (tbNombre.Text.Length > 25)
+                {
+                    MessageBox.Show("El nombre es demasiado extenso", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbNombre.Clear();
+                    tbNombre.Focus();
+                    return;
+                }
+                else if (tbNombre.Text.Length < 3)
+                {
+                    MessageBox.Show("El nombre es muy corto, asegurese de ingresarlo bien", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbNombre.Clear();
+                    tbNombre.Focus();
+                    return;
+                }
+                //valido que se ingresen solo letras
+                else if (Regex.IsMatch(tbNombre.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$") == false)
+                {
+                    MessageBox.Show("El nombre solo puede contener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbNombre.Clear();
+                    tbNombre.Focus();
+                    return;
+                }
+            }
+
+            //APELLIDO
+            if (tbApellido.Text == "")
+            {
+                MessageBox.Show("El Apellido no puede quedar vacio", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbApellido.Focus();
+                return;
+            }
+            else if (tbApellido.Text != "")
+            {
+                if (tbApellido.Text.Length > 25)
+                {
+                    MessageBox.Show("El apellido es demasiado extenso", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbApellido.Clear();
+                    tbApellido.Focus();
+                    return;
+                }
+                else if (tbApellido.Text.Length < 3)
+                {
+                    MessageBox.Show("El apellido es muy corto, asegurese de que este bien", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbApellido.Clear();
+                    tbApellido.Focus();
+                    return;
+                }
+                //valido que se ingresen solo letras
+                else if (Regex.IsMatch(tbApellido.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$") == false)
+                {
+                    MessageBox.Show("El Apellido solo puede contener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbApellido.Clear();
+                    tbApellido.Focus();
+                    return;
+                }
+            }
+            #endregion
+
+            #region RUT O PASAPORTE
+            if (chkPasaporte.IsChecked == false && tbRut.Text == "")
+            {
+                MessageBox.Show("El rut no puede quedar vacío", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbRut.Focus();
+
+                if (ValidarRut(tbRut.Text.ToString()) == false)
+                {
+                    MessageBox.Show("Resvise que el rut este bien ingresado", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbRut.Clear();
+                    tbRut.Focus();
+                    return;
+                }
+                else if (tbRut.Text.Length < 8)
+                {
+                    MessageBox.Show("Ingrese todos los digitos de su rut", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbRut.Clear();
+                    tbRut.Focus();
+                }
+                else if (tbRut.Text.Length > 9)
+                {
+                    MessageBox.Show("Ingrese solo los digitos de su rut, sin puntos ni guiones", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbRut.Clear();
+                    tbRut.Focus();
+                }
+            }
+            else
+            {
+                if (tbRut.Text == "")
+                {
+                    MessageBox.Show("El N° pasaporte no puede quedar vacío", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbRut.Focus();
+                }
+                else if (tbRut.Text.Length > 9 || tbRut.Text.Length < 9)
+                {
+                    MessageBox.Show("Asegurese de ingresar bien el N° Pasaporte", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbRut.Clear();
+                    tbRut.Focus();
+                }
+            }
+            #endregion
+
+            #region CORREO
+            if (tbCorreo.Text == "")
+            {
+                MessageBox.Show("El Correo no puede quedar vacio", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCorreo.Focus();
+                return;
+            }
+            else if (ValidarCorreo(tbCorreo.Text.ToString()) == false)
+            {
+                MessageBox.Show("Ingresar formato de correo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCorreo.Clear();
+                tbCorreo.Focus();
+                return;
+            }
+            #endregion
+
+            #region CELULAR
+            else if (tbCel.Text == "")
+            {
+                MessageBox.Show("Ingrese número de celular", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCel.Focus();
+                return;
+            }
+            else if (Regex.IsMatch(tbCel.Text, @"^[z0-9]+$") == false)
+            {
+                MessageBox.Show("Ingrese solo números para el celular", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCel.Clear();
+                tbCel.Focus();
+                return;
+            }
+            else if (tbCel.Text.Length < 9 || tbCel.Text.Length > 9)
+            {
+                MessageBox.Show("Ingrese los 9 dígitos de su celular", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbCel.Clear();
+                tbCel.Focus();
+                return;
+            }
+            #endregion
+
+            #region PAIS
+            else if (tbPais.Text == "")
+            {
+                MessageBox.Show("Ingrese un País", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbPais.Focus();
+                return;
+            }
+
+            else if (Regex.IsMatch(tbPais.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$") == false)
+            {
+                MessageBox.Show("El País solo puede contener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbPais.Clear();
+                tbPais.Focus();
+                return;
+            }
+
+            else if (tbPais.Text.Length < 4)
+            {
+                MessageBox.Show("Asegurese que el nombre del País este correcto", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbPais.Focus();
+                return;
+            }
+            #endregion
+
+            #region USER NAME
+            else if (tbUser.Text == "")
+            {
+                MessageBox.Show("El usuario no puede quedar vacio", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbUser.Focus();
+                return;
+            }
+            else if (tbUser.Text.Length < 1 || tbUser.Text.Length < 2)
+            {
+                MessageBox.Show("El nombre de usuario no puede ser tan corto", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbUser.Clear();
+                tbUser.Focus();
+                return;
+            }
+            else if (tbUser.Text.Length > 25)
+            {
+                MessageBox.Show("El nombre de usuario es demasiado extenso", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbUser.Clear();
+                tbUser.Focus();
+                return;
+            }
+            else if (Regex.IsMatch(tbUser.Text, @"^[A-Za-z0-9_.]+$") == false)
+            {
+                MessageBox.Show("El usuario puede contener letras, números, puntos y guiones bajos", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbUser.Clear();
+                tbUser.Focus();
+                return;
+            }
+            #endregion
+
+            #region TIPO USUARIO
+            else if (cbTipoUsuario.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar un tipo de usuario!!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            #endregion
+
+            #region ESTADO DE CUENTA
+            else if (chkHabilitar.IsChecked == false)
+            {
+                MessageBox.Show("Se ingreso un usuario con su cuenta deshabilitada", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            #endregion
+
+            if (CamposLlenos() == true)
             {
                 int tipousuario = objeto_CN_TipoUsuarioFK.idTipoUsuario(cbTipoUsuario.Text);
 
@@ -523,7 +734,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                     objeto_CE_Usuarios.EsPasaporte = "Rut";
                     if (ValidarRut(tbRut.Text.ToString()) == false)
                     {
-                        MessageBox.Show("Ingrese correctamente el rut");
+                        MessageBox.Show("Ingrese correctamente el rut", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
                 }
@@ -531,12 +742,12 @@ namespace TurismoReal.Vistas.VistasAdmin
                 objeto_CE_Usuarios.IdTipoUsuario = tipousuario;
 
                 objeto_CN_Usuarios.ActualizarDatos(objeto_CE_Usuarios);
-
+                MessageBox.Show("Se han actualizado los datos exitosamente!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
                 Content = new Usuarios();
             }
             else
             {
-                MessageBox.Show("Por favor, no dejar campos vacios");
+                MessageBox.Show("Por favor, no dejar campos vacios", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
             if(tbContrasena.Password.Length > 6)
