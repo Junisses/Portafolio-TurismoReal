@@ -6,6 +6,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Remoting.Messaging;
+using System.Data.SqlTypes;
 
 namespace CapaDeDatos.Clases
 {
@@ -68,22 +70,14 @@ namespace CapaDeDatos.Clases
             ce.FechaHasta = Convert.ToDateTime(row[2]);
             ce.EstadoRerserva = Convert.ToString(row[3]);
             ce.Abono = Convert.ToInt32(row[4]);
-            //Fecha actual del campo check in
-            ce.CheckIN = DateTime.Now;
-            //En caso de que este este completo, mostrar la fecha
             if (!row.IsNull("checkIn")) 
             { 
                 ce.CheckIN = Convert.ToDateTime(row[5]);
             }
-
-            //Fecha actual para el campo checkout
-            ce.CheckOUT = DateTime.Now;
-            //Si esta guardado en la BD, se muestra el ingresado, no el actual
             if (!row.IsNull("chekOut"))
             {
                 ce.CheckOUT = Convert.ToDateTime(row[6]);
             }
-
             ce.PrecioNocheReserva = Convert.ToInt32(row[8]);
             ce.Saldo = Convert.ToInt32(row[9]);
             ce.IdDepartamento = Convert.ToInt32(row[10]);

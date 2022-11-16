@@ -55,10 +55,22 @@ namespace TurismoReal.Vistas.VistasFuncionario
             tbPrecioNoche.Text = a.PrecioNocheReserva.ToString("0,0", CultureInfo.InvariantCulture);
             tbSaldo.Text = a.Saldo.ToString("0,0", CultureInfo.InvariantCulture);
             cFechaIngreso.Text = a.CheckIN.ToString();
+            cFechaIngreso.IsEnabled = false;
 
-
-            cFechaSalida.IsEnabled = false;
             cFechaSalida.Text = a.CheckOUT.ToString();
+
+            if (cFechaSalida.Text != "")
+            {
+                cFechaSalida.IsEnabled = false;
+                BtnCrear.IsEnabled = false;
+                BtnPago.IsEnabled = false;
+            }
+            else
+            {
+                cFechaIngreso.IsEnabled = true;
+                BtnCrear.IsEnabled = true;
+                BtnPago.IsEnabled = true;
+            }
         }
         #endregion
 
@@ -67,13 +79,22 @@ namespace TurismoReal.Vistas.VistasFuncionario
 
             if (cFechaSalida.Text != "")
             {
-                objeto_CE_Reservas.IdReserva = idReserva;
-                objeto_CE_Reservas.CheckOUT = DateTime.Parse(cFechaSalida.Text);
+                if (cFechaIngreso.Text == "")
+                {
+                    MessageBox.Show("La fecha de ingreso esta vacía\nno se puede registrar la salida", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    objeto_CE_Reservas.IdReserva = idReserva;
+                    objeto_CE_Reservas.CheckOUT = DateTime.Parse(cFechaSalida.Text);
 
-                objeto_CN_Reservas.ActualizarOUT(objeto_CE_Reservas);
-                MessageBox.Show("Se ingreso exitosamente!!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
-                BtnCrear.IsEnabled = false;
-                cFechaSalida.IsEnabled = false;
+                    objeto_CN_Reservas.ActualizarOUT(objeto_CE_Reservas);
+                    MessageBox.Show("Se ingreso exitosamente!!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
+                    BtnCrear.IsEnabled = false;
+                    cFechaSalida.IsEnabled = false;
+                    BtnPago.IsEnabled = false;
+                }
+
             }
             else
             {

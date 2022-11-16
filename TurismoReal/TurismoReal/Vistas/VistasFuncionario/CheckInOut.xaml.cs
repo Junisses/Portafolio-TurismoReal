@@ -76,6 +76,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
             ventana.Consultar();
             FrameCheckINOUT.Content = ventana;
             ventana.Titulo.Text = "CHECK OUT Reserva N°" + id;
+            ventana.cFechaIngreso.IsEnabled = false;
         }
 
         #region FUNCION BUSCAR

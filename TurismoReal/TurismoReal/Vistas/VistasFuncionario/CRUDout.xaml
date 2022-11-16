@@ -62,8 +62,8 @@
                                 <Setter Property="BorderBrush" TargetName="border" Value="#751970"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="Background" TargetName="border" Value="#D4A1DE"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#D4A1DE"/>
                                 <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -119,8 +119,8 @@
                                 <Setter Property="BorderBrush" TargetName="border" Value="#006600"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background1}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border1}"/>
+                                <Setter Property="Background" TargetName="border" Value="#98FF9B"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#98FF9B"/>
                                 <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground1}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -815,14 +815,13 @@
             <!--#endregion-->
             <!--#region CREAR-->
             <Button x:Name="BtnCrear"
-                    Content="Guardar"
+                    Content="Ingresar CHECK OUT"
                     Grid.Row="17"
                     Grid.Column="5"
-                    Width="100"
                     Background="Green"
                     Foreground="White"
                     Style="{DynamicResource estiloCrear}"
-                    Click="Crear" Margin="43,0,42,0"/>
+                    Click="Crear" Margin="10,0,10,0"/>
             <!--#endregion-->
 
 
@@ -936,7 +935,7 @@
                     </Style>
                 </DatePicker.Resources>
             </DatePicker>
-            
+
             <!--Texto y box para Fecha hasta-->
             <TextBlock Grid.Row="14"
                        Grid.Column="1"

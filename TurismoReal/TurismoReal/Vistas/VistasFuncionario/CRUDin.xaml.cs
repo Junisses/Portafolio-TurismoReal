@@ -74,10 +74,34 @@ namespace TurismoReal.Vistas.VistasFuncionario
             cbEstadoReserva.Text = a.EstadoRerserva.ToString();
             tbPrecioNoche.Text = a.PrecioNocheReserva.ToString("0,0", CultureInfo.InvariantCulture);
             tbSaldo.Text = a.Saldo.ToString("0,0", CultureInfo.InvariantCulture);
+            cFechaIngreso.Text = a.CheckIN.ToString();
+
+            if (cFechaIngreso.Text != "")
+            {
+                cFechaIngreso.IsEnabled = false;
+                BtnCrear.IsEnabled = false;
+            }
+            else
+            {
+                cFechaIngreso.IsEnabled = true;
+                BtnCrear.IsEnabled = true;
+            }
 
 
-           cFechaIngreso.IsEnabled = false;
-           cFechaIngreso.Text = a.CheckIN.ToString();
+            //PARTE DEL PAGO DE LA RESERVA
+            var det = objeto_CN_Boletas.Detalle(idReserva);
+
+            //VALIDACION EN CASO DE QUE NO TENGA EL REGISTRO
+            if (det.MedioDePago == null || det.Monto == 0)
+            {
+                BtnPago.IsEnabled = true;
+            }
+            else
+            {
+                tbSaldo.Text = "0";
+                BtnPago.IsEnabled = false;
+            }
+
         }
         #endregion
 
