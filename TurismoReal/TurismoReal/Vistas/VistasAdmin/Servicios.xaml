@@ -401,26 +401,6 @@
                         <DataGridTextColumn Header="Tipo de Servicio"
                                         Width="130"
                                         Binding="{Binding tipoServicio}"/>
-                        <DataGridTemplateColumn Header="Eliminar"
-                                            Width="100">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <DockPanel>
-                                        <Button Name="BtnEliminar" 
-                                                Width="20" 
-                                                Height="20" 
-                                                Click="Eliminar"
-                                                Cursor="Hand"
-                                                Background="Transparent"
-                                                BorderBrush="Transparent"
-                                                CommandParameter="{Binding idServicio}">
-                                            <Image Source="/Vistas/Images/eliminar.png"></Image>
-                                        </Button>
-
-                                    </DockPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
                 <!--#endregion-->

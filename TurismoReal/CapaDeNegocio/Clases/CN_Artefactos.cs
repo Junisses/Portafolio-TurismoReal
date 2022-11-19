@@ -39,15 +39,6 @@ namespace CapaDeNegocio.Clases
 
         #endregion
 
-        #region Eliminar   
-
-        public void Eliminar(CE_Artefactos Artefactos)
-        {
-            objDatos.CD_Eliminar(Artefactos);
-        }
-
-        #endregion
-
         public int IdArtefacto(string Descripcion)
         {
             return CD_Artefactos.IdArtefacto(Descripcion);

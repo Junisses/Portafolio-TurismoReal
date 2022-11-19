@@ -96,7 +96,6 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.tbPrecio.IsEnabled = false;
             ventana.ckbDisponible.IsEnabled = false;
             ventana.cbTipoServicio.IsEnabled = false;
-            ventana.BtnEliminar.Visibility = Visibility.Visible;
         }
 
         #endregion

@@ -60,21 +60,6 @@ namespace CapaDeDatos.Clases
 
         #endregion
 
-        #region Eliminar
-        public void CD_Eliminar(CE_Servicios Servicios)
-        {
-            SqlCommand com = new SqlCommand();
-            com.Connection = con.AbrirConexion();
-            com.CommandText = "dbo.SP_S_Eliminar";
-            com.CommandType = CommandType.StoredProcedure;
-            com.Parameters.AddWithValue("@idServicio", Servicios.IdServicio);
-            com.ExecuteNonQuery();
-            com.Parameters.Clear();
-            con.CerrarConexion();
-        }
-
-        #endregion
-
         #region Actualizar Datos
 
         public void CD_ActualizarDatos(CE_Servicios Servicios)

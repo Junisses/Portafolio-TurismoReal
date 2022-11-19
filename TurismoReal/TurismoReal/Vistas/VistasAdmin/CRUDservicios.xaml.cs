@@ -323,17 +323,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        #region Eliminar
-        private void Eliminar(object sender, RoutedEventArgs e)
-        {
-            objeto_CE_Servicios.IdServicio = idServicio;
-
-            objeto_CN_Servicios.Eliminar(objeto_CE_Servicios);
-
-            Content = new Servicios();
-        }
-        #endregion
-
         private void BtnTipoServicio_Click(object sender, RoutedEventArgs e)
         {
             Content = new TipoServicio();

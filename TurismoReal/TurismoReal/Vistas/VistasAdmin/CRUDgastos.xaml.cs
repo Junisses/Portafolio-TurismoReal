@@ -342,26 +342,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        #region Eliminar
-        private void Eliminar(object sender, RoutedEventArgs e)
-        {
-
-            int id = (int)((Button)sender).CommandParameter;
-            if (MessageBox.Show("¿Está seguro de eliminar el gasto?", "Eliminar Gasto", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                objeto_CE_Gastos.IdGastos = id;
-                objeto_CN_Gastos.Eliminar(objeto_CE_Gastos);
-                CargarDatos();
-                LimpiarData();
-            }
-            else
-            {
-                CargarDatos();
-                LimpiarData();
-            }
-        }
-        #endregion
-
 
         #region Limpiar Campos
 

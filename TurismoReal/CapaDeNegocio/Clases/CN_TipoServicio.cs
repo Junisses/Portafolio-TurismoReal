@@ -40,16 +40,6 @@ namespace CapaDeNegocio.Clases
 
         #endregion
 
-        #region Eliminar   
-
-        public void Eliminar(CE_TipoServicio TipoServicios)
-        {
-            objDatos.CD_Eliminar(TipoServicios);
-        }
-
-        #endregion
-
-
 
         #region CARGAR ARTEFACTOS AL GRID
 

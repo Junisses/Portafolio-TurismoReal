@@ -967,7 +967,7 @@
                                         Width="*"
                                         Binding="{Binding tipoUnidad}"/>
                     <DataGridTemplateColumn Header="Opciones"
-                                            Width="100">
+                                            Width="80">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <DockPanel>
@@ -992,17 +992,6 @@
                                                 BorderBrush="Transparent"
                                                 CommandParameter="{Binding idArtefactos}">
                                         <Image Source="/Vistas/Images/edit.png"></Image>
-                                    </Button>
-
-                                    <Button Name="BtnEliminar" 
-                                                Width="20" 
-                                                Height="20" 
-                                                Click="Eliminar"
-                                                Cursor="Hand"
-                                                Background="Transparent"
-                                                BorderBrush="Transparent"
-                                                CommandParameter="{Binding idArtefactos}">
-                                        <Image Source="/Vistas/Images/eliminar.png"></Image>
                                     </Button>
 
                                 </DockPanel>

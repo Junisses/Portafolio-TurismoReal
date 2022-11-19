@@ -794,19 +794,6 @@
                     Style="{DynamicResource estiloACT}" 
                     Click="Actualizar" Margin="43,0,42,0"/>
             <!--#endregion-->
-            <!--#region ELIMINAR-->
-            <Button x:Name="BtnEliminar"
-                    Content="Eliminar"
-                    Grid.Row="10"
-                    Grid.Column="5"
-                    Width="100"
-                    Background="Red"
-                    Foreground="White"
-                    Style="{DynamicResource estiloEliminar}"
-                    Visibility="Hidden"
-                    Click="Eliminar" Margin="43,0,42,0"/>
-            <!--#endregion-->
-
             <!--#endregion-->
             <!--#region CONTENIDO-->
             <TextBlock Grid.Row="4"

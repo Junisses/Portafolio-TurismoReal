@@ -29,15 +29,6 @@ namespace CapaDeNegocio.Clases
 
         #endregion
 
-        #region Eliminar   
-
-        public void Eliminar(CE_Servicios Servicios)
-        {
-            objDatos.CD_Eliminar(Servicios);
-        }
-
-        #endregion
-
         #region Actualizar Datos   
 
         public void ActualizarDatos(CE_Servicios Servicios)

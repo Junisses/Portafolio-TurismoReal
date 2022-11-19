@@ -86,21 +86,6 @@ namespace CapaDeDatos.Clases
 
         #endregion
 
-        #region Eliminar
-        public void CD_Eliminar(CE_Artefactos Artefactos)
-        {
-            SqlCommand com = new SqlCommand();
-            com.Connection = con.AbrirConexion();
-            com.CommandText = "dbo.SP_A_Eliminar";
-            com.CommandType = CommandType.StoredProcedure;
-            com.Parameters.AddWithValue("@idArtefactos", Artefactos.IdArtefactos);
-            com.ExecuteNonQuery();
-            com.Parameters.Clear();
-            con.CerrarConexion();
-        }
-
-        #endregion
-
 
         #region IdArtefacto
         public int IdArtefacto(string Descripcion)

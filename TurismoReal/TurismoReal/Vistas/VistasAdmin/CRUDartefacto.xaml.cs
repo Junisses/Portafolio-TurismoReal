@@ -429,25 +429,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        #region Eliminar
-        private void Eliminar(object sender, RoutedEventArgs e)
-        {
-            int id = (int)((Button)sender).CommandParameter;
-            if (MessageBox.Show("¿Está seguro de eliminar el artefacto?", "Eliminar Artefacto", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                objeto_CE_Artefactos.IdArtefactos = id;
-                objeto_CN_Artefactos.Eliminar(objeto_CE_Artefactos);
-                CargarDatos();
-                LimpiarData();
-            }
-            else
-            {
-                CargarDatos();
-                LimpiarData();
-            }
-        }
-        #endregion
-
 
         #region Limpiar Campos
 

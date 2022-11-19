@@ -39,15 +39,6 @@ namespace CapaDeNegocio.Clases
 
         #endregion
 
-        #region Eliminar   
-
-        public void Eliminar(CE_TipoGasto TipoGasto)
-        {
-            objDatos.CD_Eliminar(TipoGasto);
-        }
-
-        #endregion
-
         public int IdTipoGasto(string TipoGasto)
         {
             return CD_TipoGasto.IdTipoGasto(TipoGasto);

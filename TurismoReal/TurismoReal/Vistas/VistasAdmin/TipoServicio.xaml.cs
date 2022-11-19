@@ -201,27 +201,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        #region ELIMINAR
-        private void Eliminar(object sender, RoutedEventArgs e)
-        {
-            int id = (int)((Button)sender).CommandParameter;
-            tbDescripcion.IsEnabled = false;
-            if (MessageBox.Show("¿Está seguro de eliminar el tipo de servicio " + tbDescripcion.Text +"?", "Eliminar Tipo Servicio", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                objeto_CE_TipoServicio.IdTipoServicio = id;
-                objeto_CN_TipoServicio.Eliminar(objeto_CE_TipoServicio);
-                CargarDatos();
-                LimpiarData();
-            }
-            else
-            {
-                CargarDatos();
-                LimpiarData();
-            }
-        }
-
-        #endregion
-
         #region Limpiar Campos
 
         public void LimpiarData()

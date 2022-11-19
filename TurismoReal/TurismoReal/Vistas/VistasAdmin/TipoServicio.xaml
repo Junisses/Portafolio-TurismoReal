@@ -607,19 +607,6 @@
                                                 CommandParameter="{Binding idTipoServicio}">
                                         <Image Source="/Vistas/Images/edit.png"></Image>
                                     </Button>
-
-                                    <Button Name="BtnEliminar" 
-                                                Width="20" 
-                                                Height="20" 
-                                                Click="Eliminar"
-                                                Cursor="Hand"
-                                                Margin="0,0,5,0"
-                                                Background="Transparent"
-                                                BorderBrush="Transparent"
-                                                CommandParameter="{Binding idTipoServicio}">
-                                        <Image Source="/Vistas/Images/eliminar.png"></Image>
-                                    </Button>
-
                                 </DockPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

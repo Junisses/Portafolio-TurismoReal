@@ -38,15 +38,6 @@ namespace CapaDeNegocio.Clases
 
         #endregion
 
-        #region Eliminar   
-
-        public void Eliminar(CE_Gastos Gastos)
-        {
-            objDatos.CD_Eliminar(Gastos);
-        }
-
-        #endregion
-
         #region CARGAR ARTEFACTOS AL GRID
 
         public DataTable CargarGastos(int idDepartamento)

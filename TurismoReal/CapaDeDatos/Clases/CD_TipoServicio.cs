@@ -74,21 +74,6 @@ namespace CapaDeDatos.Clases
 
         #endregion
 
-        #region Eliminar
-        public void CD_Eliminar(CE_TipoServicio TipoServicios)
-        {
-            SqlCommand com = new SqlCommand();
-            com.Connection = con.AbrirConexion();
-            com.CommandText = "dbo.SP_TS_Eliminar";
-            com.CommandType = CommandType.StoredProcedure;
-            com.Parameters.AddWithValue("@idTipoServicio", TipoServicios.IdTipoServicio);
-            com.ExecuteNonQuery();
-            com.Parameters.Clear();
-            con.CerrarConexion();
-        }
-
-        #endregion
-
         #region CARGAR TIPO SERVICIO A LA VISTA
 
         public DataTable CargarTipoServicio()
