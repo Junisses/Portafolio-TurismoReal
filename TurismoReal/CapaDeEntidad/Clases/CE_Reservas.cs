@@ -15,6 +15,7 @@ namespace CapaDeEntidad.Clases
         private int _Abono;
         private DateTime? _CheckIN;
         private DateTime? _CheckOUT;
+        private DateTime? _FechaHoraReserva;
         private int _PrecioNocheReserva;
         private int _Saldo;
         private int _IdDepartamento;
@@ -31,5 +32,6 @@ namespace CapaDeEntidad.Clases
         public string EstadoRerserva { get => _EstadoRerserva; set => _EstadoRerserva = value; }
         public DateTime? CheckIN { get => _CheckIN; set => _CheckIN = value; }
         public DateTime? CheckOUT { get => _CheckOUT; set => _CheckOUT = value; }
+        public DateTime? FechaHoraReserva { get => _FechaHoraReserva; set => _FechaHoraReserva = value; }
     }
 }

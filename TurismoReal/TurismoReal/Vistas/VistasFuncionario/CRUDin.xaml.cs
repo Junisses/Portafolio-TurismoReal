@@ -98,7 +98,6 @@ namespace TurismoReal.Vistas.VistasFuncionario
             }
             else
             {
-                tbSaldo.Text = "0";
                 BtnPago.IsEnabled = false;
             }
 
@@ -109,13 +108,23 @@ namespace TurismoReal.Vistas.VistasFuncionario
         {
             if (cFechaIngreso.Text != "")
             {
-                objeto_CE_Reservas.IdReserva = idReserva;
-                objeto_CE_Reservas.CheckIN = DateTime.Parse(cFechaIngreso.Text);
+                var det = objeto_CN_Boletas.Detalle(idReserva);
+                if (det.MedioDePago == null || det.Monto == 0)
+                {
+                    BtnPago.IsEnabled = true;
+                    MessageBox.Show("Se debe pagar la reserva completa antes de\nregistrar la fecha de ingreso!", "INFORMACIÓN", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Information);
+                    return;
+                }
+                else
+                {
+                    objeto_CE_Reservas.IdReserva = idReserva;
+                    objeto_CE_Reservas.CheckIN = DateTime.Parse(cFechaIngreso.Text);
 
-                objeto_CN_Reservas.ActualizarIN(objeto_CE_Reservas);
-                MessageBox.Show("Se ingreso exitosamente!!", "INFORMACIÓN", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Information);
-                BtnCrear.IsEnabled = false;
-                cFechaIngreso.IsEnabled = false;
+                    objeto_CN_Reservas.ActualizarIN(objeto_CE_Reservas);
+                    MessageBox.Show("Se ingreso exitosamente!!", "INFORMACIÓN", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Information);
+                    BtnCrear.IsEnabled = false;
+                    cFechaIngreso.IsEnabled = false;
+                }
 
             }
             else

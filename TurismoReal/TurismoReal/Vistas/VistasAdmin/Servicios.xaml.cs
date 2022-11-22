@@ -83,23 +83,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        #region ELIMINAR
-        private void Eliminar(object sender, RoutedEventArgs e)
-        {
-            int id = (int)((Button)sender).CommandParameter;
-            CRUDservicios ventana = new CRUDservicios();
-            ventana.idServicio = id;
-            ventana.Consultar();
-            FrameServicios.Content = ventana;
-            ventana.Titulo.Text = "Eliminar Servicio";
-            ventana.tbDescripcion.IsEnabled = false;
-            ventana.tbPrecio.IsEnabled = false;
-            ventana.ckbDisponible.IsEnabled = false;
-            ventana.cbTipoServicio.IsEnabled = false;
-        }
-
-        #endregion
-
         #region FUNCION BUSCAR
         #region Limpiar
         public void LimpiarData()

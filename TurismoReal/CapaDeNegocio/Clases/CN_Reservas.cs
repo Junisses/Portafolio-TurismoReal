@@ -8,6 +8,12 @@ namespace CapaDeNegocio.Clases
     {
         private readonly CD_Reservas objDatos = new CD_Reservas();
 
+        public void Insertar(CE_Reservas Mantencion)
+        {
+            objDatos.CD_Insertar(Mantencion);
+        }
+
+
         #region CARGAR BOLETAS A LA VISTA
 
         public DataTable CargarReservas()

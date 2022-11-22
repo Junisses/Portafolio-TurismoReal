@@ -37,6 +37,9 @@ namespace TurismoReal.Vistas.VistasFuncionario
         readonly CN_DetalleServicio objeto_CN_DServicio = new CN_DetalleServicio();
         readonly CE_DetalleServicio objeto_CE_DServicio = new CE_DetalleServicio();
 
+        readonly CN_Reservas objeto_CN_Reservas = new CN_Reservas();
+        readonly CE_Reservas objeto_CE_Reservas = new CE_Reservas();
+
         public Pagos()
         {
             InitializeComponent();
@@ -205,6 +208,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
                         objeto_CE_Boletas.Banco = cbBanco.Text;
                         objeto_CE_Boletas.Comprobante = comprobante;
                         objeto_CE_Boletas.Monto = total;
+
                         if (cbMedioPago.Text == "Efectivo")
                         {
                             objeto_CE_Boletas.Efectivo = int.Parse(tbEfectivo.Text);
@@ -215,6 +219,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
                             objeto_CE_Boletas.Efectivo = 0;
                             objeto_CE_Boletas.Vuelto = 0;
                         }
+
                         objeto_CE_Boletas.Descripcion = tbDescripcion.Text + " x " + tbCantidad.Text;
                         objeto_CE_Boletas.IdReserva = idReserva;
 

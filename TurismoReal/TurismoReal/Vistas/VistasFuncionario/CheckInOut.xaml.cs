@@ -54,7 +54,16 @@ namespace TurismoReal.Vistas.VistasFuncionario
             FrameCheckINOUT.Content = ventana;
             ventana.Titulo.Text = "CHECK IN Reserva N°" + id;
             ventana.idDepartamento = a.IdDepartamento;
-            
+
+            var det = objeto_CN_Boletas.Detalle(id);
+            if (det.MedioDePago == null || det.Monto == 0)
+            {
+                ventana.tbSaldo.Text = a.Saldo.ToString();
+            }
+            else
+            {
+                ventana.tbSaldo.Text = "0";
+            }
         }
 
         private void ContratarServicio(object sender, RoutedEventArgs e)
@@ -66,6 +75,12 @@ namespace TurismoReal.Vistas.VistasFuncionario
             ventana.idReserva = id;
             var a = objeto_CN_Reservas.Consulta(id);
             ventana.idUsuario = a.IdUsuario;
+            if (a.EstadoRerserva == "Finalizado")
+            {
+                ventana.Contenido.IsEnabled = false;
+                MessageBox.Show("Ya ha terminado la reserva, no se pueden\ncontratar servicios extras", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
+                Content = new CheckInOut();
+            }
         }
 
         private void OUT_click(object sender, RoutedEventArgs e)
@@ -74,9 +89,20 @@ namespace TurismoReal.Vistas.VistasFuncionario
             CRUDout ventana = new CRUDout();
             ventana.idReserva = id;
             ventana.Consultar();
+            var a = objeto_CN_Reservas.Consulta(id);
             FrameCheckINOUT.Content = ventana;
             ventana.Titulo.Text = "CHECK OUT Reserva N°" + id;
             ventana.cFechaIngreso.IsEnabled = false;
+
+            var det = objeto_CN_Boletas.Detalle(id);
+            if (det.MedioDePago == null || det.Monto == 0)
+            {
+                ventana.tbSaldo.Text = a.Saldo.ToString();
+            }
+            else
+            {
+                ventana.tbSaldo.Text = "0";
+            }
         }
 
         #region FUNCION BUSCAR

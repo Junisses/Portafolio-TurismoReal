@@ -16,6 +16,26 @@ namespace CapaDeDatos.Clases
         private readonly CD_Conexion con = new CD_Conexion();
         private CE_Reservas ce = new CE_Reservas();
 
+        #region Insertar
+        public void CD_Insertar(CE_Reservas Mantencion)
+        {
+            SqlCommand com = new SqlCommand()
+            {
+                Connection = con.AbrirConexion(),
+                CommandText = "dbo.SP_M_Ingresar",
+                CommandType = CommandType.StoredProcedure,
+            };
+            com.Parameters.Add("@fechaDesde", SqlDbType.Date).Value = Mantencion.FechaDesde;
+            com.Parameters.Add("@fechaHasta", SqlDbType.Date).Value = Mantencion.FechaHasta;
+
+            com.Parameters.AddWithValue("@idDepartamento", Mantencion.IdDepartamento);
+
+            com.ExecuteNonQuery();
+            com.Parameters.Clear();
+            con.CerrarConexion();
+        }
+        #endregion
+
         #region CARGAR RESERVAS A LA VISTA
         public DataTable CargarReservas()
         {
@@ -87,6 +107,7 @@ namespace CapaDeDatos.Clases
         }
 
         #endregion
+
 
         #region Ingresar IN
 

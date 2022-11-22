@@ -25,6 +25,10 @@ namespace TurismoReal.Vistas.VistasAdmin
     {
         readonly CN_Departamentos objeto_CN_Departamentos = new CN_Departamentos();
         readonly CE_Departamentos objeto_CE_Departamentos = new CE_Departamentos();
+
+        readonly CN_Reservas objeto_CN_Mantencion = new CN_Reservas();
+        readonly CE_Reservas objeto_CE_Mantencion = new CE_Reservas();
+
         public Mantencion()
         {
             InitializeComponent();
@@ -77,10 +81,16 @@ namespace TurismoReal.Vistas.VistasAdmin
                 objeto_CE_Departamentos.MantInicio = DateTime.Parse(cMantencionI.Text);
                 objeto_CE_Departamentos.MantTermino = DateTime.Parse(cMantencionT.Text);
 
+                objeto_CE_Mantencion.FechaDesde = DateTime.Parse(cMantencionI.Text);
+                objeto_CE_Mantencion.FechaHasta = DateTime.Parse(cMantencionT.Text);
+                objeto_CE_Mantencion.IdDepartamento = idDepartamento;
+
+                objeto_CN_Mantencion.Insertar(objeto_CE_Mantencion);
                 objeto_CN_Departamentos.Mantencion(objeto_CE_Departamentos);
                 CargarDatos();
                 MessageBox.Show("Se ha registrado el mantenimiento!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
                 LimpiarData();
+                Content = new Departamentos();
             }
             else
             {

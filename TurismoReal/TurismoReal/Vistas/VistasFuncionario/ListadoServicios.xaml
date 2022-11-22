@@ -14,7 +14,7 @@
         <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
         <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
             <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
+            <Setter Property="BorderBrush" Value="#D4A1DE"/>
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
@@ -102,8 +102,8 @@
                                 <Setter Property="BorderBrush" TargetName="border" Value="#751970"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="Background" TargetName="border" Value="#D4A1DE"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#D4A1DE"/>
                                 <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
