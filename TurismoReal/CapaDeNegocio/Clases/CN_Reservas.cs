@@ -14,13 +14,17 @@ namespace CapaDeNegocio.Clases
         }
 
 
-        #region CARGAR BOLETAS A LA VISTA
+        #region CARGAR RESERVAS A LA VISTA
 
         public DataTable CargarReservas()
         {
             return objDatos.CargarReservas();
         }
 
+        public DataTable CargarReservasF()
+        {
+            return objDatos.CargarReservasF();
+        }
         #endregion
 
         #region CARGAR ACOMPAÑANTES

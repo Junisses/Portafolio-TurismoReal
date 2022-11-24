@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="TurismoReal.Vistas.VistasFuncionario.CheckInOut"
+﻿<UserControl x:Class="TurismoReal.Vistas.VistasFuncionario.ServiciosContratados"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -14,7 +14,7 @@
         <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
         <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
             <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
+            <Setter Property="BorderBrush" Value="#D4A1DE"/>
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
@@ -102,8 +102,8 @@
                                 <Setter Property="BorderBrush" TargetName="border" Value="#751970"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="Background" TargetName="border" Value="#D4A1DE"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#D4A1DE"/>
                                 <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -222,7 +222,7 @@
     <!--#region Contenido-->
     <Border CornerRadius="10"
             Background="Transparent">
-        <Grid Name="GridServicios">
+        <Grid Loaded="Grid_Loaded">
 
             <Grid x:Name="Contenido"
                   Grid.Row="0"
@@ -235,7 +235,6 @@
                     <ColumnDefinition Width="20"/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                    <ColumnDefinition />
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="20"/>
@@ -245,7 +244,7 @@
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="20"/>
-                    <RowDefinition />
+                    <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition Height="20"/>
@@ -254,23 +253,24 @@
                 <!--#region titulo-->
                 <TextBlock Grid.Row="0"
                        Grid.ColumnSpan="6"
-                       Text="Gestión de Reservas"
+                       Text="Servicios Contratados"
                        Foreground="Black"
                        FontSize="30"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"/>
                 <!--#endregion-->
                 <!--#region Buscador-->
+                <!--#region texto-->
                 <TextBlock Grid.Row="2"
                        Grid.Column="1"
-                       Text="Buscar por nombre"
+                       Text="Buscar servicio"
                        Foreground="Black"
                        FontSize="15"
                        HorizontalAlignment="Right"
                        VerticalAlignment="Center"
                        Margin="0,0,10,0"/>
-
-                
+                <!--#endregion-->
+                <!--#region textbox-->
                 <TextBox Style="{DynamicResource TextBoxStyle}" 
                          TextAlignment="Center"
                          Foreground="Black"
@@ -281,7 +281,7 @@
                          Grid.Column="2"
                          Grid.Row="2"/>
                 <TextBlock IsHitTestVisible="False" 
-                           Text="Ingrese Nombre o Apellido" 
+                           Text="Ingrese descripción" 
                            VerticalAlignment="Center" 
                            Grid.Column="2"
                            Grid.Row="2"
@@ -300,60 +300,14 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-
-                <TextBlock Grid.Row="2"
-                       Grid.Column="3"
-                       Text="Buscar por DNI"
-                       Foreground="Black"
-                       FontSize="15"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center"
-                       Margin="0,0,10,0"/>
-
-                <TextBox Style="{DynamicResource TextBoxStyle}" 
-                         TextAlignment="Center"
-                     Background="Transparent"
-                     BorderBrush="#AB47BC"
-                     Grid.Column="4"
-                     Grid.Row="2"
-                     FontSize="20"/>
-
-                <TextBox Style="{DynamicResource TextBoxStyle}" 
-                         TextAlignment="Center"
-                         Foreground="Black"
-                         FontSize="15"
-                         x:Name="tbRut"
-                         Background="Transparent"
-                         BorderBrush="#AB47BC"
-                         Grid.Column="4"
-                         Grid.Row="2"/>
-                <TextBlock IsHitTestVisible="False" 
-                           Text="Ingrese DNI del cliente" 
-                           VerticalAlignment="Center" 
-                           Grid.Column="4"
-                           Grid.Row="2"
-                           FontSize="11"
-                           HorizontalAlignment="Center" Margin="5,0,0,3" 
-                           Foreground="DarkGray">
-                    <TextBlock.Style>
-                        <Style TargetType="{x:Type TextBlock}">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                            <Style.Triggers>
-                                <DataTrigger 
-                                    Binding="{Binding Text, ElementName=tbRut}" Value="">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-
+                <!--#endregion-->
+                <!--#region boton buscar-->
                 <Button Style="{DynamicResource ButtonStylebuscar}"
-                        Grid.Column="5"
+                        Grid.Column="3"
                     Grid.Row="2"
                     Background="#751970"
                     BorderBrush="#751970"
-                    Margin="0,0,1,0"
+                    Margin="1,0,1,0"
                     Cursor="Hand"
                     Width="35"
                     x:Name="BtnBuscar"
@@ -361,13 +315,16 @@
                     HorizontalAlignment="Left">
                     <Image Width="20" Source="/Vistas/Images/buscar.png"></Image>
                 </Button>
+
                 <!--#endregion-->
-                
+
+
+                <!--#endregion-->
                 <!--#region DataGrid-->
                 <DataGrid Style="{DynamicResource diseñoGrid}" Grid.Row="4"
                       Grid.Column="1"
-                      Grid.ColumnSpan="5"
-                      Grid.RowSpan="3"
+                      Grid.ColumnSpan="4"
+                      Grid.RowSpan="2"
                       x:Name="GridDatos"
                       AutoGenerateColumns="False"
                       Background="GhostWhite"
@@ -380,117 +337,14 @@
                       RowBackground="Transparent"
                       HeadersVisibility="Column"
                       GridLinesVisibility="Horizontal"
-                      HorizontalGridLinesBrush="#A64B9F">
+                      HorizontalGridLinesBrush="#A64B9F" Margin="108,0,108,0">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="Opciones"
-                                            Width="100">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <DockPanel>
-                                        <Button 
-                                                Background="Transparent"
-                                                BorderBrush="Transparent"
-                                                Width="30" 
-                                                Height="30" 
-                                                Cursor="Hand"
-                                                Margin="10,0,0,0"
-                                                x:Name="BtnCheckIN"
-                                                Click="IN_click"
-                                                CommandParameter="{Binding idReserva}">
-                                            <Image Source="/Vistas/Images/in.png"></Image>
-                                        </Button>
-
-                                        <Button 
-                                                Background="Transparent"
-                                                BorderBrush="Transparent"
-                                                Width="30" 
-                                                Height="30" 
-                                                Cursor="Hand"
-                                                x:Name="BtnCheckOUT"
-                                                Click="OUT_click"
-                                                CommandParameter="{Binding idReserva}">
-                                                <Image Source="/Vistas/Images/out.png"></Image>
-                                            </Button>
-
-                                    </DockPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Estado"
-                                        Width="50"
-                                        Binding="{Binding estadoReserva}"/>
-                        <DataGridTextColumn Header="Nombre "
+                        <DataGridTextColumn Header="Descripción" 
                                         Width="*"
-                                        Binding="{Binding nombres}"/>
-                        <DataGridTextColumn Header="Apellido"
+                                        Binding="{Binding detalle}"/>
+                        <DataGridTextColumn Header="Cantidad contratada" 
                                         Width="*"
-                                        Binding="{Binding apellidos}"/>
-                        <DataGridTextColumn Header="País"
-                                        Width="*"
-                                        Binding="{Binding pais}"/>
-                        <DataGridTextColumn Header="Dirección depto."
-                                        Width="*"
-                                        Binding="{Binding direccion}"/>
-                        <DataGridTextColumn Header="DNI"
-                                        Width="*"
-                                        Binding="{Binding identificacion}"/>
-                        <DataGridTemplateColumn Header="Acompañantes"
-                                            Width="105">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <DockPanel>
-                                        <Button 
-                                                Background="Transparent"
-                                                BorderBrush="Transparent"
-                                                Width="30" 
-                                                Height="30" 
-                                                Cursor="Hand"
-                                                Margin="10,0,0,0"
-                                                x:Name="BtnAcompañantes"
-                                                Click="Acompañantes"
-                                                CommandParameter="{Binding idReserva}">
-                                            <Image Source="/Vistas/Images/grupo.png"></Image>
-                                        </Button>
-
-                                    </DockPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Servicios"
-                                            Width="100">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <DockPanel>
-                                        <Button 
-                                                Background="Transparent"
-                                                BorderBrush="Transparent"
-                                                Width="30" 
-                                                Height="30" 
-                                                Cursor="Hand"
-                                                Margin="10,0,0,0"
-                                                x:Name="BtnServicio"
-                                                Click="ContratarServicio"
-                                                CommandParameter="{Binding idReserva}">
-                                            <Image Source="/Vistas/Images/dinero.png"></Image>
-                                        </Button>
-
-                                        <Button 
-                                                Background="Transparent"
-                                                BorderBrush="Transparent"
-                                                Width="30" 
-                                                Height="30" 
-                                                Cursor="Hand"
-                                                Margin="10,0,0,0"
-                                                x:Name="BtnVerServicio"
-                                                Click="VerServicio"
-                                                CommandParameter="{Binding idReserva}">
-                                            <Image Source="/Vistas/Images/ver.png"></Image>
-                                        </Button>
-
-                                    </DockPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                                        Binding="{Binding cantidad}"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <!--#endregion-->
@@ -498,11 +352,9 @@
 
 
             <!--#region FRAMEINVENTARIO-->
-            <Frame x:Name="FrameCheckINOUT"
+            <Frame x:Name="FrameServicios"
                    Grid.Column="0"
-                   Grid.Row="0"
-                   Grid.RowSpan="8"
-                   Grid.ColumnSpan="6"/>
+                   Grid.Row="0"/>
             <!--#endregion-->
         </Grid>
     </Border>

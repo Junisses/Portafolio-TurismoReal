@@ -50,6 +50,20 @@ namespace CapaDeDatos.Clases
             return dt;
         }
 
+
+        public DataTable CargarReservasF()
+        {
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_R_CargarReservasF", con.AbrirConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            DataSet ds = new DataSet();
+            ds.Clear();
+            da.Fill(ds);
+            DataTable dt = ds.Tables[0];
+            con.CerrarConexion();
+
+            return dt;
+        }
+
         #endregion 
 
         #region CARGAR ACOMPAÑANTES

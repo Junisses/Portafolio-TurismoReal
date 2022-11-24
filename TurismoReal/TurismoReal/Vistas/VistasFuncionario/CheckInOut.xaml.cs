@@ -40,7 +40,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
         #region CARGAR RESERVAS
         void CargarDatos()
         {
-            GridDatos.ItemsSource = objeto_CN_Reservas.CargarReservas().DefaultView;
+            GridDatos.ItemsSource = objeto_CN_Reservas.CargarReservasF().DefaultView;
         }
         #endregion
 
@@ -190,6 +190,16 @@ namespace TurismoReal.Vistas.VistasFuncionario
 
             ventana.idReserva = id;
             ventana.Titulo.Text = "Listado de Acompañantes Reserva N° " + id;
+        }
+
+        private void VerServicio(object sender, RoutedEventArgs e)
+        {
+            int id = (int)((Button)sender).CommandParameter;
+            ServiciosContratados ventana = new ServiciosContratados();
+            FrameCheckINOUT.Content = ventana;
+            ventana.idReserva = id;
+            var a = objeto_CN_Reservas.Consulta(id);
+            ventana.idUsuario = a.IdUsuario;
         }
     }
 }
