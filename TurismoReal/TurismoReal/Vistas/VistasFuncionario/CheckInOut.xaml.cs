@@ -75,10 +75,10 @@ namespace TurismoReal.Vistas.VistasFuncionario
             ventana.idReserva = id;
             var a = objeto_CN_Reservas.Consulta(id);
             ventana.idUsuario = a.IdUsuario;
-            if (a.EstadoRerserva == "Finalizado")
+            if (a.EstadoRerserva == "Reservado")
             {
                 ventana.Contenido.IsEnabled = false;
-                MessageBox.Show("Ya ha terminado la reserva, no se pueden\ncontratar servicios extras", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Aún no inicia la reserva para contratar\nmás servicios extras!!", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
                 Content = new CheckInOut();
             }
         }

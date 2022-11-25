@@ -167,6 +167,9 @@
     <Compile Include="Vistas\VistasAdmin\Usuarios.xaml.cs">
       <DependentUpon>Usuarios.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\VistasAdmin\VerServiciosContratados.xaml.cs">
+      <DependentUpon>VerServiciosContratados.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\VistasFuncionario\Acompañantes.xaml.cs">
       <DependentUpon>Acompañantes.xaml</DependentUpon>
     </Compile>
@@ -311,6 +314,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\VistasAdmin\Usuarios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VistasAdmin\VerServiciosContratados.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

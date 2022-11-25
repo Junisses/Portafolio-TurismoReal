@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TurismoReal.Vistas.VistasFuncionario;
 
 namespace TurismoReal.Vistas.VistasAdmin
 {
@@ -113,6 +114,16 @@ namespace TurismoReal.Vistas.VistasAdmin
 
         }
         #endregion
+
+        private void VerServicio(object sender, RoutedEventArgs e)
+        {
+            int id = (int)((Button)sender).CommandParameter;
+            VerServiciosContratados ventana = new VerServiciosContratados();
+            FrameReserva.Content = ventana;
+            ventana.idReserva = id;
+            var a = objeto_CN_Reservas.Consulta(id);
+            ventana.idUsuario = a.IdUsuario;
+        }
     }
 
 }

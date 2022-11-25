@@ -109,6 +109,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
                     objeto_CE_DServicio.MontoTotal = total;
                     objeto_CE_DServicio.IdServicio = idServicio;
                     objeto_CE_DServicio.IdUsuario = idUsuario;
+                    objeto_CE_DServicio.IdReserva = idReserva;
 
                     objeto_CN_DServicio.Insertar(objeto_CE_DServicio);
 

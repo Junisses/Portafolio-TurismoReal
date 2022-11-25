@@ -27,6 +27,7 @@ namespace CapaDeDatos.Clases
             com.Parameters.AddWithValue("@montoTotal", Servicios.MontoTotal);
             com.Parameters.AddWithValue("@idServicio", Servicios.IdServicio);
             com.Parameters.AddWithValue("@idUsuario", Servicios.IdUsuario);
+            com.Parameters.AddWithValue("@idReserva", Servicios.IdReserva);
 
             com.ExecuteNonQuery();
             com.Parameters.Clear();
