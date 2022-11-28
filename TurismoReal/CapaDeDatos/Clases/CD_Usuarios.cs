@@ -231,5 +231,114 @@ namespace CapaDeDatos.Clases
         }
 
         #endregion
+
+
+
+        #region VALIDAR
+            #region RUT / PASAPORTE
+
+            public CE_Usuarios CD_DatoDNI(string identificacion)
+            {
+                SqlDataAdapter da = new SqlDataAdapter("dbo.SP_V_DatoDNI", con.AbrirConexion());
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.Add("@identificacion", SqlDbType.VarChar).Value = identificacion;
+
+
+                DataSet ds = new DataSet();
+                ds.Clear();
+                da.Fill(ds);
+                DataTable dt;
+                dt = ds.Tables[0];
+
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+                    ce.Identificacion = Convert.ToString(row[6]);
+                }
+                return ce;
+
+            }
+
+            #endregion
+
+            #region CORREO
+
+            public CE_Usuarios CD_DatoCorreo(string correo)
+            {
+                SqlDataAdapter da = new SqlDataAdapter("dbo.SP_V_DatoCorreo", con.AbrirConexion());
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.Add("@correo", SqlDbType.VarChar).Value = correo;
+
+
+                DataSet ds = new DataSet();
+                ds.Clear();
+                da.Fill(ds);
+                DataTable dt;
+                dt = ds.Tables[0];
+
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+                    ce.Correo = Convert.ToString(row[4]);
+                }
+                return ce;
+
+            }
+
+            #endregion
+
+            #region CELULAR
+
+            public CE_Usuarios CD_DatoCelular(string celular)
+            {
+                SqlDataAdapter da = new SqlDataAdapter("dbo.SP_V_DatoCelular", con.AbrirConexion());
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.Add("@celular", SqlDbType.VarChar).Value = celular;
+
+
+                DataSet ds = new DataSet();
+                ds.Clear();
+                da.Fill(ds);
+                DataTable dt;
+                dt = ds.Tables[0];
+
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+                    ce.Celular = Convert.ToString(row[7]);
+                }
+                return ce;
+
+            }
+
+            #endregion
+
+            #region NOMBRE USUARIO
+
+            public CE_Usuarios CD_DatoUsuario(string usuario)
+            {
+                SqlDataAdapter da = new SqlDataAdapter("dbo.SP_V_DatoUsuario", con.AbrirConexion());
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.Add("@usuario", SqlDbType.VarChar).Value = usuario;
+
+
+                DataSet ds = new DataSet();
+                ds.Clear();
+                da.Fill(ds);
+                DataTable dt;
+                dt = ds.Tables[0];
+
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+                    ce.Usuario = Convert.ToString(row[3]);
+                }
+                return ce;
+
+            }
+
+            #endregion
+
+        #endregion
     }
 }

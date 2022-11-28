@@ -578,7 +578,7 @@
             <!--#region REGRESAR-->
             <Button Style="{DynamicResource ButtonStyleRegresar}" 
                     x:Name="BtnRegresar"
-                    Content="Regresar"
+                    Content="Volver"
                     Grid.Column="1"
                     Grid.Row="1"
                     Width="100"

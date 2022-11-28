@@ -679,7 +679,7 @@
             <!--#region REGRESAR-->
             <Button Style="{DynamicResource RegresarEstilo}" 
                     x:Name="BtnRegresar"
-                    Content="Regresar"
+                    Content="Volver"
                     Grid.Column="1"
                     Grid.Row="2"
                     Width="100"

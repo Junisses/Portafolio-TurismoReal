@@ -90,6 +90,26 @@ namespace CapaDeNegocio.Clases
         }
         #endregion
 
+        #region VALIDAR
+        public CE_Usuarios Vdni(string identificacion)
+        {
+            return objDatos.CD_DatoDNI(identificacion);
+        }
 
+        public CE_Usuarios Vcorreo(string correo)
+        {
+            return objDatos.CD_DatoCorreo(correo);
+        }
+
+        public CE_Usuarios Vcelular(string celular)
+        {
+            return objDatos.CD_DatoCelular(celular);
+        }
+
+        public CE_Usuarios Vusuario(string usuario)
+        {
+            return objDatos.CD_DatoUsuario(usuario);
+        }
+        #endregion
     }
 }

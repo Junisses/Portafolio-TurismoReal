@@ -25,6 +25,7 @@ namespace TurismoReal.Vistas.VistasAdmin
     public partial class Reservas : UserControl
     {
         readonly CN_Reservas objeto_CN_Reservas = new CN_Reservas();
+        readonly CN_DetalleServicio objeto_CN_DetalleServicio = new CN_DetalleServicio();
 
         public Reservas()
         {
@@ -123,6 +124,23 @@ namespace TurismoReal.Vistas.VistasAdmin
             ventana.idReserva = id;
             var a = objeto_CN_Reservas.Consulta(id);
             ventana.idUsuario = a.IdUsuario;
+
+            if (a.EstadoRerserva == "Finalizado")
+            {
+                ventana.Contenido.IsEnabled = false;
+                MessageBox.Show("Esta reserva ya ha finalizado!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
+                Content = new Reservas();
+            }
+
+            var det = objeto_CN_DetalleServicio.Detalle(id);
+
+            //VALIDACION EN CASO DE QUE TENGA SERVICIOS DE TRANSPORTE
+            if (det.IdServicio == 4 && a.EstadoRerserva == "En Curso")
+            {
+                ventana.tbMensaje.IsEnabled = false;
+                ventana.btnEnviar.IsEnabled = false;
+                MessageBox.Show("La reserva está en curso, por lo que\nya no se puede planificar el transporte", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 

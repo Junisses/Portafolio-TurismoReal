@@ -26,12 +26,7 @@ namespace TurismoReal.Vistas.VistasAdmin
     /// </summary>
     public partial class VerServiciosContratados : UserControl
     {
-        readonly CN_Servicios objeto_CN_Servicios = new CN_Servicios();
         readonly CN_DetalleServicio objeto_CN_DetalleServicio = new CN_DetalleServicio();
-
-        readonly CN_Reservas objeto_CN_Reservas = new CN_Reservas();
-        readonly CE_Reservas objeto_CE_Reservas = new CE_Reservas();
-
         readonly CN_Usuarios objeto_CN_Usuarios = new CN_Usuarios();
 
         const string Usuario = "junissesamanda.03@gmail.com";
@@ -56,6 +51,20 @@ namespace TurismoReal.Vistas.VistasAdmin
             CargarDatos();
             var u = objeto_CN_Usuarios.Consulta(idUsuario);
             tbPara.Text = u.Correo.ToString();
+
+            var det = objeto_CN_DetalleServicio.Detalle(idReserva);
+
+            //VALIDACION EN CASO DE QUE TENGA SERVICIOS DE TRANSPORTE
+            if (det.IdServicio == 4 )
+            {
+                tbMensaje.IsEnabled = true;
+                btnEnviar.IsEnabled = true;
+            }
+            else
+            {
+                tbMensaje.IsEnabled = false;
+                btnEnviar.IsEnabled = false;
+            }
         }
 
 

@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="900"
              Background="GhostWhite">
-    <!--#region EstiloBOXbuscar-->
+    <!--#region EstiloBOX-->
     <UserControl.Resources>
         <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
         <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
@@ -112,7 +112,7 @@
         </Style>
         <!--#endregion-->
 
-        <!--#region EstiloBTNbuscar-->
+        <!--#region Regresar-->
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -131,7 +131,7 @@
         <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
         <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
         <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
-        <Style x:Key="ButtonStylebuscar" TargetType="{x:Type Button}">
+        <Style x:Key="RegresarEstilo" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -159,8 +159,8 @@
                                 <Setter Property="BorderBrush" TargetName="border" Value="#751970"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="#D4A1DE"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="#D4A1DE"/>
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
                                 <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -168,30 +168,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}" TargetType="{x:Type Button}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid>
-                            <Rectangle x:Name="Border" Fill="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" SnapsToDevicePixels="True"/>
-                            <Polygon x:Name="Arrow" Fill="Black" HorizontalAlignment="Right" Margin="8,8,3,3" Opacity="0.15" Points="0,10 10,10 10,0" Stretch="Uniform" VerticalAlignment="Bottom"/>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Stroke" TargetName="Border" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Fill" TargetName="Border" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Visibility" TargetName="Arrow" Value="Collapsed"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
         <!--#endregion-->
+
         <!--#region DISEÑO grid-->
         <Style x:Key="diseñoGrid" TargetType="{x:Type DataGrid}">
             <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
@@ -326,9 +304,9 @@
                 <!--#endregion-->
 
                 <!--#region REGRESAR-->
-                <Button Style="{DynamicResource ButtonStylebuscar}"
+                <Button Style="{DynamicResource RegresarEstilo}"
                     x:Name="BtnRegresar"
-                    Content="Regresar"
+                    Content="Volver"
                     Grid.Column="1"
                     Grid.Row="0"
                     Width="100"
@@ -387,7 +365,6 @@
                 <TextBox Grid.Row="4"
                      Grid.Column="5"
                      x:Name="tbPara"
-                     IsEnabled="False"
                      FontSize="15"
                      HorizontalContentAlignment="Center"
                      Style="{DynamicResource TextBoxStyle}" 

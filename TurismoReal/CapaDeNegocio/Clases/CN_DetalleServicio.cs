@@ -31,5 +31,12 @@ namespace CapaDeNegocio.Clases
         }
 
         #endregion
+
+        #region Consultar
+        public CE_DetalleServicio Detalle(int idBoleta)
+        {
+            return objDatos.CD_Detalle(idBoleta);
+        }
+        #endregion
     }
 }

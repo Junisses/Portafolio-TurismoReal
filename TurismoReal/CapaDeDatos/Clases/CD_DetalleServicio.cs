@@ -53,5 +53,35 @@ namespace CapaDeDatos.Clases
             return dt;
         }
         #endregion
+
+        #region Consultar dentro de la interfaz
+
+        public CE_DetalleServicio CD_Detalle(int idReserva)
+        {
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_SC_DetalleServicios", con.AbrirConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.Add("@idReserva", SqlDbType.Int).Value = idReserva;
+
+
+            DataSet ds = new DataSet();
+            ds.Clear();
+            da.Fill(ds);
+            DataTable dt;
+            dt = ds.Tables[0];
+
+            if (dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0];
+                ce.Fecha = Convert.ToDateTime(row[1]);
+                ce.MontoTotal = Convert.ToInt32(row[2]);
+                ce.IdServicio = Convert.ToInt32(row[3]);
+                ce.IdUsuario = Convert.ToInt32(row[4]);
+                ce.IdReserva = Convert.ToInt32(row[5]);
+            }
+            return ce;
+
+        }
+
+        #endregion 
     }
 }

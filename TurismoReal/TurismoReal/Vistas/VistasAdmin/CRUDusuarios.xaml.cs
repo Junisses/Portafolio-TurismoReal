@@ -1,5 +1,6 @@
 ﻿using CapaDeEntidad.Clases;
 using CapaDeNegocio.Clases;
+using iTextSharp.tool.xml.html;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -373,11 +374,13 @@ namespace TurismoReal.Vistas.VistasAdmin
             else if (tbContrasena.Password.Length < 6)
             {
                 MessageBox.Show("La contraseña debe tener más de 6 caracteres", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbContrasena.Focus();
                 return;
             }
             else if (tbContrasena.Password == "")
             {
                 MessageBox.Show("La contraseña debe tener más de 6 caracteres", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                tbContrasena.Focus();
                 return;
             }
             #endregion
@@ -392,6 +395,7 @@ namespace TurismoReal.Vistas.VistasAdmin
 
             if (CamposLlenos() == true)
             {
+
                 try
                 {
                     int tipousuario = objeto_CN_TipoUsuarioFK.idTipoUsuario(cbTipoUsuario.Text);
@@ -431,14 +435,40 @@ namespace TurismoReal.Vistas.VistasAdmin
                     MessageBox.Show("Se ha ingresado un nuevo usuario!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
                     Content = new Usuarios();
                 }
-                catch
+                catch 
                 {
-                    MessageBox.Show("Revise bien sus datos", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    var dni = objeto_CN_Usuarios.Vdni(tbRut.Text);
+                    if (dni.Identificacion != null)
+                    {
+                        MessageBox.Show("El Rut/Pasaporte ingresado ya esta en uso!", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
+                        tbRut.Focus();
+                    }
+
+                    var correo = objeto_CN_Usuarios.Vcorreo(tbCorreo.Text);
+                    if (correo.Correo != null)
+                    {
+                        MessageBox.Show("El Correo ingresado ya esta en uso!", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
+                        tbCorreo.Focus();
+                    }
+
+                    var celular = objeto_CN_Usuarios.Vcelular(tbCel.Text);
+                    if (celular.Celular != null)
+                    {
+                        MessageBox.Show("El número de celular ingresado \nya esta en uso!", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
+                        tbCel.Focus();
+                    }
+
+                    var user = objeto_CN_Usuarios.Vusuario(tbUser.Text);
+                    if (user.Usuario != null)
+                    {
+                        MessageBox.Show("El nombre de usuario ingresado ya esta en uso!", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
+                        tbUser.Focus();
+                    }
                 }
             }
             else
             {
-                MessageBox.Show("No se pudo ingresar usuario, revise que ningun dato quede vacío!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("No se pudo ingresar usuario, revise que ningún campo quede vacío!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -703,48 +733,55 @@ namespace TurismoReal.Vistas.VistasAdmin
 
             if (CamposLlenos() == true)
             {
-                int tipousuario = objeto_CN_TipoUsuarioFK.idTipoUsuario(cbTipoUsuario.Text);
+                try {
+                    int tipousuario = objeto_CN_TipoUsuarioFK.idTipoUsuario(cbTipoUsuario.Text);
 
-                objeto_CE_Usuarios.IdUsuario = idUsuario;
-                objeto_CE_Usuarios.Nombres = tbNombre.Text;
-                objeto_CE_Usuarios.Apellidos = tbApellido.Text;
-                objeto_CE_Usuarios.Usuario = tbUser.Text;
-                objeto_CE_Usuarios.Correo = tbCorreo.Text;
-                objeto_CE_Usuarios.Contrasena = tbContrasena.Password;
-                objeto_CE_Usuarios.Patron = Patron;
-                objeto_CE_Usuarios.Identificacion = tbRut.Text;
-                objeto_CE_Usuarios.Celular = tbCel.Text;
-                objeto_CE_Usuarios.Pais = tbPais.Text;
-                objeto_CE_Usuarios.CodigoVerificacion = " ";
-                if (chkHabilitar.IsChecked == true)
-                {
-                    objeto_CE_Usuarios.Habilitada = "Habilitado";
-                }
-                else
-                {
-                    objeto_CE_Usuarios.Habilitada = "Deshabilitado";
-                }
-
-                if (chkPasaporte.IsChecked == true)
-                {
-                    objeto_CE_Usuarios.EsPasaporte = "Pasaporte";
-                }
-                else
-                {
-                    objeto_CE_Usuarios.EsPasaporte = "Rut";
-                    if (ValidarRut(tbRut.Text.ToString()) == false)
+                    objeto_CE_Usuarios.IdUsuario = idUsuario;
+                    objeto_CE_Usuarios.Nombres = tbNombre.Text;
+                    objeto_CE_Usuarios.Apellidos = tbApellido.Text;
+                    objeto_CE_Usuarios.Usuario = tbUser.Text;
+                    objeto_CE_Usuarios.Correo = tbCorreo.Text;
+                    objeto_CE_Usuarios.Contrasena = tbContrasena.Password;
+                    objeto_CE_Usuarios.Patron = Patron;
+                    objeto_CE_Usuarios.Identificacion = tbRut.Text;
+                    objeto_CE_Usuarios.Celular = tbCel.Text;
+                    objeto_CE_Usuarios.Pais = tbPais.Text;
+                    objeto_CE_Usuarios.CodigoVerificacion = " ";
+                    if (chkHabilitar.IsChecked == true)
                     {
-                        MessageBox.Show("Ingrese correctamente el rut", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        return;
+                        objeto_CE_Usuarios.Habilitada = "Habilitado";
                     }
+                    else
+                    {
+                        objeto_CE_Usuarios.Habilitada = "Deshabilitado";
+                    }
+
+                    if (chkPasaporte.IsChecked == true)
+                    {
+                        objeto_CE_Usuarios.EsPasaporte = "Pasaporte";
+                    }
+                    else
+                    {
+                        objeto_CE_Usuarios.EsPasaporte = "Rut";
+                        if (ValidarRut(tbRut.Text.ToString()) == false)
+                        {
+                            MessageBox.Show("Ingrese correctamente el rut", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            return;
+                        }
+                    }
+
+                    objeto_CE_Usuarios.IdTipoUsuario = tipousuario;
+
+                    objeto_CN_Usuarios.ActualizarDatos(objeto_CE_Usuarios);
+                    MessageBox.Show("Se han actualizado los datos exitosamente!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Content = new Usuarios();
                 }
-
-                objeto_CE_Usuarios.IdTipoUsuario = tipousuario;
-
-                objeto_CN_Usuarios.ActualizarDatos(objeto_CE_Usuarios);
-                MessageBox.Show("Se han actualizado los datos exitosamente!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
-                Content = new Usuarios();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
+
             else
             {
                 MessageBox.Show("Por favor, no dejar campos vacios", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -758,6 +795,10 @@ namespace TurismoReal.Vistas.VistasAdmin
 
                 objeto_CN_Usuarios.ActualizarPass(objeto_CE_Usuarios);
                 Content = new Usuarios();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, ingrese entre 6 o más caracteres\npara cambiar su contraseña", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
         }
@@ -776,5 +817,9 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
+        private void ValRut(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }
