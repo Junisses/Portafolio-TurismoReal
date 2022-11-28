@@ -253,7 +253,14 @@ namespace CapaDeDatos.Clases
                 if (dt.Rows.Count > 0)
                 {
                     DataRow row = dt.Rows[0];
-                    ce.Identificacion = Convert.ToString(row[6]);
+                    if (!row.IsNull("identificacion"))
+                    {
+                        ce.Identificacion = Convert.ToString(row[6]);
+                    }
+                }
+                else
+                {
+                    return null;
                 }
                 return ce;
 
@@ -275,11 +282,17 @@ namespace CapaDeDatos.Clases
                 da.Fill(ds);
                 DataTable dt;
                 dt = ds.Tables[0];
-
                 if (dt.Rows.Count > 0)
                 {
                     DataRow row = dt.Rows[0];
-                    ce.Correo = Convert.ToString(row[4]);
+                    if (!row.IsNull("correo"))
+                    {
+                        ce.Correo = Convert.ToString(row[4]);
+                    }
+                }
+                else
+                {
+                    return null;
                 }
                 return ce;
 
@@ -301,11 +314,17 @@ namespace CapaDeDatos.Clases
                 da.Fill(ds);
                 DataTable dt;
                 dt = ds.Tables[0];
-
                 if (dt.Rows.Count > 0)
                 {
                     DataRow row = dt.Rows[0];
-                    ce.Celular = Convert.ToString(row[7]);
+                    if (!row.IsNull("celular"))
+                    {
+                        ce.Celular = Convert.ToString(row[7]);
+                    }
+                }
+                else
+                {
+                    return null;
                 }
                 return ce;
 
@@ -327,11 +346,17 @@ namespace CapaDeDatos.Clases
                 da.Fill(ds);
                 DataTable dt;
                 dt = ds.Tables[0];
-
                 if (dt.Rows.Count > 0)
                 {
                     DataRow row = dt.Rows[0];
-                    ce.Usuario = Convert.ToString(row[3]);
+                    if (!row.IsNull("usuario"))
+                    {
+                        ce.Usuario = Convert.ToString(row[3]);
+                    }
+                }
+                else
+                {
+                    return null;
                 }
                 return ce;
 

@@ -98,7 +98,6 @@ namespace CapaDeDatos.Clases
             ce.Descripcion = Convert.ToString(row[8]);
             ce.IdReserva = Convert.ToInt32(row[9]);
 
-            //Fecha actual del campo check in
             ce.IdDetalleServicio = 0;
             //En caso de que este este completo, mostrar la fecha
             if (!row.IsNull("idDetalleServicio"))

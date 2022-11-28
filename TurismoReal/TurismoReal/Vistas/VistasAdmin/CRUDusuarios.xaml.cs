@@ -186,7 +186,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                 //valido que se ingresen solo letras
                 else if (Regex.IsMatch(tbNombre.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$") == false)
                 {
-                    MessageBox.Show("El nombre solo puede contener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("El nombre solo puede contener letras\nevite los espacios en blanco", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbNombre.Clear();
                     tbNombre.Focus();
                     return;
@@ -219,7 +219,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                 //valido que se ingresen solo letras
                 else if (Regex.IsMatch(tbApellido.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$") == false)
                 {
-                    MessageBox.Show("El Apellido solo puede contener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("El Apellido solo puede contener letras\nevite los espacios en blanco", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbApellido.Clear();
                     tbApellido.Focus();
                     return;
@@ -395,7 +395,6 @@ namespace TurismoReal.Vistas.VistasAdmin
 
             if (CamposLlenos() == true)
             {
-
                 try
                 {
                     int tipousuario = objeto_CN_TipoUsuarioFK.idTipoUsuario(cbTipoUsuario.Text);
@@ -438,31 +437,47 @@ namespace TurismoReal.Vistas.VistasAdmin
                 catch 
                 {
                     var dni = objeto_CN_Usuarios.Vdni(tbRut.Text);
-                    if (dni.Identificacion != null)
+                    if (dni != null)
                     {
-                        MessageBox.Show("El Rut/Pasaporte ingresado ya esta en uso!", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
-                        tbRut.Focus();
+                        if (dni.Identificacion != null)
+                        {
+                            MessageBox.Show("El Rut/Pasaporte ingresado ya esta en uso!", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
+                            tbRut.Focus();
+                            return;
+                        }
                     }
 
                     var correo = objeto_CN_Usuarios.Vcorreo(tbCorreo.Text);
-                    if (correo.Correo != null)
+                    if (correo != null)
                     {
-                        MessageBox.Show("El Correo ingresado ya esta en uso!", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
-                        tbCorreo.Focus();
+                        if (correo.Correo != null)
+                        {
+                            MessageBox.Show("El Correo ingresado ya esta en uso!", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
+                            tbCorreo.Focus();
+                            return;
+                        }
                     }
 
                     var celular = objeto_CN_Usuarios.Vcelular(tbCel.Text);
-                    if (celular.Celular != null)
+                    if (celular != null)
                     {
-                        MessageBox.Show("El número de celular ingresado \nya esta en uso!", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
-                        tbCel.Focus();
+                        if (celular.Celular != null)
+                        {
+                            MessageBox.Show("El número de celular ingresado \nya esta en uso!", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
+                            tbCel.Focus();
+                            return;
+                        }
                     }
 
                     var user = objeto_CN_Usuarios.Vusuario(tbUser.Text);
-                    if (user.Usuario != null)
+                    if (user != null)
                     {
-                        MessageBox.Show("El nombre de usuario ingresado ya esta en uso!", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
-                        tbUser.Focus();
+                        if (user.Usuario != null)
+                        {
+                            MessageBox.Show("El nombre de usuario ingresado ya esta en uso!", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
+                            tbUser.Focus();
+                            return;
+                        }
                     }
                 }
             }
@@ -582,12 +597,15 @@ namespace TurismoReal.Vistas.VistasAdmin
             #endregion
 
             #region RUT O PASAPORTE
-            if (chkPasaporte.IsChecked == false && tbRut.Text == "")
+            if (chkPasaporte.IsChecked == false)
             {
-                MessageBox.Show("El rut no puede quedar vacío", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
-                tbRut.Focus();
+                if (tbRut.Text == "") 
+                { 
+                    MessageBox.Show("El rut no puede quedar vacío", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    tbRut.Focus(); 
+                }
 
-                if (ValidarRut(tbRut.Text.ToString()) == false)
+                else if (ValidarRut(tbRut.Text.ToString()) == false)
                 {
                     MessageBox.Show("Resvise que el rut este bien ingresado", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbRut.Clear();
@@ -766,6 +784,8 @@ namespace TurismoReal.Vistas.VistasAdmin
                         if (ValidarRut(tbRut.Text.ToString()) == false)
                         {
                             MessageBox.Show("Ingrese correctamente el rut", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            tbRut.Focus();
+                            tbRut.Clear();
                             return;
                         }
                     }
@@ -796,10 +816,6 @@ namespace TurismoReal.Vistas.VistasAdmin
                 objeto_CN_Usuarios.ActualizarPass(objeto_CE_Usuarios);
                 Content = new Usuarios();
             }
-            else
-            {
-                MessageBox.Show("Por favor, ingrese entre 6 o más caracteres\npara cambiar su contraseña", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
 
         }
         #endregion
@@ -817,9 +833,5 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        private void ValRut(object sender, KeyEventArgs e)
-        {
-
-        }
     }
 }
