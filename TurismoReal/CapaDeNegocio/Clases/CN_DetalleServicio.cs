@@ -25,9 +25,9 @@ namespace CapaDeNegocio.Clases
 
         #region CARGAR ARTEFACTOS AL GRID
 
-        public DataTable VerServiciosContratados(int idUsuario, int idReserva)
+        public DataTable VerServiciosContratados(int idReserva)
         {
-            return objDatos.VerServiciosContratados(idUsuario, idReserva);
+            return objDatos.VerServiciosContratados(idReserva);
         }
 
         #endregion

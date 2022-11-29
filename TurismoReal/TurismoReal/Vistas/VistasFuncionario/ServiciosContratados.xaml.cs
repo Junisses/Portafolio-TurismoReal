@@ -33,10 +33,9 @@ namespace TurismoReal.Vistas.VistasFuncionario
         #region CARGAR Servicios contratados
         void CargarDatos()
         {
-            GridDatos.ItemsSource = objeto_CN_DetalleServicio.VerServiciosContratados(idUsuario,idReserva).DefaultView;
+            GridDatos.ItemsSource = objeto_CN_DetalleServicio.VerServiciosContratados(idReserva).DefaultView;
         }
         #endregion
-        public int idUsuario;
         public int idReserva;
 
 

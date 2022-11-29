@@ -578,11 +578,14 @@
                       HorizontalGridLinesBrush="#A64B9F">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Descripcion"
-                                        Width="*"
+                                        Width="100"
                                         Binding="{Binding descripcion}"/>
                         <DataGridTextColumn Header="Dirección"
                                         Width="*"
                                         Binding="{Binding direccion}"/>
+                        <DataGridTextColumn Header="Comuna"
+                                        Width="*"
+                                        Binding="{Binding comuna}"/>
                         <DataGridTextColumn Header="Piezas"
                                         Width="50"
                                         Binding="{Binding cantHabitaciones}"/>
@@ -593,10 +596,10 @@
                                         Width="*"
                                         Binding="{Binding precioNoche, StringFormat=\{0:C0\}}"/>
                         <DataGridTextColumn Header="Estado"
-                                        Width="*"
+                                        Width="90"
                                         Binding="{Binding estadoDepto}"/>
                         <DataGridTemplateColumn Header="Reporte unitario"
-                                                Width="150">
+                                                Width="120">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <DockPanel>

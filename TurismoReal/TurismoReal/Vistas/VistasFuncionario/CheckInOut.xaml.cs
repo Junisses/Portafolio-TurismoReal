@@ -199,7 +199,6 @@ namespace TurismoReal.Vistas.VistasFuncionario
             FrameCheckINOUT.Content = ventana;
             ventana.idReserva = id;
             var a = objeto_CN_Reservas.Consulta(id);
-            ventana.idUsuario = a.IdUsuario;
         }
     }
 }

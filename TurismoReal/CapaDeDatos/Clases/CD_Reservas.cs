@@ -27,7 +27,6 @@ namespace CapaDeDatos.Clases
             };
             com.Parameters.Add("@fechaDesde", SqlDbType.Date).Value = Mantencion.FechaDesde;
             com.Parameters.Add("@fechaHasta", SqlDbType.Date).Value = Mantencion.FechaHasta;
-
             com.Parameters.AddWithValue("@idDepartamento", Mantencion.IdDepartamento);
 
             com.ExecuteNonQuery();

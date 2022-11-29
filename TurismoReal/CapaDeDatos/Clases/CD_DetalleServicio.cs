@@ -26,8 +26,8 @@ namespace CapaDeDatos.Clases
             com.Parameters.Add("@fecha", SqlDbType.Date).Value = Servicios.Fecha;
             com.Parameters.AddWithValue("@montoTotal", Servicios.MontoTotal);
             com.Parameters.AddWithValue("@idServicio", Servicios.IdServicio);
-            com.Parameters.AddWithValue("@idUsuario", Servicios.IdUsuario);
             com.Parameters.AddWithValue("@idReserva", Servicios.IdReserva);
+            com.Parameters.AddWithValue("@cantidad", Servicios.Cantidad);
 
             com.ExecuteNonQuery();
             com.Parameters.Clear();
@@ -37,11 +37,10 @@ namespace CapaDeDatos.Clases
 
         #region CARGAR 
 
-        public DataTable VerServiciosContratados(int idUsuario, int idReserva)
+        public DataTable VerServiciosContratados( int idReserva)
         {
             SqlDataAdapter da = new SqlDataAdapter("dbo.SP_DS_VerContratados", con.AbrirConexion());
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
-            da.SelectCommand.Parameters.Add("@idUsuario", SqlDbType.Int).Value = idUsuario;
             da.SelectCommand.Parameters.Add("@idReserva", SqlDbType.Int).Value = idReserva;
 
             DataSet ds = new DataSet();
@@ -75,8 +74,8 @@ namespace CapaDeDatos.Clases
                 ce.Fecha = Convert.ToDateTime(row[1]);
                 ce.MontoTotal = Convert.ToInt32(row[2]);
                 ce.IdServicio = Convert.ToInt32(row[3]);
-                ce.IdUsuario = Convert.ToInt32(row[4]);
-                ce.IdReserva = Convert.ToInt32(row[5]);
+                ce.IdReserva = Convert.ToInt32(row[4]);
+                ce.Cantidad = Convert.ToInt32(row[5]);
             }
             return ce;
 

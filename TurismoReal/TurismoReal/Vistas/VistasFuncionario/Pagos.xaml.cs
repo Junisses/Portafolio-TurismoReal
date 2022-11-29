@@ -108,8 +108,8 @@ namespace TurismoReal.Vistas.VistasFuncionario
                     objeto_CE_DServicio.Fecha = DateTime.Now;
                     objeto_CE_DServicio.MontoTotal = total;
                     objeto_CE_DServicio.IdServicio = idServicio;
-                    objeto_CE_DServicio.IdUsuario = idUsuario;
                     objeto_CE_DServicio.IdReserva = idReserva;
+                    objeto_CE_DServicio.Cantidad = int.Parse(tbCantidad.Text);
 
                     objeto_CN_DServicio.Insertar(objeto_CE_DServicio);
 
