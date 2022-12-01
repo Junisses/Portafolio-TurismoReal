@@ -566,6 +566,15 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
+
+            <TextBox Style="{DynamicResource TextBoxStyle}" 
+                     Grid.Row="16"
+                     Grid.Column="1"
+                     x:Name="tbFile"
+                     HorizontalContentAlignment="Center"
+                     Background="#F3E5F5" 
+                     Grid.ColumnSpan="2" 
+                     TabIndex="1"/>
             <!--#region DataGrid-->
             <DataGrid Style="{DynamicResource DataGridStyle}" Grid.Row="4"
                       Grid.Column="4"
@@ -616,17 +625,6 @@
                                                 Click="ActualizarC"
                                                 CommandParameter="{Binding idGaleria}">
                                         <Image Source="/Vistas/Images/edit.png"></Image>
-                                    </Button>
-
-                                    <Button Name="BtnEliminar" 
-                                                Width="20" 
-                                                Height="20" 
-                                                Click="Eliminar"
-                                                Cursor="Hand"
-                                                Background="Transparent"
-                                                BorderBrush="Transparent"
-                                                CommandParameter="{Binding idGaleria}">
-                                        <Image Source="/Vistas/Images/eliminar.png"></Image>
                                     </Button>
 
                                 </DockPanel>

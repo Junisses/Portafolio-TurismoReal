@@ -16,3 +16,12 @@ C:\Turismo Real\Escritorio\TurismoReal\CapaDeDatos\obj\Debug\CapaDeDatos.csproj.
 C:\Turismo Real\Escritorio\TurismoReal\CapaDeDatos\obj\Debug\CapaDeDatos.csproj.CopyComplete
 C:\Turismo Real\Escritorio\TurismoReal\CapaDeDatos\obj\Debug\CapaDeDatos.dll
 C:\Turismo Real\Escritorio\TurismoReal\CapaDeDatos\obj\Debug\CapaDeDatos.pdb
+C:\APP\TurismoReal\CapaDeDatos\bin\Debug\CapaDeDatos.dll
+C:\APP\TurismoReal\CapaDeDatos\bin\Debug\CapaDeDatos.pdb
+C:\APP\TurismoReal\CapaDeDatos\bin\Debug\CapaDeEntidad.dll
+C:\APP\TurismoReal\CapaDeDatos\bin\Debug\CapaDeEntidad.pdb
+C:\APP\TurismoReal\CapaDeDatos\obj\Debug\CapaDeDatos.csproj.AssemblyReference.cache
+C:\APP\TurismoReal\CapaDeDatos\obj\Debug\CapaDeDatos.csproj.CoreCompileInputs.cache
+C:\APP\TurismoReal\CapaDeDatos\obj\Debug\CapaDeDatos.csproj.CopyComplete
+C:\APP\TurismoReal\CapaDeDatos\obj\Debug\CapaDeDatos.dll
+C:\APP\TurismoReal\CapaDeDatos\obj\Debug\CapaDeDatos.pdb

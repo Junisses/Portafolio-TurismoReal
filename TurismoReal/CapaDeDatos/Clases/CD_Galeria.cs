@@ -48,25 +48,10 @@ namespace CapaDeDatos.Clases
             dt = ds.Tables[0];
             DataRow row = dt.Rows[0];
             ce.DescripcionImagen = Convert.ToString(row[1]);
-            ce.Imagen = (byte[])row[2];
+            ce.Imagen = Convert.ToString(row[2]);
 
 
             return ce;
-        }
-
-        #endregion
-
-        #region Eliminar
-        public void CD_Eliminar(CE_Galeria Galeria)
-        {
-            SqlCommand com = new SqlCommand();
-            com.Connection = con.AbrirConexion();
-            com.CommandText = "dbo.SP_G_Eliminar";
-            com.CommandType = CommandType.StoredProcedure;
-            com.Parameters.AddWithValue("@idGaleria", Galeria.idGaleria);
-            com.ExecuteNonQuery();
-            com.Parameters.Clear();
-            con.CerrarConexion();
         }
 
         #endregion

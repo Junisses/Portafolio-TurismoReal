@@ -111,10 +111,13 @@ namespace CapaDeDatos.Clases
             {
                 ce.CheckOUT = Convert.ToDateTime(row[6]);
             }
-            ce.PrecioNocheReserva = Convert.ToInt32(row[8]);
+            if (!row.IsNull("precioNocheReserva"))
+            {
+                ce.PrecioNocheReserva = Convert.ToInt32(row[8]);
+            }
             ce.Saldo = Convert.ToInt32(row[9]);
-            ce.IdDepartamento = Convert.ToInt32(row[10]);
-            ce.IdUsuario = Convert.ToInt32(row[11]);
+            ce.IdDepartamento = Convert.ToInt32(row[11]);
+            ce.IdUsuario = Convert.ToInt32(row[12]);
 
             return ce;
         }

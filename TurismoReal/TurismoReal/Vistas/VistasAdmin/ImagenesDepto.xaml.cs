@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -12,11 +14,18 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Button = System.Windows.Controls.Button;
+using MessageBox = System.Windows.MessageBox;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
+using Path = System.IO.Path;
+using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
+using UserControl = System.Windows.Controls.UserControl;
 
 namespace TurismoReal.Vistas.VistasAdmin
 {
@@ -64,6 +73,7 @@ namespace TurismoReal.Vistas.VistasAdmin
 
         #region AGREGAR IMAGEN
         public int idDepartamento;
+        BitmapImage bi = null; // Global
         private void Crear(object sender, RoutedEventArgs e)
         {
             #region NOMBRE/DESCRIPCIÓN
@@ -100,17 +110,44 @@ namespace TurismoReal.Vistas.VistasAdmin
             }
             #endregion
 
-            
-
             if (CamposLlenos() == true)
             {
-                objeto_CE_Galeria.DescripcionImagen = tbDescripcion.Text;
+                objeto_CE_Galeria.DescripcionImagen = tbDescripcion.Text + "-" + tbIDdepto.Text;
                 objeto_CE_Galeria.IdDepartamento = int.Parse(tbIDdepto.Text);
 
                 #region IMAGEN
                 if (imagensubida == true)
                 {
-                    objeto_CE_Galeria.Imagen = img;
+                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+                    saveFileDialog1.Filter = "Image files|*.jpg;*.png;*.jpeg";
+                    saveFileDialog1.Title = "Guardar en la carpeta...";
+                    saveFileDialog1.FileName = tbDescripcion.Text + "-" + tbIDdepto.Text;
+                    saveFileDialog1.InitialDirectory = @"C:\TurismoRealWeb\turismoRealProyectoWeb\clientes\static\clientes\images";
+
+                    if (bi != null)
+                    {
+                        if (saveFileDialog1.ShowDialog() == true)
+                        {
+                            JpegBitmapEncoder jpg = new JpegBitmapEncoder();
+                            jpg.Frames.Add(BitmapFrame.Create(bi));
+                            using (Stream stm = File.Create(saveFileDialog1.FileName))
+                            {
+                                jpg.Save(stm);
+                                objeto_CE_Galeria.Imagen = saveFileDialog1.FileName;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("La imagen no se ha guardado, intentelo denuevo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("La imagen no se ha guardado, intentelo denuevo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
 
                     objeto_CN_Galeria.Insertar(objeto_CE_Galeria);
                     CargarDatos();
@@ -132,21 +169,30 @@ namespace TurismoReal.Vistas.VistasAdmin
 
         #region SUBIR IMAGEN
 
-        byte[] img;
         private bool imagensubida = false;
         private void Subir(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Image files|*.jpg;*.png;*.jpeg";
+            ofd.Title = "Seleccionar imagen";
+            ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             if (ofd.ShowDialog() == true)
             {
-                FileStream fs = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read);
-                img = new byte[fs.Length];
-                fs.Read(img, 0, System.Convert.ToInt32(fs.Length));
-                fs.Close();
+                try
+                {
+                    bi = new BitmapImage();
+                    bi.BeginInit();
+                    bi.UriSource = new Uri(ofd.FileName, UriKind.RelativeOrAbsolute);
+                    bi.EndInit();
 
-                ImageSourceConverter imgs = new ImageSourceConverter();
-                imagen.SetValue(Image.SourceProperty, imgs.ConvertFromString(ofd.FileName.ToString()));
+                    imagen.Source = bi;
+                }
+                catch (Exception c)
+                {
+                    MessageBox.Show(c.Message);
+                }
             }
+
             imagensubida = true;
         }
 
@@ -167,9 +213,63 @@ namespace TurismoReal.Vistas.VistasAdmin
             BtnCrear.IsEnabled = false;
             BtnGuardar.IsEnabled = false;
 
-            ImageSourceConverter imgs = new ImageSourceConverter();
-            imagen.Source = (ImageSource)imgs.ConvertFrom(a.Imagen);
+            //ImageSourceConverter imgs = new ImageSourceConverter();
+            //imagen.Source = (ImageSource)imgs.ConvertFrom(a.Imagen);
             tbDescripcion.Text = a.DescripcionImagen.ToString();
+            tbFile.Text = a.Imagen.ToString();
+
+            if (File.Exists("C:\\TurismoRealWeb\\turismoRealProyectoWeb\\clientes\\static\\clientes\\images\\" + tbDescripcion.Text + ".jpg") == true)
+            {
+                try
+                {
+                    bi = new BitmapImage();
+                    bi.BeginInit();
+                    bi.UriSource = new Uri("C:\\TurismoRealWeb\\turismoRealProyectoWeb\\clientes\\static\\clientes\\images\\" + tbDescripcion.Text + ".jpg");
+                    bi.EndInit();
+
+                    imagen.Source = bi;
+                }
+                catch (Exception c)
+                {
+                    MessageBox.Show(c.Message);
+                }
+            }
+            else if (File.Exists("C:\\TurismoRealWeb\\turismoRealProyectoWeb\\clientes\\static\\clientes\\images\\" + tbDescripcion.Text + ".png") == true)
+            {
+                try
+                {
+                    bi = new BitmapImage();
+                    bi.BeginInit();
+                    bi.UriSource = new Uri("C:\\TurismoRealWeb\\turismoRealProyectoWeb\\clientes\\static\\clientes\\images\\" + tbDescripcion.Text + ".png");
+                    bi.EndInit();
+
+                    imagen.Source = bi;
+                }
+                catch (Exception c)
+                {
+                    MessageBox.Show(c.Message);
+                }
+            }
+            else if (File.Exists("C:\\TurismoRealWeb\\turismoRealProyectoWeb\\clientes\\static\\clientes\\images\\" + tbDescripcion.Text + ".jpeg") == true)
+            {
+                try
+                {
+                    bi = new BitmapImage();
+                    bi.BeginInit();
+                    bi.UriSource = new Uri("C:\\TurismoRealWeb\\turismoRealProyectoWeb\\clientes\\static\\clientes\\images\\" + tbDescripcion.Text + ".jpeg");
+                    bi.EndInit();
+
+                    imagen.Source = bi;
+                }
+                catch (Exception c)
+                {
+                    MessageBox.Show(c.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("La imagen no se encuentra, puede\nque se eliminará del equipo");
+            }
         }
         #endregion
 
@@ -177,7 +277,7 @@ namespace TurismoReal.Vistas.VistasAdmin
         public void ActualizarC(object sender, RoutedEventArgs e)
         {
             int id = (int)((Button)sender).CommandParameter;
-            tbDescripcion.IsEnabled = true;
+            tbDescripcion.IsEnabled = false;
             BtnGuardar.IsEnabled = false;
             BtnCrear.IsEnabled = true;
             BtnActualizar.IsEnabled = true;
@@ -187,51 +287,106 @@ namespace TurismoReal.Vistas.VistasAdmin
             tbID.Text = id.ToString();
             tbDescripcion.Text = a.DescripcionImagen.ToString();
 
-            ImageSourceConverter imgs = new ImageSourceConverter();
-            imagen.Source = (ImageSource)imgs.ConvertFrom(a.Imagen);
+            //ImageSourceConverter imgs = new ImageSourceConverter();
+            //imagen.Source = (ImageSource)imgs.ConvertFrom(a.Imagen);
+            tbFile.Text = a.Imagen.ToString();
+
+            if (File.Exists("C:\\TurismoRealWeb\\turismoRealProyectoWeb\\clientes\\static\\clientes\\images\\" + tbDescripcion.Text + ".jpg") == true)
+            {
+                try
+                {
+                    bi = new BitmapImage();
+                    bi.BeginInit();
+                    bi.UriSource = new Uri("C:\\TurismoRealWeb\\turismoRealProyectoWeb\\clientes\\static\\clientes\\images\\" + tbDescripcion.Text + ".jpg");
+                    bi.EndInit();
+
+                    imagen.Source = bi;
+                }
+                catch (Exception c)
+                {
+                    MessageBox.Show(c.Message);
+                }
+            }
+            else if (File.Exists("C:\\TurismoRealWeb\\turismoRealProyectoWeb\\clientes\\static\\clientes\\images\\" + tbDescripcion.Text + ".png") == true)
+            {
+                try
+                {
+                    bi = new BitmapImage();
+                    bi.BeginInit();
+                    bi.UriSource = new Uri("C:\\TurismoRealWeb\\turismoRealProyectoWeb\\clientes\\static\\clientes\\images\\" + tbDescripcion.Text + ".png");
+                    bi.EndInit();
+
+                    imagen.Source = bi;
+                }
+                catch (Exception c)
+                {
+                    MessageBox.Show(c.Message);
+                }
+            }
+            else if (File.Exists("C:\\TurismoRealWeb\\turismoRealProyectoWeb\\clientes\\static\\clientes\\images\\" + tbDescripcion.Text + ".jpeg") == true)
+            {
+                try
+                {
+                    bi = new BitmapImage();
+                    bi.BeginInit();
+                    bi.UriSource = new Uri("C:\\TurismoRealWeb\\turismoRealProyectoWeb\\clientes\\static\\clientes\\images\\" + tbDescripcion.Text + ".jpeg");
+                    bi.EndInit();
+
+                    imagen.Source = bi;
+                }
+                catch (Exception c)
+                {
+                    MessageBox.Show(c.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("La imagen no se encuentra, puede\nque se eliminará del equipo");
+            }
+
+            MessageBox.Show("No cambie el nombre del archivo al guardar!");
 
         }
         private void Actualizar(object sender, RoutedEventArgs e)
         {
-            #region NOMBRE/DESCRIPCIÓN
-            if (tbDescripcion.Text == "")
-            {
-                MessageBox.Show("La descripción no puede quedar vacía", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
-                tbDescripcion.Focus();
-                return;
-            }
-            else if (tbDescripcion.Text != "")
-            {
-                if (tbDescripcion.Text.Length > 30)
-                {
-                    MessageBox.Show("La descripción es demasiado extensa", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    tbDescripcion.Clear();
-                    tbDescripcion.Focus();
-                    return;
-                }
-                else if (tbDescripcion.Text.Length < 3)
-                {
-                    MessageBox.Show("La descrición es muy corta", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    tbDescripcion.Clear();
-                    tbDescripcion.Focus();
-                    return;
-                }
-                //valido que se ingresen solo letras
-                else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$") == false)
-                {
-                    MessageBox.Show("La descripción solo puede tener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    tbDescripcion.Clear();
-                    tbDescripcion.Focus();
-                    return;
-                }
-            }
-            #endregion
+
 
             if (CamposLlenos() == true)
             {
                 objeto_CE_Galeria.idGaleria = int.Parse(tbID.Text);
                 objeto_CE_Galeria.DescripcionImagen = tbDescripcion.Text;
-                objeto_CE_Galeria.Imagen = img;
+                objeto_CE_Galeria.Imagen = tbFile.Text;
+
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+                saveFileDialog1.Filter = "Image files|*.jpg;*.png;*.jpeg";
+                saveFileDialog1.Title = "Guardar en la carpeta...";
+                saveFileDialog1.FileName = tbDescripcion.Text + "-" + tbIDdepto.Text;
+                saveFileDialog1.InitialDirectory = @"C:\TurismoRealWeb\turismoRealProyectoWeb\clientes\static\clientes\images";
+
+                if (bi != null)
+                {
+                    if (saveFileDialog1.ShowDialog() == true)
+                    {
+                        JpegBitmapEncoder jpg = new JpegBitmapEncoder();
+                        jpg.Frames.Add(BitmapFrame.Create(bi));
+                        using (Stream stm = File.Create(saveFileDialog1.FileName))
+                        {
+                            jpg.Save(stm);
+                            objeto_CE_Galeria.Imagen = saveFileDialog1.FileName;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("La imagen no se ha cambiado, intentelo denuevo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se a cambiado la imagen", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
 
                 objeto_CN_Galeria.ActualizarIMG(objeto_CE_Galeria);
                 CargarDatos();
@@ -247,26 +402,6 @@ namespace TurismoReal.Vistas.VistasAdmin
         }
         #endregion
 
-        #region ELIMINAR
-        private void Eliminar(object sender, RoutedEventArgs e)
-        {
-            int id = (int)((Button)sender).CommandParameter;
-            if (MessageBox.Show("¿Está seguro de eliminar la imagen?", "Eliminar Imagen", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                objeto_CE_Galeria.idGaleria = id;
-                objeto_CN_Galeria.Eliminar(objeto_CE_Galeria);
-                CargarDatos();
-                LimpiarData();
-            }
-            else
-            {
-                CargarDatos();
-                LimpiarData();
-            }
-        }
-
-        #endregion
-
         #region Limpiar Campos
 
         public void LimpiarData()
@@ -274,9 +409,22 @@ namespace TurismoReal.Vistas.VistasAdmin
             tbDescripcion.Clear();
             tbDescripcion.IsEnabled = true;
 
-            var a = objeto_CN_Galeria.Consulta(1);
-            ImageSourceConverter imgs = new ImageSourceConverter();
-            imagen.Source = (ImageSource)imgs.ConvertFrom(a.Imagen);
+            if (File.Exists("C:\\TurismoRealWeb\\turismoRealProyectoWeb\\clientes\\static\\clientes\\images\\subir.png") == true)
+            {
+                try
+                {
+                    bi = new BitmapImage();
+                    bi.BeginInit();
+                    bi.UriSource = new Uri("C:\\TurismoRealWeb\\turismoRealProyectoWeb\\clientes\\static\\clientes\\images\\subir.png");
+                    bi.EndInit();
+
+                    imagen.Source = bi;
+                }
+                catch (Exception c)
+                {
+                    MessageBox.Show(c.Message);
+                }
+            }
 
             BtnActualizar.IsEnabled = false;
             BtnCrear.IsEnabled = true;
@@ -294,7 +442,6 @@ namespace TurismoReal.Vistas.VistasAdmin
             CargarDatos();
         }
 
+
     }
 }
-
-

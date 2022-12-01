@@ -20,3 +20,14 @@ C:\Turismo Real\Escritorio\TurismoReal\CapaDeNegocio\obj\Debug\CapaDeNegocio.csp
 C:\Turismo Real\Escritorio\TurismoReal\CapaDeNegocio\obj\Debug\CapaDeNegocio.csproj.CopyComplete
 C:\Turismo Real\Escritorio\TurismoReal\CapaDeNegocio\obj\Debug\CapaDeNegocio.dll
 C:\Turismo Real\Escritorio\TurismoReal\CapaDeNegocio\obj\Debug\CapaDeNegocio.pdb
+C:\APP\TurismoReal\CapaDeNegocio\bin\Debug\CapaDeNegocio.dll
+C:\APP\TurismoReal\CapaDeNegocio\bin\Debug\CapaDeNegocio.pdb
+C:\APP\TurismoReal\CapaDeNegocio\bin\Debug\CapaDeDatos.dll
+C:\APP\TurismoReal\CapaDeNegocio\bin\Debug\CapaDeEntidad.dll
+C:\APP\TurismoReal\CapaDeNegocio\bin\Debug\CapaDeDatos.pdb
+C:\APP\TurismoReal\CapaDeNegocio\bin\Debug\CapaDeEntidad.pdb
+C:\APP\TurismoReal\CapaDeNegocio\obj\Debug\CapaDeNegocio.csproj.AssemblyReference.cache
+C:\APP\TurismoReal\CapaDeNegocio\obj\Debug\CapaDeNegocio.csproj.CoreCompileInputs.cache
+C:\APP\TurismoReal\CapaDeNegocio\obj\Debug\CapaDeNegocio.csproj.CopyComplete
+C:\APP\TurismoReal\CapaDeNegocio\obj\Debug\CapaDeNegocio.dll
+C:\APP\TurismoReal\CapaDeNegocio\obj\Debug\CapaDeNegocio.pdb

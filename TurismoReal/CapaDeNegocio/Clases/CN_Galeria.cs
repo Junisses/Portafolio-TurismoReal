@@ -29,15 +29,6 @@ namespace CapaDeNegocio.Clases
 
         #endregion
 
-        #region Eliminar   
-
-        public void Eliminar(CE_Galeria Galeria)
-        {
-            objDatos.CD_Eliminar(Galeria);
-        }
-
-        #endregion
-
         #region Actualizar Datos   
 
         public void ActualizarIMG(CE_Galeria Galeria)
