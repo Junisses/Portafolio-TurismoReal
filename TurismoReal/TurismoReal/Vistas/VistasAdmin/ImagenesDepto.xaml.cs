@@ -1,6 +1,8 @@
 ﻿using CapaDeEntidad.Clases;
 using CapaDeNegocio.Clases;
+using iTextSharp.tool.xml.html;
 using Microsoft.Win32;
+using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -129,12 +131,22 @@ namespace TurismoReal.Vistas.VistasAdmin
                     {
                         if (saveFileDialog1.ShowDialog() == true)
                         {
-                            JpegBitmapEncoder jpg = new JpegBitmapEncoder();
-                            jpg.Frames.Add(BitmapFrame.Create(bi));
-                            using (Stream stm = File.Create(saveFileDialog1.FileName))
+                            try
                             {
-                                jpg.Save(stm);
-                                objeto_CE_Galeria.Imagen = saveFileDialog1.FileName;
+                                JpegBitmapEncoder jpg = new JpegBitmapEncoder();
+                                jpg.Frames.Add(BitmapFrame.Create(bi));
+                                using (Stream stm = File.Create(saveFileDialog1.FileName))
+                                {
+                                    jpg.Save(stm);
+                                    objeto_CE_Galeria.Imagen = saveFileDialog1.FileName;
+                                    stm.Dispose();
+                                    
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                return;
                             }
                         }
                         else
@@ -143,6 +155,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                             return;
                         }
                     }
+
                     else
                     {
                         MessageBox.Show("La imagen no se ha guardado, intentelo denuevo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -289,7 +302,6 @@ namespace TurismoReal.Vistas.VistasAdmin
 
             //ImageSourceConverter imgs = new ImageSourceConverter();
             //imagen.Source = (ImageSource)imgs.ConvertFrom(a.Imagen);
-            tbFile.Text = a.Imagen.ToString();
 
             if (File.Exists("C:\\TurismoRealWeb\\turismoRealProyectoWeb\\clientes\\static\\clientes\\images\\" + tbDescripcion.Text + ".jpg") == true)
             {
@@ -301,6 +313,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                     bi.EndInit();
 
                     imagen.Source = bi;
+                    return;
                 }
                 catch (Exception c)
                 {
@@ -317,6 +330,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                     bi.EndInit();
 
                     imagen.Source = bi;
+                    return;
                 }
                 catch (Exception c)
                 {
@@ -333,6 +347,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                     bi.EndInit();
 
                     imagen.Source = bi;
+                    return;
                 }
                 catch (Exception c)
                 {
@@ -350,41 +365,48 @@ namespace TurismoReal.Vistas.VistasAdmin
         private void Actualizar(object sender, RoutedEventArgs e)
         {
 
-
             if (CamposLlenos() == true)
             {
                 objeto_CE_Galeria.idGaleria = int.Parse(tbID.Text);
                 objeto_CE_Galeria.DescripcionImagen = tbDescripcion.Text;
-                objeto_CE_Galeria.Imagen = tbFile.Text;
 
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
 
                 saveFileDialog1.Filter = "Image files|*.jpg;*.png;*.jpeg";
                 saveFileDialog1.Title = "Guardar en la carpeta...";
-                saveFileDialog1.FileName = tbDescripcion.Text + "-" + tbIDdepto.Text;
+                saveFileDialog1.FileName = tbDescripcion.Text;
                 saveFileDialog1.InitialDirectory = @"C:\TurismoRealWeb\turismoRealProyectoWeb\clientes\static\clientes\images";
 
                 if (bi != null)
                 {
                     if (saveFileDialog1.ShowDialog() == true)
                     {
-                        JpegBitmapEncoder jpg = new JpegBitmapEncoder();
-                        jpg.Frames.Add(BitmapFrame.Create(bi));
-                        using (Stream stm = File.Create(saveFileDialog1.FileName))
+                        try
                         {
-                            jpg.Save(stm);
-                            objeto_CE_Galeria.Imagen = saveFileDialog1.FileName;
+                            JpegBitmapEncoder jpg = new JpegBitmapEncoder();
+                            jpg.Frames.Add(BitmapFrame.Create(bi));
+                            using (Stream stm = File.Create(saveFileDialog1.FileName))
+                            {
+                                jpg.Save(stm);
+                                objeto_CE_Galeria.Imagen = saveFileDialog1.FileName;
+                                stm.Dispose();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                            return;
                         }
                     }
                     else
                     {
-                        MessageBox.Show("La imagen no se ha cambiado, intentelo denuevo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("La imagen no se ha guardado, intentelo denuevo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("No se a cambiado la imagen", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("La imagen no se ha guardado, intentelo denuevo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
@@ -419,6 +441,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                     bi.EndInit();
 
                     imagen.Source = bi;
+                    return;
                 }
                 catch (Exception c)
                 {
