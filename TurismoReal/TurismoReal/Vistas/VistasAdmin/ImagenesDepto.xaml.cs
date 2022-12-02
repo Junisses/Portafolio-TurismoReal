@@ -139,8 +139,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                                 {
                                     jpg.Save(stm);
                                     objeto_CE_Galeria.Imagen = saveFileDialog1.FileName;
-                                    stm.Dispose();
-                                    
+                                    stm.Dispose(); 
                                 }
                             }
                             catch (Exception ex)
@@ -287,6 +286,7 @@ namespace TurismoReal.Vistas.VistasAdmin
         #endregion
 
         #region ACTUALIZAR
+
         public void ActualizarC(object sender, RoutedEventArgs e)
         {
             int id = (int)((Button)sender).CommandParameter;
@@ -377,8 +377,6 @@ namespace TurismoReal.Vistas.VistasAdmin
                 saveFileDialog1.FileName = tbDescripcion.Text;
                 saveFileDialog1.InitialDirectory = @"C:\TurismoRealWeb\turismoRealProyectoWeb\clientes\static\clientes\images";
 
-                if (bi != null)
-                {
                     if (saveFileDialog1.ShowDialog() == true)
                     {
                         try
@@ -403,12 +401,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                         MessageBox.Show("La imagen no se ha guardado, intentelo denuevo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
-                }
-                else
-                {
-                    MessageBox.Show("La imagen no se ha guardado, intentelo denuevo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
+
 
                 objeto_CN_Galeria.ActualizarIMG(objeto_CE_Galeria);
                 CargarDatos();
