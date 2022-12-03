@@ -40,7 +40,7 @@ namespace TurismoReal.Vistas
             }
             else
             {
-                MessageBox.Show("No pueden quedar campos vacios");
+                MessageBox.Show("No pueden quedar campos vacios", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             
         }
@@ -61,16 +61,20 @@ namespace TurismoReal.Vistas
                     inicioAdmin.Show();
                     this.Close();
                 }
-                else
+                else if(a.IdTipoUsuario == 2)
                 {
                     InicioFuncionario inicioFuncionario = new InicioFuncionario();
                     inicioFuncionario.Show();
                     this.Close();
                 }
+                else
+                {
+                    MessageBox.Show("Los clientes no pueden iniciar\nsesión en la aplicación de la empresa.\nDirijase a la página web!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
             else 
             {
-                MessageBox.Show("Datos incorrectos\nIntentalo denuevo");
+                MessageBox.Show("Datos incorrectos\nIntentalo denuevo", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

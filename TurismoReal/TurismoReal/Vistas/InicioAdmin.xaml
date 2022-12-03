@@ -210,7 +210,7 @@
                                VerticalAlignment="Center"/>
                     <!--#endregion-->
                     <!--#region BtnCuenta-->
-                    <Button x:Name="BtnCuenta"
+                    <!--<Button x:Name="BtnCuenta"
                             Grid.Column="1"
                             Background="Transparent"
                             FontSize="15"
@@ -258,20 +258,19 @@
                                    VerticalAlignment="Top"
                                    Source="/Vistas/Images/user.png" Margin="0,2,0,0" Grid.RowSpan="2"/>
                         </Grid>
-                    </Button>
+                    </Button> -->
                     <!--#endregion-->
                     <!--#region Información-->
                     <Button x:Name="BtnCerrarSesíon"
-                            Grid.Column="1"
+                            Grid.Column="2"
                             Background="Transparent"
                             BorderBrush="Transparent"
                             Foreground="White"
                             FontSize="15"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Left"
                             Cursor="Hand" 
-                            Click="BtnCerrarSesion"
-                            >
+                            Click="BtnCerrarSesion" Height="30" Width="140">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#460044"/>
@@ -562,7 +561,7 @@
                                 </Grid>
                             </Button>
                         </ListViewItem>
-                        
+
                         <!--#region boton Inventario-->
                         <ListViewItem Style="{DynamicResource ListViewItemStyle}" Height="50">
                             <Button Style="{DynamicResource btnstiloboton}" x:Name="BtnInventario"
@@ -772,7 +771,7 @@
                         </ListViewItem>
 
                     </ListView>
-                    
+
 
 
                 </StackPanel>
