@@ -74,6 +74,8 @@ namespace TurismoReal.Vistas.VistasAdmin
             StringBuilder MensajeBuilder = new StringBuilder();
             MensajeBuilder.Append(tbMensaje.Text);
             EnviarCorreo(MensajeBuilder, DateTime.Now, tbDe.Text, tbPara.Text, tbAsunto.Text, out Error);
+            tbMensaje.IsEnabled = false;
+            btnEnviar.IsEnabled = false;
         }
 
         public static void EnviarCorreo(StringBuilder Mensaje, DateTime FechaEnvio, string De,string Para, string Asunto, out string Error)
@@ -99,8 +101,8 @@ namespace TurismoReal.Vistas.VistasAdmin
                 smtp.EnableSsl = true;
                 smtp.Send(mail);
 
-                Error = "Éxito";
-                MessageBox.Show(Error);
+                Error = "éxito";
+                MessageBox.Show("El mensaje a sido enviado con " + Error, "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
 
             }
             catch (Exception ex)

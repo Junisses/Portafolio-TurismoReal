@@ -574,6 +574,7 @@
                      HorizontalContentAlignment="Center"
                      Background="#F3E5F5" 
                      Grid.ColumnSpan="2" 
+                     Visibility="Hidden"
                      TabIndex="1"/>
             <!--#region DataGrid-->
             <DataGrid Style="{DynamicResource DataGridStyle}" Grid.Row="4"

@@ -105,12 +105,22 @@ namespace TurismoReal.Vistas.VistasFuncionario
                     int cantidad = int.Parse("0" + tbCantidad.Text);
                     int total = cantidad * valor;
 
+                    if (tbCantidad.Text == "")
+                    {
+                        MessageBox.Show("La cantidad no puede quedar en blanco", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        tbCantidad.Focus();
+                        return;
+                    }
+                    else
+                    {
+
+                        objeto_CE_DServicio.Cantidad = int.Parse(tbCantidad.Text);
+                    }
+
                     objeto_CE_DServicio.Fecha = DateTime.Now;
                     objeto_CE_DServicio.MontoTotal = total;
                     objeto_CE_DServicio.IdServicio = idServicio;
                     objeto_CE_DServicio.IdReserva = idReserva;
-                    objeto_CE_DServicio.Cantidad = int.Parse(tbCantidad.Text);
-
                     objeto_CN_DServicio.Insertar(objeto_CE_DServicio);
 
                     if (CamposLlenos() == true)

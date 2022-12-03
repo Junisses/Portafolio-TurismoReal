@@ -120,15 +120,15 @@ namespace TurismoReal.Vistas.VistasAdmin
                 #region IMAGEN
                 if (imagensubida == true)
                 {
-                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-
-                    saveFileDialog1.Filter = "Image files|*.jpg;*.png;*.jpeg";
-                    saveFileDialog1.Title = "Guardar en la carpeta...";
-                    saveFileDialog1.FileName = tbDescripcion.Text + "-" + tbIDdepto.Text;
-                    saveFileDialog1.InitialDirectory = @"C:\TurismoRealWeb\turismoRealProyectoWeb\clientes\static\clientes\images";
-
                     if (bi != null)
                     {
+                        SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+                        saveFileDialog1.Filter = "Image files|*.jpg;*.png;*.jpeg";
+                        saveFileDialog1.Title = "Guardar en la carpeta...";
+                        saveFileDialog1.FileName = tbDescripcion.Text + "-" + tbIDdepto.Text;
+                        saveFileDialog1.InitialDirectory = @"C:\TurismoRealWeb\turismoRealProyectoWeb\clientes\static\clientes\images";
+
                         if (saveFileDialog1.ShowDialog() == true)
                         {
                             try
@@ -139,7 +139,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                                 {
                                     jpg.Save(stm);
                                     objeto_CE_Galeria.Imagen = saveFileDialog1.FileName;
-                                    stm.Dispose(); 
+                                    stm.Close(); 
                                 }
                             }
                             catch (Exception ex)
@@ -154,17 +154,11 @@ namespace TurismoReal.Vistas.VistasAdmin
                             return;
                         }
                     }
-
                     else
                     {
                         MessageBox.Show("La imagen no se ha guardado, intentelo denuevo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
-
-                    objeto_CN_Galeria.Insertar(objeto_CE_Galeria);
-                    CargarDatos();
-                    MessageBox.Show("Se ha guardado la imagen!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
-                    LimpiarData();
                 }
                 #endregion
                 else
@@ -172,6 +166,10 @@ namespace TurismoReal.Vistas.VistasAdmin
                     MessageBox.Show("La imagen no se ha guardado, intentelo denuevo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
 
+                objeto_CN_Galeria.Insertar(objeto_CE_Galeria);
+                CargarDatos();
+                MessageBox.Show("Se ha guardado la imagen!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
+                LimpiarData();
             }
             else
             {
@@ -198,14 +196,14 @@ namespace TurismoReal.Vistas.VistasAdmin
                     bi.EndInit();
 
                     imagen.Source = bi;
+                   
                 }
                 catch (Exception c)
                 {
                     MessageBox.Show(c.Message);
                 }
+                imagensubida = true;
             }
-
-            imagensubida = true;
         }
 
         #endregion
@@ -313,7 +311,7 @@ namespace TurismoReal.Vistas.VistasAdmin
                     bi.EndInit();
 
                     imagen.Source = bi;
-                    return;
+
                 }
                 catch (Exception c)
                 {
@@ -330,7 +328,6 @@ namespace TurismoReal.Vistas.VistasAdmin
                     bi.EndInit();
 
                     imagen.Source = bi;
-                    return;
                 }
                 catch (Exception c)
                 {
@@ -347,7 +344,6 @@ namespace TurismoReal.Vistas.VistasAdmin
                     bi.EndInit();
 
                     imagen.Source = bi;
-                    return;
                 }
                 catch (Exception c)
                 {
@@ -357,9 +353,10 @@ namespace TurismoReal.Vistas.VistasAdmin
             else
             {
                 MessageBox.Show("La imagen no se encuentra, puede\nque se eliminará del equipo");
+                LimpiarData();
             }
 
-            MessageBox.Show("No cambie el nombre del archivo al guardar!");
+            MessageBox.Show("Por favor, no cambie el nombre del\nARCHIVO al subirlo a la carpeta,\nsolo reemplacelo por el ya existente.", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
         private void Actualizar(object sender, RoutedEventArgs e)
@@ -387,12 +384,11 @@ namespace TurismoReal.Vistas.VistasAdmin
                             {
                                 jpg.Save(stm);
                                 objeto_CE_Galeria.Imagen = saveFileDialog1.FileName;
-                                stm.Dispose();
+                                stm.Close();
                             }
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message);
                             return;
                         }
                     }
@@ -401,8 +397,6 @@ namespace TurismoReal.Vistas.VistasAdmin
                         MessageBox.Show("La imagen no se ha guardado, intentelo denuevo", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
-
-
                 objeto_CN_Galeria.ActualizarIMG(objeto_CE_Galeria);
                 CargarDatos();
                 MessageBox.Show("Se actualizó exitosamente!!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -423,6 +417,9 @@ namespace TurismoReal.Vistas.VistasAdmin
         {
             tbDescripcion.Clear();
             tbDescripcion.IsEnabled = true;
+            BtnActualizar.IsEnabled = false;
+            BtnCrear.IsEnabled = true;
+            BtnGuardar.IsEnabled = true;
 
             if (File.Exists("C:\\TurismoRealWeb\\turismoRealProyectoWeb\\clientes\\static\\clientes\\images\\subir.png") == true)
             {
@@ -442,9 +439,6 @@ namespace TurismoReal.Vistas.VistasAdmin
                 }
             }
 
-            BtnActualizar.IsEnabled = false;
-            BtnCrear.IsEnabled = true;
-            BtnGuardar.IsEnabled = true;
         }
         private void Limpiar(object sender, RoutedEventArgs e)
         {

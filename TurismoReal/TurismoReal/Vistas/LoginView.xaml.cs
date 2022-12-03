@@ -1,5 +1,6 @@
 ﻿using CapaDeNegocio.Clases;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace TurismoReal.Vistas
@@ -71,6 +72,7 @@ namespace TurismoReal.Vistas
             {
                 MessageBox.Show("Datos incorrectos\nIntentalo denuevo");
             }
-        }       
+        }
+
     }
 }
