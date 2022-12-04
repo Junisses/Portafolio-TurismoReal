@@ -1035,6 +1035,7 @@
                       Grid.Column="2"
                       Cursor="Hand"
                       TabIndex="1"
+                      SelectionChanged="ComboChanged"
                       HorizontalContentAlignment="Center"
                       x:Name="cbMedioPago">
                 <ComboBox.ItemContainerStyle>

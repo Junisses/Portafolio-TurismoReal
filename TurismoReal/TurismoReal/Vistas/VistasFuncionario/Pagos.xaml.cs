@@ -76,6 +76,20 @@ namespace TurismoReal.Vistas.VistasFuncionario
         }
         #endregion
 
+        private void ComboChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbMedioPago.SelectedIndex == 0)
+            {
+                cbBanco.IsEnabled = false;
+                cbBanco.SelectedIndex = 0;
+            }
+            else
+            {
+                cbBanco.IsEnabled = true;
+                cbBanco.SelectedIndex = -1;
+            }
+        }
+
         #region REGRESAR
         private void Regresar(object sender, RoutedEventArgs e)
         {
@@ -185,12 +199,20 @@ namespace TurismoReal.Vistas.VistasFuncionario
                         {
                             if (CamposLlenos() == true)
                             {
-                                objeto_CN_Boletas.InsertarDS(objeto_CE_Boletas);
+                                if (cbBanco.SelectedIndex == 0)
+                                {
+                                    MessageBox.Show("Para el medio de pago con Crédito o Débito\ndebe seleccionar un banco, no puede dejar\neste en N/A!", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                }
+                                else 
+                                {
+                                    objeto_CN_Boletas.InsertarDS(objeto_CE_Boletas);
 
-                                Imprimir(comprobante, vuelto, total);
-                                MessageBox.Show("Se ingreso exitosamente!!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    Imprimir(comprobante, vuelto, total);
+                                    MessageBox.Show("Se ingreso exitosamente!!", "INFORMACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                                Content = new CheckInOut();
+                                    Content = new CheckInOut();
+                                }
+                                
                             }
                             else
                             {
@@ -658,7 +680,8 @@ namespace TurismoReal.Vistas.VistasFuncionario
                 new CB_Banco { IdBanco = 7, BancoName = "SANTANDER" },
                 new CB_Banco { IdBanco = 8, BancoName = "ITAÚ" },
                 new CB_Banco { IdBanco = 9, BancoName = "FALABELLA" },
-                new CB_Banco { IdBanco = 10, BancoName = "INTERNACIONAL" }
+                new CB_Banco { IdBanco = 10, BancoName = "INTERNACIONAL" },
+                new CB_Banco { IdBanco = 11, BancoName = "WEBPAY" }
             };
 
             cbBanco.SelectedValuePath = "BancoName";
@@ -667,8 +690,8 @@ namespace TurismoReal.Vistas.VistasFuncionario
 
         }
 
-        #endregion
 
+        #endregion
 
     }
 }

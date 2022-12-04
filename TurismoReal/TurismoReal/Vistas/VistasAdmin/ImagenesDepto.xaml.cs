@@ -94,17 +94,10 @@ namespace TurismoReal.Vistas.VistasAdmin
                     tbDescripcion.Focus();
                     return;
                 }
-                else if (tbDescripcion.Text.Length < 3)
-                {
-                    MessageBox.Show("La descripción es muy corta", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    tbDescripcion.Clear();
-                    tbDescripcion.Focus();
-                    return;
-                }
                 //valido que se ingresen solo letras
-                else if (Regex.IsMatch(tbDescripcion.Text, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$") == false)
+                else if (Regex.IsMatch(tbDescripcion.Text, @"^[A-Za-z0-9_.]+$") == false)
                 {
-                    MessageBox.Show("La descripción solo puede tener letras", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Considere solo poner letras, números\nguiones bajos y puntos en la descripción", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                     tbDescripcion.Clear();
                     tbDescripcion.Focus();
                     return;

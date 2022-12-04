@@ -527,10 +527,10 @@
             <Image Grid.Row="5"
                    Grid.Column="1"
                    Grid.RowSpan="10"
-                   Grid.ColumnSpan="2"
+                   Grid.ColumnSpan="4"
                    x:Name="imagen"
                    Source="/Vistas/Images/subir.png" 
-                   Margin="0,17,3,10"/>
+                   Margin="0,17,31,10"/>
 
             <TextBlock Grid.Row="4"
                        Grid.Column="1"
@@ -543,17 +543,17 @@
                      x:Name="tbDescripcion"
                      HorizontalContentAlignment="Center"
                      Background="#F3E5F5" 
-                     Grid.ColumnSpan="2" 
+                     Grid.ColumnSpan="4" 
                      TabIndex="1"
-                     Margin="184,0,0,35" Grid.RowSpan="2"/>
+                     Margin="184,0,93,35" Grid.RowSpan="2"/>
             <TextBlock IsHitTestVisible="False" 
                            Text="Ingrese descripción de la imagen" 
-                           VerticalAlignment="Center" 
+                           VerticalAlignment="Top" 
                            Grid.Column="2"
                            Grid.Row="4"
                            FontSize="11"
-                           HorizontalAlignment="Center" Margin="0,0,0,3" 
-                           Foreground="DarkGray">
+                           HorizontalAlignment="Left" Margin="69,7,0,0" 
+                           Foreground="DarkGray" Grid.ColumnSpan="3">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
                         <Setter Property="Visibility" Value="Collapsed"/>
@@ -591,14 +591,10 @@
                       RowBackground="Transparent"
                       HeadersVisibility="Column"
                       GridLinesVisibility="Horizontal"
-                      HorizontalGridLinesBrush="#A64B9F" 
-                      Grid.ColumnSpan="2" Margin="0,0,0,35" Grid.RowSpan="10">
+                      HorizontalGridLinesBrush="#A64B9F" Margin="172,0,0,35" Grid.RowSpan="10" Grid.ColumnSpan="2">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Depto"
-                                        Width="*"
-                                        Binding="{Binding idDepartamento}"/>
                     <DataGridTextColumn Header="Descripcion"
-                                        Width="*"
+                                        Width="130"
                                         Binding="{Binding descripcionImagen}"/>
                     <DataGridTemplateColumn Header="Opciones"
                                             Width="*">
@@ -642,9 +638,8 @@
                      Visibility="Hidden"/>
 
 
-            <Button Style="{DynamicResource Cargar}" Grid.Column="1"
+            <Button Style="{DynamicResource Cargar}" Grid.Column="2"
                     Grid.Row="15"
-                    Grid.ColumnSpan="2"
                     Content="Cargar Imagen" 
                     x:Name="BtnCrear"
                     TabIndex="2"
@@ -654,7 +649,7 @@
                     Foreground="White"
                     
                     CommandParameter="{Binding idDepartamento}"
-                    Margin="124,0,126,3"/>
+                    Margin="27,1,38,2"/>
             <Button Style="{DynamicResource Guardar}" Grid.Column="4"
                     Grid.Row="16"
                     Content="Guardar" 
