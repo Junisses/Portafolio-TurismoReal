@@ -400,9 +400,6 @@
                         <DataGridTextColumn Header="Pais"
                                         Width="100"
                                         Binding="{Binding pais}"/>
-                        <DataGridTextColumn Header="Tipo DNI"
-                                        Width="100"
-                                        Binding="{Binding esPasaporte}"/>
                         <DataGridTextColumn Header="DNI"
                                         Width="85"
                                         Binding="{Binding identificacion}"/>

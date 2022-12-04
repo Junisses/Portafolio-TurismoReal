@@ -344,7 +344,7 @@
                                         Binding="{Binding detalle}"/>
                         <DataGridTextColumn Header="Cantidad contratada" 
                                         Width="*"
-                                        Binding="{Binding cantidad}"/>
+                                        Binding="{Binding suma}"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <!--#endregion-->
