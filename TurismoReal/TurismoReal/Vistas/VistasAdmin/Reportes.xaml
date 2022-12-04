@@ -595,9 +595,6 @@
                         <DataGridTextColumn Header="Precio Noche"
                                         Width="*"
                                         Binding="{Binding precioNoche, StringFormat=\{0:C0\}}"/>
-                        <DataGridTextColumn Header="Estado"
-                                        Width="90"
-                                        Binding="{Binding estadoDepto}"/>
                         <DataGridTemplateColumn Header="Reporte unitario"
                                                 Width="120">
                             <DataGridTemplateColumn.CellTemplate>

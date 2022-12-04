@@ -147,6 +147,19 @@ namespace CapaDeDatos.Clases
             return dt;
         }
 
+        public DataTable CargarDepartamentosDispo()
+        {
+            SqlDataAdapter da = new SqlDataAdapter("dbo.SP_D_DeptosDispo", con.AbrirConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            DataSet ds = new DataSet();
+            ds.Clear();
+            da.Fill(ds);
+            DataTable dt = ds.Tables[0];
+            con.CerrarConexion();
+
+            return dt;
+        }
+
         #endregion
 
         #region BUSCAR DEPTO.

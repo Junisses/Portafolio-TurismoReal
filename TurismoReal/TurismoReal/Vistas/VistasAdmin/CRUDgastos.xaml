@@ -1014,7 +1014,7 @@
             <!--Texto y box para Fecha estado-->
             <TextBlock Grid.Row="9"
                        Grid.Column="1"
-                       Text="Fecha Estado"
+                       Text="Fecha del pago"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
             <DatePicker Style="{DynamicResource DatePickerStyle}" 

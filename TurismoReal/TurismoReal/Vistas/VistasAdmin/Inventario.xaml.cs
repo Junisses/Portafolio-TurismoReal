@@ -33,7 +33,7 @@ namespace TurismoReal.Vistas.VistasAdmin
         #region CARGAR Departamentos
         void CargarDatos()
         {
-            GridDatos.ItemsSource = objeto_CN_Departamentos.CargarDeptos().DefaultView;
+            GridDatos.ItemsSource = objeto_CN_Departamentos.CargarDeptosDispo().DefaultView;
         }
         #endregion
 

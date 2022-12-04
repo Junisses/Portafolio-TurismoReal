@@ -58,6 +58,10 @@ namespace CapaDeNegocio.Clases
             return objDatos.CargarDepartamentos();
         }
 
+        public DataTable CargarDeptosDispo()
+        {
+            return objDatos.CargarDepartamentosDispo();
+        }
         #endregion
 
         #region BUSCAR DEPARTAMENTOS
