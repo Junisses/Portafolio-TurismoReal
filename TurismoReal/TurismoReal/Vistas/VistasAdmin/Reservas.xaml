@@ -384,24 +384,27 @@
                       HorizontalGridLinesBrush="#A64B9F">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Estado"
-                                        Width="100"
+                                        Width="80"
                                         Binding="{Binding estadoReserva}"/>
                         <DataGridTextColumn Header="Depto."
-                                        Width="120"
+                                        Width="110"
                                         Binding="{Binding descripcion}"/>
                         <DataGridTextColumn Header="Cliente"
-                                        Width="90"
+                                        Width="70"
                                         Binding="{Binding nombres}"/>
                         <DataGridTextColumn Header=""
-                                        Width="*"
+                                        Width="70"
                                         Binding="{Binding apellidos}"/>
+                        <DataGridTextColumn Header="Correo"
+                                        Width="*"
+                                        Binding="{Binding correo}"/>
                         <DataGridTextColumn Header="Desde"
-                                        Width="100"
+                                        Width="90"
                                         Binding="{Binding fechaDesde,StringFormat=dd-MM-yyyy}"/>
                         <DataGridTextColumn Header="Hasta"
-                                        Width="100"
+                                        Width="90"
                                         Binding="{Binding fechaHasta, StringFormat=dd-MM-yyyy}"/>
-                        <DataGridTemplateColumn Header="Servicios Contratados"
+                        <DataGridTemplateColumn Header="Serv. Contratados"
                                             Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

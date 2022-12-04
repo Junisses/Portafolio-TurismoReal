@@ -92,7 +92,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
             var det = objeto_CN_Boletas.Detalle(idReserva);
 
             //VALIDACION EN CASO DE QUE NO TENGA EL REGISTRO
-            if (det.MedioDePago == null || det.Monto == 0)
+            if (det.MedioDePago == null)
             {
                 BtnPago.IsEnabled = true;
             }
@@ -167,7 +167,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
             var det = objeto_CN_Boletas.Detalle(idReserva);
 
             //VALIDACION EN CASO DE QUE NO TENGA EL REGISTRO
-            if (det.MedioDePago == null || det.Monto == 0)
+            if (det.MedioDePago == null)
             {
                 MessageBox.Show("Asegurese de realizar el \npago completo de la reserva!!", "INFORMACIÓN", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Information);
                 return;

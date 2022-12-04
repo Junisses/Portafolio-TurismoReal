@@ -56,7 +56,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
             ventana.idDepartamento = a.IdDepartamento;
 
             var det = objeto_CN_Boletas.Detalle(id);
-            if (det.MedioDePago == null || det.Monto == 0)
+            if (det.MedioDePago == null)
             {
                 ventana.tbSaldo.Text = a.Saldo.ToString();
             }
@@ -95,7 +95,7 @@ namespace TurismoReal.Vistas.VistasFuncionario
             ventana.cFechaIngreso.IsEnabled = false;
 
             var det = objeto_CN_Boletas.Detalle(id);
-            if (det.MedioDePago == null || det.Monto == 0)
+            if (det.MedioDePago == null)
             {
                 ventana.tbSaldo.Text = a.Saldo.ToString();
             }
